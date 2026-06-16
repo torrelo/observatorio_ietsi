@@ -14,6 +14,43 @@ Cada entrada debe incluir:
 - Pendientes
 - Observaciones tecnicas
 
+## 2026-06-16 - Implementacion del Directorio de Investigadores
+
+- **Rama de trabajo:** `observatorio-directorio-prod_cientifica`
+- **Modulo intervenido:** Investigadores.
+- **Funcionalidades implementadas:**
+  - Directorio principal `/investigadores` con encabezado institucional, KPIs, buscador y filtros laterales.
+  - Tarjetas de investigador con foto placeholder, nombre, especialidad, unidad principal, ORCID, RENACYT, lineas de investigacion y metricas resumidas.
+  - Perfil individual `/investigadores/[id]` con breadcrumb, identidad, badges CRIS, expertise, indicadores cientificos, produccion cientifica, proyectos, red de colaboracion, unidades relacionadas e investigadores recomendados.
+  - Datos mock estructurados para seis investigadores de EsSalud.
+  - Interfaces preparadas para ORCID, RENACYT, OpenAlex, Scopus y Crossref.
+  - Visualizacion mock tipo grafo para redes de colaboracion.
+  - Enlaces cruzados hacia Produccion Cientifica, Proyectos y Unidades.
+- **Errores corregidos:**
+  - Se reemplaza la experiencia inicial dependiente de `api.researchers()` por una capa mock estructurada del frontend, evitando dependencia de backend para el MVP del modulo.
+  - Se reinicio el servidor de desarrollo para que Next.js reconociera correctamente la ruta dinamica `/investigadores/[id]`.
+- **Archivos modificados:**
+  - `docs/CHANGELOG.md`
+  - `docs/bitacora/investigadores.md`
+  - `frontend/app/investigadores/page.tsx`
+  - `frontend/app/investigadores/[id]/page.tsx`
+  - `frontend/lib/researchers.ts`
+  - `frontend/components/ResearcherProfileCard.tsx`
+  - `frontend/components/CollaborationGraph.tsx`
+- **Capturas generadas:**
+  - `docs/screenshots/directorio-investigadores-v1.png`
+  - `docs/screenshots/investigador-perfil-v1.png`
+- **Pendientes:**
+  - Conectar ORCID API para sincronizar identificadores, empleo, educacion y obras.
+  - Conectar RENACYT para validacion de codigo, categoria y vigencia.
+  - Enriquecer produccion cientifica con OpenAlex, Scopus y Crossref.
+  - Reemplazar grafo mock por motor de red o datos reales cuando se defina tecnologia.
+  - Implementar paginacion si el volumen crece.
+  - Agregar pruebas automatizadas de filtros y perfil.
+  - Validacion ejecutada: `npm run typecheck`.
+  - Validacion ejecutada: `NEXT_PUBLIC_API_BASE_URL=http://localhost:8001 npm run build`.
+  - Validacion dev: `/investigadores`, `/investigadores/1` y filtros por query string responden 200.
+
 ## 2026-06-16 - Consolidacion de rutas de Produccion Cientifica
 
 - **Rama de trabajo:** `observatorio-directorio-prod_cientifica`
