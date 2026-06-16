@@ -45,6 +45,30 @@ Resultado de la intervencion:
 - `ResearcherProfileCard`
 - `CollaborationGraph`
 
+### Intervencion 2026-06-16 - Homogeneizacion de tarjetas CRIS
+
+Se implementa la homogeneización visual de las tarjetas del Directorio de Investigadores para garantizar consistencia en altura, orden visual y distribución de contenido.
+
+**Orden visual implementado:**
+1. Foto + nombre y apellidos
+2. Especialidad
+3. Centro de trabajo (altura fija 2 líneas)
+4. ORCID y RENACYT (badges)
+5. Líneas de investigación (2 primeras líneas + badge "+N" si hay más)
+6. Indicadores científicos (6 métricas en grid 3x2)
+7. Botón "Ver perfil" (alineado al final)
+
+**Reglas visuales aplicadas:**
+- Contenedor tarjeta: `flex h-full flex-col` (permite crecimiento vertical)
+- Centro de trabajo: `h-10 overflow-hidden line-clamp-2` (altura fija)
+- Líneas investigación: `min-h-10 flex flex-wrap` con badge "+N" dinámico
+- Indicadores: Grid consistente 3x2
+- Botón: Empujado al final con spacer `flex-1`
+
+**Cambios en componentes:**
+- `ResearcherProfileCard.tsx`: Refactorizada con flexbox, lógica de overflow badge
+- `investigadores/page.tsx`: Envolvimiento de tarjetas en `<div className="h-full">`
+
 ## Archivos principales
 
 - `frontend/app/investigadores/page.tsx`

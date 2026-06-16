@@ -76,7 +76,11 @@ export default async function ResearchersPage({ searchParams }: { searchParams: 
               <p className="text-sm text-slate-500">Directorio CRIS institucional</p>
             </div>
             <div className="grid gap-4 xl:grid-cols-2">
-              {researchers.map((researcher) => <ResearcherProfileCard key={researcher.id} researcher={researcher} />)}
+              {researchers.map((researcher) => (
+                <div key={researcher.id} className="h-full">
+                  <ResearcherProfileCard researcher={researcher} />
+                </div>
+              ))}
             </div>
           </div>
         </div>
