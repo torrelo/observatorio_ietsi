@@ -1,13 +1,14 @@
-import { BarChart3, Globe2, LogIn, Search } from "lucide-react";
+import { LogIn, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 const nav = [
+  ["Inicio", "/"],
   ["Produccion cientifica", "/publicaciones"],
-  ["Proyectos", "/proyectos"],
   ["Investigadores", "/investigadores"],
-  ["Unidades", "/unidades"],
-  ["Indicadores", "/indicadores"],
+  ["Proyectos", "/proyectos"],
+  ["Unidades de investigacion", "/unidades"],
+  ["Mas modulos", "/#modulos"],
 ];
 
 export function Header() {
@@ -21,9 +22,6 @@ export function Header() {
             <Image src="/images/observatorio_logo.svg" alt="Observatorio" width={154} height={44} className="h-10 w-auto object-contain" />
           </Link>
           <div className="flex items-center gap-2 text-sm">
-            <button className="inline-flex h-10 items-center gap-2 rounded border border-slate-200 bg-white px-3 font-semibold text-slate-600">
-              <Globe2 size={16} /> ES
-            </button>
             <button className="inline-flex h-10 items-center gap-2 rounded bg-brand-dark px-3 font-semibold text-white">
               <LogIn size={16} /> Login institucional
             </button>

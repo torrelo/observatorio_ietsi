@@ -1,64 +1,159 @@
-import { BarChart3, BookOpen, FlaskConical, UsersRound } from "lucide-react";
+import {
+  BarChart3,
+  BookOpen,
+  BrainCircuit,
+  Building2,
+  ClipboardCheck,
+  Database,
+  FlaskConical,
+  HandCoins,
+  Network,
+  Search,
+  UsersRound,
+} from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { Button } from "@/components/Button";
-import { ChartCard } from "@/components/ChartCard";
-import { KpiCard } from "@/components/KpiCard";
-import { MapPanel } from "@/components/MapPanel";
+import Image from "next/image";
+import Link from "next/link";
 import { SectionHeader } from "@/components/SectionHeader";
 import { api } from "@/lib/api";
 
 export default async function HomePage() {
   const summary = await api.home();
-  const quickAccess: [string, LucideIcon][] = [
-    ["Produccion", BookOpen],
-    ["Proyectos", FlaskConical],
-    ["Expertos", UsersRound],
-    ["Indicadores", BarChart3],
+  const directories: { title: string; description: string; count: string; href: string; icon: LucideIcon }[] = [
+    {
+      title: "Produccion cientifica",
+      description: "Publicaciones, revistas, DOI, PMID, citas y acceso abierto.",
+      count: "12,458 publicaciones",
+      href: "/publicaciones",
+      icon: BookOpen,
+    },
+    {
+      title: "Investigadores",
+      description: "Expertos, ORCID, RENACYT, filiaciones y lineas de investigacion.",
+      count: "2,145 investigadores",
+      href: "/investigadores",
+      icon: UsersRound,
+    },
+    {
+      title: "Proyectos",
+      description: "Portafolio institucional, etapas, financiamiento y productos.",
+      count: "684 proyectos",
+      href: "/proyectos",
+      icon: FlaskConical,
+    },
+    {
+      title: "Unidades de investigacion",
+      description: "Capacidades por red asistencial, region e infraestructura.",
+      count: "58 unidades",
+      href: "/unidades",
+      icon: Building2,
+    },
   ];
+  const modules: { title: string; description: string; href: string; icon: LucideIcon }[] = [
+    { title: "Indicadores y dashboards", description: "Analitica ejecutiva y seguimiento nacional.", href: "/indicadores", icon: BarChart3 },
+    { title: "Convocatorias y financiamiento", description: "Fondos, oportunidades y bases institucionales.", href: "#noticias", icon: HandCoins },
+    { title: "Redes y colaboracion", description: "Vinculos cientificos nacionales e internacionales.", href: "/investigadores", icon: Network },
+    { title: "Ensayos clinicos", description: "Estudios activos, sedes y comites de etica.", href: "/proyectos", icon: ClipboardCheck },
+    { title: "Repositorio institucional", description: "Produccion preservada y documentos de investigacion.", href: "#", icon: Database },
+    { title: "Analitica avanzada", description: "Bibliometria, grafos, tendencias y mapas especializados.", href: "/indicadores", icon: BrainCircuit },
+    { title: "Datos abiertos", description: "Conjuntos reutilizables, API y transparencia.", href: "#", icon: Database },
+  ];
+  const kpiLabels: Record<string, string> = {
+    "Publicaciones indexadas": "Publicaciones indexadas",
+    "Investigadores registrados": "Investigadores registrados",
+    "Proyectos activos": "Proyectos activos",
+    "Unidades de investigacion": "Unidades de investigacion",
+    "Ensayos clinicos": "Ensayos clinicos activos",
+    "Financiamiento captado": "Financiamiento captado",
+  };
+  const kpis = summary.kpis.filter((kpi) => Object.keys(kpiLabels).includes(kpi.label));
+  const news = [
+    { title: "Convocatorias CONCYTEC para investigacion aplicada", type: "CONCYTEC", date: "2026-06-10" },
+    { title: "PROCIENCIA abre financiamiento para proyectos multicentricos", type: "PROCIENCIA", date: "2026-06-04" },
+    { title: "OPS publica prioridades regionales de investigacion en salud", type: "OPS", date: "2026-05-28" },
+    { title: "Convocatorias EsSalud para innovacion y evidencia institucional", type: "EsSalud", date: "2026-05-21" },
+  ];
+
   return (
-    <div>
+    <div className="bg-brand-bg">
       <section className="bg-white">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-14">
-          <div>
-            <p className="text-sm font-bold uppercase tracking-wide text-brand-sky">Inteligencia cientifica nacional</p>
-            <h1 className="mt-3 max-w-4xl text-4xl font-bold leading-tight text-slate-950 md:text-5xl">
-              Monitoreando la investigación e innovación en salud de EsSalud
+        <div className="mx-auto grid max-w-7xl gap-6 px-4 py-7 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-9">
+          <div className="flex flex-col justify-center">
+            <p className="text-xs font-bold uppercase tracking-wide text-brand-sky">Portal institucional de investigacion</p>
+            <h1 className="mt-3 max-w-3xl text-3xl font-bold leading-tight text-slate-950 md:text-5xl">
+              Observatorio Nacional de Investigación de EsSalud
             </h1>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
-              Plataforma institucional para produccion cientifica, gestion de proyectos, capacidades investigadoras y transparencia.
+            <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600 md:text-lg">
+              Plataforma institucional para la gestión, visualización y análisis de la investigación e innovación en salud.
             </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Button href="/publicaciones">Ver publicaciones</Button>
-              <Button href="/investigadores" variant="secondary">Buscar investigadores</Button>
-              <Button href="/proyectos" variant="secondary">Explorar proyectos</Button>
-              <Button href="/indicadores">Dashboard nacional</Button>
-            </div>
+            <form className="mt-6 flex min-h-14 items-center gap-3 rounded-lg border border-slate-200 bg-white px-4 shadow-panel">
+              <Search size={22} className="shrink-0 text-brand" />
+              <input
+                className="w-full bg-transparent text-base outline-none"
+                placeholder="Buscar publicaciones, investigadores, proyectos, unidades y más..."
+              />
+              <button className="hidden rounded bg-brand px-4 py-2 text-sm font-semibold text-white md:inline-flex" type="submit">
+                Buscar
+              </button>
+            </form>
           </div>
-          <div className="rounded-lg border border-slate-200 bg-brand-pale p-6 shadow-panel">
-            <div className="grid grid-cols-2 gap-3">
-              {quickAccess.map(([label, Icon]) => (
-                <div key={label} className="rounded bg-white p-5">
-                  <Icon className="text-brand" size={28} />
-                  <p className="mt-4 text-sm font-bold text-slate-800">{label}</p>
+          <div className="relative min-h-56 overflow-hidden rounded-lg border border-slate-200 shadow-panel">
+            <Image src="/images/home-hero-science.png" alt="Investigacion cientifica institucional" fill priority className="object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/15 to-transparent" />
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-7 lg:px-8">
+        <SectionHeader title="Directorios principales" description="Acceso directo a las fuentes centrales del ecosistema de investigacion institucional." />
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {directories.map((item) => (
+            <Link key={item.title} href={item.href} className="group rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-panel">
+              <div className="flex h-11 w-11 items-center justify-center rounded bg-brand-pale text-brand">
+                <item.icon size={24} />
+              </div>
+              <h2 className="mt-4 text-lg font-bold text-slate-950 group-hover:text-brand">{item.title}</h2>
+              <p className="mt-2 min-h-12 text-sm leading-6 text-slate-600">{item.description}</p>
+              <p className="mt-4 text-sm font-bold text-brand-dark">{item.count}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section id="modulos" className="mx-auto max-w-7xl px-4 py-3 lg:px-8">
+        <SectionHeader title="Modulos complementarios" description="Rutas especializadas para explorar gestion, financiamiento, colaboracion y analitica avanzada." />
+        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+          {modules.map((item) => (
+            <Link key={item.title} href={item.href} className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm transition hover:border-brand/30">
+              <div className="flex items-start gap-3">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded bg-slate-50 text-brand">
+                  <item.icon size={20} />
                 </div>
-              ))}
+                <div>
+                  <h3 className="text-sm font-bold text-slate-950">{item.title}</h3>
+                  <p className="mt-1 text-sm leading-5 text-slate-600">{item.description}</p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-7 lg:px-8">
+        <div className="grid gap-3 md:grid-cols-3 lg:grid-cols-6">
+          {kpis.map((kpi) => (
+            <div key={kpi.label} className="rounded-lg border border-slate-200 bg-white p-4 text-center shadow-sm">
+              <p className="text-xs font-semibold text-slate-500">{kpiLabels[kpi.label]}</p>
+              <p className="mt-2 text-2xl font-bold text-brand-dark">{kpi.value}</p>
             </div>
-          </div>
+          ))}
         </div>
       </section>
-      <section className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {summary.kpis.map((kpi) => <KpiCard key={kpi.label} kpi={kpi} />)}
-        </div>
-      </section>
-      <section className="mx-auto grid max-w-7xl gap-6 px-4 py-4 lg:grid-cols-2 lg:px-8">
-        <ChartCard title="Tendencias de investigacion" data={summary.trends} />
-        <MapPanel regions={summary.map_regions} />
-      </section>
-      <section className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
-        <SectionHeader title="Noticias y convocatorias" description="Actividad institucional reciente para la comunidad investigadora." />
-        <div className="grid gap-4 md:grid-cols-3">
-          {summary.news.map((item) => (
+
+      <section id="noticias" className="mx-auto max-w-7xl px-4 py-3 lg:px-8">
+        <SectionHeader title="Noticias y convocatorias" description="Oportunidades y novedades relevantes para la comunidad investigadora." />
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {news.map((item) => (
             <article key={item.title} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
               <p className="text-xs font-bold uppercase tracking-wide text-brand-sky">{item.type}</p>
               <h3 className="mt-2 font-bold text-slate-950">{item.title}</h3>

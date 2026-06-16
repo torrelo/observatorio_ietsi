@@ -51,20 +51,40 @@ Servicios:
 - Backend: `http://localhost:8000`
 - PostgreSQL: `localhost:5432`
 
-## Endpoints MVP
+## Backend CRIS
+
+El backend incluye un nucleo CRIS con modelos relacionales SQLAlchemy, schemas Pydantic, Alembic y datos semilla deterministas:
+
+- 100 publicaciones
+- 50 investigadores
+- 30 proyectos
+- 15 unidades de investigacion
+- 10 ensayos clinicos
+
+Todos los listados soportan paginacion, ordenamiento, filtros y busqueda textual mediante `q`, `page`, `page_size`, `sort_by` y `sort_order`.
+
+Endpoints principales:
 
 - `GET /health`
-- `GET /api/home/summary`
 - `GET /api/publications`
 - `GET /api/publications/{id}`
-- `GET /api/projects`
-- `GET /api/projects/{id}`
 - `GET /api/researchers`
 - `GET /api/researchers/{id}`
+- `GET /api/projects`
+- `GET /api/projects/{id}`
 - `GET /api/units`
 - `GET /api/units/{id}`
-- `GET /api/search/global?q=diabetes`
+- `GET /api/clinical-trials`
+- `GET /api/clinical-trials/{id}`
+- `GET /api/search?q=diabetes`
+- `GET /api/home/summary`
 
 ## Notas
 
-El MVP usa datos semilla en memoria para acelerar la primera iteracion. Los modelos SQLAlchemy y el servicio PostgreSQL quedan listos para persistencia real, migraciones e ingesta desde fuentes bibliograficas.
+El MVP usa datos semilla en memoria para acelerar la primera iteracion. Los modelos SQLAlchemy, Alembic y el servicio PostgreSQL quedan listos para persistencia real, migraciones e ingesta desde ORCID, OpenAlex, Crossref, PubMed, Scopus, DSpace, RENACYT y CTI Vitae.
+
+Documentacion tecnica:
+
+- `backend/README.md`
+- `docs/backend_cris_architecture.md`
+- `docs/api_endpoints.md`
