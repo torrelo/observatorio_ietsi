@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Badge } from "@/components/Badge";
 import type { Publication } from "@/lib/types";
 
+// LEGACY MODULE
+// Pendiente de retiro tras validacion funcional de /produccion-cientifica.
 export function PublicationCard({ publication }: { publication: Publication }) {
   return (
     <article className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">

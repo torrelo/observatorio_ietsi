@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const nav = [
   ["Inicio", "/"],
-  ["Produccion cientifica", "/publicaciones"],
+  ["Produccion cientifica", "/produccion-cientifica"],
   ["Investigadores", "/investigadores"],
   ["Proyectos", "/proyectos"],
   ["Unidades de investigacion", "/unidades"],

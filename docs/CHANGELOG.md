@@ -14,6 +14,51 @@ Cada entrada debe incluir:
 - Pendientes
 - Observaciones tecnicas
 
+## 2026-06-16 - Consolidacion de rutas de Produccion Cientifica
+
+- **Rama de trabajo:** `observatorio-directorio-prod_cientifica`
+- **Modulo intervenido:** Produccion Cientifica.
+- **Motivo de la intervencion:**
+  - Resolver la divergencia entre el modulo legacy `/publicaciones` y el modulo institucional nuevo `/produccion-cientifica`.
+  - Declarar `/produccion-cientifica` como ruta oficial sin romper enlaces existentes.
+- **Funcionalidades implementadas:**
+  - Declaracion de `/produccion-cientifica` como ruta institucional oficial del modulo.
+  - Actualizacion del Header global para dirigir Produccion Cientifica hacia `/produccion-cientifica`.
+  - Actualizacion del acceso del Home para dirigir Produccion Cientifica hacia `/produccion-cientifica`.
+  - Redireccion de compatibilidad desde `/publicaciones` hacia `/produccion-cientifica`.
+  - Redireccion de compatibilidad desde `/publicaciones/[id]` hacia `/produccion-cientifica/[id]`.
+  - Marcado del modulo legacy `/publicaciones` como pendiente de retiro tras validacion funcional.
+  - Marcado de `PublicationCard` como componente legacy asociado al modulo antiguo.
+  - Revision de componentes `Button`, `PublicationCard`, `SearchBar` y `FilterSidebar`.
+- **Errores corregidos:**
+  - Se corrige la divergencia de navegacion institucional que enviaba al usuario al modulo legacy `/publicaciones`.
+  - Se evita romper enlaces existentes mediante redirecciones 307 desde rutas legacy.
+- **Archivos creados/modificados:**
+  - `docs/CHANGELOG.md`
+  - `docs/bitacora/produccion-cientifica.md`
+  - `frontend/components/Header.tsx`
+  - `frontend/app/page.tsx`
+  - `frontend/app/publicaciones/page.tsx`
+  - `frontend/app/publicaciones/[id]/page.tsx`
+  - `frontend/components/PublicationCard.tsx`
+- **Capturas generadas:**
+  - `docs/screenshots/directorio-produccion-cientifica-v2.png`
+  - `docs/screenshots/publicacion-detalle-v2.png`
+- **Pendientes:**
+  - Retirar definitivamente `/publicaciones` cuando se confirme que no existen dependencias externas activas.
+  - Evaluar si `Button` debe reutilizarse o eliminarse en una fase de limpieza posterior.
+  - Migrar o retirar `PublicationCard` cuando el modulo legacy sea removido.
+  - Mantener `SearchBar` y `FilterSidebar` mientras sigan siendo usados por otros directorios.
+  - Integrar fuentes externas: OpenAlex, PubMed, ORCID, Crossref y Scopus.
+  - Implementar fallback robusto para API no disponible.
+- **Observaciones tecnicas:**
+  - No se modificara backend.
+  - No se redisenara el Home ni el modulo nuevo.
+  - La ruta legacy se conservara solo por compatibilidad.
+  - Validacion ejecutada: `npm run typecheck`.
+  - Validacion ejecutada: `NEXT_PUBLIC_API_BASE_URL=http://localhost:8001 npm run build`.
+  - Validacion dev: `/produccion-cientifica` y `/produccion-cientifica/1` responden 200; `/publicaciones` y `/publicaciones/1` redirigen 307.
+
 ## 2026-06-16
 
 - **Rama de trabajo:** `observatorio-directorio-prod_cientifica`

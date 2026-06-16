@@ -24,7 +24,7 @@ export default async function HomePage() {
       title: "Produccion cientifica",
       description: "Publicaciones, revistas, DOI, PMID, citas y acceso abierto.",
       count: "12,458 publicaciones",
-      href: "/publicaciones",
+      href: "/produccion-cientifica",
       icon: BookOpen,
     },
     {
