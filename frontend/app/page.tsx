@@ -77,27 +77,26 @@ export default async function HomePage() {
   return (
     <div className="bg-brand-bg">
       <section className="bg-white">
-        <div className="mx-auto grid max-w-7xl gap-6 px-4 py-7 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-9">
+        <div className="mx-auto grid max-w-7xl gap-6 px-4 py-7 lg:grid-cols-[1.25fr_0.75fr] lg:px-8 lg:py-9">
           <div className="flex flex-col justify-center">
-            <p className="text-xs font-bold uppercase tracking-wide text-brand-sky">Portal institucional de investigacion</p>
-            <h1 className="mt-3 max-w-3xl text-3xl font-bold leading-tight text-slate-950 md:text-5xl">
+            <h1 className="max-w-3xl text-3xl font-bold leading-tight text-slate-950 md:text-5xl">
               Observatorio Nacional de Investigación de EsSalud
             </h1>
             <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600 md:text-lg">
               Plataforma institucional para la gestión, visualización y análisis de la investigación e innovación en salud.
             </p>
-            <form className="mt-6 flex min-h-14 items-center gap-3 rounded-lg border border-slate-200 bg-white px-4 shadow-panel">
-              <Search size={22} className="shrink-0 text-brand" />
+            <form className="mt-7 flex min-h-16 w-full max-w-3xl items-center gap-3 rounded-lg border-2 border-brand/20 bg-white px-4 shadow-panel ring-4 ring-brand-pale/70">
+              <Search size={24} className="shrink-0 text-brand" />
               <input
-                className="w-full bg-transparent text-base outline-none"
+                className="w-full bg-transparent text-base font-medium text-slate-800 outline-none placeholder:text-slate-400"
                 placeholder="Buscar publicaciones, investigadores, proyectos, unidades y más..."
               />
-              <button className="hidden rounded bg-brand px-4 py-2 text-sm font-semibold text-white md:inline-flex" type="submit">
+              <button className="inline-flex rounded bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark" type="submit">
                 Buscar
               </button>
             </form>
           </div>
-          <div className="relative min-h-56 overflow-hidden rounded-lg border border-slate-200 shadow-panel">
+          <div className="relative min-h-52 overflow-hidden rounded-lg border border-slate-200 shadow-panel">
             <Image src="/images/home-hero-science.png" alt="Investigacion cientifica institucional" fill priority className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/15 to-transparent" />
           </div>

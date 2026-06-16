@@ -1,4 +1,4 @@
-import { LogIn, Search } from "lucide-react";
+import { LogIn } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -27,18 +27,14 @@ export function Header() {
             </button>
           </div>
         </div>
-        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-          <nav className="flex gap-1 overflow-x-auto text-sm font-semibold text-slate-600">
+        <div className="flex items-center">
+          <nav className="flex w-full gap-1 overflow-x-auto text-sm font-semibold text-slate-600">
             {nav.map(([label, href]) => (
               <Link key={href} href={href} className="whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark">
                 {label}
               </Link>
             ))}
           </nav>
-          <div className="flex min-w-0 items-center gap-2 rounded border border-slate-200 bg-slate-50 px-3 py-2 lg:w-80">
-            <Search size={16} className="text-brand" />
-            <input className="w-full bg-transparent text-sm outline-none" placeholder="Buscar publicaciones, proyectos, expertos..." />
-          </div>
         </div>
       </div>
     </header>
