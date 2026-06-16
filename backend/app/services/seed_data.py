@@ -64,14 +64,16 @@ HOSPITALS = [
 ]
 
 THEMATIC_AREAS = [
-    "Enfermedades cronicas",
-    "Enfermedades infecciosas",
-    "Salud digital",
-    "Oncologia",
-    "Gestion sanitaria",
-    "Salud materno infantil",
+    "Salud publica",
+    "Epidemiologia",
+    "Cancer",
+    "Enfermedad renal cronica",
+    "Enfermedades raras",
+    "Inteligencia artificial en salud",
+    "Evaluacion de tecnologias sanitarias",
     "Seguridad del paciente",
-    "Medicina personalizada",
+    "Salud materno infantil",
+    "Enfermedades infecciosas",
 ]
 
 KEYWORD_TERMS = [
@@ -98,7 +100,24 @@ JOURNALS = [
     "International Journal of Infectious Diseases",
     "Frontiers in Public Health",
     "Journal of Clinical Epidemiology",
+    "Repositorio Institucional EsSalud",
+    "IETSI Documentos Tecnicos",
 ]
+
+PUBLICATION_TYPES = [
+    "Articulo original",
+    "Revision",
+    "Editorial",
+    "Carta al editor",
+    "Capitulo de libro",
+    "Libro",
+    "Tesis",
+    "Preprint",
+    "Guia clinica",
+    "Documento tecnico",
+]
+
+INDEXING_SOURCES = ["Scopus", "PubMed", "OpenAlex", "Crossref", "DSpace institucional"]
 
 FUNDERS = [
     ("IETSI - Fondo concursable institucional", "Institucional"),
@@ -226,20 +245,27 @@ PUBLICATIONS = [
         "title": f"{['Factores asociados a', 'Efectividad de', 'Perfil epidemiologico de', 'Modelo predictivo para'][i % 4]} {THEMATIC_AREAS[i % len(THEMATIC_AREAS)].lower()} en poblacion asegurada de EsSalud",
         "abstract": f"Estudio realizado en redes asistenciales de EsSalud para evaluar resultados en {THEMATIC_AREAS[i % len(THEMATIC_AREAS)].lower()}.",
         "year": 2020 + (i % 7),
-        "publication_type": ["Articulo original", "Revision sistematica", "Reporte breve", "Carta cientifica"][i % 4],
+        "publication_type": PUBLICATION_TYPES[i % len(PUBLICATION_TYPES)],
         "journal_id": JOURNAL_RECORDS[i % len(JOURNAL_RECORDS)]["id"],
         "journal": JOURNAL_RECORDS[i % len(JOURNAL_RECORDS)],
         "doi": f"10.5588/essalud.obs.{2020 + (i % 7)}.{i + 1:04d}",
         "pmid": str(38000000 + i) if i % 3 != 0 else None,
         "quartile": f"Q{(i % 4) + 1}",
         "impact_factor": round(1.6 + (i % 9) * 0.55, 2),
-        "study_type": ["Cohorte retrospectiva", "Ensayo pragmatico", "Transversal analitico", "Vigilancia multicentrica"][i % 4],
+        "study_type": ["Cohorte retrospectiva", "Ensayo pragmatico", "Transversal analitico", "Vigilancia multicentrica", "Revision sistematica", "Evaluacion economica"][i % 6],
         "thematic_area": THEMATIC_AREAS[i % len(THEMATIC_AREAS)],
         "funding_source": FUNDING_SOURCES[i % len(FUNDING_SOURCES)]["id"],
         "funding": FUNDING_SOURCES[i % len(FUNDING_SOURCES)],
         "open_access": i % 2 == 0,
         "citation_count": 3 + i * 2,
         "altmetric_score": round(5 + i * 0.8, 1),
+        "source": INDEXING_SOURCES[i % len(INDEXING_SOURCES)],
+        "external_identifiers": {
+            "scopus_eid": f"2-s2.0-{850000000 + i}" if i % 2 == 0 else None,
+            "openalex_id": f"W{4300000000 + i}",
+            "crossref_member": "EsSalud/IETSI",
+            "dspace_handle": f"20.500.12959/{1000 + i}" if i % 5 == 4 else None,
+        },
         "authors": [
             _simple_ref(RESEARCHERS[i % len(RESEARCHERS)], "full_name"),
             _simple_ref(RESEARCHERS[(i + 7) % len(RESEARCHERS)], "full_name"),
@@ -371,11 +397,81 @@ def filter_sort_paginate(
     for key, value in (filters or {}).items():
         if value is None:
             continue
-        filtered = [item for item in filtered if str(item.get(key, "")).lower() == str(value).lower()]
+        filtered = [item for item in filtered if _matches_filter(item, key, value)]
     reverse = sort_order.lower() == "desc"
     if filtered and sort_by in filtered[0]:
         filtered = sorted(filtered, key=lambda item: item.get(sort_by) or "", reverse=reverse)
     return paginate(filtered, page, page_size)
+
+
+def publication_summary() -> dict[str, Any]:
+    q12 = sum(1 for item in PUBLICATIONS if item["quartile"] in ("Q1", "Q2"))
+    open_access = sum(1 for item in PUBLICATIONS if item["open_access"])
+    author_ids = {author["id"] for item in PUBLICATIONS for author in item["authors"]}
+    journal_ids = {item["journal_id"] for item in PUBLICATIONS}
+    return {
+        "publicaciones_indexadas": len(PUBLICATIONS),
+        "citas_totales": sum(item["citation_count"] for item in PUBLICATIONS),
+        "publicaciones_q1_q2": q12,
+        "acceso_abierto": open_access,
+        "investigadores_autores": len(author_ids),
+        "revistas_registradas": len(journal_ids),
+    }
+
+
+def publication_analytics() -> dict[str, list[dict[str, Any]]]:
+    return {
+        "annual_evolution": _count_by(PUBLICATIONS, "year"),
+        "by_thematic_area": _count_by(PUBLICATIONS, "thematic_area"),
+        "top_journals": _count_nested(PUBLICATIONS, "journal", "name")[:6],
+        "open_access": [
+            {"label": "Acceso abierto", "value": sum(1 for item in PUBLICATIONS if item["open_access"])},
+            {"label": "Restringido", "value": sum(1 for item in PUBLICATIONS if not item["open_access"])},
+        ],
+        "by_unit": _count_first_ref(PUBLICATIONS, "research_units")[:6],
+        "quartiles": _count_by(PUBLICATIONS, "quartile"),
+    }
+
+
+def _count_by(items: list[dict[str, Any]], key: str) -> list[dict[str, Any]]:
+    counts: dict[str, int] = {}
+    for item in items:
+        label = str(item.get(key) or "No especificado")
+        counts[label] = counts.get(label, 0) + 1
+    return [{"label": label, "value": value} for label, value in sorted(counts.items())]
+
+
+def _count_nested(items: list[dict[str, Any]], key: str, nested_key: str) -> list[dict[str, Any]]:
+    counts: dict[str, int] = {}
+    for item in items:
+        nested = item.get(key) or {}
+        label = str(nested.get(nested_key) or "No especificado")
+        counts[label] = counts.get(label, 0) + 1
+    return sorted(({"label": label, "value": value} for label, value in counts.items()), key=lambda row: row["value"], reverse=True)
+
+
+def _count_first_ref(items: list[dict[str, Any]], key: str) -> list[dict[str, Any]]:
+    counts: dict[str, int] = {}
+    for item in items:
+        refs = item.get(key) or []
+        label = refs[0]["name"] if refs else "No especificado"
+        counts[label] = counts.get(label, 0) + 1
+    return sorted(({"label": label, "value": value} for label, value in counts.items()), key=lambda row: row["value"], reverse=True)
+
+
+def _matches_filter(item: dict[str, Any], key: str, value: Any) -> bool:
+    needle = str(value).lower()
+    if key == "author":
+        return any(needle in author["name"].lower() for author in item.get("authors", []))
+    if key == "unit":
+        return any(needle in unit["name"].lower() for unit in item.get("research_units", []))
+    if key == "network":
+        return any(needle in (get_item(UNITS, unit["id"]) or {}).get("network", "").lower() for unit in item.get("research_units", []))
+    if key == "journal":
+        return needle in item.get("journal", {}).get("name", "").lower()
+    if key == "funding":
+        return needle in item.get("funding", {}).get("name", "").lower()
+    return str(item.get(key, "")).lower() == needle
 
 
 def search_all(q: str, limit: int = 20) -> list[dict[str, Any]]:

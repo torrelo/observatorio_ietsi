@@ -83,6 +83,8 @@ class Publication(BaseModel):
     open_access: bool
     citation_count: int
     altmetric_score: float
+    source: str | None = None
+    external_identifiers: dict = Field(default_factory=dict)
     authors: list[SimpleRef] = Field(default_factory=list)
     keywords: list[Keyword] = Field(default_factory=list)
     projects: list[SimpleRef] = Field(default_factory=list)

@@ -1,7 +1,7 @@
 from datetime import date, datetime
 
 from sqlalchemy import Boolean, Column, Date, DateTime, Float, ForeignKey, Integer, Numeric, String, Table, Text, func
-from sqlalchemy.dialects.postgresql import ARRAY
+from sqlalchemy.dialects.postgresql import ARRAY, JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.session import Base
@@ -179,6 +179,8 @@ class Publication(Base, TimestampMixin):
     open_access: Mapped[bool] = mapped_column(Boolean, default=False, index=True)
     citation_count: Mapped[int] = mapped_column(Integer, default=0)
     altmetric_score: Mapped[float] = mapped_column(Float, default=0)
+    source: Mapped[str | None] = mapped_column(String(120), nullable=True, index=True)
+    external_identifiers: Mapped[dict] = mapped_column(JSONB, default=dict)
 
     journal: Mapped["Journal | None"] = relationship(back_populates="publications")
     funding: Mapped["FundingSource | None"] = relationship(back_populates="publications")

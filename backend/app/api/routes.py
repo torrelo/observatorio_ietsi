@@ -3,7 +3,19 @@ from typing import Annotated, Any
 from fastapi import APIRouter, HTTPException, Query
 
 from app.schemas.entities import ClinicalTrial, HomeSummary, Page, Project, Publication, ResearchUnit, Researcher, SearchResponse, SearchResult
-from app.services.seed_data import CLINICAL_TRIALS, HOME_SUMMARY, PROJECTS, PUBLICATIONS, RESEARCHERS, UNITS, filter_sort_paginate, get_item, search_all
+from app.services.seed_data import (
+    CLINICAL_TRIALS,
+    HOME_SUMMARY,
+    PROJECTS,
+    PUBLICATIONS,
+    RESEARCHERS,
+    UNITS,
+    filter_sort_paginate,
+    get_item,
+    publication_analytics,
+    publication_summary,
+    search_all,
+)
 
 router = APIRouter()
 
@@ -22,24 +34,61 @@ def list_publications(
     q: str | None = None,
     page: PageParam = 1,
     page_size: PageSizeParam = 20,
+    limit: Annotated[int | None, Query(ge=1, le=100)] = None,
     sort_by: str = "year",
     sort_order: SortOrderParam = "desc",
+    sort: str | None = None,
     year: int | None = None,
     quartile: str | None = None,
     publication_type: str | None = None,
+    author: str | None = None,
+    unit: str | None = None,
+    network: str | None = None,
     thematic_area: str | None = None,
+    journal: str | None = None,
     open_access: bool | None = None,
+    study_type: str | None = None,
+    source: str | None = None,
+    funding: str | None = None,
 ):
+    if limit is not None:
+        page_size = limit
+    if sort:
+        sort_by = sort.removeprefix("-")
+        sort_order = "desc" if sort.startswith("-") else "asc"
     return filter_sort_paginate(
         PUBLICATIONS,
         q,
-        ["title", "abstract", "thematic_area", "study_type", "doi", "pmid", "keywords"],
+        ["title", "abstract", "thematic_area", "study_type", "doi", "pmid", "keywords", "authors", "journal"],
         page,
         page_size,
         sort_by,
         sort_order,
-        {"year": year, "quartile": quartile, "publication_type": publication_type, "thematic_area": thematic_area, "open_access": open_access},
+        {
+            "year": year,
+            "quartile": quartile,
+            "publication_type": publication_type,
+            "author": author,
+            "unit": unit,
+            "network": network,
+            "thematic_area": thematic_area,
+            "journal": journal,
+            "open_access": open_access,
+            "study_type": study_type,
+            "source": source,
+            "funding": funding,
+        },
     )
+
+
+@router.get("/publications/summary", tags=["Publications"])
+def get_publications_summary():
+    return publication_summary()
+
+
+@router.get("/publications/analytics", tags=["Publications"])
+def get_publications_analytics():
+    return publication_analytics()
 
 
 @router.get("/publications/{item_id}", response_model=Publication, tags=["Publications"])
