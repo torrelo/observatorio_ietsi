@@ -16,15 +16,22 @@ export default async function PublicationDetailPage({ params }: { params: Promis
     <div className="bg-brand-bg">
       <section className="border-b border-slate-200 bg-white">
         <div className="mx-auto max-w-6xl px-4 py-8 lg:px-8">
-          <Link className="text-sm font-semibold text-brand" href="/produccion-cientifica">Volver al directorio</Link>
+          <nav className="mb-3 flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-500" aria-label="Breadcrumb">
+            <Link className="text-brand hover:text-brand-dark" href="/">Inicio</Link>
+            <span>/</span>
+            <Link className="text-brand hover:text-brand-dark" href="/produccion-cientifica">Producción científica</Link>
+            <span>/</span>
+            <span>Ficha de publicación</span>
+          </nav>
+          <Link className="text-sm font-semibold text-brand" href="/produccion-cientifica">← Volver a Producción científica</Link>
           <div className="mt-4 flex flex-wrap gap-2">
             <Badge>{publication.quartile ?? "N/D"}</Badge>
             <Badge tone={publication.open_access ? "green" : "gray"}>{publication.open_access ? "Acceso abierto" : "Restringido"}</Badge>
-            <Badge tone="sky">{publication.source ?? "OpenAlex"}</Badge>
-            {publication.doi ? <Badge tone="gray">DOI</Badge> : null}
-            {publication.pmid ? <Badge tone="gray">PMID</Badge> : null}
           </div>
-          <SectionHeader eyebrow="Ficha bibliográfica" title={publication.title} description={publication.authors.map((author) => author.name).join(", ")} />
+          <SectionHeader title={publication.title} description={publication.authors.map((author) => author.name).join(", ")} />
+          <p className="-mt-3 mb-5 text-sm font-semibold text-brand-dark">
+            {publication.journal?.name ?? "Fuente institucional"} · {publication.year} · {publication.study_type ?? "Tipo de estudio no especificado"}
+          </p>
           <PublicationActions publication={publication} />
         </div>
       </section>
@@ -46,8 +53,17 @@ export default async function PublicationDetailPage({ params }: { params: Promis
               { label: "Tipo de estudio", value: publication.study_type ?? "No especificado" },
               { label: "Área temática", value: publication.thematic_area ?? "No especificada" },
               { label: "Fuente de indexación", value: publication.source ?? "No especificada" },
-              { label: "Palabras clave", value: publication.keywords.map((keyword) => keyword.term).join(", ") },
+              { label: "Financiamiento", value: publication.funding?.name ?? "No declarado" },
+              { label: "Tipo de financiamiento", value: publication.funding?.funding_type ?? "No especificado" },
             ]} />
+          </Panel>
+
+          <Panel title="Palabras clave">
+            <div className="flex flex-wrap gap-2">
+              {publication.keywords.map((keyword) => (
+                <Badge key={keyword.id} tone="gray">{keyword.term}</Badge>
+              ))}
+            </div>
           </Panel>
 
           <Panel title="Autores y filiaciones">
@@ -55,8 +71,24 @@ export default async function PublicationDetailPage({ params }: { params: Promis
               {publication.authors.map((author) => (
                 <div key={author.id} className="rounded border border-slate-200 bg-white p-4">
                   <p className="font-bold text-slate-900">{author.name}</p>
-                  <p className="mt-1 text-sm text-slate-600">{publication.research_units[0]?.name ?? "EsSalud"}</p>
-                  <p className="mt-2 text-sm font-semibold text-brand">ORCID preparado para integración</p>
+                  <dl className="mt-3 space-y-2 text-sm">
+                    <div>
+                      <dt className="font-semibold text-slate-500">Unidad de investigación</dt>
+                      <dd className="text-slate-700">{publication.research_units[0]?.name ?? "EsSalud"}</dd>
+                    </div>
+                    <div>
+                      <dt className="font-semibold text-slate-500">Hospital o instituto</dt>
+                      <dd className="text-slate-700">{publication.research_units[0]?.name ?? "Institución EsSalud"}</dd>
+                    </div>
+                    <div>
+                      <dt className="font-semibold text-slate-500">ORCID</dt>
+                      <dd className="font-semibold text-brand">Pendiente de integración</dd>
+                    </div>
+                    <div>
+                      <dt className="font-semibold text-slate-500">RENACYT</dt>
+                      <dd className="text-slate-600">Pendiente de integración</dd>
+                    </div>
+                  </dl>
                 </div>
               ))}
             </div>
@@ -76,16 +108,11 @@ export default async function PublicationDetailPage({ params }: { params: Promis
 
         <aside className="space-y-6">
           <Panel title="Métricas e impacto">
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid gap-3">
               <Metric label="Citas" value={publication.citation_count.toString()} />
               <Metric label="Altmetric" value={publication.altmetric_score.toString()} />
-              <Metric label="Impacto" value={String(publication.impact_factor ?? "N/D")} />
-              <Metric label="Cuartil" value={publication.quartile ?? "N/D"} />
+              <Metric label="Factor de impacto" value={String(publication.impact_factor ?? "N/D")} />
             </div>
-          </Panel>
-          <Panel title="Financiamiento">
-            <p className="text-sm font-semibold text-slate-900">{publication.funding?.name ?? "No declarado"}</p>
-            <p className="mt-1 text-sm text-slate-600">{publication.funding?.funding_type ?? "Fuente pendiente de clasificar"}</p>
           </Panel>
           <Panel title="Enlaces externos">
             <div className="space-y-2 text-sm font-semibold">

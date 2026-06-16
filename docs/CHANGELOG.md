@@ -59,6 +59,41 @@ Cada entrada debe incluir:
   - Validacion ejecutada: `NEXT_PUBLIC_API_BASE_URL=http://localhost:8001 npm run build`.
   - Validacion dev: `/produccion-cientifica` y `/produccion-cientifica/1` responden 200; `/publicaciones` y `/publicaciones/1` redirigen 307.
 
+## 2026-06-16 - Optimizacion UX de ficha individual de Produccion Cientifica
+
+- **Rama de trabajo:** `observatorio-directorio-prod_cientifica`
+- **Modulo intervenido:** Ficha individual de Produccion Cientifica (`/produccion-cientifica/[id]`).
+- **Mejoras UX implementadas:**
+  - Se mantiene breadcrumb institucional y enlace de retorno a Produccion Cientifica.
+  - Se elimina el rotulo redundante `Ficha bibliografica`.
+  - Se reducen los badges superiores a cuartil y estado de acceso.
+  - Se agrega metadato resumen bajo autores: revista, anio y tipo de estudio.
+  - Se agrupan exportaciones en `Exportar`.
+  - Se agrupan enlaces externos en `Ver publicacion`.
+  - Se mantiene visibles solo `Citar` y `Copiar DOI`.
+  - Se reduce el panel de metricas a citas, altmetric y factor de impacto.
+  - Se integra financiamiento dentro de detalles bibliograficos.
+  - Se separan palabras clave como chips institucionales.
+  - Se fortalece la seccion de autores y filiaciones con campos preparados para ORCID y RENACYT.
+- **Redundancias eliminadas:**
+  - Badges DOI, PMID y fuente de indexacion.
+  - Botones visibles individuales de RIS, BibTeX, PDF, PubMed, Crossref y OpenAlex.
+  - Tarjeta lateral independiente de financiamiento.
+  - Cuartil duplicado dentro del panel de metricas.
+  - Palabras clave dentro de la tabla bibliografica.
+- **Archivos modificados:**
+  - `frontend/app/produccion-cientifica/[id]/page.tsx`
+  - `frontend/components/PublicationActions.tsx`
+  - `docs/CHANGELOG.md`
+  - `docs/bitacora/produccion-cientifica.md`
+- **Capturas generadas:**
+  - `docs/screenshots/publicacion-detalle-ux-v3.png`
+- **Pendientes:**
+  - Implementar datos reales de ORCID y RENACYT por autor cuando el backend los exponga en la relacion de autores.
+  - Implementar descarga PDF real.
+  - Conectar enlaces externos reales con OpenAlex, PubMed, ORCID, Crossref y Scopus.
+  - Evaluar componente reusable para menus de accion si otros modulos adoptan el mismo patron.
+
 ## 2026-06-16
 
 - **Rama de trabajo:** `observatorio-directorio-prod_cientifica`

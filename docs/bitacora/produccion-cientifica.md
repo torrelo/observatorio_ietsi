@@ -16,6 +16,21 @@ Resultado de la intervencion:
 - `/publicaciones/[id]` redirige a `/produccion-cientifica/[id]`.
 - Header global y Home apuntan ahora al modulo oficial.
 
+### Intervencion 2026-06-16 - Optimizacion UX de ficha individual
+
+Se optimiza la ficha `/produccion-cientifica/[id]` para reducir redundancias y mejorar la jerarquia de informacion siguiendo patrones de portales CRIS y bibliometricos institucionales. No se modifica backend, directorio ni diseno general del observatorio.
+
+Cambios documentados:
+
+- Simplificacion de badges a cuartil y estado de acceso.
+- Eliminacion de duplicidades DOI, PMID, fuentes y cuartil en zonas superiores.
+- Agrupacion de exportaciones bajo `Exportar`.
+- Agrupacion de enlaces externos bajo `Ver publicacion`.
+- Incorporacion de metadato resumen bajo autores.
+- Integracion de financiamiento dentro de detalles bibliograficos.
+- Separacion de palabras clave como chips.
+- Mantenimiento de autores y filiaciones con estructura preparada para ORCID y RENACYT.
+
 ## Funcionalidades implementadas
 
 - Ruta `/produccion-cientifica`.
@@ -30,6 +45,7 @@ Resultado de la intervencion:
 - Datos semilla realistas en espanol.
 - Redirecciones de compatibilidad desde rutas legacy `/publicaciones`.
 - Navegacion institucional consolidada hacia `/produccion-cientifica`.
+- Ficha individual optimizada con menor ruido visual y mejor jerarquia bibliografica.
 
 ## Errores corregidos
 
@@ -37,6 +53,7 @@ Resultado de la intervencion:
 - Validacion de rutas principales del directorio.
 - Divergencia entre el modulo legacy `/publicaciones` y el modulo institucional `/produccion-cientifica`.
 - Enlaces institucionales desde Header y Home que apuntaban al modulo legacy.
+- Redundancias visuales en la ficha individual: exceso de badges, acciones atomizadas, financiamiento aislado y palabras clave dentro de tabla.
 
 ## Auditoria de rutas
 
@@ -59,6 +76,7 @@ Resultado de la intervencion:
 - Implementar descarga PDF real.
 - Implementar exportacion Excel si se requiere.
 - Conectar integraciones reales con OpenAlex, PubMed, ORCID, Crossref, Scopus y DSpace.
+- Exponer ORCID y RENACYT por autor desde backend para completar la ficha CRIS.
 - Agregar pruebas automatizadas de filtros, paginacion y detalle.
 
 ## Capturas asociadas
@@ -67,6 +85,7 @@ Resultado de la intervencion:
 - `docs/screenshots/publicacion-detalle.png`
 - `docs/screenshots/directorio-produccion-cientifica-v2.png`
 - `docs/screenshots/publicacion-detalle-v2.png`
+- `docs/screenshots/publicacion-detalle-ux-v3.png`
 
 ## Observaciones tecnicas
 
