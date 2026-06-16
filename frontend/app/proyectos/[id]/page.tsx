@@ -4,6 +4,10 @@ import { PipelineStatus } from "@/components/PipelineStatus";
 import { SectionHeader } from "@/components/SectionHeader";
 import { api } from "@/lib/api";
 
+function formatSoles(value: number) {
+  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 export default async function ProjectDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const project = await api.project(id);
@@ -21,7 +25,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
       <DataTable rows={[
         { label: "Coinvestigadores", value: project.co_investigators.join(", ") },
         { label: "Unidad", value: project.unit },
-        { label: "Financiamiento", value: `${project.funding_source} - S/ ${project.amount.toLocaleString("es-PE")}` },
+        { label: "Financiamiento", value: `${project.funding_source} - S/ ${formatSoles(project.amount)}` },
         { label: "Fechas", value: `${project.start_date} a ${project.end_date}` },
         { label: "Comite de etica", value: project.ethics_committee },
         { label: "Productos esperados", value: project.expected_outputs.join(", ") },
