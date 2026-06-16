@@ -1,0 +1,74 @@
+# Changelog tecnico
+
+## Formato de registro
+
+Cada entrada debe incluir:
+
+- Fecha
+- Rama de trabajo
+- Modulo intervenido
+- Funcionalidades implementadas
+- Errores corregidos
+- Archivos creados/modificados
+- Capturas generadas
+- Pendientes
+- Observaciones tecnicas
+
+## 2026-06-16
+
+- **Rama de trabajo:** `observatorio-directorio-prod_cientifica`
+- **Modulo intervenido:** Portal institucional, Home, backend CRIS y Directorio de Produccion Cientifica.
+- **Funcionalidades implementadas:**
+  - Creacion del portal principal del Observatorio Nacional de Investigacion de EsSalud.
+  - Redisenio visual del Home hacia una propuesta mas limpia, minimalista y orientada a navegacion.
+  - Ajuste del Hero institucional con imagen de fondo, overlay azul oscuro y buscador principal.
+  - Eliminacion de la redundancia de busqueda entre Header y Hero.
+  - Implementacion inicial del backend con FastAPI, modelos SQLAlchemy, schemas Pydantic y datos semilla.
+  - Disenio de arquitectura de datos compatible con futuras integraciones CRIS.
+  - Implementacion del Directorio de Produccion Cientifica con listado, filtros, KPIs, analitica breve y ficha individual.
+  - Preparacion inicial de utilidades de exportacion para CSV, RIS, BibTeX y ficha PDF.
+- **Errores corregidos o identificados:**
+  - Correccion de errores de hydration por HTML invalido en componentes de listado.
+  - Correccion de valores de fecha dependientes del entorno cliente/servidor.
+  - Identificacion del error `ECONNREFUSED 127.0.0.1:8000` cuando el backend no esta activo.
+  - Identificacion del error `projects.map is not a function` cuando la respuesta del backend no tiene el formato esperado por el frontend.
+  - Necesidad de fallback con datos mock cuando el backend no responda.
+- **Archivos creados/modificados conocidos:**
+  - `frontend/app/page.tsx`
+  - `frontend/components/Header.tsx`
+  - `frontend/components/DataTable.tsx`
+  - `frontend/app/proyectos/[id]/page.tsx`
+  - `frontend/app/produccion-cientifica/page.tsx`
+  - `frontend/app/produccion-cientifica/[id]/page.tsx`
+  - `frontend/components/PublicationActions.tsx`
+  - `frontend/lib/publications.ts`
+  - `frontend/lib/publicationExports.ts`
+  - `backend/app/api/routes.py`
+  - `backend/app/models/entities.py`
+  - `backend/app/schemas/entities.py`
+  - `backend/app/services/seed_data.py`
+  - `docs/screenshots/home-buscador-unico.png`
+  - `docs/screenshots/home-hero-background.png`
+  - `docs/screenshots/directorio-produccion-cientifica.png`
+  - `docs/screenshots/publicacion-detalle.png`
+- **Capturas generadas:**
+  - `docs/screenshots/home-buscador-unico.png`
+  - `docs/screenshots/home-hero-background.png`
+  - `docs/screenshots/directorio-produccion-cientifica.png`
+  - `docs/screenshots/publicacion-detalle.png`
+- **Capturas pendientes:**
+  - `docs/screenshots/home-estado-actual.png`
+  - `docs/screenshots/produccion-cientifica-estado-actual.png`
+  - Se intento generarlas automaticamente, pero Chrome headless no completo la escritura de archivos en esta sesion. Quedan pendientes para generacion manual o para un nuevo intento con frontend y backend activos de forma estable.
+- **Pendientes:**
+  - Agregar fallback robusto con datos mock cuando la API no este disponible.
+  - Normalizar la forma de respuesta esperada por los directorios para evitar errores tipo `map is not a function`.
+  - Completar integracion real con PostgreSQL en entorno persistente.
+  - Implementar integracion futura con OpenSearch.
+  - Conectar servicios externos: ORCID, OpenAlex, Crossref, PubMed, Scopus, DSpace, RENACYT y CTI Vitae.
+  - Completar pruebas automatizadas de frontend y backend.
+- **Observaciones tecnicas:**
+  - El Home debe mantenerse como puerta de entrada, buscador y resumen ejecutivo, no como dashboard completo.
+  - La analitica avanzada debe permanecer en modulos especializados.
+  - Las capturas deben generarse despues de validar compilacion y funcionamiento local.
+  - Durante capturas o builds que consuman API, el backend debe estar activo para evitar `ECONNREFUSED`.
