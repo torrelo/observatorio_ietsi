@@ -14,6 +14,37 @@ Cada entrada debe incluir:
 - Pendientes
 - Observaciones tecnicas
 
+## 2026-06-17 - Homogeneización completa de tarjetas del Directorio de Investigadores
+
+- **Rama de trabajo:** `observatorio-directorio-investigadores`
+- **Módulo intervenido:** Investigadores.
+- **Funcionalidades implementadas:**
+  - Homogeneización visual completa de las tarjetas con orden estricto de contenido.
+  - Espacio fijo para nombre completo (máximo 2 líneas) y specialty (1 línea).
+  - Espacio fijo para centro de trabajo equivalente a 2 líneas con truncamiento en ellipsis.
+  - Espacio fijo para ORCID/RENACYT con punto de inicio constante.
+  - Espacio fijo para líneas de investigación equivalente a 2 líneas, con badge `+N` para excedente.
+  - Indicadores conservados en grid 3x2 sin cambios de estilo.
+  - Botón `Ver perfil` siempre al final y alineado horizontalmente.
+- **Errores corregidos:**
+  - Desalineación entre tarjetas por textos de diferente longitud.
+  - Inicio inconsistente de badges ORCID/RENACYT y líneas de investigación.
+  - Botones `Ver perfil` con alturas variables entre tarjetas.
+- **Archivos modificados:**
+  - `frontend/components/ResearcherProfileCard.tsx`
+  - `frontend/app/investigadores/page.tsx`
+  - `docs/CHANGELOG.md`
+  - `docs/bitacora/investigadores.md`
+- **Capturas generadas:**
+  - `docs/screenshots/investigadores-tarjetas-homogeneizadas-v2.png`
+- **Validaciones realizadas:**
+  - `npm run build` ✅
+  - `npm run dev` ✅
+  - Página `/investigadores` verificada ✅
+  - Altura uniforme de tarjetas verificada ✅
+  - Alineación de badges e indicadores verificada ✅
+  - Alineación del botón verificada ✅
+
 ## 2026-06-16 - Homogeneizacion de tarjetas del Directorio de Investigadores
 
 - **Rama de trabajo:** `observatorio-directorio-investigadores`

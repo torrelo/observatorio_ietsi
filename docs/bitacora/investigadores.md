@@ -16,6 +16,34 @@ Resultado de la intervencion:
 - Se agregan interfaces preparadas para ORCID, RENACYT, OpenAlex, Scopus y Crossref.
 - Se agregan enlaces cruzados a Produccion Cientifica, Proyectos y Unidades.
 
+### Intervencion 2026-06-17 - Homogeneización completa de tarjetas del Directorio de Investigadores
+
+Reglas de diseño implementadas:
+
+- Orden obligatorio de contenido respetado: Avatar → Nombre completo → Especialidad → Centro de trabajo → ORCID/RENACYT → Líneas de investigación → Indicadores → Botón "Ver perfil".
+- Nombre completo reservado para máximo 2 líneas con truncamiento en ellipsis.
+- Especialidad reservada para 1 línea con truncamiento en ellipsis.
+- Centro de trabajo reservado para 2 líneas con truncamiento y espacio fijo.
+- ORCID y RENACYT siempre inician en el mismo punto vertical entre tarjetas.
+- Líneas de investigación reservadas para 2 líneas completas; si hay excedente se muestra badge `+N`.
+- Indicadores mantenidos en grid 3x2 sin cambio de estilo.
+- Botón "Ver perfil" alineado al final de la tarjeta con layout flexbox.
+- Espacios fijos para institución y líneas de investigación para evitar desalineación.
+
+Manejo de overflow:
+
+- Textos largos de nombre, especialidad e institución se truncaron con ellipsis visual.
+- Líneas de investigación excedentes muestran solo las primeras dos líneas de datos con badge `+N`.
+- No se permite aumentar la altura de la tarjeta por contenido adicional.
+
+Alineación de tarjetas:
+
+- Se garantizó la misma altura total entre tarjetas.
+- Se garantizó el mismo inicio visual de ORCID y RENACYT.
+- Se garantizó el mismo inicio visual de las líneas de investigación.
+- Se garantizó el mismo inicio visual de los indicadores.
+- El botón "Ver perfil" queda horizontalmente alineado en todas las tarjetas.
+
 ## Funcionalidades implementadas
 
 - Ruta de listado de investigadores.
