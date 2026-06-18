@@ -14,6 +14,47 @@ Cada entrada debe incluir:
 - Pendientes
 - Observaciones tecnicas
 
+## 2026-06-18 - Implementacion del Directorio de Proyectos
+
+- **Rama de trabajo:** `observatorio-directorio-proyectos`
+- **Modulo intervenido:** Proyectos.
+- **Motivo de la intervencion:**
+  - Convertir `/proyectos` en la ruta oficial para seguimiento institucional de proyectos de investigacion, innovacion y desarrollo cientifico en salud.
+  - Reemplazar la experiencia inicial por un modulo CRIS con busqueda, filtros, pipeline, analitica breve y ficha individual.
+- **Funcionalidades implementadas:**
+  - Ruta oficial `/proyectos` con encabezado institucional, KPIs, pestanas/filtros rapidos por tipo de proyecto, buscador, filtros laterales, tarjetas comparables, pipeline compacto, alertas mock y panel analitico breve.
+  - Ruta `/proyectos/[id]` con breadcrumb, enlace de retorno, encabezado del proyecto, resumen ejecutivo, informacion general, equipo investigador, unidad responsable, pipeline, comite de etica, financiamiento, productos esperados, resultados, publicaciones derivadas, documentos y enlaces.
+  - Datos mock estructurados para 30 proyectos de investigacion e innovacion vinculados a unidades y redes asistenciales de EsSalud.
+  - Enlaces cruzados desde la ficha hacia `/investigadores/[id]`, `/produccion-cientifica/[id]` y `/unidades/[id]`.
+  - Estructura preparada para integraciones futuras con OpenProject, ORCID, RENACYT, Produccion Cientifica, Repositorio institucional, Comite de etica y sistemas internos EsSalud.
+- **Errores corregidos:**
+  - Se reemplazo la dependencia de respuestas variables del backend en el directorio por una capa mock estructurada y deterministica para evitar errores de renderizado durante el MVP.
+  - Se mantuvo el formateo deterministico para prevenir diferencias entre render del servidor y cliente.
+- **Archivos creados/modificados:**
+  - `docs/CHANGELOG.md`
+  - `docs/bitacora/proyectos.md`
+  - `frontend/app/proyectos/page.tsx`
+  - `frontend/app/proyectos/[id]/page.tsx`
+  - `frontend/lib/projects.ts`
+  - `frontend/components/ProjectPipeline.tsx`
+  - `frontend/components/ProjectResultCard.tsx`
+  - `frontend/tsconfig.tsbuildinfo`
+- **Capturas generadas:**
+  - `docs/screenshots/directorio-proyectos-v1.png`
+  - `docs/screenshots/proyecto-detalle-v1.png`
+- **Pendientes:**
+  - Conectar el modulo con endpoints backend reales cuando se defina el contrato final de proyectos.
+  - Implementar integraciones reales con OpenProject, ORCID, RENACYT, Produccion Cientifica, Repositorio institucional, Comite de etica y sistemas internos EsSalud.
+  - Agregar pruebas automatizadas para filtros, busqueda, tarjetas y ficha individual.
+  - Implementar paginacion real si el volumen excede el dataset mock del MVP.
+- **Validaciones realizadas:**
+  - `npm run typecheck` ✅
+  - `npm run build` ✅
+  - `npm run dev` ✅
+  - `/proyectos` responde 200 ✅
+  - `/proyectos/1` responde 200 ✅
+  - Capturas generadas e inspeccionadas ✅
+
 ## 2026-06-17 - Homogeneización completa de tarjetas del Directorio de Investigadores
 
 - **Rama de trabajo:** `observatorio-directorio-investigadores`
