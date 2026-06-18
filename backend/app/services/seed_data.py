@@ -329,6 +329,16 @@ for project in PROJECTS:
     if unit is not None:
         unit["projects"].append(project_ref)
 
+# Establecer relaciones bidireccionales entre investigadores y unidades
+for researcher in RESEARCHERS:
+    researcher_ref = _simple_ref(researcher, "full_name")
+    for unit_ref in researcher.get("research_units", []):
+        unit = get_item(UNITS, unit_ref["id"])
+        if unit is not None:
+            # Agregar investigador a la unidad si no está ya
+            if not any(r["id"] == researcher["id"] for r in unit.get("researchers", [])):
+                unit["researchers"].append(researcher_ref)
+
 for trial in CLINICAL_TRIALS:
     trial_ref = _simple_ref(trial, "title")
     for researcher_ref in trial["researchers"]:
@@ -462,7 +472,10 @@ def _count_first_ref(items: list[dict[str, Any]], key: str) -> list[dict[str, An
 def _matches_filter(item: dict[str, Any], key: str, value: Any) -> bool:
     needle = str(value).lower()
     if key == "author":
-        return any(needle in author["name"].lower() for author in item.get("authors", []))
+        # Buscar en autores de publicaciones
+        if "authors" in item:
+            return any(needle in author["name"].lower() for author in item.get("authors", []))
+        return False
     if key == "unit":
         return any(needle in unit["name"].lower() for unit in item.get("research_units", []))
     if key == "network":
@@ -477,18 +490,30 @@ def _matches_filter(item: dict[str, Any], key: str, value: Any) -> bool:
 def search_all(q: str, limit: int = 20) -> list[dict[str, Any]]:
     needle = q.lower()
     results = []
+    
+    # Buscar en publicaciones (incluye autores)
     for item in PUBLICATIONS:
-        if needle in _search_blob(item, ["title", "abstract", "thematic_area", "keywords"]):
+        search_fields = ["title", "abstract", "thematic_area", "keywords", "authors"]
+        if needle in _search_blob(item, search_fields):
             results.append({"entity": "publication", "id": item["id"], "title": item["title"], "subtitle": item["journal"]["name"], "url": f"/publications/{item['id']}"})
+    
+    # Buscar en investigadores (incluye publicaciones y proyectos)
     for item in RESEARCHERS:
-        if needle in _search_blob(item, ["full_name", "specialty", "affiliation", "keywords"]):
+        search_fields = ["full_name", "specialty", "affiliation", "keywords", "publications", "projects"]
+        if needle in _search_blob(item, search_fields):
             results.append({"entity": "researcher", "id": item["id"], "title": item["full_name"], "subtitle": item["specialty"], "url": f"/researchers/{item['id']}"})
+    
+    # Buscar en proyectos (incluye investigadores)
     for item in PROJECTS:
-        if needle in _search_blob(item, ["title", "summary", "thematic_line", "project_code"]):
+        search_fields = ["title", "summary", "thematic_line", "project_code", "principal_investigator", "coinvestigators"]
+        if needle in _search_blob(item, search_fields):
             results.append({"entity": "project", "id": item["id"], "title": item["title"], "subtitle": item["status"], "url": f"/projects/{item['id']}"})
+    
+    # Buscar en unidades
     for item in UNITS:
         if needle in _search_blob(item, ["name", "network", "region", "description"]):
             results.append({"entity": "unit", "id": item["id"], "title": item["name"], "subtitle": item["region"], "url": f"/units/{item['id']}"})
+    
     return results[:limit]
 
 

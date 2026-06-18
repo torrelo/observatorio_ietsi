@@ -124,6 +124,96 @@ def get_researcher(item_id: int):
     return _find_or_404(RESEARCHERS, item_id, "Investigador")
 
 
+@router.get("/researchers/{item_id}/publications", response_model=Page[Publication], tags=["Researchers"])
+def get_researcher_publications(
+    item_id: int,
+    page: PageParam = 1,
+    page_size: PageSizeParam = 20,
+    sort_by: str = "year",
+    sort_order: SortOrderParam = "desc",
+):
+    """Obtener todas las publicaciones de un investigador específico"""
+    researcher = _find_or_404(RESEARCHERS, item_id, "Investigador")
+    publication_ids = [pub["id"] for pub in researcher.get("publications", [])]
+    publications = [pub for pub in PUBLICATIONS if pub["id"] in publication_ids]
+    
+    # Ordenar
+    if sort_by == "year":
+        publications = sorted(publications, key=lambda x: x.get("year", 0), reverse=(sort_order == "desc"))
+    elif sort_by == "citation_count":
+        publications = sorted(publications, key=lambda x: x.get("citation_count", 0), reverse=(sort_order == "desc"))
+    
+    # Paginar
+    from math import ceil
+    total = len(publications)
+    page = max(page, 1)
+    page_size = min(max(page_size, 1), 100)
+    start = (page - 1) * page_size
+    items = publications[start : start + page_size]
+    
+    return Page(items=items, total=total, page=page, page_size=page_size, pages=ceil(total / page_size) if total else 0)
+
+
+@router.get("/researchers/{item_id}/projects", response_model=Page[Project], tags=["Researchers"])
+def get_researcher_projects(
+    item_id: int,
+    page: PageParam = 1,
+    page_size: PageSizeParam = 20,
+    sort_by: str = "start_date",
+    sort_order: SortOrderParam = "desc",
+):
+    """Obtener todos los proyectos de un investigador (como investigador principal o coinvestigador)"""
+    researcher = _find_or_404(RESEARCHERS, item_id, "Investigador")
+    project_ids = [proj["id"] for proj in researcher.get("projects", [])]
+    projects = [proj for proj in PROJECTS if proj["id"] in project_ids]
+    
+    # Ordenar
+    if sort_by == "start_date":
+        projects = sorted(projects, key=lambda x: x.get("start_date"), reverse=(sort_order == "desc"))
+    elif sort_by == "status":
+        projects = sorted(projects, key=lambda x: x.get("status", ""))
+    
+    # Paginar
+    from math import ceil
+    total = len(projects)
+    page = max(page, 1)
+    page_size = min(max(page_size, 1), 100)
+    start = (page - 1) * page_size
+    items = projects[start : start + page_size]
+    
+    return Page(items=items, total=total, page=page, page_size=page_size, pages=ceil(total / page_size) if total else 0)
+
+
+@router.get("/publications/{item_id}/authors", response_model=Page[Researcher], tags=["Publications"])
+def get_publication_authors(
+    item_id: int,
+    page: PageParam = 1,
+    page_size: PageSizeParam = 20,
+    sort_by: str = "full_name",
+    sort_order: SortOrderParam = "asc",
+):
+    """Obtener todos los autores de una publicación específica con sus detalles"""
+    publication = _find_or_404(PUBLICATIONS, item_id, "Publicacion")
+    author_ids = [author["id"] for author in publication.get("authors", [])]
+    authors = [auth for auth in RESEARCHERS if auth["id"] in author_ids]
+    
+    # Ordenar
+    if sort_by == "full_name":
+        authors = sorted(authors, key=lambda x: x.get("full_name", ""), reverse=(sort_order == "desc"))
+    elif sort_by == "h_index":
+        authors = sorted(authors, key=lambda x: x.get("h_index", 0), reverse=(sort_order == "desc"))
+    
+    # Paginar
+    from math import ceil
+    total = len(authors)
+    page = max(page, 1)
+    page_size = min(max(page_size, 1), 100)
+    start = (page - 1) * page_size
+    items = authors[start : start + page_size]
+    
+    return Page(items=items, total=total, page=page, page_size=page_size, pages=ceil(total / page_size) if total else 0)
+
+
 @router.get("/projects", response_model=Page[Project], tags=["Projects"])
 def list_projects(
     q: str | None = None,
@@ -153,6 +243,76 @@ def get_project(item_id: int):
     return _find_or_404(PROJECTS, item_id, "Proyecto")
 
 
+@router.get("/projects/{item_id}/researchers", response_model=Page[Researcher], tags=["Projects"])
+def get_project_researchers(
+    item_id: int,
+    page: PageParam = 1,
+    page_size: PageSizeParam = 20,
+    sort_by: str = "full_name",
+    sort_order: SortOrderParam = "asc",
+):
+    """Obtener todos los investigadores de un proyecto (principal y coinvestigadores)"""
+    project = _find_or_404(PROJECTS, item_id, "Proyecto")
+    
+    researcher_ids = set()
+    
+    # Agregar investigador principal
+    if "principal_investigator" in project and project["principal_investigator"]:
+        researcher_ids.add(project["principal_investigator"]["id"])
+    
+    # Agregar coinvestigadores
+    for coinv in project.get("coinvestigators", []):
+        researcher_ids.add(coinv["id"])
+    
+    researchers = [res for res in RESEARCHERS if res["id"] in researcher_ids]
+    
+    # Ordenar
+    if sort_by == "full_name":
+        researchers = sorted(researchers, key=lambda x: x.get("full_name", ""), reverse=(sort_order == "desc"))
+    elif sort_by == "h_index":
+        researchers = sorted(researchers, key=lambda x: x.get("h_index", 0), reverse=(sort_order == "desc"))
+    
+    # Paginar
+    from math import ceil
+    total = len(researchers)
+    page = max(page, 1)
+    page_size = min(max(page_size, 1), 100)
+    start = (page - 1) * page_size
+    items = researchers[start : start + page_size]
+    
+    return Page(items=items, total=total, page=page, page_size=page_size, pages=ceil(total / page_size) if total else 0)
+
+
+@router.get("/projects/{item_id}/publications", response_model=Page[Publication], tags=["Projects"])
+def get_project_publications(
+    item_id: int,
+    page: PageParam = 1,
+    page_size: PageSizeParam = 20,
+    sort_by: str = "year",
+    sort_order: SortOrderParam = "desc",
+):
+    """Obtener todas las publicaciones asociadas a un proyecto"""
+    project = _find_or_404(PROJECTS, item_id, "Proyecto")
+    pub_ids = [pub["id"] for pub in project.get("publications", [])]
+    publications = [pub for pub in PUBLICATIONS if pub["id"] in pub_ids]
+    
+    # Ordenar
+    if sort_by == "year":
+        publications = sorted(publications, key=lambda x: x.get("year", 0), reverse=(sort_order == "desc"))
+    elif sort_by == "citation_count":
+        publications = sorted(publications, key=lambda x: x.get("citation_count", 0), reverse=(sort_order == "desc"))
+    
+    # Paginar
+    from math import ceil
+    total = len(publications)
+    page = max(page, 1)
+    page_size = min(max(page_size, 1), 100)
+    start = (page - 1) * page_size
+    items = publications[start : start + page_size]
+    
+    return Page(items=items, total=total, page=page, page_size=page_size, pages=ceil(total / page_size) if total else 0)
+
+
 @router.get("/units", response_model=Page[ResearchUnit], tags=["Research Units"])
 def list_units(
     q: str | None = None,
@@ -179,6 +339,66 @@ def list_units(
 @router.get("/units/{item_id}", response_model=ResearchUnit, tags=["Research Units"])
 def get_unit(item_id: int):
     return _find_or_404(UNITS, item_id, "Unidad")
+
+
+@router.get("/units/{item_id}/researchers", response_model=Page[Researcher], tags=["Research Units"])
+def get_unit_researchers(
+    item_id: int,
+    page: PageParam = 1,
+    page_size: PageSizeParam = 20,
+    sort_by: str = "full_name",
+    sort_order: SortOrderParam = "asc",
+):
+    """Obtener todos los investigadores de una unidad de investigación"""
+    unit = _find_or_404(UNITS, item_id, "Unidad")
+    researcher_ids = [res["id"] for res in unit.get("researchers", [])]
+    researchers = [res for res in RESEARCHERS if res["id"] in researcher_ids]
+    
+    # Ordenar
+    if sort_by == "full_name":
+        researchers = sorted(researchers, key=lambda x: x.get("full_name", ""), reverse=(sort_order == "desc"))
+    elif sort_by == "h_index":
+        researchers = sorted(researchers, key=lambda x: x.get("h_index", 0), reverse=(sort_order == "desc"))
+    
+    # Paginar
+    from math import ceil
+    total = len(researchers)
+    page = max(page, 1)
+    page_size = min(max(page_size, 1), 100)
+    start = (page - 1) * page_size
+    items = researchers[start : start + page_size]
+    
+    return Page(items=items, total=total, page=page, page_size=page_size, pages=ceil(total / page_size) if total else 0)
+
+
+@router.get("/units/{item_id}/publications", response_model=Page[Publication], tags=["Research Units"])
+def get_unit_publications(
+    item_id: int,
+    page: PageParam = 1,
+    page_size: PageSizeParam = 20,
+    sort_by: str = "year",
+    sort_order: SortOrderParam = "desc",
+):
+    """Obtener todas las publicaciones de una unidad de investigación"""
+    unit = _find_or_404(UNITS, item_id, "Unidad")
+    pub_ids = [pub["id"] for pub in unit.get("publications", [])]
+    publications = [pub for pub in PUBLICATIONS if pub["id"] in pub_ids]
+    
+    # Ordenar
+    if sort_by == "year":
+        publications = sorted(publications, key=lambda x: x.get("year", 0), reverse=(sort_order == "desc"))
+    elif sort_by == "citation_count":
+        publications = sorted(publications, key=lambda x: x.get("citation_count", 0), reverse=(sort_order == "desc"))
+    
+    # Paginar
+    from math import ceil
+    total = len(publications)
+    page = max(page, 1)
+    page_size = min(max(page_size, 1), 100)
+    start = (page - 1) * page_size
+    items = publications[start : start + page_size]
+    
+    return Page(items=items, total=total, page=page, page_size=page_size, pages=ceil(total / page_size) if total else 0)
 
 
 @router.get("/clinical-trials", response_model=Page[ClinicalTrial], tags=["Clinical Trials"])
