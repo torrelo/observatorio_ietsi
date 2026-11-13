@@ -2,6 +2,10 @@
 
 ## Estado actual
 
+### Intervencion 2026-11-13 - Base visual compartida
+
+El listado actual usa la base real de OpenProject mediante el loader existente. Esta intervencion solo adapta ancho, titulo, filtros, KPIs y controles a la base visual comun, y permite mostrar completo el titulo de tarjeta. No cambia datos, pipeline ni fichas. Capturas: `base-visual-{antes,despues}-proyectos-{360,1440}.png`. Diagnostico y validacion: `docs/BASE_VISUAL_ETAPA_1.md`. Las entradas historicas siguientes describen fases anteriores, no la fuente actual del listado.
+
 El modulo de proyectos quedo implementado como directorio institucional y ficha individual para seguimiento de proyectos de investigacion, innovacion y desarrollo cientifico en salud. La ruta oficial es `/proyectos` y la ficha individual se renderiza en `/proyectos/[id]`.
 
 ### Intervencion 2026-06-18 - Directorio institucional de proyectos

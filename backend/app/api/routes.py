@@ -16,6 +16,24 @@ from app.services.seed_data import (
     publication_summary,
     search_all,
 )
+from app.services.real_publications import (
+    get_real_publication,
+    list_real_publications,
+    real_publication_analytics,
+    real_publication_coverage,
+    real_publication_filters,
+    real_publication_summary,
+    real_publications,
+)
+from app.services.real_researchers import (
+    get_real_researcher,
+    list_real_researchers,
+    real_researcher_analytics,
+    real_researcher_filters,
+    real_researcher_publications,
+    real_researcher_summary,
+    real_researchers_available,
+)
 
 router = APIRouter()
 
@@ -51,6 +69,33 @@ def list_publications(
     source: str | None = None,
     funding: str | None = None,
 ):
+    if real_publications():
+        if limit is not None:
+            page_size = limit
+        if sort:
+            sort_by = sort.removeprefix("-")
+            sort_order = "desc" if sort.startswith("-") else "asc"
+        return list_real_publications(
+            q,
+            page,
+            page_size,
+            sort_by,
+            sort_order,
+            {
+                "year": year,
+                "quartile": quartile,
+                "publication_type": publication_type,
+                "author": author,
+                "unit": unit,
+                "network": network,
+                "thematic_area": thematic_area,
+                "journal": journal,
+                "open_access": open_access,
+                "study_type": study_type,
+                "source": source,
+                "funding": funding,
+            },
+        )
     if limit is not None:
         page_size = limit
     if sort:
@@ -83,30 +128,99 @@ def list_publications(
 
 @router.get("/publications/summary", tags=["Publications"])
 def get_publications_summary():
+    if real_publications():
+        return real_publication_summary()
     return publication_summary()
 
 
 @router.get("/publications/analytics", tags=["Publications"])
 def get_publications_analytics():
+    if real_publications():
+        return real_publication_analytics()
     return publication_analytics()
+
+
+@router.get("/publications/indicators", tags=["Publications"])
+def get_publications_indicators():
+    if real_publications():
+        return {"summary": real_publication_summary(), "analytics": real_publication_analytics()}
+    return {"summary": publication_summary(), "analytics": publication_analytics()}
+
+
+@router.get("/publications/coverage", tags=["Publications"])
+def get_publications_coverage():
+    if real_publications():
+        return real_publication_coverage()
+    return []
+
+
+@router.get("/publications/filters", tags=["Publications"])
+def get_publications_filters():
+    if real_publications():
+        return real_publication_filters()
+    return {}
 
 
 @router.get("/publications/{item_id}", response_model=Publication, tags=["Publications"])
 def get_publication(item_id: int):
+    if real_publications():
+        publication = get_real_publication(item_id)
+        if publication:
+            return publication
     return _find_or_404(PUBLICATIONS, item_id, "Publicacion")
 
 
-@router.get("/researchers", response_model=Page[Researcher], tags=["Researchers"])
+@router.get("/researchers", tags=["Researchers"])
 def list_researchers(
     q: str | None = None,
     page: PageParam = 1,
     page_size: PageSizeParam = 20,
+    limit: Annotated[int | None, Query(ge=1, le=100)] = None,
     sort_by: str = "full_name",
     sort_order: SortOrderParam = "asc",
+    sort: str | None = None,
     specialty: str | None = None,
     academic_degree: str | None = None,
     international_collaboration: bool | None = None,
+    orcid: str | None = None,
+    thematic_area: str | None = None,
+    quartile: str | None = None,
+    institution: str | None = None,
+    unit: str | None = None,
+    network: str | None = None,
+    country: str | None = None,
+    review_status: str | None = None,
 ):
+    if real_researchers_available():
+        if limit is not None:
+            page_size = limit
+        if sort:
+            sort_by = sort.removeprefix("-")
+            sort_order = "desc" if sort.startswith("-") else "asc"
+        sort_by = {
+            "researcher_name": "full_name",
+            "n_publications": "n_publications",
+            "total_citations": "citation_count",
+            "h_index_observatory": "h_index_observatory",
+            "last_publication_year": "last_publication_year",
+        }.get(sort_by, sort_by)
+        return list_real_researchers(
+            q,
+            page,
+            page_size,
+            sort_by,
+            sort_order,
+            {
+                "orcid": orcid,
+                "thematic_area": thematic_area or specialty,
+                "quartile": quartile,
+                "institution": institution,
+                "unit": unit,
+                "network": network,
+                "country": country,
+                "review_status": review_status,
+            },
+        )
     return filter_sort_paginate(
         RESEARCHERS,
         q,
@@ -119,20 +233,57 @@ def list_researchers(
     )
 
 
-@router.get("/researchers/{item_id}", response_model=Researcher, tags=["Researchers"])
-def get_researcher(item_id: int):
+@router.get("/researchers/summary", tags=["Researchers"])
+def get_researchers_summary():
+    if real_researchers_available():
+        return real_researcher_summary()
+    return {
+        "total_investigadores": len(RESEARCHERS),
+        "total_vinculos": sum(len(item.get("publications", [])) for item in RESEARCHERS),
+    }
+
+
+@router.get("/researchers/indicators", tags=["Researchers"])
+def get_researchers_indicators():
+    if real_researchers_available():
+        return {"summary": real_researcher_summary(), "analytics": real_researcher_analytics()}
+    return {"summary": {"total_investigadores": len(RESEARCHERS)}, "analytics": {}}
+
+
+@router.get("/researchers/filters", tags=["Researchers"])
+def get_researchers_filters():
+    if real_researchers_available():
+        return real_researcher_filters()
+    return {}
+
+
+@router.get("/researchers/network", tags=["Researchers"])
+def get_researchers_network():
+    if real_researchers_available():
+        return {"edges": []}
+    return {"edges": []}
+
+
+@router.get("/researchers/{item_id}", tags=["Researchers"])
+def get_researcher(item_id: str):
+    if real_researchers_available():
+        researcher = get_real_researcher(item_id)
+        if researcher:
+            return researcher
     return _find_or_404(RESEARCHERS, item_id, "Investigador")
 
 
-@router.get("/researchers/{item_id}/publications", response_model=Page[Publication], tags=["Researchers"])
+@router.get("/researchers/{item_id}/publications", tags=["Researchers"])
 def get_researcher_publications(
-    item_id: int,
+    item_id: str,
     page: PageParam = 1,
     page_size: PageSizeParam = 20,
     sort_by: str = "year",
     sort_order: SortOrderParam = "desc",
 ):
     """Obtener todas las publicaciones de un investigador específico"""
+    if real_researchers_available():
+        return real_researcher_publications(item_id, page, page_size)
     researcher = _find_or_404(RESEARCHERS, item_id, "Investigador")
     publication_ids = [pub["id"] for pub in researcher.get("publications", [])]
     publications = [pub for pub in PUBLICATIONS if pub["id"] in publication_ids]
@@ -156,7 +307,7 @@ def get_researcher_publications(
 
 @router.get("/researchers/{item_id}/projects", response_model=Page[Project], tags=["Researchers"])
 def get_researcher_projects(
-    item_id: int,
+    item_id: str,
     page: PageParam = 1,
     page_size: PageSizeParam = 20,
     sort_by: str = "start_date",

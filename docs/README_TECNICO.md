@@ -47,6 +47,16 @@ npm install
 npm run dev
 ```
 
+Para validar el build de produccion local:
+
+```bash
+cd frontend
+npm run build
+npm run start
+```
+
+Nota: el frontend usa `output: "standalone"` de Next.js. Por ello `npm run start` ejecuta el servidor generado en `.next/standalone/server.js`.
+
 ### Docker Compose
 
 ```bash
@@ -58,6 +68,8 @@ docker compose up --build
 ```bash
 cd frontend
 npm run typecheck
+npm run validate:publications
+npm run validate:researchers
 npm run build
 ```
 

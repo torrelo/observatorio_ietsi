@@ -1,280 +1,370 @@
-export type ProjectStatus = "Formulación" | "Evaluación ética" | "Aprobado" | "En ejecución" | "En análisis" | "Publicado" | "Finalizado" | "Suspendido" | "Cancelado";
-export type ProjectPipelineStage = "Formulación" | "Evaluación ética" | "Ejecución" | "Análisis" | "Publicación";
-export type ProjectType = "Investigación clínica" | "Epidemiológica" | "Biomédica" | "Salud pública" | "IA en salud" | "Innovación" | "Tesis" | "Multicéntricos" | "Ensayos clínicos";
+import { readFileSync } from "fs";
+import path from "path";
 
-export type ProjectIntegrationRefs = {
-  openProjectId?: string;
-  ethicsCommitteeId?: string;
-  repositoryHandle?: string;
-  internalSystemId?: string;
-  orcidPrincipal?: string;
-  renacytPrincipal?: string;
-};
+export type ProjectPipelineStage = "Formulación" | "Evaluación ética" | "Ejecución" | "Análisis" | "Publicación";
 
 export type ProjectTeamMember = {
-  id: number;
-  name: string;
-  role: "Investigador principal" | "Coinvestigador" | "Coordinador metodológico" | "Monitor clínico";
-  unit: string;
-  orcid?: string;
-  renacyt?: string;
-};
-
-export type ProjectPublication = {
-  id: number;
-  title: string;
-  year: number;
-  journal: string;
-};
-
-export type ProjectDocument = {
-  label: string;
-  status: "Disponible" | "Pendiente" | "En revisión";
+  project_id: string;
+  researcher_id?: string | null;
+  researcher_name: string;
+  researcher_name_normalized?: string | null;
+  role: string;
+  role_order?: number | null;
+  is_principal_investigator: boolean;
+  orcid?: string | null;
+  affiliation?: string | null;
+  institution?: string | null;
+  unit?: string | null;
+  network?: string | null;
+  email?: string | null;
+  renacyt_code?: string | null;
+  duplicate_within_project?: string | null;
+  notes?: string | null;
+  profileHref?: string | null;
+  orcidHref?: string | null;
+  linkageStatus: string;
 };
 
 export type ResearchProject = {
-  id: number;
-  code: string;
-  title: string;
-  summary: string;
-  status: ProjectStatus;
-  type: ProjectType;
-  thematicLine: string;
-  careNetwork: string;
-  unit: string;
-  principalInvestigator: ProjectTeamMember;
+  project_id: string;
+  source_system?: string | null;
+  source_record_order?: number | null;
+  openproject_id?: string | null;
+  project_code?: string | null;
+  project_title: string;
+  short_title: string;
+  project_type: string;
+  project_status: string;
+  start_date?: string | null;
+  planned_end_date?: string | null;
+  planned_duration_months?: number | null;
+  budget_planned?: number | null;
+  currency?: string | null;
+  project_description?: string | null;
+  principal_investigator_name?: string | null;
+  principal_investigator_orcid?: string | null;
+  executing_institution?: string | null;
+  executing_unit?: string | null;
+  executing_network?: string | null;
+  executing_ipress?: string | null;
+  thematic_category?: string | null;
+  thematic_area?: string | null;
+  thematic_subtheme?: string | null;
+  ods_related?: string | null;
+  ethics_approval_status?: string | null;
+  ethics_committee?: string | null;
+  ethics_approval_code?: string | null;
+  ethics_approval_date?: string | null;
+  funding_source?: string | null;
+  expected_outputs?: string | null;
+  n_coinvestigators_raw?: number | null;
+  n_team_members_unique?: number | null;
+  duplicate_researchers_in_project?: string | null;
+  data_quality_notes?: string | null;
+  observatory_ready_status?: string | null;
+  source_file?: string | null;
   team: ProjectTeamMember[];
-  fundingType: "Institucional" | "Cooperación internacional" | "Fondos concursables" | "Recursos propios" | "Mixto";
-  fundingSource: string;
-  budget: number;
-  startDate: string;
-  endDate: string;
-  startYear: number;
-  ethicsCommittee: string;
-  ethicsStatus: "Pendiente" | "Aprobado" | "Observado" | "Exonerado";
+  principalInvestigator?: ProjectTeamMember | null;
   currentStage: ProjectPipelineStage;
-  multicenter: boolean;
-  clinicalTrial: boolean;
-  alerts: string[];
-  expectedOutputs: string[];
-  deliverables: string[];
-  sdgs: string[];
-  results: string;
-  publications: ProjectPublication[];
-  documents: ProjectDocument[];
-  integrations: ProjectIntegrationRefs;
+  missingCriticalFields: string[];
 };
 
-const statuses: ProjectStatus[] = ["Formulación", "Evaluación ética", "Aprobado", "En ejecución", "En análisis", "Publicado", "Finalizado", "Suspendido", "Cancelado"];
-const types: ProjectType[] = ["Investigación clínica", "Epidemiológica", "Biomédica", "Salud pública", "IA en salud", "Innovación", "Tesis", "Multicéntricos", "Ensayos clínicos"];
-const thematicLines = ["Cáncer", "Enfermedad renal crónica", "Enfermedades raras", "Inteligencia artificial en salud", "Salud digital", "Seguridad del paciente", "Salud pública", "Epidemiología", "Evaluación de tecnologías sanitarias", "Enfermedades infecciosas"];
-const units = [
-  "IETSI",
-  "Hospital Nacional Edgardo Rebagliati Martins",
-  "Hospital Nacional Guillermo Almenara Irigoyen",
-  "Hospital Nacional Alberto Sabogal Sologuren",
-  "Red Prestacional Rebagliati",
-  "Red Prestacional Almenara",
-  "Red Prestacional Sabogal",
-  "Red Asistencial Cusco",
-  "Red Asistencial Arequipa",
-];
-const networks = ["Red Prestacional Rebagliati", "Red Prestacional Almenara", "Red Prestacional Sabogal", "Red Asistencial Cusco", "Red Asistencial Arequipa", "IETSI"];
-const fundingSources = ["IETSI - Fondo concursable institucional", "PROCIENCIA", "OPS", "Recursos propios EsSalud", "Cooperación internacional", "CONCYTEC"];
-const ethicsCommittees = ["CEI Rebagliati", "CEI Almenara", "CEI Sabogal", "CEI IETSI", "CEI Red Asistencial Cusco", "CEI Red Asistencial Arequipa"];
-const researchers = [
-  { id: 1, name: "Dra. Mariana Torres Salcedo", unit: "IETSI", orcid: "0000-0002-1845-1001", renacyt: "P0001234" },
-  { id: 2, name: "Dr. Fernando Tello Caceres", unit: "Hospital Nacional Guillermo Almenara Irigoyen", orcid: "0000-0003-2231-2202", renacyt: "P0002345" },
-  { id: 3, name: "Mg. Patricia Rojas Velarde", unit: "IETSI", orcid: "0000-0001-4420-3303", renacyt: "P0003456" },
-  { id: 4, name: "Dra. Rosa Medina Huaman", unit: "Hospital Nacional Edgardo Rebagliati Martins", orcid: "0000-0002-7780-4404", renacyt: "P0004567" },
-  { id: 5, name: "Dr. Jorge Salazar Quispe", unit: "Red Asistencial Cusco", orcid: "0000-0003-9191-5505", renacyt: "P0005678" },
-  { id: 6, name: "Lic. Elena Bustamante Leon", unit: "IETSI", orcid: "0000-0002-8080-6606" },
+type RawRecord = Record<string, unknown>;
+type ProjectPayload = {
+  source_file?: string;
+  generated_at?: string;
+  projects: RawRecord[];
+  researcher_links: RawRecord[];
+  match_summary: RawRecord[];
+};
+
+type ProjectData = {
+  projects: ResearchProject[];
+  links: ProjectTeamMember[];
+  matchSummary: Record<string, number>;
+  sourceFile?: string;
+  generatedAt?: string;
+};
+
+const DATA_PATH = path.join(process.cwd(), "public", "data", "projects_observatory.json");
+const MISSING_VALUES = new Set(["", "nan", "none", "na", "n/a", "null", "undefined"]);
+const criticalFields: Array<[string, keyof ResearchProject]> = [
+  ["Investigador principal", "principal_investigator_name"],
+  ["Fecha de inicio", "start_date"],
+  ["Tipo de proyecto", "project_type"],
+  ["Estado", "project_status"],
+  ["Descripción", "project_description"],
+  ["Estado de preparación", "observatory_ready_status"],
 ];
 
-export const projectTypes = ["Todos", ...types];
+let cache: ProjectData | null = null;
 
 export const projectIntegrationReadiness = {
-  openProject: "Preparado para sincronizar hitos, tareas, responsables y cronograma.",
-  orcid: "Preparado para enlazar investigadores y contribuciones.",
-  renacyt: "Preparado para validar perfiles nacionales de investigadores.",
-  scientificProduction: "Preparado para asociar publicaciones derivadas.",
-  repository: "Preparado para vincular documentos y entregables institucionales.",
-  ethicsCommittee: "Preparado para interoperar con estados de evaluacion etica.",
-  internalSystems: "Preparado para codigos y trazabilidad EsSalud.",
+  OpenProject: "Base curada de proyectos importada desde OpenProject.",
+  ORCID: "Preparado para enlazar integrantes por ORCID cuando no exista researcher_id.",
+  RENACYT: "Preparado para mostrar codigo RENACYT si la tabla relacional lo incluye.",
+  Investigadores: "Preparado para enlazar perfiles institucionales mediante researcher_id.",
+  "Comité de ética": "Preparado para interoperar con estados y codigos de aprobacion etica.",
+  Repositorio: "Preparado para asociar documentos y entregables institucionales.",
 };
 
-export const projects: ResearchProject[] = Array.from({ length: 30 }, (_, index) => {
-  const id = index + 1;
-  const type = types[index % types.length];
-  const thematicLine = thematicLines[index % thematicLines.length];
-  const status = statuses[index % statuses.length];
-  const currentStage = stageFromStatus(status);
-  const principal = researchers[index % researchers.length];
-  const coinvestigator = researchers[(index + 2) % researchers.length];
-  const unit = units[index % units.length];
-  const careNetwork = networks[index % networks.length];
-  const multicenter = type === "Multicéntricos" || id % 5 === 0;
-  const clinicalTrial = type === "Ensayos clínicos" || id % 7 === 0;
-  const startYear = 2020 + (id % 7);
-  const budget = 85000 + id * 18500;
-  const hasPublications = status === "Publicado" || status === "Finalizado" || id % 4 === 0;
-  return {
-    id,
-    code: `ESS-${startYear}-${String(id).padStart(3, "0")}`,
-    title: buildTitle(type, thematicLine),
-    summary: `Proyecto institucional orientado a generar evidencia aplicada sobre ${thematicLine.toLowerCase()} en poblacion asegurada de EsSalud, con enfoque de gestion cientifica, transferencia y mejora de decisiones sanitarias.`,
-    status,
-    type,
-    thematicLine,
-    careNetwork,
-    unit,
-    principalInvestigator: { ...principal, role: "Investigador principal" },
-    team: [
-      { ...principal, role: "Investigador principal" },
-      { ...coinvestigator, role: "Coinvestigador" },
-      { ...researchers[(index + 3) % researchers.length], role: id % 2 === 0 ? "Coordinador metodológico" : "Monitor clínico" },
-    ],
-    fundingType: ["Institucional", "Cooperación internacional", "Fondos concursables", "Recursos propios", "Mixto"][index % 5] as ResearchProject["fundingType"],
-    fundingSource: fundingSources[index % fundingSources.length],
-    budget,
-    startDate: `${startYear}-03-01`,
-    endDate: `${startYear + 2}-12-31`,
-    startYear,
-    ethicsCommittee: ethicsCommittees[index % ethicsCommittees.length],
-    ethicsStatus: status === "Evaluación ética" ? "Pendiente" : status === "Formulación" ? "Pendiente" : id % 9 === 0 ? "Observado" : "Aprobado",
-    currentStage,
-    multicenter,
-    clinicalTrial,
-    alerts: buildAlerts(status, id),
-    expectedOutputs: ["Articulo cientifico", "Informe tecnico institucional", "Repositorio de datos curados"],
-    deliverables: ["Protocolo aprobado", "Base de datos anonimizada", "Informe final", "Resumen para decisores"],
-    sdgs: ["ODS 3", id % 3 === 0 ? "ODS 9" : "ODS 17"],
-    results: status === "Finalizado" || status === "Publicado" ? "Resultados disponibles para sintesis institucional y transferencia a decisores." : "Resultados en proceso de generacion y seguimiento por la unidad responsable.",
-    publications: hasPublications ? [
-      { id: ((id - 1) % 10) + 1, title: `Publicacion derivada sobre ${thematicLine.toLowerCase()} en EsSalud`, year: startYear + 1, journal: id % 2 === 0 ? "PLOS ONE" : "Revista Peruana de Medicina Experimental y Salud Publica" },
-    ] : [],
-    documents: [
-      { label: "Protocolo", status: status === "Formulación" ? "En revisión" : "Disponible" },
-      { label: "Dictamen ético", status: status === "Evaluación ética" ? "Pendiente" : "Disponible" },
-      { label: "Informe de avance", status: id % 4 === 0 ? "Pendiente" : "Disponible" },
-    ],
-    integrations: {
-      openProjectId: `OP-${String(5000 + id)}`,
-      ethicsCommitteeId: `CEI-${String(800 + id)}`,
-      repositoryHandle: hasPublications ? `20.500.essalud/${id}` : undefined,
-      internalSystemId: `SGI-${startYear}-${String(id).padStart(4, "0")}`,
-      orcidPrincipal: principal.orcid,
-      renacytPrincipal: principal.renacyt,
-    },
-  };
-});
+export const projectTypes = ["Todos", "Observacional", "Innovación"];
 
 export function getProjects(params?: Record<string, string | string[] | undefined>) {
+  const data = loadProjectData();
   const q = normalizeParam(params?.q);
   const status = normalizeParam(params?.status);
-  const type = normalizeParam(params?.type);
-  const thematicLine = normalizeParam(params?.thematic_line);
-  const network = normalizeParam(params?.network);
-  const unit = normalizeParam(params?.unit);
+  const type = normalizeParam(params?.type ?? params?.project_type);
   const principal = normalizeParam(params?.principal);
-  const fundingType = normalizeParam(params?.funding_type);
-  const fundingSource = normalizeParam(params?.funding_source);
+  const readyStatus = normalizeParam(params?.ready_status);
+  const thematicArea = normalizeParam(params?.thematic_area);
+  const thematicCategory = normalizeParam(params?.thematic_category);
+  const unit = normalizeParam(params?.unit);
+  const network = normalizeParam(params?.network);
+  const ipress = normalizeParam(params?.ipress);
+  const ethicsStatus = normalizeParam(params?.ethics_status);
   const startYear = normalizeParam(params?.start_year);
-  const ethicsCommittee = normalizeParam(params?.ethics_committee);
-  const stage = normalizeParam(params?.stage);
-  const quickType = normalizeParam(params?.project_type);
 
-  return projects.filter((project) => {
+  return data.projects.filter((project) => {
+    const teamNames = project.team.map((member) => member.researcher_name).join(" ");
     const haystack = [
-      project.title,
-      project.code,
-      project.principalInvestigator.name,
-      project.unit,
-      project.careNetwork,
-      project.thematicLine,
-      project.type,
-      ...project.expectedOutputs,
+      project.project_id,
+      project.project_code,
+      project.project_title,
+      project.short_title,
+      project.project_description,
+      project.principal_investigator_name,
+      project.executing_unit,
+      project.executing_network,
+      project.executing_ipress,
+      project.thematic_category,
+      project.thematic_area,
+      project.thematic_subtheme,
+      teamNames,
     ].join(" ").toLowerCase();
 
     return matchesText(haystack, q)
-      && matchesText(project.status, status)
-      && matchesText(project.type, type || (quickType === "todos" ? "" : quickType))
-      && matchesText(project.thematicLine, thematicLine)
-      && matchesText(project.careNetwork, network)
-      && matchesText(project.unit, unit)
-      && matchesText(project.principalInvestigator.name, principal)
-      && matchesText(project.fundingType, fundingType)
-      && matchesText(project.fundingSource, fundingSource)
-      && matchesText(String(project.startYear), startYear)
-      && matchesText(project.ethicsCommittee, ethicsCommittee)
-      && matchesText(project.currentStage, stage);
+      && matchesText(project.project_status, status)
+      && matchesText(project.project_type, type === "todos" ? "" : type)
+      && matchesText(project.principal_investigator_name, principal)
+      && matchesText(project.observatory_ready_status, readyStatus)
+      && matchesText(project.thematic_area, thematicArea)
+      && matchesText(project.thematic_category, thematicCategory)
+      && matchesText(project.executing_unit, unit)
+      && matchesText(project.executing_network, network)
+      && matchesText(project.executing_ipress, ipress)
+      && matchesText(project.ethics_approval_status, ethicsStatus)
+      && matchesText(project.start_date?.slice(0, 4), startYear);
   });
 }
 
-export function getProject(id: string) {
-  return projects.find((project) => project.id === Number(id));
+export function getProjectById(projectId: string) {
+  const decoded = decodeURIComponent(projectId);
+  return loadProjectData().projects.find((project) => project.project_id === decoded || project.source_record_order === toNumber(decoded));
 }
 
-export function getProjectSummary(items = projects) {
+export const getProject = getProjectById;
+
+export function getProjectResearchers(projectId: string) {
+  const decoded = decodeURIComponent(projectId);
+  return loadProjectData().links.filter((member) => member.project_id === decoded).sort(sortTeamMembers);
+}
+
+export function getProjectPrincipalInvestigator(projectId: string) {
+  return getProjectResearchers(projectId).find((member) => member.is_principal_investigator) ?? null;
+}
+
+export function getProjectCoinvestigators(projectId: string) {
+  return getProjectResearchers(projectId).filter((member) => !member.is_principal_investigator);
+}
+
+export function getProjectStats(items = loadProjectData().projects) {
+  const allLinks = loadProjectData().links;
+  const visibleProjectIds = new Set(items.map((project) => project.project_id));
+  const visibleLinks = allLinks.filter((link) => visibleProjectIds.has(link.project_id));
   return {
-    registered: items.length,
-    active: items.filter((project) => ["Aprobado", "En ejecución", "En análisis"].includes(project.status)).length,
-    finished: items.filter((project) => ["Publicado", "Finalizado"].includes(project.status)).length,
-    multicenter: items.filter((project) => project.multicenter).length,
-    clinicalTrials: items.filter((project) => project.clinicalTrial).length,
-    totalFunding: items.reduce((total, project) => total + project.budget, 0),
+    totalProjects: items.length,
+    observational: items.filter((project) => project.project_type.toLowerCase().includes("observacional")).length,
+    innovation: items.filter((project) => project.project_type.toLowerCase().includes("innov")).length,
+    active: items.filter((project) => project.project_status.toLowerCase().includes("activo")).length,
+    withPrincipal: items.filter((project) => present(project.principal_investigator_name) || project.principalInvestigator).length,
+    totalTeamMembers: visibleLinks.length,
+    ready: items.filter((project) => project.observatory_ready_status?.toLowerCase().includes("lista")).length,
+    pendingCriticalFields: items.filter((project) => project.missingCriticalFields.length > 0).length,
   };
 }
 
-export function getProjectAnalytics(items = projects) {
+export const getProjectSummary = getProjectStats;
+
+export function getProjectAnalytics(items = loadProjectData().projects) {
   return {
-    byStatus: countBy(items, (project) => project.status),
-    byType: countBy(items, (project) => project.type),
-    byThematicLine: countBy(items, (project) => project.thematicLine),
-    byNetwork: countBy(items, (project) => project.careNetwork),
-    fundingByYear: sumBy(items, (project) => String(project.startYear), (project) => project.budget),
-    publicationRate: Math.round((items.filter((project) => project.publications.length > 0).length / Math.max(items.length, 1)) * 100),
-    averageExecutionMonths: 28,
+    byStatus: countBy(items, (project) => project.project_status),
+    byType: countBy(items, (project) => project.project_type),
+    byThematicArea: countBy(items.filter((project) => present(project.thematic_area)), (project) => project.thematic_area ?? "No disponible"),
+    byThematicCategory: countBy(items.filter((project) => present(project.thematic_category)), (project) => project.thematic_category ?? "No disponible"),
+    byNetwork: countBy(items.filter((project) => present(project.executing_network)), (project) => project.executing_network ?? "No disponible"),
+    byPrincipal: countBy(items.filter((project) => present(project.principal_investigator_name)), (project) => project.principal_investigator_name ?? "No disponible"),
+    budgetByYear: sumBy(items, (project) => project.start_date?.slice(0, 4) ?? "Sin año", (project) => project.budget_planned ?? 0),
+    averagePlannedDurationMonths: average(items.map((project) => project.planned_duration_months).filter((value): value is number => typeof value === "number")),
   };
 }
 
 export function getProjectFilterOptions() {
+  const projects = loadProjectData().projects;
   return {
-    statuses,
-    types,
-    thematicLines,
-    networks,
-    units,
-    principals: researchers.map((researcher) => researcher.name),
-    fundingTypes: ["Institucional", "Cooperación internacional", "Fondos concursables", "Recursos propios", "Mixto"],
-    fundingSources,
-    years: Array.from(new Set(projects.map((project) => String(project.startYear)))).sort(),
-    ethicsCommittees,
-    stages: ["Formulación", "Evaluación ética", "Ejecución", "Análisis", "Publicación"],
+    statuses: uniqueStrings(projects.map((project) => project.project_status)),
+    types: uniqueStrings(projects.map((project) => project.project_type)),
+    principals: uniqueStrings(projects.map((project) => project.principal_investigator_name)),
+    readyStatuses: uniqueStrings(projects.map((project) => project.observatory_ready_status)),
+    thematicAreas: uniqueStrings(projects.map((project) => project.thematic_area)),
+    thematicCategories: uniqueStrings(projects.map((project) => project.thematic_category)),
+    units: uniqueStrings(projects.map((project) => project.executing_unit)),
+    networks: uniqueStrings(projects.map((project) => project.executing_network)),
+    ipress: uniqueStrings(projects.map((project) => project.executing_ipress)),
+    ethicsStatuses: uniqueStrings(projects.map((project) => project.ethics_approval_status)),
+    years: uniqueStrings(projects.map((project) => project.start_date?.slice(0, 4))).sort(),
   };
 }
 
-function buildTitle(type: ProjectType, thematicLine: string) {
-  const prefix = type === "Tesis" ? "Tesis institucional" : type === "Innovación" ? "Innovacion aplicada" : `Proyecto de ${type.toLowerCase()}`;
-  return `${prefix} sobre ${thematicLine.toLowerCase()} en EsSalud`;
+export function getProjectDataDiagnostics() {
+  const data = loadProjectData();
+  return {
+    projects: data.projects.length,
+    projectResearcherLinks: data.links.length,
+    matchSummary: data.matchSummary,
+    sourceFile: data.sourceFile,
+    generatedAt: data.generatedAt,
+  };
 }
 
-function stageFromStatus(status: ProjectStatus): ProjectPipelineStage {
-  if (status === "Formulación") return "Formulación";
-  if (status === "Evaluación ética" || status === "Aprobado") return "Evaluación ética";
-  if (status === "En ejecución" || status === "Suspendido" || status === "Cancelado") return "Ejecución";
-  if (status === "En análisis") return "Análisis";
-  return "Publicación";
+export function displayProjectValue(value: unknown, fallback = "No disponible") {
+  const cleaned = clean(value);
+  return cleaned ?? fallback;
 }
 
-function buildAlerts(status: ProjectStatus, id: number) {
-  const alerts: string[] = [];
-  if (id % 6 === 0) alerts.push("Proyecto próximo a vencer");
-  if (id % 4 === 0) alerts.push("Informe pendiente");
-  if (status === "Evaluación ética") alerts.push("Evaluación ética pendiente");
-  if (["En análisis", "Finalizado"].includes(status)) alerts.push("Publicación derivada pendiente");
-  if (id % 5 === 0) alerts.push("Entregable pendiente");
-  return alerts;
+export function formatProjectCurrency(value?: number | null, currency?: string | null) {
+  if (typeof value !== "number" || !Number.isFinite(value)) return "No disponible";
+  const symbol = currency === "PEN" || !currency ? "S/" : currency;
+  return `${symbol} ${value.toLocaleString("es-PE")}`;
+}
+
+export function projectTeamKey(member: ProjectTeamMember, index: number) {
+  return `${member.project_id}-${member.researcher_id ?? member.orcid ?? member.researcher_name_normalized ?? member.researcher_name}-${member.role_order ?? index}`;
+}
+
+export function orcidUrl(orcid?: string | null) {
+  const cleaned = clean(orcid)?.replace(/^https?:\/\/orcid\.org\//i, "");
+  if (!cleaned || !/^\d{4}-\d{4}-\d{4}-[\dX]{4}$/i.test(cleaned)) return null;
+  return `https://orcid.org/${cleaned.toUpperCase()}`;
+}
+
+function loadProjectData(): ProjectData {
+  if (cache) return cache;
+  const payload = JSON.parse(readFileSync(DATA_PATH, "utf-8")) as ProjectPayload;
+  const links = (payload.researcher_links ?? []).map(mapTeamMember).sort(sortTeamMembers);
+  const linksByProject = groupBy(links, (member) => member.project_id);
+  const projects = (payload.projects ?? []).map((row) => mapProject(row, linksByProject.get(displayProjectValue(row.project_id, "")) ?? []));
+
+  cache = {
+    projects,
+    links,
+    matchSummary: mapMatchSummary(payload.match_summary ?? []),
+    sourceFile: payload.source_file,
+    generatedAt: payload.generated_at,
+  };
+  return cache;
+}
+
+function mapProject(row: RawRecord, team: ProjectTeamMember[]): ResearchProject {
+  const project: ResearchProject = {
+    project_id: displayProjectValue(row.project_id, "Sin ID"),
+    source_system: clean(row.source_system),
+    source_record_order: toNumber(row.source_record_order),
+    openproject_id: clean(row.openproject_id),
+    project_code: clean(row.project_code),
+    project_title: displayProjectValue(row.project_title, "Proyecto sin titulo"),
+    short_title: displayProjectValue(row.short_title, displayProjectValue(row.project_title, "Proyecto sin titulo")),
+    project_type: displayProjectValue(row.project_type),
+    project_status: displayProjectValue(row.project_status),
+    start_date: clean(row.start_date),
+    planned_end_date: clean(row.planned_end_date),
+    planned_duration_months: toNumber(row.planned_duration_months),
+    budget_planned: toNumber(row.budget_planned),
+    currency: clean(row.currency),
+    project_description: clean(row.project_description),
+    principal_investigator_name: clean(row.principal_investigator_name),
+    principal_investigator_orcid: clean(row.principal_investigator_orcid),
+    executing_institution: clean(row.executing_institution),
+    executing_unit: clean(row.executing_unit),
+    executing_network: clean(row.executing_network),
+    executing_ipress: clean(row.executing_ipress),
+    thematic_category: clean(row.thematic_category),
+    thematic_area: clean(row.thematic_area),
+    thematic_subtheme: clean(row.thematic_subtheme),
+    ods_related: clean(row.ods_related),
+    ethics_approval_status: clean(row.ethics_approval_status),
+    ethics_committee: clean(row.ethics_committee),
+    ethics_approval_code: clean(row.ethics_approval_code),
+    ethics_approval_date: clean(row.ethics_approval_date),
+    funding_source: clean(row.funding_source),
+    expected_outputs: clean(row.expected_outputs),
+    n_coinvestigators_raw: toNumber(row.n_coinvestigators_raw),
+    n_team_members_unique: toNumber(row.n_team_members_unique),
+    duplicate_researchers_in_project: clean(row.duplicate_researchers_in_project),
+    data_quality_notes: clean(row.data_quality_notes),
+    observatory_ready_status: clean(row.observatory_ready_status),
+    source_file: clean(row.source_file),
+    team,
+    principalInvestigator: team.find((member) => member.is_principal_investigator) ?? null,
+    currentStage: stageFromStatus(clean(row.project_status)),
+    missingCriticalFields: [],
+  };
+  project.missingCriticalFields = criticalFields.filter(([, key]) => !present(project[key])).map(([label]) => label);
+  return project;
+}
+
+function mapTeamMember(row: RawRecord): ProjectTeamMember {
+  const researcherId = clean(row.researcher_id);
+  const orcid = clean(row.orcid);
+  return {
+    project_id: displayProjectValue(row.project_id, "Sin proyecto"),
+    researcher_id: researcherId,
+    researcher_name: displayProjectValue(row.researcher_name, "Investigador no disponible"),
+    researcher_name_normalized: clean(row.researcher_name_normalized),
+    role: displayProjectValue(row.role, "Integrante"),
+    role_order: toNumber(row.role_order),
+    is_principal_investigator: toBool(row.is_principal_investigator) ?? displayProjectValue(row.role, "").toLowerCase().includes("principal"),
+    orcid,
+    affiliation: clean(row.affiliation),
+    institution: clean(row.institution),
+    unit: clean(row.unit),
+    network: clean(row.network),
+    email: clean(row.email),
+    renacyt_code: clean(row.renacyt_code),
+    duplicate_within_project: clean(row.duplicate_within_project),
+    notes: clean(row.notes),
+    profileHref: researcherId ? `/investigadores/${encodeURIComponent(researcherId)}` : null,
+    orcidHref: orcidUrl(orcid),
+    linkageStatus: researcherId ? "Vinculado al directorio de investigadores" : orcid ? "Pendiente de vinculación con directorio de investigadores" : "Sin identificador institucional vinculado",
+  };
+}
+
+function stageFromStatus(status?: string | null): ProjectPipelineStage {
+  const normalized = (status ?? "").toLowerCase();
+  if (normalized.includes("ética") || normalized.includes("etica")) return "Evaluación ética";
+  if (normalized.includes("análisis") || normalized.includes("analisis")) return "Análisis";
+  if (normalized.includes("public") || normalized.includes("final")) return "Publicación";
+  if (normalized.includes("activo") || normalized.includes("ejec")) return "Ejecución";
+  return "Formulación";
+}
+
+function mapMatchSummary(rows: RawRecord[]) {
+  return rows.reduce<Record<string, number>>((summary, row) => {
+    const label = clean(row["0"] ?? row.indicator);
+    const value = toNumber(row["1"] ?? row.value);
+    if (label && value !== null) summary[label] = value;
+    return summary;
+  }, {});
 }
 
 function normalizeParam(value: string | string[] | undefined) {
@@ -282,19 +372,72 @@ function normalizeParam(value: string | string[] | undefined) {
   return (Array.isArray(value) ? value[0] : value).trim().toLowerCase();
 }
 
-function matchesText(value: string, query: string) {
+function matchesText(value: unknown, query: string) {
   if (!query) return true;
-  return value.toLowerCase().includes(query);
+  return displayProjectValue(value, "").toLowerCase().includes(query);
 }
 
-function countBy(items: ResearchProject[], selector: (project: ResearchProject) => string) {
+function countBy(items: ResearchProject[], selector: (project: ResearchProject) => string | null | undefined) {
   const counts = new Map<string, number>();
-  for (const item of items) counts.set(selector(item), (counts.get(selector(item)) ?? 0) + 1);
+  for (const item of items) {
+    const label = displayProjectValue(selector(item));
+    counts.set(label, (counts.get(label) ?? 0) + 1);
+  }
   return Array.from(counts, ([label, value]) => ({ label, value })).sort((a, b) => b.value - a.value);
 }
 
 function sumBy(items: ResearchProject[], labelSelector: (project: ResearchProject) => string, valueSelector: (project: ResearchProject) => number) {
   const counts = new Map<string, number>();
-  for (const item of items) counts.set(labelSelector(item), (counts.get(labelSelector(item)) ?? 0) + valueSelector(item));
+  for (const item of items) {
+    const label = labelSelector(item);
+    counts.set(label, (counts.get(label) ?? 0) + valueSelector(item));
+  }
   return Array.from(counts, ([label, value]) => ({ label, value })).sort((a, b) => a.label.localeCompare(b.label));
+}
+
+function groupBy<T>(items: T[], selector: (item: T) => string) {
+  const groups = new Map<string, T[]>();
+  for (const item of items) {
+    const key = selector(item);
+    groups.set(key, [...(groups.get(key) ?? []), item]);
+  }
+  return groups;
+}
+
+function uniqueStrings(values: Array<string | null | undefined>) {
+  return Array.from(new Set(values.map((value) => clean(value)).filter((value): value is string => Boolean(value)))).sort((a, b) => a.localeCompare(b));
+}
+
+function sortTeamMembers(a: ProjectTeamMember, b: ProjectTeamMember) {
+  return (a.role_order ?? 999) - (b.role_order ?? 999) || a.researcher_name.localeCompare(b.researcher_name);
+}
+
+function clean(value: unknown) {
+  const text = String(value ?? "").trim();
+  return MISSING_VALUES.has(text.toLowerCase()) ? null : text;
+}
+
+function present(value: unknown) {
+  if (typeof value === "number") return Number.isFinite(value);
+  return clean(value) !== null;
+}
+
+function toNumber(value: unknown) {
+  const cleaned = clean(value);
+  if (!cleaned) return null;
+  const number = Number(cleaned);
+  return Number.isFinite(number) ? number : null;
+}
+
+function toBool(value: unknown) {
+  const text = clean(value)?.toLowerCase();
+  if (!text) return null;
+  if (["true", "1", "si", "sí", "yes"].includes(text)) return true;
+  if (["false", "0", "no"].includes(text)) return false;
+  return null;
+}
+
+function average(values: number[]) {
+  if (!values.length) return 0;
+  return Math.round(values.reduce((total, value) => total + value, 0) / values.length);
 }

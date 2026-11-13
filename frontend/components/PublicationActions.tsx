@@ -8,7 +8,8 @@ import { createTextDataHref, getPublicationPdfPlaceholder, publicationToBibtex, 
 export function PublicationActions({ publication }: { publication: ScientificPublication }) {
   const doiUrl = publication.doi ? `https://doi.org/${publication.doi}` : "#";
   const pmidUrl = publication.pmid ? `https://pubmed.ncbi.nlm.nih.gov/${publication.pmid}` : "#";
-  const openAlexUrl = `https://openalex.org/${publication.external_identifiers?.openalex_id ?? ""}`;
+  const openAlexId = publication.external_identifiers?.openalex_id;
+  const openAlexUrl = openAlexId ? (openAlexId.startsWith("http") ? openAlexId : `https://openalex.org/${openAlexId}`) : "#";
 
   async function copyDoi() {
     if (publication.doi) {
@@ -21,7 +22,7 @@ export function PublicationActions({ publication }: { publication: ScientificPub
       <button className="inline-flex items-center gap-2 rounded border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700" type="button">
         <FileText size={16} /> Citar
       </button>
-      <button className="inline-flex items-center gap-2 rounded bg-brand px-3 py-2 text-sm font-semibold text-white" type="button" onClick={copyDoi}>
+      <button className="inline-flex items-center gap-2 rounded bg-brand px-3 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:bg-slate-300" type="button" onClick={copyDoi} disabled={!publication.doi}>
         <Copy size={16} /> Copiar DOI
       </button>
       <ActionMenu label="Exportar" icon={<Download size={16} />}>

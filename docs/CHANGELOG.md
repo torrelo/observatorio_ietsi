@@ -1,5 +1,29 @@
 # Changelog tecnico
 
+## 2026-11-13 - Base visual compartida, lectura y navegacion
+
+- **Rama:** `observatorio-directorio-proyectos`.
+- **Modulo intervenido:** Base compartida; Inicio, Produccion Cientifica, Investigadores, Proyectos y Unidades.
+- **Motivo:** Verificar ancho estrecho, escala de lectura y recortes, antes de redisenos especificos.
+- **Funcionalidades implementadas:** Contenedor comun 1440 px, tipografia rem, encabezado accesible con ruta activa y disclosure movil, foco y salto al contenido, grids adaptables y controles de 44 px como minimo.
+- **Errores corregidos:** Desbordamiento movil, tarjetas centrales excesivamente estrechas, alturas que recortaban identidad y nombres, interferencia del color global de enlaces con Tailwind.
+- **Archivos:** Base CSS/Tailwind/layout; Header, Footer, SectionHeader, Badge, SearchBar, KpiCard; cinco paginas; adaptaciones minimas de tarjetas, filtros y KPIs. Inventario y evidencia en `docs/BASE_VISUAL_ETAPA_1.md`.
+- **Capturas:** `docs/screenshots/base-visual-{antes,despues}-{home,produccion-cientifica,investigadores,proyectos,unidades}-{360,1440}.png`.
+- **Validaciones:** lint, typecheck, build y diff --check correctos. Chrome: cinco rutas en 320/360/768/1280/1440 CSS sin desbordamiento general; texto 200% a 320/1440 (incluido menu abierto), teclado, foco, ruta activa, cinco destinos, busquedas, muestra de filtros y pagina 2 de publicaciones correctos. JSON de medidas y reporte de limites en `docs/BASE_VISUAL_ETAPA_1.md`. No se declara conformidad WCAG integral.
+- **Pendientes:** Revisar por separado indicadores de unidades, filtro CIEI, buscador Home/login y favicon. No se modifican datos, APIs, calculos ni dependencias. Sin commit, push o despliegue.
+
+## 2026-11-13 - Coherencia de cifras del Inicio con los directorios
+
+- **Rama de trabajo:** `observatorio-directorio-proyectos`.
+- **Modulo intervenido:** Home.
+- **Motivo:** Cantidades fijas en accesos y resumen API legacy diferentes de las fuentes reales de los directorios.
+- **Funcionalidades implementadas:** Resumen server-side reutilizando las funciones de publicaciones, investigadores, proyectos y unidades; Inicio dinamico sin prerender estatico de cifras.
+- **Errores corregidos:** Eliminadas cantidades ficticias de las cuatro tarjetas. KPIs con definiciones equivalentes a sus directorios: total de publicaciones, investigadores registrados, proyectos activos y unidades. Citas y acceso abierto sustituyen ensayos y financiamiento sin fuente consolidada; no se llama a FastAPI desde el Home.
+- **Archivos creados/modificados:** `frontend/lib/home.ts`, `frontend/app/page.tsx`, `docs/CHANGELOG.md`, `docs/bitacora/home.md`.
+- **Capturas generadas:** Pendientes; esta intervencion no cambia el diseno.
+- **Pendientes:** Integrar indicadores de ensayos y financiamiento cuando exista una fuente validada. Se conserva el ciclo actual de recarga de los loaders: regenerar JSON cuando corresponda y reiniciar el servidor tras actualizar bases.
+- **Validaciones:** `npm run lint` y `npm run build` correctos. Comparacion ejecutable de las cuatro cantidades con los listados sin filtros: 2,701 publicaciones, 308 investigadores, 31 proyectos y 30 unidades. `npm run dev` verificado en puerto 3004: GET `/` responde 200, contiene las cifras reales y no contiene las cuatro cantidades ficticias anteriores. Citas: 31,556; acceso abierto: 1,709.
+
 ## Formato de registro
 
 Cada entrada debe incluir:
@@ -13,6 +37,322 @@ Cada entrada debe incluir:
 - Capturas generadas
 - Pendientes
 - Observaciones tecnicas
+
+## 2026-09-16 - Correccion de Expertise en perfiles de investigadores
+
+- **Rama de trabajo:** `observatorio-directorio-proyectos`
+- **Modulo intervenido:** Investigadores / perfil individual.
+- **Motivo de la intervencion:**
+  - La integracion de perfiles curados corrigio el encabezado, pero el lector de `researchers_observatory.csv` podia fragmentar etiquetas de expertise con comas internas cuando el archivo venia separado por coma.
+- **Funcionalidades implementadas:**
+  - Se separan estrictamente datos de presentacion del perfil y datos bibliometricos/expertise.
+  - La seccion Expertise vuelve a usar `main_thematic_areas`, `main_thematic_subthemes`, `main_study_types` y `main_thematic_categories` desde `researchers_observatory.csv`.
+  - El parser de investigadores reconstruye campos de lista con conteo preservando comas, guiones y conjunciones internas.
+  - Las listas de expertise se separan solo por pipe `|`.
+  - La seccion Palabras clave queda en `No disponible` si no existe un campo explicito de keywords/topics.
+- **Errores corregidos:**
+  - Se evita fragmentar etiquetas como `Salud Neonatal, del niño y Adolescente`.
+  - Se evita crear etiquetas aisladas como `del niño y Adolescente`.
+  - Se evita inventar keywords desde areas, subtemas o filiaciones.
+- **Archivos creados/modificados:**
+  - `frontend/lib/researchers.ts`
+  - `backend/app/services/real_researchers.py`
+  - `docs/CHANGELOG.md`
+  - `docs/bitacora/investigadores.md`
+- **Capturas generadas:**
+  - `docs/screenshots/investigador-expertise-pipe-fix-v3.png`
+- **Pendientes:**
+  - Solicitar al pipeline que exporte `researchers_observatory.csv` con campos entrecomillados cuando use separador coma, o mantener separador `;` para reducir ambiguedad.
+- **Validaciones realizadas:**
+  - Perfil de Alvaro Taype-Rondan validado en `/investigadores/orcid%3A0000-0001-8758-0463` ✅
+  - Verificacion de datos: `Salud Neonatal, del niño y Adolescente` existe completa y `del niño y Adolescente` no existe como etiqueta aislada ✅
+  - `npm run typecheck` ✅
+  - `npm run lint` ✅
+  - `npm run build` ✅
+  - `npm run validate:researchers` ✅
+  - `python3 -m compileall app` ✅
+- **Observaciones tecnicas:**
+  - `researcher_profiles_curated.csv` queda limitado a presentacion de encabezado; no alimenta ni recalcula expertise cientifica.
+
+## 2026-09-16 - Perfiles curados y filiacion normalizada de investigadores
+
+- **Rama de trabajo:** `observatorio-directorio-proyectos`
+- **Modulo intervenido:** Investigadores.
+- **Motivo de la intervencion:**
+  - Corregir la visualizacion de perfiles individuales de investigadores para evitar fotografia vacia, filiaciones crudas concatenadas, instituciones repetidas y variantes con direcciones postales.
+  - Integrar la capa curada generada por el pipeline institucional.
+- **Funcionalidades implementadas:**
+  - Carga real de `researcher_profiles_curated.csv`, `researcher_affiliations_normalized.csv` y `researcher_photo_manifest.csv`.
+  - Union por `researcher_id` con `researchers_observatory.csv` y `researcher_publication_links.csv`.
+  - Prioridad de presentacion: perfil curado, filiacion normalizada y CSV bibliometrico como fallback.
+  - Avatar por iniciales cuando no existe `photo_url`, sin inventar fotografias.
+  - Encabezado de perfil con `display_name`, ORCID valido, `primary_affiliation_normalized`, institucion, unidad, red, pais y estado de revision.
+  - Listado y filtros actualizados por institucion, unidad, red, pais, estado de revision y tipo de estudio.
+  - Lectura CSV tolerante a separador `;`, `,` o tabulador para soportar exportaciones recientes del pipeline.
+  - Script de validacion actualizado para reportar perfiles curados, filiaciones normalizadas, avatares y fotografias disponibles.
+- **Errores corregidos:**
+  - Se evita mostrar `affiliations` crudo como filiacion principal en el encabezado publico.
+  - Se evita mostrar recuadros vacios de fotografia.
+  - Se corrige la lectura de `researchers_observatory.csv` exportado con separador coma.
+  - Se evita imprimir rankings `undefined` en `npm run validate:researchers`.
+  - La red de colaboracion usa `n_authors_publication` para excluir autoria masiva cuando corresponde.
+- **Archivos creados/modificados:**
+  - `frontend/lib/researchers.ts`
+  - `frontend/app/investigadores/page.tsx`
+  - `frontend/app/investigadores/[id]/page.tsx`
+  - `frontend/components/ResearcherProfileCard.tsx`
+  - `frontend/scripts/validate-researcher-data.mjs`
+  - `backend/app/services/real_researchers.py`
+  - `backend/app/api/routes.py`
+  - `docs/CHANGELOG.md`
+  - `docs/bitacora/investigadores.md`
+- **Capturas generadas:**
+  - `docs/screenshots/directorio-investigadores-perfiles-curados-v2.png`
+  - `docs/screenshots/investigador-perfil-curado-v2.png`
+- **Pendientes:**
+  - Regenerar `researcher_indicators_observatory.json` cuando el pipeline actualice tambien el Excel/JSON agregado.
+  - Incorporar fotografias institucionales solo cuando exista autorizacion y `photo_url` validado.
+  - Persistir perfiles curados en PostgreSQL cuando se active la carga formal.
+  - Agregar pruebas automatizadas de filtros institucionales y render de perfil sin fotografia.
+- **Validaciones realizadas:**
+  - `npm run validate:researchers`: 309 investigadores, 309 perfiles curados, 309 filiaciones normalizadas, 3505 vinculos, 2369 publicaciones unicas, ORCID 257/52, 178 filiaciones normalizadas, 131 perfiles pendientes, 309 avatares, 0 photo_url ✅
+  - `npm run typecheck` ✅
+  - `npm run lint` ✅
+  - `npm run build` ✅
+  - `python3 -m compileall app` ✅
+  - `npm run dev -- --hostname 127.0.0.1` en puerto 3001 ✅
+  - `curl -I /investigadores`, `/investigadores/orcid%3A0000-0003-4593-2509` y filtros institucionales respondieron 200 ✅
+- **Observaciones tecnicas:**
+  - La interfaz publica ya no recalcula filiacion principal desde `affiliations`; usa la capa curada como fuente canonica de presentacion.
+  - Los indicadores bibliometricos por investigador siguen limitados al subconjunto de publicaciones del observatorio.
+
+## 2026-09-06 - Correccion de chunk faltante en runtime Next
+
+- **Rama de trabajo:** `observatorio-directorio-proyectos`
+- **Modulo intervenido:** Frontend / empaquetado Next.js.
+- **Motivo de la intervencion:**
+  - Se reporto `Server Error: Cannot find module './228.js'` desde `.next/server/webpack-runtime.js`.
+  - El runtime buscaba chunks en la raiz de `.next/server`, mientras el build los generaba en `.next/server/chunks`.
+- **Funcionalidades implementadas:**
+  - Se reforzo `frontend/scripts/prepare-standalone.mjs` para copiar chunks server-side a la raiz del runtime en `.next/server` y `.next/standalone/.next/server`.
+- **Errores corregidos:**
+  - Se evita el fallo `Cannot find module './228.js'` en ejecuciones con artefactos Next standalone/runtime.
+- **Archivos creados/modificados:**
+  - `frontend/scripts/prepare-standalone.mjs`
+  - `docs/CHANGELOG.md`
+- **Capturas generadas:**
+  - No aplica.
+- **Pendientes:**
+  - Reiniciar cualquier instancia previa en `localhost:3000` y ejecutar nuevamente `npm run build && npm run start`.
+- **Validaciones realizadas:**
+  - `npm run build` ✅
+  - `npm run typecheck` ✅
+  - `npm run lint` ✅
+  - `curl -I http://127.0.0.1:3007/` respondio 200 ✅
+  - `curl -I http://127.0.0.1:3007/investigadores` respondio 200 ✅
+  - `curl -I http://127.0.0.1:3007/investigadores/orcid%3A0000-0003-4593-2509` respondio 200 ✅
+  - `curl -I http://127.0.0.1:3007/produccion-cientifica` respondio 200 ✅
+
+## 2026-09-06 - Integracion de datos reales de investigadores
+
+- **Rama de trabajo:** `observatorio-directorio-proyectos`
+- **Modulo intervenido:** Investigadores.
+- **Motivo de la intervencion:**
+  - Reemplazar datos ficticios, mock data y placeholders de investigadores por la base institucional generada desde publicaciones enriquecidas.
+- **Funcionalidades implementadas:**
+  - Carga real desde `researchers_observatory.csv`, `researcher_publication_links.csv` y `researcher_indicators_observatory.xlsx`.
+  - Generacion de `researcher_indicators_observatory.json` como derivado trazable del Excel para lectura server-side en Next.js.
+  - Listado `/investigadores` conectado a 564 investigadores reales.
+  - KPIs, filtros, ranking breve y paneles analiticos conectados a datos reales.
+  - Perfil `/investigadores/[id]` conectado a `researcher_id` real y publicaciones vinculadas.
+  - ORCID y DOI se muestran como enlaces solo cuando existen valores validos.
+  - Nota metodologica visible sobre identificacion institucional, alcance del h-index observatorio y autoria masiva.
+  - Backend actualizado para entregar investigadores reales en endpoints REST cuando los archivos existen.
+- **Errores corregidos:**
+  - Se reemplazan investigadores ficticios visibles en listado, KPIs, filtros, perfiles y ranking.
+  - Se normalizan valores faltantes para no mostrar `null`, `undefined`, `NaN` ni cadenas vacias.
+  - Se soportan identificadores reales tipo `orcid:...` y `name:...` en perfiles individuales.
+- **Archivos creados/modificados:**
+  - `docs/CHANGELOG.md`
+  - `docs/bitacora/investigadores.md`
+  - `frontend/public/data/researcher_indicators_observatory.json`
+  - `frontend/lib/researchers.ts`
+  - `frontend/app/investigadores/page.tsx`
+  - `frontend/app/investigadores/[id]/page.tsx`
+  - `frontend/components/ResearcherProfileCard.tsx`
+  - `frontend/scripts/validate-researcher-data.mjs`
+  - `frontend/package.json`
+  - `backend/app/services/real_researchers.py`
+  - `backend/app/api/routes.py`
+- **Capturas generadas:**
+  - `docs/screenshots/directorio-investigadores-datos-reales-v1.png`
+  - `docs/screenshots/investigador-perfil-datos-reales-v1.png`
+- **Pendientes:**
+  - Persistir investigadores reales en PostgreSQL/Alembic cuando se active carga formal a base de datos.
+  - Incorporar RENACYT, CTI Vitae y ORCID API para validacion externa de perfiles.
+  - Normalizar duplicados por variantes de nombre/ORCID desde el pipeline maestro.
+  - Reemplazar grafo visual mock por una visualizacion interactiva si se aprueba una dependencia especializada.
+- **Validaciones realizadas:**
+  - `npm run validate:researchers`: 564 investigadores, 3512 vinculos, 2369 publicaciones unicas, ORCID 255/309, rango 1984-2026 ✅
+  - `npm run typecheck` ✅
+  - `npm run lint` ✅
+  - `npm run build` ✅
+  - `python3 -m compileall app` ✅
+  - Rutas `/investigadores`, `/investigadores?orcid=Con%20ORCID&quartile=Q1&sort=-total_citations` y `/investigadores/orcid%3A0000-0003-4593-2509` responden 200 ✅
+  - Servicio backend real de investigadores validado por llamada directa ✅
+
+## 2026-09-04 - Correccion de arranque production standalone en frontend
+
+- **Rama de trabajo:** `observatorio-directorio-proyectos`
+- **Modulo intervenido:** Frontend / configuracion de ejecucion.
+- **Motivo de la intervencion:**
+  - Todas las rutas en `localhost:3000` respondian `500 Internal Server Error` cuando el portal se ejecutaba con `npm run start`.
+  - Se reprodujo el fallo en puerto alterno: `next start` devuelve 500 cuando `next.config.ts` usa `output: "standalone"`.
+- **Funcionalidades implementadas:**
+  - Se actualizo `npm run start` para ejecutar el servidor standalone generado por Next: `node .next/standalone/server.js`.
+  - Se agrego script de preparacion para copiar `.next/static` y `public` dentro de `.next/standalone`.
+- **Errores corregidos:**
+  - Se corrige el uso incompatible de `next start` con `output: "standalone"`.
+  - Se evita el `Internal Server Error` global en modo production local.
+- **Archivos creados/modificados:**
+  - `frontend/package.json`
+  - `frontend/scripts/prepare-standalone.mjs`
+  - `docs/CHANGELOG.md`
+  - `docs/bitacora/home.md`
+- **Capturas generadas:**
+  - No aplica.
+- **Pendientes:**
+  - Reiniciar el proceso viejo de `localhost:3000` para que tome el script corregido.
+  - Verificar en el navegador del usuario que no quede una instancia previa ocupando `localhost:3000`.
+- **Validaciones realizadas:**
+  - `npm run build` ✅
+  - `PORT=3005 HOSTNAME=127.0.0.1 npm run start` ✅
+  - `curl -I http://127.0.0.1:3005/` respondio 200 ✅
+  - `curl -I http://127.0.0.1:3005/investigadores` respondio 200 ✅
+  - `curl -I http://127.0.0.1:3005/produccion-cientifica` respondio 200 ✅
+  - `curl -I http://127.0.0.1:3005/proyectos` respondio 200 ✅
+  - Asset CSS de `/_next/static` respondio 200 ✅
+  - `npm run typecheck` ✅
+  - `npm run lint` ✅
+
+## 2026-09-04 - Correccion de Internal Server Error en Home sin backend activo
+
+- **Rama de trabajo:** `observatorio-directorio-proyectos`
+- **Modulo intervenido:** Home / capa API frontend.
+- **Motivo de la intervencion:**
+  - La ruta `/` respondia `500 Internal Server Error` cuando el backend FastAPI no estaba activo en `localhost:8000`.
+- **Funcionalidades implementadas:**
+  - Fallback local para `api.home()` cuando `GET /api/home/summary` no responde.
+  - El fallback reutiliza indicadores reales de publicaciones desde la capa CSV/XLSX incorporada al frontend.
+  - Se mantienen valores no disponibles para metricas de otros modulos cuando no existe backend activo, evitando inventar datos.
+- **Errores corregidos:**
+  - Se evita que el Server Component del Home lance excepcion por `ECONNREFUSED` contra `localhost:8000`.
+  - La ruta `/` deja de responder 500 cuando FastAPI no esta levantado.
+- **Archivos creados/modificados:**
+  - `docs/CHANGELOG.md`
+  - `docs/bitacora/home.md`
+  - `frontend/lib/api.ts`
+- **Capturas generadas:**
+  - `docs/screenshots/home-fallback-backend-v1.png`
+- **Pendientes:**
+  - Conectar `GET /api/home/summary` a datos institucionales reales para investigadores, proyectos, unidades, ensayos clinicos y financiamiento.
+  - Reiniciar cualquier servidor antiguo en `localhost:3000` si todavia ejecuta una version previa del codigo.
+- **Validaciones realizadas:**
+  - `npm run typecheck` ✅
+  - `npm run lint` ✅
+  - `npm run build` ✅
+  - `npm run dev` en puerto 3003 con `/` respondiendo 200 ✅
+  - Captura del Home generada e inspeccionada ✅
+
+## 2026-09-04 - Componentes de error requeridos por Next App Router
+
+- **Rama de trabajo:** `observatorio-directorio-proyectos`
+- **Modulo intervenido:** Infraestructura frontend / rutas globales.
+- **Motivo de la intervencion:**
+  - En `/produccion-cientifica` e `/investigadores` se reporto el mensaje `missing required error components, refreshing...`.
+- **Funcionalidades implementadas:**
+  - Se agrego boundary de error de segmento en `frontend/app/error.tsx`.
+  - Se agrego boundary global en `frontend/app/global-error.tsx`.
+  - Se agrego vista institucional de ruta no encontrada en `frontend/app/not-found.tsx`.
+- **Errores corregidos:**
+  - Se evita depender de componentes internos generados por Next para estados de error/no encontrado durante desarrollo.
+  - Se estabiliza el renderizado de errores en rutas existentes y rutas invalidas.
+- **Archivos creados/modificados:**
+  - `frontend/app/error.tsx`
+  - `frontend/app/global-error.tsx`
+  - `frontend/app/not-found.tsx`
+  - `docs/CHANGELOG.md`
+  - `docs/bitacora/home.md`
+- **Capturas generadas:**
+  - `docs/screenshots/produccion-cientifica-error-components-fix.png`
+  - `docs/screenshots/investigadores-error-components-fix.png`
+- **Pendientes:**
+  - Reiniciar el servidor que atiende `localhost:3000` si continua ejecutando una instancia anterior.
+  - Optimizar la carga inicial de `/produccion-cientifica`, que en frio puede tardar por la lectura del CSV real completo.
+- **Validaciones realizadas:**
+  - `npm run typecheck` ✅
+  - `npm run lint` ✅
+  - `npm run build` ✅
+  - `npm run dev` en puerto 3003 con `/produccion-cientifica` e `/investigadores` respondiendo 200 ✅
+  - `curl -I http://localhost:3000/produccion-cientifica` respondio 200 tras el primer render ✅
+  - `curl -I http://localhost:3000/investigadores` respondio 200 ✅
+
+## 2026-09-04 - Sustitucion de datos mock por fuentes reales de publicaciones
+
+- **Rama de trabajo:** `observatorio-directorio-proyectos`
+- **Modulo intervenido:** Produccion Cientifica e indicadores bibliometricos.
+- **Motivo de la intervencion:**
+  - Reemplazar datos ficticios, mock data y placeholders del MVP por los archivos reales del pipeline de enriquecimiento bibliometrico.
+  - Incorporar `publications_observatory.csv` y `publication_indicators_observatory.xlsx` como fuentes trazables para publicaciones, indicadores, filtros, graficos y cobertura de datos.
+- **Funcionalidades implementadas:**
+  - Incorporacion de `publications_observatory.csv` y `publication_indicators_observatory.xlsx` en `frontend/public/data/`.
+  - Generacion de `publication_indicators_observatory.json` derivado del XLSX para lectura server-side sin dependencias adicionales en Next.js.
+  - Reemplazo de la capa API/mock de `frontend/lib/publications.ts` por una capa de datos real basada en CSV e indicadores agregados.
+  - KPIs del directorio conectados a indicadores reales: total de publicaciones, publicaciones incluidas, DOI, cuartil, citas, open access, Q1-Q2, ISSN, revistas, mediana de citas y ultima actualizacion.
+  - Listado, busqueda, filtros, ordenamiento, paginacion y ficha individual alimentados desde el CSV real.
+  - Paneles analiticos conectados al JSON derivado del Excel o calculados desde CSV cuando corresponde.
+  - Seccion de calidad de datos/cobertura del enriquecimiento con porcentajes y numeros absolutos.
+  - Nota metodologica visible en directorio y ficha individual.
+  - Endpoint backend de publicaciones conectado a fuentes reales cuando los archivos existen, manteniendo fallback a semilla si no estan presentes.
+  - Nuevos endpoints backend: `/api/publications/indicators`, `/api/publications/coverage` y `/api/publications/filters`.
+  - Script `npm run validate:publications` para imprimir totales, coberturas, revistas unicas y rango de anios.
+- **Errores corregidos:**
+  - Se elimino la dependencia visible de datos ficticios en Produccion Cientifica.
+  - Se normalizan valores faltantes para no mostrar `null`, `undefined`, `NaN` ni cadenas vacias.
+  - Se corrigio el lector CSV backend aumentando `csv.field_size_limit` para abstracts extensos.
+  - Se corrigio la URL de OpenAlex cuando el archivo ya trae identificadores como URL completa.
+  - Se reemplazo el KPI no trazable de autores por cobertura de citas.
+- **Archivos creados/modificados:**
+  - `docs/CHANGELOG.md`
+  - `docs/bitacora/produccion-cientifica.md`
+  - `frontend/public/data/publications_observatory.csv`
+  - `frontend/public/data/publication_indicators_observatory.xlsx`
+  - `frontend/public/data/publication_indicators_observatory.json`
+  - `frontend/lib/publications.ts`
+  - `frontend/app/produccion-cientifica/page.tsx`
+  - `frontend/app/produccion-cientifica/[id]/page.tsx`
+  - `frontend/components/PublicationActions.tsx`
+  - `frontend/scripts/validate-publication-data.mjs`
+  - `frontend/package.json`
+  - `frontend/eslint.config.mjs`
+  - `backend/app/services/real_publications.py`
+  - `backend/app/api/routes.py`
+- **Capturas generadas:**
+  - `docs/screenshots/produccion-cientifica-datos-reales-v1.png`
+  - `docs/screenshots/publicacion-detalle-datos-reales-v1.png`
+- **Pendientes:**
+  - Conectar esta capa de archivos al modelo PostgreSQL/Alembic cuando se habilite la carga persistente.
+  - Reemplazar el JSON derivado por lectura ETL automatizada si se incorpora una libreria XLSX o un job de conversion formal.
+  - Incorporar identificadores normalizados de autores, ORCID y unidades cuando el pipeline los entregue.
+  - Agregar pruebas automatizadas de filtros y ordenamientos con fixture real reducido.
+- **Validaciones realizadas:**
+  - `npm run validate:publications`: 2701 publicaciones cargadas, 2700 incluidas, DOI 78.41% por CSV, cuartil 69.52%, citas 77.67%, 780 revistas, anios 1984-2026.
+  - Servicio backend directo: DOI 78.37%, cuartil 69.52%, citas 77.63% desde indicadores agregados.
+  - `npm run typecheck` ✅
+  - `npm run lint` ✅
+  - `npm run build` ✅
+  - `python3 -m compileall app` ✅
+  - `npm run dev` verificado con `/produccion-cientifica`, `/produccion-cientifica/1` y filtros por query string respondiendo 200.
 
 ## 2026-06-18 - Implementacion del Directorio de Proyectos
 

@@ -1,0 +1,300 @@
+{
+  "text200": [
+    {
+      "route": "/",
+      "width": 320,
+      "clientWidth": 305,
+      "scrollWidth": 305,
+      "root": "32px",
+      "body": "32px",
+      "nav": "none",
+      "overflow": [],
+      "clippedHeadings": [],
+      "menuOpenScrollWidth": 305,
+      "menuExpanded": "true"
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "clientWidth": 1425,
+      "scrollWidth": 1425,
+      "root": "32px",
+      "body": "32px",
+      "nav": "flex",
+      "overflow": [],
+      "clippedHeadings": []
+    },
+    {
+      "route": "/produccion-cientifica",
+      "width": 320,
+      "clientWidth": 305,
+      "scrollWidth": 305,
+      "root": "32px",
+      "body": "32px",
+      "nav": "none",
+      "overflow": [],
+      "clippedHeadings": [],
+      "menuOpenScrollWidth": 305,
+      "menuExpanded": "true"
+    },
+    {
+      "route": "/produccion-cientifica",
+      "width": 1440,
+      "clientWidth": 1425,
+      "scrollWidth": 1425,
+      "root": "32px",
+      "body": "32px",
+      "nav": "flex",
+      "overflow": [],
+      "clippedHeadings": []
+    },
+    {
+      "route": "/investigadores",
+      "width": 320,
+      "clientWidth": 305,
+      "scrollWidth": 305,
+      "root": "32px",
+      "body": "32px",
+      "nav": "none",
+      "overflow": [],
+      "clippedHeadings": [],
+      "menuOpenScrollWidth": 305,
+      "menuExpanded": "true"
+    },
+    {
+      "route": "/investigadores",
+      "width": 1440,
+      "clientWidth": 1425,
+      "scrollWidth": 1425,
+      "root": "32px",
+      "body": "32px",
+      "nav": "flex",
+      "overflow": [],
+      "clippedHeadings": []
+    },
+    {
+      "route": "/proyectos",
+      "width": 320,
+      "clientWidth": 305,
+      "scrollWidth": 305,
+      "root": "32px",
+      "body": "32px",
+      "nav": "none",
+      "overflow": [],
+      "clippedHeadings": [],
+      "menuOpenScrollWidth": 305,
+      "menuExpanded": "true"
+    },
+    {
+      "route": "/proyectos",
+      "width": 1440,
+      "clientWidth": 1425,
+      "scrollWidth": 1425,
+      "root": "32px",
+      "body": "32px",
+      "nav": "flex",
+      "overflow": [],
+      "clippedHeadings": []
+    },
+    {
+      "route": "/unidades",
+      "width": 320,
+      "clientWidth": 305,
+      "scrollWidth": 305,
+      "root": "32px",
+      "body": "32px",
+      "nav": "none",
+      "overflow": [],
+      "clippedHeadings": [],
+      "menuOpenScrollWidth": 305,
+      "menuExpanded": "true"
+    },
+    {
+      "route": "/unidades",
+      "width": 1440,
+      "clientWidth": 1425,
+      "scrollWidth": 1425,
+      "root": "32px",
+      "body": "32px",
+      "nav": "flex",
+      "overflow": [],
+      "clippedHeadings": []
+    }
+  ],
+  "keyboard": [
+    {
+      "route": "/",
+      "enter": true,
+      "tab": true,
+      "escape": true,
+      "focusReturned": true,
+      "focus": {
+        "outline": "solid",
+        "width": "2px"
+      }
+    },
+    {
+      "route": "/produccion-cientifica",
+      "enter": true,
+      "tab": true,
+      "escape": true,
+      "focusReturned": true,
+      "focus": {
+        "outline": "solid",
+        "width": "2px"
+      }
+    },
+    {
+      "route": "/investigadores",
+      "enter": true,
+      "tab": true,
+      "escape": true,
+      "focusReturned": true,
+      "focus": {
+        "outline": "solid",
+        "width": "2px"
+      }
+    },
+    {
+      "route": "/proyectos",
+      "enter": true,
+      "tab": true,
+      "escape": true,
+      "focusReturned": true,
+      "focus": {
+        "outline": "solid",
+        "width": "2px"
+      }
+    },
+    {
+      "route": "/unidades",
+      "enter": true,
+      "tab": true,
+      "escape": true,
+      "focusReturned": true,
+      "focus": {
+        "outline": "solid",
+        "width": "2px"
+      }
+    }
+  ],
+  "forms": [
+    {
+      "route": "/produccion-cientifica",
+      "search": "?q=__ux_audit_no_match__&year=&publication_type=&author=&unit=&network=&thematic_category=&thematic_area=&thematic_subtheme=&journal=&quartile=&study_type=&source=&funding=&sort=",
+      "zeroResults": true,
+      "filter": {
+        "name": "year",
+        "value": "2026"
+      },
+      "filteredCards": 10,
+      "clearLink": true
+    },
+    {
+      "route": "/investigadores",
+      "search": "?q=__ux_audit_no_match__&orcid=&institution=&unit=&network=&country=&review_status=&thematic_area=&study_type=&first_year=&last_year=&quartile=&sort=",
+      "zeroResults": true,
+      "filter": {
+        "name": "orcid",
+        "value": "Con ORCID"
+      },
+      "filteredCards": 60,
+      "clearLink": true
+    },
+    {
+      "route": "/proyectos",
+      "search": "?q=__ux_audit_no_match__&status=&type=&principal=&ready_status=&thematic_category=&thematic_area=&unit=&network=&ipress=&start_year=&ethics_status=",
+      "zeroResults": true,
+      "filter": {
+        "name": "status",
+        "value": "Activo"
+      },
+      "filteredCards": 31,
+      "clearLink": true
+    },
+    {
+      "route": "/unidades",
+      "search": "?q=__ux_audit_no_match__&unit_type=&network=&ipress=&unit_status=&has_ciei=&ciei_status=&ready_status=&thematic_area=",
+      "zeroResults": true,
+      "filter": {
+        "name": "unit_type",
+        "value": "Centro de investigación"
+      },
+      "filteredCards": 10,
+      "clearLink": true
+    }
+  ],
+  "navigation": [
+    {
+      "route": "/produccion-cientifica",
+      "passed": true
+    },
+    {
+      "route": "/investigadores",
+      "passed": true
+    },
+    {
+      "route": "/proyectos",
+      "passed": true
+    },
+    {
+      "route": "/unidades",
+      "passed": true
+    },
+    {
+      "route": "/",
+      "passed": true
+    }
+  ],
+  "contrast": [
+    {
+      "fg": "004B9B",
+      "bg": "FFFFFF",
+      "ratio": "8.47"
+    },
+    {
+      "fg": "003B7A",
+      "bg": "FFFFFF",
+      "ratio": "11.01"
+    },
+    {
+      "fg": "475569",
+      "bg": "FFFFFF",
+      "ratio": "7.58"
+    },
+    {
+      "fg": "5F6F85",
+      "bg": "FFFFFF",
+      "ratio": "5.12"
+    },
+    {
+      "fg": "5F6F85",
+      "bg": "F5F8FC",
+      "ratio": "4.81"
+    },
+    {
+      "fg": "007A9E",
+      "bg": "FFFFFF",
+      "ratio": "4.91"
+    },
+    {
+      "fg": "007A9E",
+      "bg": "F5F8FC",
+      "ratio": "4.61"
+    },
+    {
+      "fg": "00A6D6",
+      "bg": "FFFFFF",
+      "ratio": "2.83"
+    }
+  ],
+  "errors": [],
+  "pagination": {
+    "nextPage": "/produccion-cientifica?page=2",
+    "passed": true
+  },
+  "skipLink": {
+    "label": "Saltar al contenido principal",
+    "visible": true
+  }
+}

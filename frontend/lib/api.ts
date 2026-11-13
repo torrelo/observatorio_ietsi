@@ -86,6 +86,28 @@ async function fetchJson<T>(path: string): Promise<T> {
   return response.json() as Promise<T>;
 }
 
+async function getHomeFallback(): Promise<HomeSummary> {
+  const { getPublicationsAnalytics, getPublicationsSummary } = await import("@/lib/publications");
+  const [publications, analytics] = await Promise.all([
+    getPublicationsSummary(),
+    getPublicationsAnalytics(),
+  ]);
+
+  return {
+    kpis: [
+      { label: "Publicaciones indexadas", value: publications.publicaciones_incluidas.toLocaleString("en-US"), trend: "Fuente real CSV/XLSX" },
+      { label: "Investigadores registrados", value: "No disponible", trend: "Backend no disponible" },
+      { label: "Proyectos activos", value: "No disponible", trend: "Backend no disponible" },
+      { label: "Unidades de investigacion", value: "No disponible", trend: "Backend no disponible" },
+      { label: "Ensayos clinicos", value: "No disponible", trend: "Backend no disponible" },
+      { label: "Financiamiento captado", value: "No disponible", trend: "Backend no disponible" },
+    ],
+    trends: analytics.by_thematic_area.slice(0, 6),
+    news: [],
+    map_regions: [],
+  };
+}
+
 function unwrapItems<T>(payload: T[] | PageResponse<T>): T[] {
   return Array.isArray(payload) ? payload : payload.items;
 }
@@ -179,7 +201,13 @@ function normalizeUnit(item: ApiResearchUnit): ResearchUnit {
 }
 
 export const api = {
-  home: () => fetchJson<HomeSummary>("/api/home/summary"),
+  home: async () => {
+    try {
+      return await fetchJson<HomeSummary>("/api/home/summary");
+    } catch {
+      return getHomeFallback();
+    }
+  },
   publications: async () => unwrapItems(await fetchJson<ApiPublication[] | PageResponse<ApiPublication>>("/api/publications")).map(normalizePublication),
   publication: async (id: string) => normalizePublication(await fetchJson<ApiPublication>(`/api/publications/${id}`)),
   projects: async () => unwrapItems(await fetchJson<ApiProject[] | PageResponse<ApiProject>>("/api/projects")).map(normalizeProject),

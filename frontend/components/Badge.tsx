@@ -7,5 +7,5 @@ export function Badge({ children, tone = "blue" }: { children: ReactNode; tone?:
     green: "bg-emerald-50 text-emerald-700",
     gray: "bg-slate-100 text-slate-600",
   };
-  return <span className={`inline-flex items-center rounded px-2.5 py-1 text-xs font-semibold ${tones[tone]}`}>{children}</span>;
+  return <span className={`inline-flex min-w-0 max-w-full items-center rounded px-2.5 py-1 text-xs font-semibold [overflow-wrap:anywhere] ${tones[tone]}`}>{children}</span>;
 }

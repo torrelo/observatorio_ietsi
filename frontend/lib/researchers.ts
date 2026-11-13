@@ -1,3 +1,7 @@
+import { readFileSync } from "fs";
+import path from "path";
+import { expertiseLabels, parsePipeCountList, type ResearcherExpertise } from "@/lib/researcherExpertise";
+
 export type ResearcherExternalIds = {
   orcid?: string;
   renacyt?: string;
@@ -7,12 +11,20 @@ export type ResearcherExternalIds = {
 };
 
 export type ResearcherPublication = {
-  id: number;
+  id: string;
+  publicationId: string;
   title: string;
-  year: number;
+  year: number | null;
   journal: string;
   quartile: string;
   citations: number;
+  openAccess: boolean;
+  thematicCategory: string;
+  thematicArea: string;
+  thematicSubtheme: string;
+  studyType: string;
+  doi?: string;
+  authorPosition: number | null;
 };
 
 export type ResearcherProject = {
@@ -36,10 +48,33 @@ export type CollaborationNode = {
   weight: number;
 };
 
+export type ResearcherPublicationLink = {
+  researcher_id: string;
+  researcher_name: string;
+  orcid?: string;
+  publication_id: string;
+  publication_title: string;
+  year: number | null;
+  journal_title: string;
+  journal_quartile: string;
+  citation_count: number;
+  open_access: boolean;
+  thematic_category: string;
+  thematic_area: string;
+  thematic_subtheme: string;
+  study_type: string;
+  doi?: string;
+  author_position: number | null;
+  is_institutional_researcher: boolean;
+  n_authors_publication: number | null;
+};
+
 export type CrisResearcher = {
-  id: number;
+  id: string;
+  numericId: number;
   fullName: string;
   photoUrl?: string;
+  avatarInitials?: string;
   specialty: string;
   academicDegrees: string[];
   affiliation: string;
@@ -48,6 +83,25 @@ export type CrisResearcher = {
   careNetwork: string;
   country: string;
   email: string;
+  profile: {
+    displayName: string;
+    primaryAffiliation: string;
+    primaryAffiliationNormalized: string;
+    primaryInstitution: string;
+    primaryUnit: string;
+    primaryNetwork: string;
+    country: string;
+    email: string;
+    reviewStatus: string;
+    source?: string;
+    updatedAt?: string;
+    affiliationSelectionMethod?: string;
+    affiliationConfidence?: number | null;
+    requiresManualReview: boolean;
+    photoSource?: string;
+    photoAuthorizationStatus?: string;
+    photoUpdatedAt?: string;
+  };
   renacytCategory?: string;
   isPrincipalInvestigator: boolean;
   participatesClinicalTrials: boolean;
@@ -56,24 +110,89 @@ export type CrisResearcher = {
   keywords: string[];
   methodologies: string[];
   thematicAreas: string[];
+  thematicSubthemes: string[];
+  expertise: ResearcherExpertise;
   clinicalExperience: string[];
   trialExperience: string[];
   externalIds: ResearcherExternalIds;
   metrics: {
     publications: number;
     citations: number;
+    medianCitations: number;
+    meanCitations: number;
     hIndex: number;
     fwci: number;
     activeProjects: number;
     finishedProjects: number;
     clinicalTrials: number;
     internationalCollaborations: number;
+    q1: number;
+    q2: number;
+    q3: number;
+    q4: number;
+    withoutQuartile: number;
+    openAccess: number;
+    withDoi: number;
+    activeYears: number;
+    firstPublicationYear: number | null;
+    lastPublicationYear: number | null;
   };
   publications: ResearcherPublication[];
   projects: ResearcherProject[];
   units: ResearcherUnit[];
   collaborators: CollaborationNode[];
+  updatedAt?: string;
+  source?: string;
 };
+
+export type ResearcherSummary = {
+  registered: number;
+  publicationLinks: number;
+  uniquePublications: number;
+  medianPublications: number;
+  medianCitations: number;
+  withOrcid: number;
+  withoutOrcid: number;
+  withQ1: number;
+  recentProduction: number;
+  openAccessLinked: number;
+  indexedPublications: number;
+  internationalCollaborations: number;
+  representedUnits: number;
+  projectLeaders: number;
+  normalizedProfiles: number;
+  profilesPendingReview: number;
+  withPhotoUrl: number;
+  withAvatarInitials: number;
+  withQ1Q2: number;
+  withOpenAccess: number;
+};
+
+export type ResearcherAnalytics = {
+  byYear: AnalyticsItem[];
+  byQuartile: AnalyticsItem[];
+  byThematicArea: AnalyticsItem[];
+  topResearchers: CrisResearcher[];
+};
+
+type AnalyticsItem = {
+  label: string;
+  value: number;
+  meta?: string | number | null;
+};
+
+type CsvRow = Record<string, string>;
+type IndicatorsPayload = Record<string, Array<Record<string, string | number | boolean | null>>>;
+
+const DATA_DIR = path.join(process.cwd(), "public", "data");
+const RESEARCHERS_CSV = path.join(DATA_DIR, "researchers_observatory.csv");
+const LINKS_CSV = path.join(DATA_DIR, "researcher_publication_links.csv");
+const INDICATORS_JSON = path.join(DATA_DIR, "researcher_indicators_observatory.json");
+const PROFILES_CSV = path.join(DATA_DIR, "researcher_profiles_curated.csv");
+const AFFILIATIONS_CSV = path.join(DATA_DIR, "researcher_affiliations_normalized.csv");
+const PHOTO_MANIFEST_CSV = path.join(DATA_DIR, "researcher_photo_manifest.csv");
+
+const missingTokens = new Set(["", "nan", "none", "na", "n/a", "null", "undefined"]);
 
 export const integrationReadiness = {
   orcid: "Preparado para sincronizar perfiles, empleo, educacion y obras.",
@@ -83,344 +202,703 @@ export const integrationReadiness = {
   crossref: "Preparado para normalizar DOI, depositantes y relaciones bibliograficas.",
 };
 
-export const researchers: CrisResearcher[] = [
-  {
-    id: 1,
-    fullName: "Dra. Mariana Torres Salcedo",
-    specialty: "Epidemiologia",
-    academicDegrees: ["Doctora en Salud Publica", "Magister en Epidemiologia Clinica"],
-    affiliation: "IETSI - EsSalud",
-    mainUnit: "Unidad de Investigacion Salud Publica Lima",
-    hospital: "Hospital Nacional Edgardo Rebagliati Martins",
-    careNetwork: "Red Prestacional Rebagliati",
-    country: "Peru",
-    email: "mariana.torres@essalud.gob.pe",
-    renacytCategory: "RENACYT Nivel II",
-    isPrincipalInvestigator: true,
-    participatesClinicalTrials: true,
-    internationalCollaboration: true,
-    researchLines: ["Epidemiologia hospitalaria", "Salud publica", "Evaluacion de resultados"],
-    keywords: ["diabetes", "telemedicina", "cohortes", "servicios de salud"],
-    methodologies: ["Cohortes retrospectivas", "Analisis de supervivencia", "Modelos multivariados"],
-    thematicAreas: ["Salud publica", "Epidemiologia", "Seguridad del paciente"],
-    clinicalExperience: ["Vigilancia epidemiologica", "Gestion de datos asistenciales"],
-    trialExperience: ["Ensayos pragmaticos", "Monitoreo de eventos adversos"],
-    externalIds: { orcid: "0000-0002-1845-1001", renacyt: "P0001234", scopusAuthorId: "57200123456", openAlexId: "A501001" },
-    metrics: { publications: 38, citations: 620, hIndex: 14, fwci: 1.42, activeProjects: 3, finishedProjects: 5, clinicalTrials: 2, internationalCollaborations: 6 },
-    publications: [
-      { id: 1, title: "Factores asociados a salud publica en poblacion asegurada de EsSalud", year: 2020, journal: "Revista Peruana de Medicina Experimental y Salud Publica", quartile: "Q1", citations: 3 },
-      { id: 21, title: "Factores asociados a salud publica en poblacion asegurada de EsSalud", year: 2026, journal: "Revista Peruana de Medicina Experimental y Salud Publica", quartile: "Q1", citations: 12 },
-    ],
-    projects: [
-      { id: 1, code: "ESS-2026-001", title: "Proyecto multicentrico sobre salud publica en asegurados de EsSalud", status: "Activo", thematicLine: "Salud publica" },
-      { id: 4, code: "ESS-2024-014", title: "Vigilancia institucional de eventos clinicos priorizados", status: "Finalizado", thematicLine: "Epidemiologia" },
-    ],
-    units: [
-      { id: 1, name: "Unidad de Investigacion Salud Publica Lima", type: "Unidad de investigacion", role: "Principal" },
-      { id: 2, name: "Centro de Investigacion Epidemiologia Lima", type: "Centro", role: "Colaboradora" },
-      { id: 5, name: "Hospital Nacional Edgardo Rebagliati Martins", type: "Hospital", role: "Hospital asociado" },
-    ],
-    collaborators: [
-      { label: "Dr. Fernando Tello", kind: "Investigador", weight: 86 },
-      { label: "OPS", kind: "Institucion", weight: 58 },
-      { label: "Centro de Investigacion Epidemiologia Lima", kind: "Unidad", weight: 70 },
-    ],
-  },
-  {
-    id: 2,
-    fullName: "Dr. Fernando Tello Caceres",
-    specialty: "Nefrologia",
-    academicDegrees: ["Doctor en Medicina", "Especialista en Nefrologia"],
-    affiliation: "Hospital Nacional Guillermo Almenara Irigoyen",
-    mainUnit: "Centro de Investigacion Enfermedad Renal Cronica Lima",
-    hospital: "Hospital Nacional Guillermo Almenara Irigoyen",
-    careNetwork: "Red Prestacional Almenara",
-    country: "Peru",
-    email: "fernando.tello@essalud.gob.pe",
-    renacytCategory: "RENACYT Nivel III",
-    isPrincipalInvestigator: true,
-    participatesClinicalTrials: true,
-    internationalCollaboration: false,
-    researchLines: ["Enfermedad renal cronica", "Hemodialisis", "Resultados clinicos"],
-    keywords: ["nefrologia", "enfermedad renal cronica", "hemodialisis", "mortalidad"],
-    methodologies: ["Registros clinicos", "Modelos predictivos", "Analisis longitudinal"],
-    thematicAreas: ["Enfermedad renal cronica", "Epidemiologia clinica"],
-    clinicalExperience: ["Unidad de hemodialisis", "Gestion de listas de espera"],
-    trialExperience: ["Seguimiento de cohortes renales"],
-    externalIds: { orcid: "0000-0003-2231-2202", renacyt: "P0002345", scopusAuthorId: "57200234567", openAlexId: "A501002" },
-    metrics: { publications: 31, citations: 410, hIndex: 11, fwci: 1.18, activeProjects: 2, finishedProjects: 4, clinicalTrials: 1, internationalCollaborations: 2 },
-    publications: [
-      { id: 2, title: "Efectividad de enfermedad renal cronica en poblacion asegurada de EsSalud", year: 2026, journal: "PLOS ONE", quartile: "Q2", citations: 29 },
-      { id: 14, title: "Efectividad de enfermedad renal cronica en poblacion asegurada de EsSalud", year: 2026, journal: "PLOS ONE", quartile: "Q2", citations: 29 },
-    ],
-    projects: [
-      { id: 2, code: "ESS-2026-002", title: "Modelo predictivo de progresion renal en asegurados", status: "Activo", thematicLine: "Nefrologia" },
-      { id: 7, code: "ESS-2023-031", title: "Registro multicentrico de terapia renal sustitutiva", status: "Finalizado", thematicLine: "Enfermedad renal cronica" },
-    ],
-    units: [
-      { id: 3, name: "Centro de Investigacion Enfermedad Renal Cronica Lima", type: "Centro", role: "Principal" },
-      { id: 6, name: "Hospital Nacional Guillermo Almenara Irigoyen", type: "Hospital", role: "Hospital asociado" },
-    ],
-    collaborators: [
-      { label: "Dra. Mariana Torres", kind: "Investigador", weight: 66 },
-      { label: "Sociedad Peruana de Nefrologia", kind: "Institucion", weight: 44 },
-      { label: "Unidad de Investigacion Salud Publica Lima", kind: "Unidad", weight: 52 },
-    ],
-  },
-  {
-    id: 3,
-    fullName: "Mg. Patricia Rojas Velarde",
-    specialty: "Evaluacion de tecnologias sanitarias",
-    academicDegrees: ["Magister en Economia de la Salud", "Quimico farmaceutica"],
-    affiliation: "IETSI - Direccion de Evaluacion de Tecnologias Sanitarias",
-    mainUnit: "Unidad de Investigacion Evaluacion de Tecnologias Sanitarias Piura",
-    hospital: "IETSI",
-    careNetwork: "Red Prestacional Piura",
-    country: "Peru",
-    email: "patricia.rojas@essalud.gob.pe",
-    renacytCategory: "RENACYT Nivel IV",
-    isPrincipalInvestigator: true,
-    participatesClinicalTrials: false,
-    internationalCollaboration: true,
-    researchLines: ["Evaluacion de tecnologias sanitarias", "Costo-efectividad", "Guias de practica clinica"],
-    keywords: ["ETS", "costo-efectividad", "priorizacion", "guias clinicas"],
-    methodologies: ["Revisiones sistematicas", "Modelos economicos", "GRADE"],
-    thematicAreas: ["Evaluacion de tecnologias sanitarias", "Salud publica"],
-    clinicalExperience: ["Comites tecnicos institucionales"],
-    trialExperience: ["Evaluacion metodologica de protocolos"],
-    externalIds: { orcid: "0000-0001-4420-3303", renacyt: "P0003456", openAlexId: "A501003" },
-    metrics: { publications: 44, citations: 730, hIndex: 16, fwci: 1.66, activeProjects: 4, finishedProjects: 6, clinicalTrials: 0, internationalCollaborations: 8 },
-    publications: [
-      { id: 7, title: "Perfil epidemiologico de evaluacion de tecnologias sanitarias en poblacion asegurada de EsSalud", year: 2026, journal: "Frontiers in Public Health", quartile: "Q3", citations: 15 },
-      { id: 17, title: "Revisiones rapidas para decisiones sanitarias en EsSalud", year: 2025, journal: "BMJ Open", quartile: "Q1", citations: 24 },
-    ],
-    projects: [
-      { id: 3, code: "ESS-2026-003", title: "Priorizacion de tecnologias sanitarias de alto costo", status: "Activo", thematicLine: "ETS" },
-      { id: 8, code: "ESS-2022-017", title: "Metodologia institucional para guias clinicas", status: "Finalizado", thematicLine: "Guias clinicas" },
-    ],
-    units: [
-      { id: 4, name: "Unidad de Investigacion Evaluacion de Tecnologias Sanitarias Piura", type: "Unidad de investigacion", role: "Principal" },
-      { id: 1, name: "IETSI", type: "Instituto", role: "Colaboradora" },
-    ],
-    collaborators: [
-      { label: "OPS", kind: "Institucion", weight: 82 },
-      { label: "RedETSA", kind: "Institucion", weight: 62 },
-      { label: "Dr. Jorge Salazar", kind: "Investigador", weight: 48 },
-    ],
-  },
-  {
-    id: 4,
-    fullName: "Dra. Rosa Medina Huaman",
-    specialty: "Oncologia",
-    academicDegrees: ["Doctora en Ciencias Medicas", "Especialista en Oncologia Medica"],
-    affiliation: "Hospital Nacional Edgardo Rebagliati Martins",
-    mainUnit: "Centro de Investigacion Cancer Lima",
-    hospital: "Hospital Nacional Edgardo Rebagliati Martins",
-    careNetwork: "Red Prestacional Rebagliati",
-    country: "Peru",
-    email: "rosa.medina@essalud.gob.pe",
-    renacytCategory: "RENACYT Nivel II",
-    isPrincipalInvestigator: true,
-    participatesClinicalTrials: true,
-    internationalCollaboration: true,
-    researchLines: ["Cancer", "Investigacion clinica", "Farmacovigilancia oncologica"],
-    keywords: ["cancer", "quimioterapia", "ensayos clinicos", "supervivencia"],
-    methodologies: ["Ensayos clinicos", "Analisis de supervivencia", "Farmacoepidemiologia"],
-    thematicAreas: ["Cancer", "Seguridad del paciente"],
-    clinicalExperience: ["Oncologia medica", "Comites oncologicos"],
-    trialExperience: ["Fase II", "Fase III", "Buenas practicas clinicas"],
-    externalIds: { orcid: "0000-0002-7780-4404", renacyt: "P0004567", scopusAuthorId: "57200456789", openAlexId: "A501004" },
-    metrics: { publications: 52, citations: 980, hIndex: 19, fwci: 1.88, activeProjects: 5, finishedProjects: 8, clinicalTrials: 4, internationalCollaborations: 11 },
-    publications: [
-      { id: 5, title: "Resultados clinicos en cancer de mama en poblacion asegurada", year: 2025, journal: "Lancet Regional Health - Americas", quartile: "Q1", citations: 42 },
-      { id: 25, title: "Seguridad de tratamientos oncologicos en EsSalud", year: 2024, journal: "BMC Cancer", quartile: "Q2", citations: 36 },
-    ],
-    projects: [
-      { id: 5, code: "ESS-2026-005", title: "Registro institucional de resultados oncologicos", status: "Activo", thematicLine: "Cancer" },
-      { id: 9, code: "ESS-2021-009", title: "Farmacovigilancia activa en terapia oncologica", status: "Finalizado", thematicLine: "Seguridad del paciente" },
-    ],
-    units: [
-      { id: 5, name: "Centro de Investigacion Cancer Lima", type: "Centro", role: "Principal" },
-      { id: 6, name: "Hospital Nacional Edgardo Rebagliati Martins", type: "Hospital", role: "Hospital asociado" },
-    ],
-    collaborators: [
-      { label: "NCI", kind: "Institucion", weight: 70 },
-      { label: "Dra. Mariana Torres", kind: "Investigador", weight: 54 },
-      { label: "Centro de Investigacion Cancer Lima", kind: "Unidad", weight: 88 },
-    ],
-  },
-  {
-    id: 5,
-    fullName: "Dr. Jorge Salazar Quispe",
-    specialty: "Inteligencia artificial en salud",
-    academicDegrees: ["Doctor en Ingenieria Biomedica", "Magister en Ciencia de Datos"],
-    affiliation: "IETSI - Analitica e Inteligencia Sanitaria",
-    mainUnit: "Nodo de Investigacion Inteligencia Artificial en Salud Cusco",
-    hospital: "Hospital Nacional Adolfo Guevara Velasco",
-    careNetwork: "Red Asistencial Cusco",
-    country: "Peru",
-    email: "jorge.salazar@essalud.gob.pe",
-    renacytCategory: "RENACYT Nivel III",
-    isPrincipalInvestigator: true,
-    participatesClinicalTrials: false,
-    internationalCollaboration: true,
-    researchLines: ["Inteligencia artificial en salud", "Modelos predictivos", "Interoperabilidad"],
-    keywords: ["machine learning", "historia clinica", "prediccion", "NLP clinico"],
-    methodologies: ["Aprendizaje supervisado", "Procesamiento de lenguaje natural", "Validacion externa"],
-    thematicAreas: ["Inteligencia artificial en salud", "Informatica biomedica"],
-    clinicalExperience: ["Analitica de datos asistenciales"],
-    trialExperience: ["Soporte metodologico para monitoreo remoto"],
-    externalIds: { orcid: "0000-0003-9191-5505", renacyt: "P0005678", openAlexId: "A501005" },
-    metrics: { publications: 27, citations: 360, hIndex: 9, fwci: 1.31, activeProjects: 3, finishedProjects: 2, clinicalTrials: 0, internationalCollaborations: 5 },
-    publications: [
-      { id: 3, title: "Factores asociados a salud publica en poblacion asegurada de EsSalud", year: 2025, journal: "Revista Peruana de Medicina Experimental y Salud Publica", quartile: "Q1", citations: 11 },
-      { id: 33, title: "Modelos predictivos para riesgo hospitalario en EsSalud", year: 2024, journal: "BMC Medical Informatics", quartile: "Q2", citations: 18 },
-    ],
-    projects: [
-      { id: 6, code: "ESS-2026-006", title: "Plataforma predictiva para riesgo clinico institucional", status: "Activo", thematicLine: "IA en salud" },
-    ],
-    units: [
-      { id: 7, name: "Nodo de Investigacion Inteligencia Artificial en Salud Cusco", type: "Nodo", role: "Principal" },
-      { id: 8, name: "Hospital Nacional Adolfo Guevara Velasco", type: "Hospital", role: "Hospital asociado" },
-    ],
-    collaborators: [
-      { label: "Universidad Nacional de San Antonio Abad", kind: "Institucion", weight: 55 },
-      { label: "Mg. Patricia Rojas", kind: "Investigador", weight: 46 },
-      { label: "IETSI", kind: "Unidad", weight: 68 },
-    ],
-  },
-  {
-    id: 6,
-    fullName: "Lic. Elena Bustamante Leon",
-    specialty: "Informatica biomedica",
-    academicDegrees: ["Magister en Informatica Biomedica", "Licenciada en Estadistica"],
-    affiliation: "IETSI - Gestion de Informacion Cientifica",
-    mainUnit: "Centro de Investigacion Epidemiologia Lima",
-    hospital: "IETSI",
-    careNetwork: "Red Prestacional Almenara",
-    country: "Peru",
-    email: "elena.bustamante@essalud.gob.pe",
-    isPrincipalInvestigator: false,
-    participatesClinicalTrials: false,
-    internationalCollaboration: true,
-    researchLines: ["Informatica biomedica", "Datos abiertos", "Normalizacion CRIS"],
-    keywords: ["CRIS", "interoperabilidad", "bibliometria", "datos abiertos"],
-    methodologies: ["Curacion de datos", "Normalizacion de identificadores", "Analisis bibliometrico"],
-    thematicAreas: ["Informatica biomedica", "Bibliometria"],
-    clinicalExperience: ["Gestion de datos de investigacion"],
-    trialExperience: ["Registro y monitoreo documental"],
-    externalIds: { orcid: "0000-0002-8080-6606", openAlexId: "A501006" },
-    metrics: { publications: 19, citations: 210, hIndex: 7, fwci: 1.09, activeProjects: 1, finishedProjects: 3, clinicalTrials: 0, internationalCollaborations: 4 },
-    publications: [
-      { id: 1, title: "Factores asociados a salud publica en poblacion asegurada de EsSalud", year: 2020, journal: "Revista Peruana de Medicina Experimental y Salud Publica", quartile: "Q1", citations: 3 },
-    ],
-    projects: [
-      { id: 10, code: "ESS-2026-010", title: "Normalizacion de identificadores para el Observatorio EsSalud", status: "Activo", thematicLine: "CRIS" },
-    ],
-    units: [
-      { id: 2, name: "Centro de Investigacion Epidemiologia Lima", type: "Centro", role: "Principal" },
-      { id: 1, name: "IETSI", type: "Instituto", role: "Colaboradora" },
-    ],
-    collaborators: [
-      { label: "OpenAIRE", kind: "Institucion", weight: 42 },
-      { label: "Dra. Mariana Torres", kind: "Investigador", weight: 78 },
-      { label: "IETSI", kind: "Unidad", weight: 80 },
-    ],
-  },
+export const researcherMethodologyNote = [
+  "La base de investigadores del observatorio fue construida a partir de autores identificados en la base enriquecida de publicaciones cientificas. La identificacion de investigadores institucionales se realizo mediante una lista maestra de autores de EsSalud, priorizando coincidencias exactas por ORCID y, cuando no se dispuso de ORCID, coincidencias por nombre normalizado. Posteriormente, se aplico una etapa de homogeneizacion para fusionar variantes minimas de nombre hacia un identificador canonico, priorizando el registro con ORCID cuando estuvo disponible.",
+  "Para la visualizacion de perfiles se genero una capa curada de presentacion. La filiacion principal fue seleccionada mediante reglas jerarquicas que priorizan filiaciones EsSalud/IETSI, variantes institucionales normalizadas y registros con mayor confianza. Las filiaciones multiples, direcciones postales y variantes textuales se conservaron para auditoria, pero no se muestran directamente en el encabezado del perfil.",
+  "Cuando no se dispone de fotografia institucional validada, el observatorio utiliza un avatar generado a partir de las iniciales del investigador. Los indicadores bibliometricos por investigador corresponden exclusivamente al subconjunto de publicaciones incluidas en la base del observatorio, por lo que el h-index reportado corresponde al h-index dentro del observatorio y no debe interpretarse como el h-index global del investigador.",
 ];
 
-export function getResearchers(params?: Record<string, string | string[] | undefined>) {
-  const q = normalizeParam(params?.q);
-  const renacyt = normalizeParam(params?.renacyt);
-  const specialty = normalizeParam(params?.specialty);
-  const network = normalizeParam(params?.network);
-  const unit = normalizeParam(params?.unit);
-  const degree = normalizeParam(params?.degree);
-  const principal = normalizeParam(params?.principal);
-  const trials = normalizeParam(params?.trials);
-  const international = normalizeParam(params?.international);
+let cache: {
+  researchers: CrisResearcher[];
+  links: ResearcherPublicationLink[];
+  indicators: IndicatorsPayload;
+  summary: ResearcherSummary;
+  analytics: ResearcherAnalytics;
+  filters: ReturnType<typeof buildFilters>;
+} | null = null;
 
-  return researchers.filter((researcher) => {
+export const researchers: CrisResearcher[] = loadResearcherData().researchers;
+
+export function getResearchers(params?: Record<string, string | string[] | undefined>) {
+  const data = loadResearcherData();
+  const q = getParam(params, "q");
+  const orcid = getParam(params, "orcid") || getParam(params, "renacyt");
+  const thematicArea = getParam(params, "thematic_area") || getParam(params, "specialty");
+  const institution = getParam(params, "institution");
+  const network = getParam(params, "network");
+  const country = getParam(params, "country");
+  const reviewStatus = getParam(params, "review_status");
+  const studyType = getParam(params, "study_type");
+  const firstYear = toInt(getParam(params, "first_year"));
+  const lastYear = toInt(getParam(params, "last_year"));
+  const quartile = getParam(params, "quartile");
+  const unit = getParam(params, "unit");
+  const sort = getParam(params, "sort") || "-n_publications";
+
+  const filtered = data.researchers.filter((researcher) => {
     const haystack = [
       researcher.fullName,
       researcher.externalIds.orcid,
-      researcher.externalIds.renacyt,
-      researcher.specialty,
+      researcher.affiliation,
       researcher.mainUnit,
+      researcher.profile.primaryInstitution,
+      researcher.profile.primaryUnit,
+      researcher.profile.primaryNetwork,
       researcher.hospital,
-      researcher.careNetwork,
-      ...researcher.keywords,
+      researcher.specialty,
       ...researcher.researchLines,
+      ...researcher.thematicAreas,
+      ...researcher.thematicSubthemes,
+      ...researcher.keywords,
+      ...researcher.publications.map((publication) => publication.title),
     ].filter(Boolean).join(" ").toLowerCase();
 
     return matchesText(haystack, q)
-      && matchesText(researcher.renacytCategory ?? "Sin RENACYT", renacyt)
-      && matchesText(researcher.specialty, specialty)
-      && matchesText(researcher.careNetwork, network)
-      && matchesText(researcher.mainUnit, unit)
-      && matchesText(researcher.academicDegrees.join(" "), degree)
-      && matchesBoolean(researcher.isPrincipalInvestigator, principal)
-      && matchesBoolean(researcher.participatesClinicalTrials, trials)
-      && matchesBoolean(researcher.internationalCollaboration, international);
+      && matchesOrcid(researcher, orcid)
+      && matchesText([...researcher.thematicAreas, researcher.specialty].join(" "), thematicArea)
+      && matchesYear(researcher.metrics.firstPublicationYear, firstYear, "gte")
+      && matchesYear(researcher.metrics.lastPublicationYear, lastYear, "lte")
+      && matchesQuartile(researcher, quartile)
+      && matchesText(researcher.profile.primaryUnit, unit)
+      && matchesText(researcher.profile.primaryInstitution, institution)
+      && matchesText(researcher.profile.primaryNetwork, network)
+      && matchesText(researcher.profile.country, country)
+      && matchesText(researcher.profile.reviewStatus, reviewStatus)
+      && matchesText(researcher.methodologies.join(" "), studyType);
   });
+
+  return sortResearchers(filtered, sort);
 }
 
 export function getResearcher(id: string) {
-  return researchers.find((researcher) => researcher.id === Number(id));
+  const decoded = decodeURIComponent(id);
+  const data = loadResearcherData();
+  return data.researchers.find((researcher) => researcher.id === decoded || String(researcher.numericId) === decoded);
 }
 
 export function getRelatedResearchers(researcher: CrisResearcher) {
-  const terms = new Set([...researcher.keywords, ...researcher.researchLines, researcher.specialty].map((term) => term.toLowerCase()));
-  return researchers
+  const terms = new Set([...researcher.keywords, ...researcher.researchLines, ...researcher.thematicAreas, researcher.specialty].map((term) => term.toLowerCase()));
+  return loadResearcherData().researchers
     .filter((candidate) => candidate.id !== researcher.id)
     .map((candidate) => ({
       researcher: candidate,
-      score: [...candidate.keywords, ...candidate.researchLines, candidate.specialty].filter((term) => terms.has(term.toLowerCase())).length,
+      score: [...candidate.keywords, ...candidate.researchLines, ...candidate.thematicAreas, candidate.specialty].filter((term) => terms.has(term.toLowerCase())).length,
     }))
-    .filter((item) => item.score > 0 || item.researcher.thematicAreas.some((area) => researcher.thematicAreas.includes(area)))
-    .sort((a, b) => b.score - a.score)
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score || b.researcher.metrics.publications - a.researcher.metrics.publications)
     .slice(0, 6)
     .map((item) => item.researcher);
 }
 
-export function getResearcherSummary(items = researchers) {
-  return {
-    registered: items.length,
-    renacyt: items.filter((researcher) => researcher.renacytCategory).length,
-    projectLeaders: items.filter((researcher) => researcher.isPrincipalInvestigator).length,
-    indexedPublications: items.reduce((total, researcher) => total + researcher.metrics.publications, 0),
-    internationalCollaborations: items.filter((researcher) => researcher.internationalCollaboration).length,
-    representedUnits: new Set(items.map((researcher) => researcher.mainUnit)).size,
-  };
+export function getResearcherSummary() {
+  return loadResearcherData().summary;
+}
+
+export function getResearcherAnalytics() {
+  return loadResearcherData().analytics;
 }
 
 export function getResearcherFilterOptions() {
+  return loadResearcherData().filters;
+}
+
+export function getResearcherNetwork(limit = 18) {
+  const data = loadResearcherData();
+  const byPublication = new Map<string, ResearcherPublicationLink[]>();
+  for (const link of data.links) {
+    if (!link.is_institutional_researcher) continue;
+    if ((link.n_authors_publication ?? 0) > 100) continue;
+    const items = byPublication.get(link.publication_id) ?? [];
+    items.push(link);
+    byPublication.set(link.publication_id, items);
+  }
+
+  const edges = new Map<string, { source: string; target: string; weight: number }>();
+  for (const links of byPublication.values()) {
+    const uniqueLinks = Array.from(new Map(links.map((link) => [link.researcher_id, link])).values());
+    if (uniqueLinks.length > 30) continue;
+    for (let i = 0; i < uniqueLinks.length; i += 1) {
+      for (let j = i + 1; j < uniqueLinks.length; j += 1) {
+        const a = uniqueLinks[i];
+        const b = uniqueLinks[j];
+        const key = [a.researcher_id, b.researcher_id].sort().join("::");
+        const current = edges.get(key) ?? { source: a.researcher_name, target: b.researcher_name, weight: 0 };
+        current.weight += 1;
+        edges.set(key, current);
+      }
+    }
+  }
+
+  return Array.from(edges.values()).sort((a, b) => b.weight - a.weight).slice(0, limit);
+}
+
+export function displayResearcherValue(value: unknown, fallback = "No disponible") {
+  if (isMissing(value)) return fallback;
+  return String(value);
+}
+
+export function displayOrcid(orcid?: string) {
+  return isValidOrcid(orcid) ? orcid as string : "Sin ORCID";
+}
+
+export function orcidHref(orcid?: string) {
+  return isValidOrcid(orcid) ? `https://orcid.org/${orcid}` : undefined;
+}
+
+export function doiHref(doi?: string) {
+  if (isMissing(doi)) return undefined;
+  const value = String(doi).trim();
+  return value.startsWith("http") ? value : `https://doi.org/${value}`;
+}
+
+function loadResearcherData() {
+  if (cache) return cache;
+  const rows = parseCsv(readFileSync(RESEARCHERS_CSV, "utf-8"));
+  const links = parseCsv(readFileSync(LINKS_CSV, "utf-8")).map(mapLink);
+  const indicators = JSON.parse(readFileSync(INDICATORS_JSON, "utf-8")) as IndicatorsPayload;
+  const profiles = loadOptionalCsv(PROFILES_CSV);
+  const affiliations = loadOptionalCsv(AFFILIATIONS_CSV);
+  const photos = loadOptionalCsv(PHOTO_MANIFEST_CSV);
+  const linksByResearcher = groupBy(links, (link) => link.researcher_id);
+  const profilesByResearcher = indexByResearcherId(profiles);
+  const affiliationsByResearcher = indexByResearcherId(affiliations);
+  const photosByResearcher = indexByResearcherId(photos);
+
+  const mapped = rows.map((row, index) => {
+    const researcherId = cleanString(row.researcher_id);
+    return mapResearcher(
+      row,
+      index + 1,
+      linksByResearcher.get(researcherId) ?? [],
+      profilesByResearcher.get(researcherId),
+      affiliationsByResearcher.get(researcherId),
+      photosByResearcher.get(researcherId),
+    );
+  });
+  const researchers = sortResearchers(mapped, "-n_publications");
+  const summary = buildSummary(researchers, links, indicators);
+  const analytics = buildAnalytics(researchers, links, indicators);
+  const filters = buildFilters(researchers);
+  cache = { researchers, links, indicators, summary, analytics, filters };
+  return cache;
+}
+
+function mapResearcher(row: CsvRow, numericId: number, links: ResearcherPublicationLink[], profileRow?: CsvRow, affiliationRow?: CsvRow, photoRow?: CsvRow): CrisResearcher {
+  const id = cleanString(row.researcher_id);
+  const name = displayResearcherValue(profileRow?.display_name || row.researcher_name, "Investigador sin nombre");
+  const thematicAreas = splitList(row.main_thematic_areas);
+  const thematicSubthemes = splitList(row.main_thematic_subthemes);
+  const studyTypes = splitList(row.main_study_types);
+  const expertise: ResearcherExpertise = {
+    lines: parsePipeCountList(row.main_thematic_categories),
+    areas: parsePipeCountList(row.main_thematic_areas),
+    subthemes: parsePipeCountList(row.main_thematic_subthemes),
+    methodologies: parsePipeCountList(row.main_study_types),
+    keywords: parsePipeCountList(row.keywords ?? row.topics),
+  };
+  const explicitKeywords = expertiseLabels(expertise.keywords);
+  const affiliations = splitAffiliations(row.affiliations);
+  const coauthors = splitList(row.top_coauthors);
+  const firstYear = toInt(row.first_publication_year);
+  const lastYear = toInt(row.last_publication_year);
+  const profile = buildResearcherProfile(row, profileRow, affiliationRow, photoRow);
+
   return {
-    renacyt: unique(researchers.map((researcher) => researcher.renacytCategory ?? "Sin RENACYT")),
-    specialties: unique(researchers.map((researcher) => researcher.specialty)),
-    networks: unique(researchers.map((researcher) => researcher.careNetwork)),
-    units: unique(researchers.map((researcher) => researcher.mainUnit)),
-    degrees: unique(researchers.flatMap((researcher) => researcher.academicDegrees)),
+    id,
+    numericId,
+    fullName: name,
+    photoUrl: profile.photoUrl,
+    avatarInitials: profile.avatarInitials,
+    specialty: thematicAreas[0] ?? "Sin area tematica",
+    academicDegrees: ["No disponible"],
+    affiliation: profile.primaryAffiliationNormalized,
+    mainUnit: profile.primaryUnit,
+    hospital: profile.primaryInstitution,
+    careNetwork: profile.primaryNetwork,
+    country: profile.country,
+    email: profile.email,
+    profile,
+    renacytCategory: undefined,
+    isPrincipalInvestigator: links.some((link) => link.author_position === 1),
+    participatesClinicalTrials: studyTypes.some((item) => item.toLowerCase().includes("ensayo")),
+    internationalCollaboration: coauthors.length >= 5,
+    researchLines: thematicAreas.slice(0, 5),
+    keywords: explicitKeywords,
+    methodologies: studyTypes.slice(0, 5),
+    thematicAreas,
+    thematicSubthemes,
+    expertise,
+    clinicalExperience: thematicAreas.slice(0, 3),
+    trialExperience: studyTypes.filter((item) => item.toLowerCase().includes("ensayo")),
+    externalIds: { orcid: cleanOptional(profile.orcid ?? row.orcid) },
+    metrics: {
+      publications: toInt(row.n_publications) ?? links.length,
+      citations: toInt(row.total_citations) ?? 0,
+      medianCitations: toNumber(row.median_citations) ?? 0,
+      meanCitations: toNumber(row.mean_citations) ?? 0,
+      hIndex: toInt(row.h_index_observatory) ?? 0,
+      fwci: 0,
+      activeProjects: 0,
+      finishedProjects: 0,
+      clinicalTrials: 0,
+      internationalCollaborations: Math.min(coauthors.length, 99),
+      q1: toInt(row.n_q1) ?? 0,
+      q2: toInt(row.n_q2) ?? 0,
+      q3: toInt(row.n_q3) ?? 0,
+      q4: toInt(row.n_q4) ?? 0,
+      withoutQuartile: toInt(row.n_without_quartile) ?? 0,
+      openAccess: toInt(row.n_open_access) ?? 0,
+      withDoi: toInt(row.n_with_doi) ?? 0,
+      activeYears: toInt(row.active_years) ?? countActiveYears(links),
+      firstPublicationYear: firstYear,
+      lastPublicationYear: lastYear,
+    },
+    publications: links.sort((a, b) => (b.year ?? 0) - (a.year ?? 0)).map(mapPublicationLink),
+    projects: [],
+    units: buildResearcherUnits(profile, affiliations).map((name, index) => ({
+      id: index + 1,
+      name,
+      type: index === 0 ? "Afiliacion principal" : "Afiliacion registrada",
+      role: index === 0 ? "Principal" : "Colaboradora",
+    })),
+    collaborators: coauthors.slice(0, 6).map((label) => ({ label, kind: "Investigador", weight: coauthorWeight(label) })),
+    updatedAt: cleanOptional(row.updated_at),
+    source: cleanOptional(row.source),
   };
 }
 
-function normalizeParam(value: string | string[] | undefined) {
-  if (!value) return "";
-  return (Array.isArray(value) ? value[0] : value).trim().toLowerCase();
+function mapLink(row: CsvRow): ResearcherPublicationLink {
+  return {
+    researcher_id: cleanString(row.researcher_id),
+    researcher_name: displayResearcherValue(row.researcher_name, "Investigador sin nombre"),
+    orcid: cleanOptional(row.orcid),
+    publication_id: cleanString(row.publication_id),
+    publication_title: displayResearcherValue(row.publication_title, "Titulo no disponible"),
+    year: toInt(row.year),
+    journal_title: displayResearcherValue(row.journal_title, "Revista no disponible"),
+    journal_quartile: displayQuartile(row.journal_quartile),
+    citation_count: toInt(row.citation_count) ?? 0,
+    open_access: toBoolean(row.open_access),
+    thematic_category: displayResearcherValue(row.thematic_category, "Sin categoria tematica"),
+    thematic_area: displayResearcherValue(row.thematic_area, "Sin area tematica"),
+    thematic_subtheme: displayResearcherValue(row.thematic_subtheme, "Sin subtema"),
+    study_type: displayResearcherValue(row.study_type, "Sin tipo de estudio"),
+    doi: cleanOptional(row.doi),
+    author_position: toInt(row.author_position),
+    is_institutional_researcher: toBoolean(row.is_institutional_researcher),
+    n_authors_publication: toInt(row.n_authors_publication),
+  };
+}
+
+function mapPublicationLink(link: ResearcherPublicationLink): ResearcherPublication {
+  return {
+    id: link.publication_id,
+    publicationId: link.publication_id,
+    title: link.publication_title,
+    year: link.year,
+    journal: link.journal_title,
+    quartile: link.journal_quartile,
+    citations: link.citation_count,
+    openAccess: link.open_access,
+    thematicCategory: link.thematic_category,
+    thematicArea: link.thematic_area,
+    thematicSubtheme: link.thematic_subtheme,
+    studyType: link.study_type,
+    doi: link.doi,
+    authorPosition: link.author_position,
+  };
+}
+
+function buildResearcherProfile(row: CsvRow, profileRow?: CsvRow, affiliationRow?: CsvRow, photoRow?: CsvRow) {
+  const rawAffiliations = splitAffiliations(row.affiliations);
+  const primaryAffiliationNormalized = cleanOptional(profileRow?.primary_affiliation_normalized)
+    ?? cleanOptional(affiliationRow?.primary_affiliation_normalized)
+    ?? "Filiación no disponible";
+  const primaryInstitution = cleanOptional(profileRow?.primary_institution)
+    ?? cleanOptional(affiliationRow?.primary_institution)
+    ?? "No disponible";
+  const primaryUnit = cleanOptional(profileRow?.primary_unit)
+    ?? cleanOptional(affiliationRow?.primary_unit)
+    ?? primaryInstitution;
+  const primaryNetwork = cleanOptional(profileRow?.primary_network)
+    ?? cleanOptional(affiliationRow?.primary_network)
+    ?? "No disponible";
+  const country = cleanOptional(profileRow?.country)
+    ?? cleanOptional(affiliationRow?.primary_country)
+    ?? "Perú";
+  const photoUrl = cleanOptional(photoRow?.photo_url) ?? cleanOptional(profileRow?.photo_url);
+  const avatarInitials = cleanOptional(photoRow?.avatar_initials)
+    ?? cleanOptional(profileRow?.avatar_initials)
+    ?? initialsFromName(cleanOptional(profileRow?.display_name) ?? cleanOptional(row.researcher_name) ?? "");
+  const reviewStatus = cleanOptional(profileRow?.profile_review_status)
+    ?? (toBoolean(affiliationRow?.requires_manual_review) ? "requires_manual_review" : "auto_curated");
+
+  return {
+    displayName: displayResearcherValue(profileRow?.display_name || row.researcher_name, "Investigador sin nombre"),
+    orcid: cleanOptional(profileRow?.orcid) ?? cleanOptional(affiliationRow?.orcid) ?? cleanOptional(photoRow?.orcid) ?? cleanOptional(row.orcid),
+    photoUrl,
+    avatarInitials,
+    primaryAffiliation: cleanOptional(profileRow?.primary_affiliation) ?? cleanOptional(affiliationRow?.primary_affiliation) ?? rawAffiliations[0] ?? "Filiación no disponible",
+    primaryAffiliationNormalized,
+    primaryInstitution,
+    primaryUnit,
+    primaryNetwork,
+    country,
+    email: cleanOptional(profileRow?.email) ?? "No disponible",
+    reviewStatus,
+    source: cleanOptional(profileRow?.profile_source),
+    updatedAt: cleanOptional(profileRow?.profile_updated_at) ?? cleanOptional(affiliationRow?.updated_at) ?? cleanOptional(row.updated_at),
+    affiliationSelectionMethod: cleanOptional(affiliationRow?.affiliation_selection_method),
+    affiliationConfidence: toNumber(affiliationRow?.affiliation_confidence),
+    requiresManualReview: reviewStatus === "requires_manual_review" || toBoolean(affiliationRow?.requires_manual_review),
+    photoSource: cleanOptional(photoRow?.photo_source),
+    photoAuthorizationStatus: cleanOptional(photoRow?.photo_authorization_status),
+    photoUpdatedAt: cleanOptional(photoRow?.photo_updated_at),
+  };
+}
+
+function buildResearcherUnits(profile: ReturnType<typeof buildResearcherProfile>, rawAffiliations: string[]) {
+  return unique([
+    profile.primaryAffiliationNormalized,
+    profile.primaryUnit,
+    profile.primaryInstitution,
+    ...rawAffiliations.slice(0, 2),
+  ]).filter((item) => item !== "No disponible" && item !== "Filiación no disponible").slice(0, 3);
+}
+
+function buildSummary(researchers: CrisResearcher[], links: ResearcherPublicationLink[], indicators: IndicatorsPayload): ResearcherSummary {
+  const summaryRows = indicators.summary ?? [];
+  const fromIndicator = (label: string) => toNumber(summaryRows.find((row) => cleanString(row.indicator).toLowerCase() === label.toLowerCase())?.value);
+  const uniquePublications = new Set(links.map((link) => link.publication_id)).size;
+  const publications = researchers.map((researcher) => researcher.metrics.publications).sort((a, b) => a - b);
+  const citations = researchers.map((researcher) => researcher.metrics.citations).sort((a, b) => a - b);
+  const withOrcid = researchers.filter((researcher) => isValidOrcid(researcher.externalIds.orcid)).length;
+
+  return {
+    registered: researchers.length,
+    publicationLinks: fromIndicator("Total vínculos investigador-publicación") ?? links.length,
+    uniquePublications: fromIndicator("Publicaciones únicas con investigador institucional") ?? uniquePublications,
+    medianPublications: fromIndicator("Mediana de publicaciones por investigador") ?? median(publications),
+    medianCitations: fromIndicator("Mediana de citas acumuladas por investigador") ?? median(citations),
+    withOrcid,
+    withoutOrcid: researchers.length - withOrcid,
+    withQ1: fromIndicator("Investigadores con publicaciones Q1") ?? researchers.filter((researcher) => researcher.metrics.q1 > 0).length,
+    recentProduction: fromIndicator("Investigadores con produccion reciente") ?? researchers.filter((researcher) => (researcher.metrics.lastPublicationYear ?? 0) >= 2023).length,
+    openAccessLinked: fromIndicator("Publicaciones open access vinculadas a investigadores") ?? new Set(links.filter((link) => link.open_access).map((link) => link.publication_id)).size,
+    indexedPublications: uniquePublications,
+    internationalCollaborations: researchers.filter((researcher) => researcher.internationalCollaboration).length,
+    representedUnits: new Set(researchers.map((researcher) => researcher.mainUnit).filter((value) => value !== "No disponible")).size,
+    projectLeaders: researchers.filter((researcher) => researcher.isPrincipalInvestigator).length,
+    normalizedProfiles: researchers.filter((researcher) => researcher.profile.primaryAffiliationNormalized !== "Filiación no disponible").length,
+    profilesPendingReview: researchers.filter((researcher) => researcher.profile.requiresManualReview).length,
+    withPhotoUrl: researchers.filter((researcher) => Boolean(researcher.photoUrl)).length,
+    withAvatarInitials: researchers.filter((researcher) => Boolean(researcher.avatarInitials)).length,
+    withQ1Q2: researchers.filter((researcher) => researcher.metrics.q1 + researcher.metrics.q2 > 0).length,
+    withOpenAccess: researchers.filter((researcher) => researcher.metrics.openAccess > 0).length,
+  };
+}
+
+function buildAnalytics(researchers: CrisResearcher[], links: ResearcherPublicationLink[], indicators: IndicatorsPayload): ResearcherAnalytics {
+  return {
+    byYear: rowsToAnalytics(indicators.by_year, "year", "unique_researchers") || aggregateBy(links, (link) => String(link.year ?? "Sin anio")),
+    byQuartile: rowsToAnalytics(indicators.by_quartile, "journal_quartile", "unique_researchers") || quartileAnalytics(links),
+    byThematicArea: rowsToAnalytics(indicators.by_thematic_area, "thematic_area", "unique_researchers") || aggregateBy(links, (link) => link.thematic_area).slice(0, 10),
+    topResearchers: (indicators.top_researchers?.length ? indicators.top_researchers.map((row, index) => mapResearcher(rowToCsv(row), index + 1, [])).slice(0, 10) : researchers.slice(0, 10)),
+  };
+}
+
+function buildFilters(researchers: CrisResearcher[]) {
+  return {
+    orcid: ["Con ORCID", "Sin ORCID"],
+    thematicAreas: unique(researchers.flatMap((researcher) => researcher.thematicAreas)).slice(0, 80),
+    firstYears: unique(researchers.map((researcher) => researcher.metrics.firstPublicationYear).filter((year): year is number => year !== null).map(String)).sort((a, b) => Number(a) - Number(b)),
+    lastYears: unique(researchers.map((researcher) => researcher.metrics.lastPublicationYear).filter((year): year is number => year !== null).map(String)).sort((a, b) => Number(b) - Number(a)),
+    quartiles: ["Q1", "Q2", "Q3", "Q4", "Sin cuartil"],
+    units: unique(researchers.map((researcher) => researcher.profile.primaryUnit).filter((value) => value !== "No disponible")).slice(0, 80),
+    institutions: unique(researchers.map((researcher) => researcher.profile.primaryInstitution).filter((value) => value !== "No disponible")).slice(0, 80),
+    networks: unique(researchers.map((researcher) => researcher.profile.primaryNetwork).filter((value) => value !== "No disponible")).slice(0, 80),
+    countries: unique(researchers.map((researcher) => researcher.profile.country).filter((value) => value !== "No disponible")).slice(0, 40),
+    reviewStatuses: unique(researchers.map((researcher) => researcher.profile.reviewStatus)).slice(0, 20),
+    studyTypes: unique(researchers.flatMap((researcher) => researcher.methodologies)).slice(0, 80),
+    sortOptions: [
+      { value: "-n_publications", label: "Publicaciones" },
+      { value: "-total_citations", label: "Citas" },
+      { value: "-h_index_observatory", label: "H-index observatorio" },
+      { value: "-n_q1", label: "Q1" },
+      { value: "-n_q2", label: "Q2" },
+      { value: "-last_publication_year", label: "Publicacion reciente" },
+      { value: "researcher_name", label: "Nombre" },
+    ],
+  };
+}
+
+function sortResearchers(items: CrisResearcher[], sort: string) {
+  const descending = sort.startsWith("-");
+  const field = descending ? sort.slice(1) : sort;
+  const valueFor = (researcher: CrisResearcher) => {
+    const map: Record<string, string | number | null> = {
+      researcher_name: researcher.fullName,
+      n_publications: researcher.metrics.publications,
+      total_citations: researcher.metrics.citations,
+      h_index_observatory: researcher.metrics.hIndex,
+      n_q1: researcher.metrics.q1,
+      n_q2: researcher.metrics.q2,
+      n_open_access: researcher.metrics.openAccess,
+      active_years: researcher.metrics.activeYears,
+      last_publication_year: researcher.metrics.lastPublicationYear,
+    };
+    return map[field] ?? researcher.metrics.publications;
+  };
+
+  return [...items].sort((a, b) => compareValues(valueFor(a), valueFor(b), descending));
+}
+
+function parseCsv(input: string): CsvRow[] {
+  const text = input.replace(/^\uFEFF/, "");
+  const delimiter = detectDelimiter(text);
+  const rows: string[][] = [];
+  let field = "";
+  let row: string[] = [];
+  let inQuotes = false;
+
+  for (let i = 0; i < text.length; i += 1) {
+    const char = text[i];
+    const next = text[i + 1];
+    if (char === "\"") {
+      if (inQuotes && next === "\"") {
+        field += "\"";
+        i += 1;
+      } else {
+        inQuotes = !inQuotes;
+      }
+    } else if (char === delimiter && !inQuotes) {
+      row.push(field);
+      field = "";
+    } else if ((char === "\n" || char === "\r") && !inQuotes) {
+      if (char === "\r" && next === "\n") i += 1;
+      row.push(field);
+      if (row.some((value) => value.length > 0)) rows.push(row);
+      field = "";
+      row = [];
+    } else {
+      field += char;
+    }
+  }
+  if (field.length > 0 || row.length > 0) {
+    row.push(field);
+    rows.push(row);
+  }
+
+  const rawHeaders = rows[0]?.map((header) => header.replace(/^\uFEFF/, "").trim()) ?? [];
+  const lastNamedHeader = rawHeaders.findLastIndex((header) => header.length > 0);
+  const headers = lastNamedHeader >= 0 ? rawHeaders.slice(0, lastNamedHeader + 1) : rawHeaders;
+  return rows.slice(1).map((values) => {
+    const normalizedValues = normalizeCsvValues(headers, values, delimiter);
+    return Object.fromEntries(headers.map((header, index) => [header, normalizedValues[index] ?? ""]));
+  });
+}
+
+function detectDelimiter(text: string) {
+  const firstLine = text.split(/\r?\n/u).find((line) => line.trim().length > 0) ?? "";
+  const candidates = [";", ",", "\t"];
+  return candidates
+    .map((candidate) => ({ candidate, count: firstLine.split(candidate).length - 1 }))
+    .sort((a, b) => b.count - a.count)[0]?.candidate ?? ";";
+}
+
+function normalizeCsvValues(headers: string[], values: string[], delimiter: string) {
+  if (delimiter !== "," || !headers.includes("deduplication_method")) return values;
+  const mainJournalsIndex = headers.indexOf("main_journals");
+  const sourceIndex = values.findIndex((value, index) => index > mainJournalsIndex && /\.json$/u.test(cleanString(value)));
+  if (mainJournalsIndex < 0 || sourceIndex < 0) return values;
+
+  const tail = values.slice(mainJournalsIndex, sourceIndex).join(",");
+  const fields = tail.split(/(?<=\(\d+(?:\.\d+)?\)),(?=\S)/u).map((field) => field.trim());
+  if (fields.length < 6) return values;
+
+  return [
+    ...values.slice(0, mainJournalsIndex),
+    fields[0],
+    fields[1],
+    fields[2],
+    fields[3],
+    fields[4],
+    fields.slice(5).join(","),
+    values[sourceIndex],
+    values[sourceIndex + 1] ?? "",
+    values[sourceIndex + 2] ?? "",
+  ];
+}
+
+function loadOptionalCsv(filePath: string) {
+  try {
+    return parseCsv(readFileSync(filePath, "utf-8"));
+  } catch {
+    return [];
+  }
+}
+
+function indexByResearcherId(rows: CsvRow[]) {
+  const map = new Map<string, CsvRow>();
+  for (const row of rows) {
+    const key = cleanString(row.researcher_id);
+    if (key) map.set(key, row);
+  }
+  return map;
+}
+
+function splitList(value: unknown) {
+  return parsePipeCountList(isMissing(value) ? null : String(value)).map((item) => item.label);
+}
+
+function splitAffiliations(value: unknown) {
+  if (isMissing(value)) return [];
+  return unique(String(value).split("|").map((item) => item.trim()).filter((item) => !isMissing(item) && item !== ",")).slice(0, 10);
+}
+
+function cleanString(value: unknown) {
+  if (isMissing(value)) return "";
+  return String(value).trim();
+}
+
+function cleanOptional(value: unknown) {
+  const cleaned = cleanString(value);
+  return cleaned ? cleaned : undefined;
+}
+
+function initialsFromName(name: string) {
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if (!parts.length) return undefined;
+  return parts.slice(0, 2).map((part) => part[0]?.toUpperCase()).join("");
+}
+
+function isMissing(value: unknown) {
+  if (value === null || value === undefined) return true;
+  if (typeof value === "number") return Number.isNaN(value);
+  if (Array.isArray(value)) return value.length === 0;
+  if (typeof value === "object") return Object.keys(value).length === 0;
+  return missingTokens.has(String(value).trim().toLowerCase());
+}
+
+function toInt(value: unknown, fallback?: number) {
+  if (isMissing(value)) return fallback ?? null;
+  const parsed = Number.parseInt(String(value), 10);
+  return Number.isFinite(parsed) ? parsed : fallback ?? null;
+}
+
+function toNumber(value: unknown, fallback?: number) {
+  if (isMissing(value)) return fallback ?? null;
+  const parsed = Number(String(value).replace(",", "."));
+  return Number.isFinite(parsed) ? parsed : fallback ?? null;
+}
+
+function toBoolean(value: unknown) {
+  if (typeof value === "boolean") return value;
+  return ["true", "1", "si", "sí", "yes"].includes(cleanString(value).toLowerCase());
+}
+
+function displayQuartile(value: unknown) {
+  const quartile = cleanString(value).toUpperCase();
+  return ["Q1", "Q2", "Q3", "Q4"].includes(quartile) ? quartile : "Sin cuartil";
+}
+
+function isValidOrcid(orcid?: string) {
+  return Boolean(orcid && /^\d{4}-\d{4}-\d{4}-\d{3}[\dX]$/i.test(orcid));
+}
+
+function getParam(params: Record<string, string | string[] | undefined> | undefined, key: string) {
+  const value = params?.[key];
+  return cleanString(Array.isArray(value) ? value[0] : value);
 }
 
 function matchesText(value: string, query: string) {
   if (!query) return true;
-  return value.toLowerCase().includes(query);
+  return value.toLowerCase().includes(query.toLowerCase());
 }
 
-function matchesBoolean(value: boolean, query: string) {
+function matchesOrcid(researcher: CrisResearcher, query: string) {
   if (!query) return true;
-  if (query === "true") return value;
-  if (query === "false") return !value;
+  if (query === "Con ORCID") return isValidOrcid(researcher.externalIds.orcid);
+  if (query === "Sin ORCID" || query === "Sin RENACYT") return !isValidOrcid(researcher.externalIds.orcid);
   return true;
 }
 
-function unique(values: string[]) {
-  return Array.from(new Set(values)).sort((a, b) => a.localeCompare(b));
+function matchesYear(year: number | null, query: number | null, mode: "gte" | "lte") {
+  if (!query) return true;
+  if (!year) return false;
+  return mode === "gte" ? year >= query : year <= query;
+}
+
+function matchesQuartile(researcher: CrisResearcher, quartile: string) {
+  if (!quartile) return true;
+  if (quartile === "Q1") return researcher.metrics.q1 > 0;
+  if (quartile === "Q2") return researcher.metrics.q2 > 0;
+  if (quartile === "Q3") return researcher.metrics.q3 > 0;
+  if (quartile === "Q4") return researcher.metrics.q4 > 0;
+  if (quartile === "Sin cuartil") return researcher.metrics.withoutQuartile > 0;
+  return true;
+}
+
+function countActiveYears(links: ResearcherPublicationLink[]) {
+  return new Set(links.map((link) => link.year).filter(Boolean)).size;
+}
+
+function coauthorWeight(label: string) {
+  const match = label.match(/\((\d+)\)$/);
+  return Math.max(28, Math.min(96, Number(match?.[1] ?? 1) * 8 + 32));
+}
+
+function groupBy<T>(items: T[], keyFor: (item: T) => string) {
+  const groups = new Map<string, T[]>();
+  for (const item of items) {
+    const key = keyFor(item);
+    groups.set(key, [...(groups.get(key) ?? []), item]);
+  }
+  return groups;
+}
+
+function unique<T>(values: T[]) {
+  return Array.from(new Set(values.filter((value) => !isMissing(value)))).sort((a, b) => String(a).localeCompare(String(b)));
+}
+
+function median(values: number[]) {
+  if (!values.length) return 0;
+  const mid = Math.floor(values.length / 2);
+  return values.length % 2 ? values[mid] : (values[mid - 1] + values[mid]) / 2;
+}
+
+function rowsToAnalytics(rows: Array<Record<string, unknown>> | undefined, labelKey: string, valueKey: string) {
+  if (!rows?.length) return null;
+  return rows.map((row) => ({
+    label: displayResearcherValue(row[labelKey], labelKey === "journal_quartile" ? "Sin cuartil" : "No disponible"),
+    value: toInt(row[valueKey]) ?? 0,
+    meta: row.total_citations as number | string | null,
+  }));
+}
+
+function aggregateBy(items: ResearcherPublicationLink[], keyFor: (item: ResearcherPublicationLink) => string) {
+  const groups = new Map<string, Set<string>>();
+  for (const item of items) {
+    const key = displayResearcherValue(keyFor(item), "No disponible");
+    const set = groups.get(key) ?? new Set<string>();
+    set.add(item.researcher_id);
+    groups.set(key, set);
+  }
+  return Array.from(groups.entries()).map(([label, ids]) => ({ label, value: ids.size })).sort((a, b) => b.value - a.value);
+}
+
+function quartileAnalytics(links: ResearcherPublicationLink[]) {
+  const order = ["Q1", "Q2", "Q3", "Q4", "Sin cuartil"];
+  const values = aggregateBy(links, (link) => link.journal_quartile);
+  return order.map((label) => values.find((item) => item.label === label) ?? { label, value: 0 });
+}
+
+function rowToCsv(row: Record<string, unknown>) {
+  return Object.fromEntries(Object.entries(row).map(([key, value]) => [key, cleanString(value)]));
+}
+
+function compareValues(a: string | number | null, b: string | number | null, desc: boolean) {
+  const direction = desc ? -1 : 1;
+  if (typeof a === "number" && typeof b === "number") return (a - b) * direction;
+  return String(a ?? "").localeCompare(String(b ?? "")) * direction;
 }

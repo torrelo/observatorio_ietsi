@@ -1,0 +1,2549 @@
+[
+  {
+    "route": "/",
+    "width": 320,
+    "html": {
+      "width": 305,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 305,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 320,
+    "scrollWidth": 398,
+    "header": {
+      "width": 305,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 16px"
+    },
+    "nav": {
+      "width": 273,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 305,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "grid": [],
+    "input": {
+      "width": 101.421875,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 273,
+      "fontSize": "30px",
+      "lineHeight": "37.5px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [
+      {
+        "tag": "IMG",
+        "classes": "h-10 w-auto object-contain",
+        "right": 398.46875,
+        "text": ""
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 385.78125,
+        "text": "Investigadores"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 482.171875,
+        "text": "Proyectos"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 693.71875,
+        "text": "Unidades de investigacion"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 814.34375,
+        "text": "Mas modulos"
+      }
+    ],
+    "clipped": [],
+    "brokenImages": [],
+    "active": [],
+    "errors": [
+      {
+        "entry": {
+          "source": "network",
+          "level": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "timestamp": 1794601382430.57,
+          "url": "http://127.0.0.1:3004/favicon.ico",
+          "networkRequestId": "16876.31"
+        }
+      }
+    ]
+  },
+  {
+    "route": "/",
+    "width": 360,
+    "html": {
+      "width": 345,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 345,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 360,
+    "scrollWidth": 398,
+    "header": {
+      "width": 345,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 16px"
+    },
+    "nav": {
+      "width": 313,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 345,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "grid": [],
+    "input": {
+      "width": 141.421875,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 313,
+      "fontSize": "30px",
+      "lineHeight": "37.5px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [
+      {
+        "tag": "IMG",
+        "classes": "h-10 w-auto object-contain",
+        "right": 398.46875,
+        "text": ""
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 385.78125,
+        "text": "Investigadores"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 482.171875,
+        "text": "Proyectos"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 693.71875,
+        "text": "Unidades de investigacion"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 814.34375,
+        "text": "Mas modulos"
+      }
+    ],
+    "clipped": [],
+    "brokenImages": [],
+    "active": [],
+    "errors": []
+  },
+  {
+    "route": "/",
+    "width": 768,
+    "html": {
+      "width": 753,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 753,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 768,
+    "scrollWidth": 753,
+    "header": {
+      "width": 753,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 16px"
+    },
+    "nav": {
+      "width": 721,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 753,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "grid": [
+      {
+        "width": 721,
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "232.328px 232.328px 232.328px",
+        "padding": "0px"
+      }
+    ],
+    "input": {
+      "width": 549.421875,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 721,
+      "fontSize": "48px",
+      "lineHeight": "48px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 814.34375,
+        "text": "Mas modulos"
+      }
+    ],
+    "clipped": [],
+    "brokenImages": [],
+    "active": [],
+    "errors": []
+  },
+  {
+    "route": "/",
+    "width": 1280,
+    "html": {
+      "width": 1265,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 1265,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 1280,
+    "scrollWidth": 1265,
+    "header": {
+      "width": 1265,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 32px"
+    },
+    "nav": {
+      "width": 1201,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 1265,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "grid": [],
+    "input": {
+      "width": 596.421875,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 768,
+      "fontSize": "48px",
+      "lineHeight": "48px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [],
+    "clipped": [],
+    "brokenImages": [],
+    "active": [],
+    "errors": []
+  },
+  {
+    "route": "/",
+    "width": 1440,
+    "html": {
+      "width": 1425,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 1425,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 1440,
+    "scrollWidth": 1425,
+    "header": {
+      "width": 1280,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 32px"
+    },
+    "nav": {
+      "width": 1216,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 1425,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "grid": [],
+    "input": {
+      "width": 596.421875,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 768,
+      "fontSize": "48px",
+      "lineHeight": "48px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [],
+    "clipped": [],
+    "brokenImages": [],
+    "active": [],
+    "errors": []
+  },
+  {
+    "route": "/produccion-cientifica",
+    "width": 320,
+    "html": {
+      "width": 305,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 305,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 320,
+    "scrollWidth": 482,
+    "header": {
+      "width": 305,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 16px"
+    },
+    "nav": {
+      "width": 273,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 305,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "32px 16px"
+    },
+    "grid": [],
+    "input": {
+      "width": 382.875,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 273,
+      "fontSize": "24px",
+      "lineHeight": "32px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [
+      {
+        "tag": "IMG",
+        "classes": "h-10 w-auto object-contain",
+        "right": 398.46875,
+        "text": ""
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 385.78125,
+        "text": "Investigadores"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 482.171875,
+        "text": "Proyectos"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 693.71875,
+        "text": "Unidades de investigacion"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 814.34375,
+        "text": "Mas modulos"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 hover:border-brand/30 hover:text-brand",
+        "right": 391.875,
+        "text": "Artículo original"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 hover:border-brand/30 hover:text-brand",
+        "right": 484.4375,
+        "text": "Revisión"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 hover:border-brand/30 hover:text-brand",
+        "right": 577.515625,
+        "text": "Editorial"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 hover:border-brand/30 hover:text-brand",
+        "right": 712.296875,
+        "text": "Carta al editor"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 hover:border-brand/30 hover:text-brand",
+        "right": 861.578125,
+        "text": "Capítulo de libro"
+      }
+    ],
+    "clipped": [],
+    "brokenImages": [],
+    "active": [],
+    "errors": []
+  },
+  {
+    "route": "/produccion-cientifica",
+    "width": 360,
+    "html": {
+      "width": 345,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 345,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 360,
+    "scrollWidth": 482,
+    "header": {
+      "width": 345,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 16px"
+    },
+    "nav": {
+      "width": 313,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 345,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "32px 16px"
+    },
+    "grid": [],
+    "input": {
+      "width": 382.875,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 313,
+      "fontSize": "24px",
+      "lineHeight": "32px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [
+      {
+        "tag": "IMG",
+        "classes": "h-10 w-auto object-contain",
+        "right": 398.46875,
+        "text": ""
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 385.78125,
+        "text": "Investigadores"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 482.171875,
+        "text": "Proyectos"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 693.71875,
+        "text": "Unidades de investigacion"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 814.34375,
+        "text": "Mas modulos"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 hover:border-brand/30 hover:text-brand",
+        "right": 391.875,
+        "text": "Artículo original"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 hover:border-brand/30 hover:text-brand",
+        "right": 484.4375,
+        "text": "Revisión"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 hover:border-brand/30 hover:text-brand",
+        "right": 577.515625,
+        "text": "Editorial"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 hover:border-brand/30 hover:text-brand",
+        "right": 712.296875,
+        "text": "Carta al editor"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 hover:border-brand/30 hover:text-brand",
+        "right": 861.578125,
+        "text": "Capítulo de libro"
+      }
+    ],
+    "clipped": [],
+    "brokenImages": [],
+    "active": [],
+    "errors": []
+  },
+  {
+    "route": "/produccion-cientifica",
+    "width": 768,
+    "html": {
+      "width": 753,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 753,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 768,
+    "scrollWidth": 753,
+    "header": {
+      "width": 753,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 16px"
+    },
+    "nav": {
+      "width": 721,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 753,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "32px 16px"
+    },
+    "grid": [
+      {
+        "width": 721,
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "232.328px 232.328px 232.328px",
+        "padding": "0px"
+      }
+    ],
+    "input": {
+      "width": 637.5625,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 721,
+      "fontSize": "24px",
+      "lineHeight": "32px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 814.34375,
+        "text": "Mas modulos"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 hover:border-brand/30 hover:text-brand",
+        "right": 861.578125,
+        "text": "Capítulo de libro"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 hover:border-brand/30 hover:text-brand",
+        "right": 931.375,
+        "text": "Libro"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 hover:border-brand/30 hover:text-brand",
+        "right": 998.96875,
+        "text": "Tesis"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 hover:border-brand/30 hover:text-brand",
+        "right": 1090.875,
+        "text": "Preprint"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 hover:border-brand/30 hover:text-brand",
+        "right": 1205.4375,
+        "text": "Guía clínica"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 hover:border-brand/30 hover:text-brand",
+        "right": 1375.34375,
+        "text": "Documento técnico"
+      }
+    ],
+    "clipped": [],
+    "brokenImages": [],
+    "active": [],
+    "errors": []
+  },
+  {
+    "route": "/produccion-cientifica",
+    "width": 1280,
+    "html": {
+      "width": 1265,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 1265,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 1280,
+    "scrollWidth": 1265,
+    "header": {
+      "width": 1265,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 32px"
+    },
+    "nav": {
+      "width": 1201,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 1265,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "32px"
+    },
+    "grid": [
+      {
+        "width": 1201,
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "300px 533px 320px",
+        "padding": "0px"
+      }
+    ],
+    "input": {
+      "width": 217.5,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 1201,
+      "fontSize": "24px",
+      "lineHeight": "32px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 hover:border-brand/30 hover:text-brand",
+        "right": 1391.34375,
+        "text": "Documento técnico"
+      }
+    ],
+    "clipped": [],
+    "brokenImages": [],
+    "active": [],
+    "errors": []
+  },
+  {
+    "route": "/produccion-cientifica",
+    "width": 1440,
+    "html": {
+      "width": 1425,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 1425,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 1440,
+    "scrollWidth": 1425,
+    "header": {
+      "width": 1280,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 32px"
+    },
+    "nav": {
+      "width": 1216,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 1280,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "32px"
+    },
+    "grid": [
+      {
+        "width": 1216,
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "300px 548px 320px",
+        "padding": "0px"
+      }
+    ],
+    "input": {
+      "width": 217.5,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 1216,
+      "fontSize": "24px",
+      "lineHeight": "32px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 hover:border-brand/30 hover:text-brand",
+        "right": 1463.84375,
+        "text": "Documento técnico"
+      }
+    ],
+    "clipped": [],
+    "brokenImages": [],
+    "active": [],
+    "errors": []
+  },
+  {
+    "route": "/investigadores",
+    "width": 320,
+    "html": {
+      "width": 305,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 305,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 320,
+    "scrollWidth": 502,
+    "header": {
+      "width": 305,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 16px"
+    },
+    "nav": {
+      "width": 273,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 305,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "32px 16px"
+    },
+    "grid": [
+      {
+        "width": 443.671875,
+        "fontSize": "12px",
+        "lineHeight": "16px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "142.547px 142.562px 142.562px",
+        "padding": "0px"
+      },
+      {
+        "width": 443.671875,
+        "fontSize": "12px",
+        "lineHeight": "16px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "142.547px 142.562px 142.562px",
+        "padding": "0px"
+      },
+      {
+        "width": 443.671875,
+        "fontSize": "12px",
+        "lineHeight": "16px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "142.547px 142.562px 142.562px",
+        "padding": "0px"
+      }
+    ],
+    "input": {
+      "width": 402.546875,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 273,
+      "fontSize": "24px",
+      "lineHeight": "32px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [
+      {
+        "tag": "IMG",
+        "classes": "h-10 w-auto object-contain",
+        "right": 398.46875,
+        "text": ""
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 385.78125,
+        "text": "Investigadores"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 482.171875,
+        "text": "Proyectos"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 693.71875,
+        "text": "Unidades de investigacion"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 814.34375,
+        "text": "Mas modulos"
+      },
+      {
+        "tag": "ASIDE",
+        "classes": "space-y-4",
+        "right": 501.671875,
+        "text": " Buscador y filtrosORCIDTodosCon ORCIDSin ORCIDInstituciónTodosArequipaEssaludEs"
+      },
+      {
+        "tag": "DETAILS",
+        "classes": "rounded-lg border border-slate-200 bg-white p-4 shadow-sm lg:open",
+        "right": 501.671875,
+        "text": " Buscador y filtrosORCIDTodosCon ORCIDSin ORCIDInstituciónTodosArequipaEssaludEs"
+      },
+      {
+        "tag": "SUMMARY",
+        "classes": "flex cursor-pointer items-center gap-2 text-sm font-bold text-slate-900",
+        "right": 484.671875,
+        "text": " Buscador y filtros"
+      },
+      {
+        "tag": "FORM",
+        "classes": "mt-4 space-y-3",
+        "right": 484.671875,
+        "text": "ORCIDTodosCon ORCIDSin ORCIDInstituciónTodosArequipaEssaludEsSaludEviSaludHospit"
+      },
+      {
+        "tag": "DIV",
+        "classes": "flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2",
+        "right": 484.671875,
+        "text": ""
+      }
+    ],
+    "clipped": [],
+    "brokenImages": [],
+    "active": [],
+    "errors": []
+  },
+  {
+    "route": "/investigadores",
+    "width": 360,
+    "html": {
+      "width": 345,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 345,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 360,
+    "scrollWidth": 502,
+    "header": {
+      "width": 345,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 16px"
+    },
+    "nav": {
+      "width": 313,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 345,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "32px 16px"
+    },
+    "grid": [
+      {
+        "width": 443.671875,
+        "fontSize": "12px",
+        "lineHeight": "16px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "142.547px 142.562px 142.562px",
+        "padding": "0px"
+      },
+      {
+        "width": 443.671875,
+        "fontSize": "12px",
+        "lineHeight": "16px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "142.547px 142.562px 142.562px",
+        "padding": "0px"
+      },
+      {
+        "width": 443.671875,
+        "fontSize": "12px",
+        "lineHeight": "16px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "142.547px 142.562px 142.562px",
+        "padding": "0px"
+      }
+    ],
+    "input": {
+      "width": 402.546875,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 313,
+      "fontSize": "24px",
+      "lineHeight": "32px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [
+      {
+        "tag": "IMG",
+        "classes": "h-10 w-auto object-contain",
+        "right": 398.46875,
+        "text": ""
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 385.78125,
+        "text": "Investigadores"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 482.171875,
+        "text": "Proyectos"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 693.71875,
+        "text": "Unidades de investigacion"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 814.34375,
+        "text": "Mas modulos"
+      },
+      {
+        "tag": "ASIDE",
+        "classes": "space-y-4",
+        "right": 501.671875,
+        "text": " Buscador y filtrosORCIDTodosCon ORCIDSin ORCIDInstituciónTodosArequipaEssaludEs"
+      },
+      {
+        "tag": "DETAILS",
+        "classes": "rounded-lg border border-slate-200 bg-white p-4 shadow-sm lg:open",
+        "right": 501.671875,
+        "text": " Buscador y filtrosORCIDTodosCon ORCIDSin ORCIDInstituciónTodosArequipaEssaludEs"
+      },
+      {
+        "tag": "SUMMARY",
+        "classes": "flex cursor-pointer items-center gap-2 text-sm font-bold text-slate-900",
+        "right": 484.671875,
+        "text": " Buscador y filtros"
+      },
+      {
+        "tag": "FORM",
+        "classes": "mt-4 space-y-3",
+        "right": 484.671875,
+        "text": "ORCIDTodosCon ORCIDSin ORCIDInstituciónTodosArequipaEssaludEsSaludEviSaludHospit"
+      },
+      {
+        "tag": "DIV",
+        "classes": "flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2",
+        "right": 484.671875,
+        "text": ""
+      }
+    ],
+    "clipped": [],
+    "brokenImages": [],
+    "active": [],
+    "errors": []
+  },
+  {
+    "route": "/investigadores",
+    "width": 768,
+    "html": {
+      "width": 753,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 753,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 768,
+    "scrollWidth": 753,
+    "header": {
+      "width": 753,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 16px"
+    },
+    "nav": {
+      "width": 721,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 753,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "32px 16px"
+    },
+    "grid": [
+      {
+        "width": 721,
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "232.328px 232.328px 232.328px",
+        "padding": "0px"
+      },
+      {
+        "width": 679,
+        "fontSize": "12px",
+        "lineHeight": "16px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "221px 221px 221px",
+        "padding": "0px"
+      },
+      {
+        "width": 679,
+        "fontSize": "12px",
+        "lineHeight": "16px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "221px 221px 221px",
+        "padding": "0px"
+      }
+    ],
+    "input": {
+      "width": 637.5625,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 721,
+      "fontSize": "24px",
+      "lineHeight": "32px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 814.34375,
+        "text": "Mas modulos"
+      }
+    ],
+    "clipped": [],
+    "brokenImages": [],
+    "active": [],
+    "errors": []
+  },
+  {
+    "route": "/investigadores",
+    "width": 1280,
+    "html": {
+      "width": 1265,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 1265,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 1280,
+    "scrollWidth": 1265,
+    "header": {
+      "width": 1265,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 32px"
+    },
+    "nav": {
+      "width": 1201,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 1265,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "32px"
+    },
+    "grid": [
+      {
+        "width": 1201,
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "310px 523px 320px",
+        "padding": "0px"
+      },
+      {
+        "width": 211.5,
+        "fontSize": "12px",
+        "lineHeight": "16px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "65.1562px 65.1719px 65.1562px",
+        "padding": "0px"
+      },
+      {
+        "width": 211.5,
+        "fontSize": "12px",
+        "lineHeight": "16px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "65.1562px 65.1719px 65.1562px",
+        "padding": "0px"
+      }
+    ],
+    "input": {
+      "width": 227.4375,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 1201,
+      "fontSize": "24px",
+      "lineHeight": "32px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [],
+    "clipped": [
+      "Alvaro Taype-Rondan",
+      "EviSalud - Evidencias en Salud",
+      "Publicaciones",
+      "Hospital Nacional Almanzor Aguinaga Asenjo, EsSalud",
+      "Publicaciones",
+      "Manuel Francisco Ugarte Gil",
+      "Hospital Nacional Guillermo Almenara Irigoyen, EsSalud",
+      "Publicaciones"
+    ],
+    "brokenImages": [],
+    "active": [],
+    "errors": []
+  },
+  {
+    "route": "/investigadores",
+    "width": 1440,
+    "html": {
+      "width": 1425,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 1425,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 1440,
+    "scrollWidth": 1425,
+    "header": {
+      "width": 1280,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 32px"
+    },
+    "nav": {
+      "width": 1216,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 1280,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "32px"
+    },
+    "grid": [
+      {
+        "width": 1216,
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "310px 538px 320px",
+        "padding": "0px"
+      },
+      {
+        "width": 219,
+        "fontSize": "12px",
+        "lineHeight": "16px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "67.6562px 67.6719px 67.6562px",
+        "padding": "0px"
+      },
+      {
+        "width": 219,
+        "fontSize": "12px",
+        "lineHeight": "16px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "67.6562px 67.6719px 67.6562px",
+        "padding": "0px"
+      }
+    ],
+    "input": {
+      "width": 227.4375,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 1216,
+      "fontSize": "24px",
+      "lineHeight": "32px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [],
+    "clipped": [
+      "EviSalud - Evidencias en Salud",
+      "Publicaciones",
+      "Hospital Nacional Almanzor Aguinaga Asenjo, EsSalud",
+      "Publicaciones",
+      "Manuel Francisco Ugarte Gil",
+      "Hospital Nacional Guillermo Almenara Irigoyen, EsSalud",
+      "Publicaciones",
+      "Mario J. Valladares-Garrido"
+    ],
+    "brokenImages": [],
+    "active": [],
+    "errors": []
+  },
+  {
+    "route": "/proyectos",
+    "width": 320,
+    "html": {
+      "width": 305,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 305,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 320,
+    "scrollWidth": 398,
+    "header": {
+      "width": 305,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 16px"
+    },
+    "nav": {
+      "width": 273,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 305,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "32px 16px"
+    },
+    "grid": [],
+    "input": {
+      "width": 190.671875,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 273,
+      "fontSize": "24px",
+      "lineHeight": "32px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [
+      {
+        "tag": "IMG",
+        "classes": "h-10 w-auto object-contain",
+        "right": 398.46875,
+        "text": ""
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 385.78125,
+        "text": "Investigadores"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 482.171875,
+        "text": "Proyectos"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 693.71875,
+        "text": "Unidades de investigacion"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 814.34375,
+        "text": "Mas modulos"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 hover:border-brand/30 hover:text-brand",
+        "right": 328.34375,
+        "text": "Innovación"
+      }
+    ],
+    "clipped": [
+      "Análisis de las características asociadas a las hospitalizaciones por Condicione",
+      "El proyecto \"Análisis de las características asociadas a las tiene como finalida",
+      "Anemia y patologías bucodentales en niños de tres años atendidos en los establec",
+      "El proyecto “Anemia y patologías bucodentales en niños de tres años atendidos en",
+      "Caracterización de la deserción en consulta externa de los establecimientos de s",
+      "El proyecto “Caracterización de la deserción en consulta externa de los establec",
+      "Caracterización de la mortalidad evitable en el seguro social de salud ESSALUD 2",
+      "El proyecto **“Caracterización de la Mortalidad Evitable en el Seguro Social de "
+    ],
+    "brokenImages": [],
+    "active": [],
+    "errors": []
+  },
+  {
+    "route": "/proyectos",
+    "width": 360,
+    "html": {
+      "width": 345,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 345,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 360,
+    "scrollWidth": 398,
+    "header": {
+      "width": 345,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 16px"
+    },
+    "nav": {
+      "width": 313,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 345,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "32px 16px"
+    },
+    "grid": [],
+    "input": {
+      "width": 230.421875,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 313,
+      "fontSize": "24px",
+      "lineHeight": "32px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [
+      {
+        "tag": "IMG",
+        "classes": "h-10 w-auto object-contain",
+        "right": 398.46875,
+        "text": ""
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 385.78125,
+        "text": "Investigadores"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 482.171875,
+        "text": "Proyectos"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 693.71875,
+        "text": "Unidades de investigacion"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 814.34375,
+        "text": "Mas modulos"
+      }
+    ],
+    "clipped": [
+      "Análisis de las características asociadas a las hospitalizaciones por Condicione",
+      "El proyecto \"Análisis de las características asociadas a las tiene como finalida",
+      "Anemia y patologías bucodentales en niños de tres años atendidos en los establec",
+      "El proyecto “Anemia y patologías bucodentales en niños de tres años atendidos en",
+      "Caracterización de la deserción en consulta externa de los establecimientos de s",
+      "El proyecto “Caracterización de la deserción en consulta externa de los establec",
+      "Caracterización de la mortalidad evitable en el seguro social de salud ESSALUD 2",
+      "El proyecto **“Caracterización de la Mortalidad Evitable en el Seguro Social de "
+    ],
+    "brokenImages": [],
+    "active": [],
+    "errors": []
+  },
+  {
+    "route": "/proyectos",
+    "width": 768,
+    "html": {
+      "width": 753,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 753,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 768,
+    "scrollWidth": 753,
+    "header": {
+      "width": 753,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 16px"
+    },
+    "nav": {
+      "width": 721,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 753,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "32px 16px"
+    },
+    "grid": [
+      {
+        "width": 721,
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "232.328px 232.328px 232.328px",
+        "padding": "0px"
+      }
+    ],
+    "input": {
+      "width": 637.5625,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 721,
+      "fontSize": "24px",
+      "lineHeight": "32px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 814.34375,
+        "text": "Mas modulos"
+      }
+    ],
+    "clipped": [
+      "El proyecto \"Análisis de las características asociadas a las tiene como finalida",
+      "El proyecto “Anemia y patologías bucodentales en niños de tres años atendidos en",
+      "El proyecto “Caracterización de la deserción en consulta externa de los establec",
+      "El proyecto **“Caracterización de la Mortalidad Evitable en el Seguro Social de ",
+      "El proyecto “Caracterización de la polifarmacia en pacientes adultos mayores ate",
+      "**El proyecto \"Caracterización de las referencias dirigidas a los Hospitales Nac",
+      "El proyecto “Carga asistencial y perfil epidemiológico de pacientes con cáncer e",
+      "El proyecto “Desarrollo e implementación de un sistema inteligente de consulta d"
+    ],
+    "brokenImages": [],
+    "active": [],
+    "errors": []
+  },
+  {
+    "route": "/proyectos",
+    "width": 1280,
+    "html": {
+      "width": 1265,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 1265,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 1280,
+    "scrollWidth": 1265,
+    "header": {
+      "width": 1265,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 32px"
+    },
+    "nav": {
+      "width": 1201,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 1265,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "32px"
+    },
+    "grid": [
+      {
+        "width": 1201,
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "300px 533px 320px",
+        "padding": "0px"
+      }
+    ],
+    "input": {
+      "width": 217.5,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 1201,
+      "fontSize": "24px",
+      "lineHeight": "32px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [],
+    "clipped": [
+      "El proyecto \"Análisis de las características asociadas a las tiene como finalida",
+      "El proyecto “Anemia y patologías bucodentales en niños de tres años atendidos en",
+      "El proyecto “Caracterización de la deserción en consulta externa de los establec",
+      "El proyecto **“Caracterización de la Mortalidad Evitable en el Seguro Social de ",
+      "El proyecto “Caracterización de la polifarmacia en pacientes adultos mayores ate",
+      "**El proyecto \"Caracterización de las referencias dirigidas a los Hospitales Nac",
+      "El proyecto “Carga asistencial y perfil epidemiológico de pacientes con cáncer e",
+      "El proyecto “Desarrollo e implementación de un sistema inteligente de consulta d"
+    ],
+    "brokenImages": [],
+    "active": [],
+    "errors": []
+  },
+  {
+    "route": "/proyectos",
+    "width": 1440,
+    "html": {
+      "width": 1425,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 1425,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 1440,
+    "scrollWidth": 1425,
+    "header": {
+      "width": 1280,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 32px"
+    },
+    "nav": {
+      "width": 1216,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 1280,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "32px"
+    },
+    "grid": [
+      {
+        "width": 1216,
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "300px 548px 320px",
+        "padding": "0px"
+      }
+    ],
+    "input": {
+      "width": 217.5,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 1216,
+      "fontSize": "24px",
+      "lineHeight": "32px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [],
+    "clipped": [
+      "El proyecto \"Análisis de las características asociadas a las tiene como finalida",
+      "El proyecto “Anemia y patologías bucodentales en niños de tres años atendidos en",
+      "El proyecto “Caracterización de la deserción en consulta externa de los establec",
+      "El proyecto **“Caracterización de la Mortalidad Evitable en el Seguro Social de ",
+      "El proyecto “Caracterización de la polifarmacia en pacientes adultos mayores ate",
+      "**El proyecto \"Caracterización de las referencias dirigidas a los Hospitales Nac",
+      "El proyecto “Carga asistencial y perfil epidemiológico de pacientes con cáncer e",
+      "El proyecto “Desarrollo e implementación de un sistema inteligente de consulta d"
+    ],
+    "brokenImages": [],
+    "active": [],
+    "errors": []
+  },
+  {
+    "route": "/unidades",
+    "width": 320,
+    "html": {
+      "width": 305,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 305,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 320,
+    "scrollWidth": 398,
+    "header": {
+      "width": 305,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 16px"
+    },
+    "nav": {
+      "width": 273,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 305,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "32px 16px"
+    },
+    "grid": [],
+    "input": {
+      "width": 190.671875,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 273,
+      "fontSize": "24px",
+      "lineHeight": "32px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [
+      {
+        "tag": "IMG",
+        "classes": "h-10 w-auto object-contain",
+        "right": 398.46875,
+        "text": ""
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 385.78125,
+        "text": "Investigadores"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 482.171875,
+        "text": "Proyectos"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 693.71875,
+        "text": "Unidades de investigacion"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 814.34375,
+        "text": "Mas modulos"
+      }
+    ],
+    "clipped": [
+      "Unidad de Investigación, Hospital Nacional IV Alberto Sabogal Sologuren, Essalud",
+      "Centro de Investigación de Enfermedades infecciosas y Tropicales",
+      "Centro de Investigación de Endocrinología y Cardiología",
+      "Unidad de investigación del servicio de oncología médica",
+      "Unidad de Investigación en Hepatología y Enfermedades Digestivas",
+      "Unidad de Investigación del Servicio de Cardiología",
+      "Centro de investigaciones de la Red Asistencial Arequipa",
+      "Centro de investigaciones neumológicas"
+    ],
+    "brokenImages": [],
+    "active": [],
+    "errors": []
+  },
+  {
+    "route": "/unidades",
+    "width": 360,
+    "html": {
+      "width": 345,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 345,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 360,
+    "scrollWidth": 398,
+    "header": {
+      "width": 345,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 16px"
+    },
+    "nav": {
+      "width": 313,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 345,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "32px 16px"
+    },
+    "grid": [],
+    "input": {
+      "width": 230.421875,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 313,
+      "fontSize": "24px",
+      "lineHeight": "32px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [
+      {
+        "tag": "IMG",
+        "classes": "h-10 w-auto object-contain",
+        "right": 398.46875,
+        "text": ""
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 385.78125,
+        "text": "Investigadores"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 482.171875,
+        "text": "Proyectos"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 693.71875,
+        "text": "Unidades de investigacion"
+      },
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 814.34375,
+        "text": "Mas modulos"
+      }
+    ],
+    "clipped": [
+      "Unidad de Investigación, Hospital Nacional IV Alberto Sabogal Sologuren, Essalud",
+      "Centro de Investigación de Enfermedades infecciosas y Tropicales",
+      "Unidad de Investigación en Hepatología y Enfermedades Digestivas",
+      "Centro de Investigación Clínica de Medicina Complementaria",
+      "Centro de investigación Hospital Nacional Ramiro Prialé Prialé"
+    ],
+    "brokenImages": [],
+    "active": [],
+    "errors": []
+  },
+  {
+    "route": "/unidades",
+    "width": 768,
+    "html": {
+      "width": 753,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 753,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 768,
+    "scrollWidth": 753,
+    "header": {
+      "width": 753,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 16px"
+    },
+    "nav": {
+      "width": 721,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 753,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "32px 16px"
+    },
+    "grid": [
+      {
+        "width": 721,
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "232.328px 232.328px 232.328px",
+        "padding": "0px"
+      }
+    ],
+    "input": {
+      "width": 637.5625,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 721,
+      "fontSize": "24px",
+      "lineHeight": "32px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [
+      {
+        "tag": "A",
+        "classes": "whitespace-nowrap rounded px-3 py-2 hover:bg-brand-pale hover:text-brand-dark",
+        "right": 814.34375,
+        "text": "Mas modulos"
+      }
+    ],
+    "clipped": [
+      "Unidad de Investigación, Hospital Nacional IV Alberto Sabogal Sologuren, Essalud",
+      "Centro de Investigación de Enfermedades infecciosas y Tropicales",
+      "Unidad de Investigación en Hepatología y Enfermedades Digestivas"
+    ],
+    "brokenImages": [],
+    "active": [],
+    "errors": []
+  },
+  {
+    "route": "/unidades",
+    "width": 1280,
+    "html": {
+      "width": 1265,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 1265,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 1280,
+    "scrollWidth": 1265,
+    "header": {
+      "width": 1265,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 32px"
+    },
+    "nav": {
+      "width": 1201,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 1265,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "32px"
+    },
+    "grid": [
+      {
+        "width": 1201,
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "300px 533px 320px",
+        "padding": "0px"
+      }
+    ],
+    "input": {
+      "width": 217.5,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 1201,
+      "fontSize": "24px",
+      "lineHeight": "32px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [],
+    "clipped": [
+      "Unidad de Investigación de Cuidados Intensivos",
+      "Unidad de Investigación, Hospital Nacional IV Alberto Sabogal Sologuren, Essalud",
+      "Centro de Investigación de Enfermedades infecciosas y Tropicales",
+      "Unidad de Investigación de Cardiología",
+      "Unidad de Investigación de Gastroenterología",
+      "Línea: Gastroenterología",
+      "Unidad de Investigación de Hematología",
+      "Unidad de Investigación de Oncología Médica"
+    ],
+    "brokenImages": [],
+    "active": [],
+    "errors": []
+  },
+  {
+    "route": "/unidades",
+    "width": 1440,
+    "html": {
+      "width": 1425,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "body": {
+      "width": 1425,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "viewport": 1440,
+    "scrollWidth": 1425,
+    "header": {
+      "width": 1280,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "12px 32px"
+    },
+    "nav": {
+      "width": 1216,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "container": {
+      "width": 1280,
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "32px"
+    },
+    "grid": [
+      {
+        "width": 1216,
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "columns": "300px 548px 320px",
+        "padding": "0px"
+      }
+    ],
+    "input": {
+      "width": 217.5,
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "title": {
+      "width": 1216,
+      "fontSize": "24px",
+      "lineHeight": "32px",
+      "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "columns": "none",
+      "padding": "0px"
+    },
+    "overflow": [],
+    "clipped": [
+      "Unidad de Investigación, Hospital Nacional IV Alberto Sabogal Sologuren, Essalud",
+      "Centro de Investigación de Enfermedades infecciosas y Tropicales",
+      "Línea: Gastroenterología",
+      "Centro de Investigación de Endocrinología y Cardiología",
+      "Unidad de investigación del servicio de oncología médica",
+      "Unidad de Investigación en Hepatología y Enfermedades Digestivas",
+      "Unidad de Investigación del Servicio de Cardiología",
+      "Centro de investigaciones de la Red Asistencial Arequipa"
+    ],
+    "brokenImages": [],
+    "active": [],
+    "errors": []
+  }
+]

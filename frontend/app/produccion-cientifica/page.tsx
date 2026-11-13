@@ -3,7 +3,20 @@ import Link from "next/link";
 import { Badge } from "@/components/Badge";
 import { SectionHeader } from "@/components/SectionHeader";
 import { createTextDataHref, publicationToCsvRow } from "@/lib/publicationExports";
-import { getPublications, getPublicationsAnalytics, getPublicationsSummary, publicationTypes, type AnalyticsItem, type ScientificPublication } from "@/lib/publications";
+import {
+  displayDoi,
+  displayThematic,
+  displayValue,
+  getPublicationFilters,
+  getPublications,
+  getPublicationsAnalytics,
+  getPublicationsSummary,
+  methodologyNote,
+  publicationTypes,
+  type AnalyticsItem,
+  type CoverageIndicator,
+  type ScientificPublication,
+} from "@/lib/publications";
 
 const typeLabels: Record<string, string> = {
   "Articulo original": "Artículo original",
@@ -20,10 +33,11 @@ const typeLabels: Record<string, string> = {
 
 export default async function ScientificProductionPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const params = await searchParams;
-  const [publications, summary, analytics] = await Promise.all([
+  const [publications, summary, analytics, filters] = await Promise.all([
     getPublications(params),
     getPublicationsSummary(),
     getPublicationsAnalytics(),
+    getPublicationFilters(),
   ]);
   const csv = [
     ["Titulo", "Autores", "Anio", "Revista", "DOI", "PMID", "Cuartil", "Citas"],
@@ -33,24 +47,31 @@ export default async function ScientificProductionPage({ searchParams }: { searc
   return (
     <div className="bg-brand-bg">
       <section className="border-b border-slate-200 bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-8 lg:px-8">
+        <div className="site-container py-8">
           <SectionHeader
+            as="h1"
             eyebrow="Directorio institucional"
             title="Producción científica"
             description="Directorio institucional de publicaciones, documentos técnicos y producción académica vinculada a EsSalud."
           />
-          <div className="grid gap-3 md:grid-cols-3 lg:grid-cols-6">
-            <Kpi label="Publicaciones indexadas" value={formatNumber(summary.publicaciones_indexadas)} />
+          <div className="kpi-grid">
+            <Kpi label="Total publicaciones" value={formatNumber(summary.total_publicaciones)} />
+            <Kpi label="Publicaciones incluidas" value={formatNumber(summary.publicaciones_incluidas)} />
+            <Kpi label="Con DOI" value={`${formatNumber(summary.con_doi)} (${summary.cobertura_doi.toFixed(2)}%)`} />
+            <Kpi label="Con cuartil" value={`${formatNumber(summary.con_cuartil)} (${summary.cobertura_cuartil.toFixed(2)}%)`} />
             <Kpi label="Citas totales" value={formatNumber(summary.citas_totales)} />
-            <Kpi label="Publicaciones Q1/Q2" value={summary.publicaciones_q1_q2.toString()} />
-            <Kpi label="Acceso abierto" value={summary.acceso_abierto.toString()} />
-            <Kpi label="Investigadores autores" value={summary.investigadores_autores.toString()} />
-            <Kpi label="Revistas registradas" value={summary.revistas_registradas.toString()} />
+            <Kpi label="Open access" value={formatNumber(summary.acceso_abierto)} />
+            <Kpi label="Q1-Q2" value={formatNumber(summary.publicaciones_q1_q2)} />
+            <Kpi label="Revistas registradas" value={formatNumber(summary.revistas_registradas)} />
+            <Kpi label="Con ISSN" value={formatNumber(summary.con_issn)} />
+            <Kpi label="Mediana de citas" value={summary.mediana_citas.toFixed(1)} />
+            <Kpi label="Con citas" value={`${formatNumber(summary.con_citas)} (${summary.cobertura_citas.toFixed(2)}%)`} />
+            <Kpi label="Ultima actualización" value={formatDate(summary.ultima_actualizacion)} />
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-7 lg:px-8">
+      <section className="site-container py-8">
         <div className="mb-5 flex gap-2 overflow-x-auto pb-1">
           <Link className="whitespace-nowrap rounded border border-brand/20 bg-white px-3 py-2 text-sm font-semibold text-brand-dark" href="/produccion-cientifica">
             Todos
@@ -62,30 +83,40 @@ export default async function ScientificProductionPage({ searchParams }: { searc
           ))}
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-[300px_1fr_320px]">
+        <div className="directory-layout">
           <aside className="space-y-4">
             <details className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm lg:open" open>
               <summary className="flex cursor-pointer items-center gap-2 text-sm font-bold text-slate-900">
                 <Filter size={16} className="text-brand" /> Buscador y filtros
               </summary>
-              <form className="mt-4 space-y-3">
+              <form className="directory-filters mt-4 space-y-4">
                 <div className="flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2">
                   <Search size={16} className="text-brand" />
-                  <input name="q" defaultValue={String(params.q ?? "")} className="w-full bg-transparent text-sm outline-none" placeholder="Buscar por título, autor, DOI, PMID, revista o palabra clave..." />
+                  <input aria-label="Buscar publicaciones" name="q" defaultValue={String(params.q ?? "")} className="min-w-0 w-full bg-transparent text-sm outline-none" placeholder="Buscar por título, autor, DOI, PMID, revista o palabra clave..." />
                 </div>
-                <FilterInput label="Año de publicación" name="year" />
-                <FilterInput label="Tipo de publicación" name="publication_type" />
+                <FilterSelect label="Año de publicación" name="year" options={filters.years} params={params} />
+                <FilterSelect label="Tipo de publicación" name="publication_type" options={filters.publication_types} params={params} />
                 <FilterInput label="Autor" name="author" />
                 <FilterInput label="Unidad / hospital" name="unit" />
                 <FilterInput label="Red asistencial" name="network" />
-                <FilterInput label="Área temática" name="thematic_area" />
-                <FilterInput label="Revista" name="journal" />
-                <FilterInput label="Cuartil" name="quartile" />
-                <FilterInput label="Tipo de estudio" name="study_type" />
-                <FilterInput label="Fuente de indexación" name="source" />
-                <FilterInput label="Financiamiento" name="funding" />
+                <FilterSelect label="Categoría temática" name="thematic_category" options={filters.thematic_categories} params={params} />
+                <FilterSelect label="Área temática" name="thematic_area" options={filters.thematic_areas} params={params} />
+                <FilterSelect label="Subtema" name="thematic_subtheme" options={filters.thematic_subthemes} params={params} />
+                <FilterSelect label="Revista" name="journal" options={filters.journals.slice(0, 200)} params={params} />
+                <FilterSelect label="Cuartil" name="quartile" options={filters.quartiles} params={params} />
+                <FilterSelect label="Tipo de estudio" name="study_type" options={filters.study_types} params={params} />
+                <FilterSelect label="Fuente de indexación" name="source" options={filters.sources} params={params} />
+                <FilterSelect label="Financiamiento" name="funding" options={filters.funding_sources} params={params} />
+                <FilterSelect label="Ordenar por" name="sort" options={["-year", "year", "-citation_count", "citation_count", "quartile", "title"]} params={params} labels={{
+                  "-year": "Año descendente",
+                  year: "Año ascendente",
+                  "-citation_count": "Citas descendente",
+                  citation_count: "Citas ascendente",
+                  quartile: "Cuartil",
+                  title: "Título",
+                }} />
                 <label className="flex items-center gap-2 text-sm text-slate-600">
-                  <input name="open_access" value="true" type="checkbox" className="h-4 w-4 rounded border-slate-300 text-brand" />
+                  <input name="open_access" value="true" type="checkbox" defaultChecked={String(params.open_access ?? "") === "true"} className="h-4 w-4 rounded border-slate-300 text-brand" />
                   Solo acceso abierto
                 </label>
                 <div className="grid gap-2">
@@ -100,23 +131,25 @@ export default async function ScientificProductionPage({ searchParams }: { searc
           </aside>
 
           <div className="space-y-4">
-            <div className="flex items-center justify-between gap-3">
+            <div className="flex flex-wrap items-center justify-between gap-3">
               <p className="text-sm font-semibold text-slate-600">{publications.total} resultados encontrados</p>
               <p className="text-sm text-slate-500">Página {publications.page} de {publications.pages}</p>
             </div>
             {publications.items.map((publication) => (
-              <PublicationResultCard key={publication.id} publication={publication} />
+              <PublicationResultCard key={publication.publication_id ?? publication.id} publication={publication} />
             ))}
             <Pagination page={publications.page} pages={publications.pages} params={params} />
           </div>
 
           <aside className="space-y-4">
             <AnalysisPanel title="Evolución anual" data={analytics.annual_evolution} />
-            <AnalysisPanel title="Áreas temáticas" data={analytics.by_thematic_area.slice(0, 5)} />
-            <AnalysisPanel title="Top revistas" data={analytics.top_journals.slice(0, 5)} />
+            <AnalysisPanel title="Áreas temáticas" data={analytics.by_thematic_area.slice(0, 6)} />
+            <AnalysisPanel title="Tipos de estudio" data={analytics.by_study_type.slice(0, 6)} />
+            <AnalysisPanel title="Top revistas" data={analytics.top_journals.slice(0, 6)} />
             <AnalysisPanel title="Acceso abierto" data={analytics.open_access} />
-            <AnalysisPanel title="Publicaciones por unidad" data={analytics.by_unit.slice(0, 5)} />
             <AnalysisPanel title="Cuartiles" data={analytics.quartiles} />
+            <CoveragePanel data={analytics.coverage} />
+            <MethodologyPanel />
           </aside>
         </div>
       </section>
@@ -126,6 +159,11 @@ export default async function ScientificProductionPage({ searchParams }: { searc
 
 function formatNumber(value: number) {
   return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function formatDate(value: string) {
+  if (value === "No disponible") return value;
+  return value.slice(0, 10);
 }
 
 function Kpi({ label, value }: { label: string; value: string }) {
@@ -146,34 +184,68 @@ function FilterInput({ label, name }: { label: string; name: string }) {
   );
 }
 
+function FilterSelect({
+  label,
+  name,
+  options,
+  params,
+  labels,
+}: {
+  label: string;
+  name: string;
+  options: string[];
+  params: Record<string, string | string[] | undefined>;
+  labels?: Record<string, string>;
+}) {
+  const selected = String(params[name] ?? "");
+  return (
+    <label className="block">
+      <span className="text-xs font-bold uppercase tracking-wide text-slate-500">{label}</span>
+      <select name={name} defaultValue={selected} className="mt-1 w-full rounded border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:border-brand">
+        <option value="">Todos</option>
+        {options.map((option) => (
+          <option key={option} value={option}>{labels?.[option] ?? option}</option>
+        ))}
+      </select>
+    </label>
+  );
+}
+
 function PublicationResultCard({ publication }: { publication: ScientificPublication }) {
+  const doiHref = publication.doi ? `https://doi.org/${publication.doi}` : null;
   return (
     <article className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
       <div className="flex flex-wrap gap-2">
-        <Badge>{publication.quartile ?? "N/D"}</Badge>
+        <Badge>{publication.quartile ?? "Sin cuartil"}</Badge>
         <Badge tone={publication.open_access ? "green" : "gray"}>{publication.open_access ? "Acceso abierto" : "Restringido"}</Badge>
-        <Badge tone="sky">{publication.source ?? "OpenAlex"}</Badge>
+        <Badge tone="sky">{displayValue(publication.source)}</Badge>
         {publication.doi ? <Badge tone="gray">DOI</Badge> : null}
         {publication.pmid ? <Badge tone="gray">PMID</Badge> : null}
-        <Badge tone="sky">Scopus</Badge>
-        <Badge tone="sky">PubMed</Badge>
-        <Badge tone="sky">Crossref</Badge>
       </div>
-      <h2 className="mt-3 text-lg font-bold leading-snug text-slate-950">{publication.title}</h2>
-      <p className="mt-2 text-sm text-slate-600">{publication.authors.map((author) => author.name).slice(0, 3).join(", ")}</p>
-      <p className="mt-1 text-sm font-medium text-brand-dark">{publication.research_units[0]?.name ?? "EsSalud"} · {publication.journal?.name ?? "Fuente institucional"}</p>
+      <h2 className="mt-3 text-lg font-bold leading-snug text-slate-950">
+        {doiHref ? <a className="hover:text-brand" href={doiHref}>{publication.title}</a> : publication.title}
+      </h2>
+      <p className="mt-2 text-sm text-slate-600">{publication.institutional_authors?.map((author) => author.name).slice(0, 3).join(", ") || publication.authors.map((author) => author.name).slice(0, 3).join(", ") || "Autores no disponibles"}</p>
+      <p className="mt-1 text-sm font-medium text-brand-dark">{publication.journal?.name ?? "Fuente institucional"} · {publication.journal?.issn ?? "ISSN no disponible"}</p>
       <div className="mt-3 grid gap-2 text-sm text-slate-600 md:grid-cols-2">
-        <p><strong>Tipo:</strong> {typeLabels[publication.publication_type] ?? publication.publication_type} · {publication.year}</p>
-        <p><strong>Área:</strong> {publication.thematic_area}</p>
-        <p><strong>DOI:</strong> {publication.doi ?? "No registrado"}</p>
-        <p><strong>PMID:</strong> {publication.pmid ?? "No registrado"}</p>
+        <p><strong>Año:</strong> {publication.year || "No disponible"}</p>
+        <p><strong>Tipo:</strong> {publication.publication_type_label ?? typeLabels[publication.publication_type] ?? publication.publication_type}</p>
+        <p><strong>Tipo de estudio:</strong> {displayValue(publication.study_type)}</p>
+        <p><strong>Área:</strong> {displayThematic(publication.thematic_area)}</p>
+        <p><strong>DOI:</strong> {displayDoi(publication.doi)}</p>
+        <p><strong>PMID:</strong> {displayValue(publication.pmid, "Sin PMID")}</p>
         <p><strong>Citas:</strong> {publication.citation_count}</p>
-        <p><strong>Altmetric:</strong> {publication.altmetric_score}</p>
+        <p><strong>Altmetric:</strong> {publication.altmetric_score || "No disponible"}</p>
       </div>
+      {publication.study_type_review_status || publication.study_type_confidence ? (
+        <p className="mt-3 rounded bg-brand-pale px-3 py-2 text-xs font-medium text-brand-dark">
+          Clasificación temática preliminar: {displayValue(publication.study_type_review_status)} · confianza {publication.study_type_confidence ?? "No disponible"}
+        </p>
+      ) : null}
       <div className="mt-3 flex flex-wrap gap-2">
         {publication.keywords.map((keyword) => <Badge key={keyword.id} tone="gray">{keyword.term}</Badge>)}
       </div>
-      <Link className="mt-4 inline-flex rounded bg-brand px-4 py-2 text-sm font-semibold text-white hover:bg-brand-dark" href={`/produccion-cientifica/${publication.id}`}>
+      <Link className="action-control mt-4 rounded bg-brand px-4 py-2 text-sm font-semibold text-white hover:bg-brand-dark" href={`/produccion-cientifica/${publication.id}`}>
         Ver detalle
       </Link>
     </article>
@@ -186,8 +258,8 @@ function AnalysisPanel({ title, data }: { title: string; data: AnalyticsItem[] }
     <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
       <h3 className="text-sm font-bold text-slate-900">{title}</h3>
       <div className="mt-3 space-y-3">
-        {data.map((item) => (
-          <div key={item.label}>
+        {data.map((item, index) => (
+          <div key={`${item.label}-${index}`}>
             <div className="mb-1 flex justify-between gap-3 text-xs text-slate-600">
               <span className="truncate">{item.label}</span>
               <strong>{item.value}</strong>
@@ -198,6 +270,37 @@ function AnalysisPanel({ title, data }: { title: string; data: AnalyticsItem[] }
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+function CoveragePanel({ data }: { data: CoverageIndicator[] }) {
+  return (
+    <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+      <h3 className="text-sm font-bold text-slate-900">Calidad de datos</h3>
+      <div className="mt-3 space-y-3">
+        {data.slice(0, 12).map((item) => (
+          <div key={item.field}>
+            <div className="mb-1 flex justify-between gap-3 text-xs text-slate-600">
+              <span className="truncate">{item.label}</span>
+              <strong>{item.coverage_percent.toFixed(2)}%</strong>
+            </div>
+            <div className="h-2 rounded bg-slate-100">
+              <div className="h-2 rounded bg-brand" style={{ width: `${Math.max(4, item.coverage_percent)}%` }} />
+            </div>
+            <p className="mt-1 text-[11px] text-slate-500">{formatNumber(item.present)} presentes · {formatNumber(item.missing)} faltantes</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function MethodologyPanel() {
+  return (
+    <div className="rounded-lg border border-brand/20 bg-brand-pale p-4 text-sm text-brand-dark shadow-sm">
+      <h3 className="font-bold">Metodología</h3>
+      <p className="mt-2 leading-6">{methodologyNote}</p>
     </div>
   );
 }
@@ -213,10 +316,10 @@ function Pagination({ page, pages, params }: { page: number; pages: number; para
     return `/produccion-cientifica?${query.toString()}`;
   };
   return (
-    <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-white p-3">
-      <Link className={`rounded px-3 py-2 text-sm font-semibold ${page <= 1 ? "pointer-events-none text-slate-300" : "text-brand"}`} href={createHref(Math.max(1, page - 1))}>Anterior</Link>
+    <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white p-3">
+      <Link className={`action-control rounded px-3 py-2 text-sm font-semibold ${page <= 1 ? "pointer-events-none text-slate-300" : "text-brand"}`} href={createHref(Math.max(1, page - 1))}>Anterior</Link>
       <span className="text-sm text-slate-500">{page} / {pages}</span>
-      <Link className={`rounded px-3 py-2 text-sm font-semibold ${page >= pages ? "pointer-events-none text-slate-300" : "text-brand"}`} href={createHref(Math.min(pages, page + 1))}>Siguiente</Link>
+      <Link className={`action-control rounded px-3 py-2 text-sm font-semibold ${page >= pages ? "pointer-events-none text-slate-300" : "text-brand"}`} href={createHref(Math.min(pages, page + 1))}>Siguiente</Link>
     </div>
   );
 }
