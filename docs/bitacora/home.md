@@ -2,6 +2,12 @@
 
 ## Estado actual
 
+### Revisión QA 2026-11-14
+
+Se corrige el formulario sin destino ni nombre de campo: transmite q por GET al ámbito elegido entre los cuatro directorios, con etiqueta y validación de vacío/espacios. No se promete búsqueda global simultánea. Se conservan datos reales y estructura de portada. Cada fuente puede fallar de forma independiente sin convertirse en cero ni inutilizar los otros accesos; aviso y reintento por teclado verificados con cuatro fallos de lectura aislados. Errores ajenos a datos se propagan, no se oculta Webpack.
+
+Destinos `#` no configurados se presentan como Próximamente/referencias pendientes sin fingir enlaces. Se corrige la sintaxis del overlay 0.78 (antes no generaba CSS), el salto bajo sticky y el acceso simulado informativo. Contraste mínimo 6,85:1 en muestras de texto del Hero, sin afirmar conformidad integral. Fotografías de fondo decorativas con alt vacío. Fuentes y métricas no cambiadas. Evidencia, capturas y pendientes editoriales: `docs/REVISION_FINAL_QA.md`.
+
 ### Intervencion 2026-11-13 - Base visual compartida
 
 Inicio comparte contenedor de 1440 px, fuente base de 16 px y encabezado con navegacion activa/movil. Se conservan imagen, datos, orden, rutas y busqueda existente. Informe transversal: `docs/BASE_VISUAL_ETAPA_1.md`; medidas y capturas comparables antes/despues en docs. No se incorporan dashboards ni se redisenan secciones.

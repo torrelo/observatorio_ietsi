@@ -1,118 +1,64 @@
-import Link from "next/link";
-import { Badge } from "@/components/Badge";
-import { ProjectFilters } from "@/components/ProjectFilters";
+import { redirect } from "next/navigation";
 import { ProjectResultCard } from "@/components/ProjectResultCard";
-import { ProjectStats } from "@/components/ProjectStats";
 import { SectionHeader } from "@/components/SectionHeader";
-import { getProjectAnalytics, getProjectDataDiagnostics, getProjectFilterOptions, getProjects, getProjectStats, projectIntegrationReadiness, projectTypes } from "@/lib/projects";
+import { ProjectStats } from "@/components/ProjectStats";
+import { ProjectFilters } from "@/components/ProjectFilters";
+import { DirectoryWorkspace } from "@/components/directories/DirectoryWorkspace";
+import { CountDistribution, DirectoryEmpty, DirectoryPagination, DirectoryStatistics, DirectoryToolbar } from "@/components/directories/DirectoryResults";
+import { projectDirectoryConfig } from "@/lib/directoryConfigs";
+import { directoryHref, normalizeDirectoryQuery, paginateDirectory, sortDirectory, type SearchParams } from "@/lib/directoryQuery";
+import { getProjectAnalytics, getProjectDataDiagnostics, getProjectFilterOptions, getProjects, getProjectStats, projectIntegrationReadiness } from "@/lib/projects";
 
-export default async function ProjectsPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
-  const params = await searchParams;
-  const projects = getProjects(params);
+export const dynamic = "force-dynamic";
+export const metadata = { title: "Proyectos" };
+const number = (n:number) => n.toLocaleString("es-PE");
+export default async function ProjectsPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
+  const config = projectDirectoryConfig(getProjectFilterOptions());
+  const query = normalizeDirectoryQuery(config,await searchParams);
+  const projects = getProjects(query);
   const summary = getProjectStats(projects);
   const analytics = getProjectAnalytics(projects);
-  const options = getProjectFilterOptions();
   const diagnostics = getProjectDataDiagnostics();
-
-  return (
-    <div className="bg-brand-bg">
-      <section className="border-b border-slate-200 bg-white">
-        <div className="site-container py-8">
-          <SectionHeader
-            as="h1"
-            eyebrow="Directorio institucional"
-            title="Directorio de Proyectos"
-            description="Plataforma institucional para el seguimiento de proyectos de investigación, innovación y desarrollo científico en EsSalud."
-          />
-          <ProjectStats summary={summary} />
-        </div>
-      </section>
-
-      <section className="site-container py-8">
-        <div className="mb-5 flex gap-2 overflow-x-auto pb-1">
-          {projectTypes.map((type) => (
-            <Link key={type} className="whitespace-nowrap rounded border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 hover:border-brand/30 hover:text-brand" href={type === "Todos" ? "/proyectos" : `/proyectos?type=${encodeURIComponent(type)}`}>
-              {type}
-            </Link>
-          ))}
-        </div>
-
-        <div className="directory-layout">
-          <aside className="space-y-4">
-            <ProjectFilters options={options} params={params} />
-
-            <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-              <h2 className="text-sm font-bold text-slate-900">Integraciones futuras</h2>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {Object.keys(projectIntegrationReadiness).map((key) => <Badge key={key} tone="sky">{key}</Badge>)}
-              </div>
-              <div className="mt-4 space-y-2 text-xs text-slate-600">
-                <p>Fuente: {diagnostics.sourceFile}</p>
-                <p>Proyectos cargados: {diagnostics.projects}</p>
-                <p>Vínculos proyecto-investigador: {diagnostics.projectResearcherLinks}</p>
-              </div>
-            </div>
-          </aside>
-
-          <div className="space-y-4">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <p className="text-sm font-semibold text-slate-600">{projects.length} proyectos encontrados</p>
-              <p className="text-sm text-slate-500">Seguimiento institucional CRIS</p>
-            </div>
-            <div className="grid gap-4">
-              {projects.map((project) => <ProjectResultCard key={project.project_id} project={project} />)}
-            </div>
-          </div>
-
-          <aside className="space-y-4">
-            <AnalysisPanel title="Proyectos por estado" data={analytics.byStatus.slice(0, 6)} />
-            <AnalysisPanel title="Proyectos por tipo" data={analytics.byType.slice(0, 6)} />
-            <AnalysisPanel title="Investigadores principales" data={analytics.byPrincipal.slice(0, 6)} />
-            {analytics.byThematicArea.length ? <AnalysisPanel title="Áreas temáticas" data={analytics.byThematicArea.slice(0, 6)} /> : null}
-            {analytics.byNetwork.length ? <AnalysisPanel title="Red asistencial" data={analytics.byNetwork.slice(0, 6)} /> : null}
-            <AnalysisPanel title="Presupuesto por año" data={analytics.budgetByYear.map((item) => ({ label: item.label, value: Math.round(item.value / 1000) }))} suffix="k" />
-            <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-              <h3 className="text-sm font-bold text-slate-900">Indicadores rápidos</h3>
-              <div className="mt-3 grid gap-3 text-sm">
-                <MetricLine label="Duración planificada promedio" value={analytics.averagePlannedDurationMonths ? `${analytics.averagePlannedDurationMonths} meses` : "No disponible"} />
-                <MetricLine label="Matched con investigadores" value={(diagnostics.matchSummary.Matched ?? 0).toString()} />
-                <MetricLine label="Pendientes de vinculación" value={(diagnostics.matchSummary["No encontrados"] ?? 0).toString()} />
-              </div>
-            </div>
-          </aside>
-        </div>
-      </section>
-    </div>
-  );
-}
-
-function AnalysisPanel({ title, data, suffix = "" }: { title: string; data: { label: string; value: number }[]; suffix?: string }) {
-  const max = Math.max(...data.map((item) => item.value), 1);
-  return (
-    <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-      <h3 className="text-sm font-bold text-slate-900">{title}</h3>
-      <div className="mt-3 space-y-3">
-        {data.map((item, index) => (
-          <div key={`${item.label}-${index}`}>
-            <div className="mb-1 flex justify-between gap-3 text-xs text-slate-600">
-              <span className="truncate">{item.label}</span>
-              <strong>{item.value}{suffix}</strong>
-            </div>
-            <div className="h-2 rounded bg-slate-100">
-              <div className="h-2 rounded bg-brand-sky" style={{ width: `${Math.max(8, (item.value / max) * 100)}%` }} />
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function MetricLine({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex items-center justify-between rounded border border-slate-100 bg-slate-50 px-3 py-2">
-      <span className="text-slate-600">{label}</span>
-      <strong className="text-brand-dark">{value}</strong>
-    </div>
-  );
+  const sorted = sortDirectory(projects,p => query.sort === "title" ? p.project_title : query.sort === "status" ? p.project_status : query.sort === "-start_date" ? p.start_date : p.source_record_order,query.sort.startsWith("-"));
+  const results = paginateDirectory(sorted,query);
+  if(String(results.page)!==query.page) redirect(directoryHref(config,query,{page:String(results.page)}));
+  const returnTo = directoryHref(config,query,{page:query.page},false);
+  const budgets = new Map<string,number>();
+  for (const project of projects) if(project.budget_planned !== null && project.budget_planned !== undefined) {
+    const label = `${project.start_date?.slice(0,4) ?? "Sin año"} · ${project.currency ?? "Moneda no registrada"}`;
+    budgets.set(label,(budgets.get(label) ?? 0)+project.budget_planned);
+  }
+  return <div className="bg-brand-bg">
+    <section className="border-b border-slate-200 bg-white"><div className="site-container py-8">
+      <SectionHeader as="h1" eyebrow="Directorio institucional" title="Directorio de Proyectos" description="Plataforma institucional para el seguimiento de proyectos de investigación, innovación y desarrollo científico en EsSalud." />
+      {diagnostics.generatedAt ? <p className="mb-4 text-sm text-slate-600">Base procesada: <time dateTime={diagnostics.generatedAt}>{diagnostics.generatedAt.slice(0,10)}</time></p> : null}
+      <ProjectStats summary={summary} />
+    </div></section>
+    <section className="site-container py-8">
+      <DirectoryWorkspace key={returnTo} config={config} query={query} filterContent={<ProjectFilters options={getProjectFilterOptions()} params={query} />} toolbar={<DirectoryToolbar config={config} query={query} {...results} />}>
+        {results.total ? <div className="grid gap-4">{results.items.map(project => <ProjectResultCard key={project.project_id} project={project} href={`/proyectos/${encodeURIComponent(project.project_id)}?returnTo=${encodeURIComponent(returnTo)}`} />)}</div> : <DirectoryEmpty config={config} query={query} />}
+        <DirectoryPagination config={config} query={query} {...results} />
+      </DirectoryWorkspace>
+      <DirectoryStatistics scope="Distribuciones e indicadores calculados sobre todas las coincidencias de la consulta, antes de paginar. El resumen de vinculación y las fuentes técnicas corresponden a la base completa.">
+        <CountDistribution title="Proyectos por estado" items={analytics.byStatus} unit="Proyectos" denominator={projects.length} />
+        <CountDistribution title="Proyectos por tipo" items={analytics.byType} unit="Proyectos" denominator={projects.length} />
+        <CountDistribution title="Proyectos por investigador principal" items={analytics.byPrincipal} unit="Proyectos con investigador principal registrado" denominator={summary.withPrincipal} />
+        <CountDistribution title="Proyectos por área temática" items={analytics.byThematicArea} unit="Proyectos con área registrada" denominator={projects.filter(p=>p.thematic_area).length} />
+        <CountDistribution title="Proyectos por red" items={analytics.byNetwork} unit="Proyectos con red registrada" denominator={projects.filter(p=>p.executing_network).length} />
+        <section><h3 className="mb-3 font-bold text-slate-900">Indicadores adicionales de los resultados</h3><dl className="space-y-3 text-sm text-slate-600">{[
+          ["Proyectos observacionales",number(summary.observational)],
+          ["Participaciones en equipos (no personas únicas)",number(summary.totalTeamMembers)],
+          ["Preparación según regla existente «lista»",number(summary.ready)],
+          ["Proyectos con campos críticos pendientes",number(summary.pendingCriticalFields)],
+          ["Duración planificada promedio",!projects.some(p=>p.planned_duration_months !== null && p.planned_duration_months !== undefined) ? "No disponible" : `${analytics.averagePlannedDurationMonths} meses`],
+        ].map(([label,value])=><div key={label}><dt>{label}</dt><dd className="font-bold">{value}</dd></div>)}</dl></section>
+        <section><h3 className="mb-3 font-bold text-slate-900">Presupuesto previsto por año y moneda</h3><p className="mb-3 text-sm text-slate-600">No equivale a financiamiento captado. Se omiten importes ausentes y no se suman monedas diferentes.</p><dl className="space-y-2 text-sm">{[...budgets].map(([label,value])=><div key={label}><dt>{label}</dt><dd>{number(value)}</dd></div>)}{!budgets.size ? <p>No hay importes registrados para esta consulta.</p> : null}</dl></section>
+        <section><h3 className="mb-3 font-bold text-slate-900">Información técnica de la base completa</h3><dl className="space-y-2 text-sm text-slate-600">{[
+          ["Fuente",diagnostics.sourceFile ?? "No disponible"],["Proyectos cargados",number(diagnostics.projects)],["Vínculos proyecto-investigador",number(diagnostics.projectResearcherLinks)],
+          ["Vinculados al directorio",diagnostics.matchSummary.Matched === undefined ? "No disponible" : number(diagnostics.matchSummary.Matched)],
+          ["Pendientes de vinculación",diagnostics.matchSummary["No encontrados"] === undefined ? "No disponible" : number(diagnostics.matchSummary["No encontrados"])],
+        ].map(([label,value])=><div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl><p className="mt-3 text-sm text-slate-600">Integraciones previstas: {Object.keys(projectIntegrationReadiness).join(", ")}. La consulta secundaria no sustituye una vista de gestión con control de acceso.</p></section>
+      </DirectoryStatistics>
+    </section>
+  </div>;
 }

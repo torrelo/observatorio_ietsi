@@ -1,0 +1,27 @@
+{
+  "phase": "before-clean",
+  "base": "http://127.0.0.1:3000",
+  "cacheDisabled": true,
+  "cases": [
+    {
+      "route": "/produccion-cientifica",
+      "trigger": "direct",
+      "ready": false,
+      "visible": {
+        "route": "/produccion-cientifica",
+        "title": "Producción científica",
+        "body": "Saltar al contenido principal\n\nObservatorio Nacional de Investigación de EsSalud\n\nLogin institucional\nInicio\nProducción científica\nInvestigadores\nProyectos\nUnidades de investigación\nMás módulos\nProducción científica\n\nPublicaciones, documentos técnicos y producción académica vinculada a EsSalud.\n\nActualización de la base: 04/09/2026\n\nIndicadores del catálogo completo · no cambian al filtrar\n\nPublicaciones registradas\n2,701\nAcceso abierto\n1,709\nPublicaciones Q1–Q2\n917\nCitas registradas\n31,556\nBuscar publicaciones\nBuscar\n\nBusca también en resúmenes disponibles, ISSN y clasificación temática del catálogo institucional.\n\nResultados\n\nMostrando 1–10 de 2,701 publicaciones\n\nOrdenar por\nMás recientes\nMás antiguas\nMás citas\nMenos citas\nCuartil\nTítulo (A–Z)\nExportar página (CSV)\nFiltrar publicaciones\nAño\nTodos\n2026\n2025\n2024\n2023\n2022\n2021\n2020\n2019\n2018\n2017\n2016\n2015\n2014\n2013\n2012\n2011\n2010\n2009\n2008\n2007\n2006\n2005\n2004\n2003\n2002\n2001\n2000\n1999\n1997\n1996\n1995\n1994\n1993\n1992\n1991\n1990\n1989\n1984"
+      },
+      "errors": [],
+      "failedChunks": [],
+      "failedRequests": [],
+      "documentResponses": [
+        {
+          "url": "http://127.0.0.1:3000/produccion-cientifica",
+          "status": 200,
+          "type": "Document"
+        }
+      ]
+    }
+  ]
+}

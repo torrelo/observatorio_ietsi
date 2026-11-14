@@ -1,325 +1,88 @@
-import { Download, Filter, Search } from "lucide-react";
+import { Download, X } from "lucide-react";
 import Link from "next/link";
-import { Badge } from "@/components/Badge";
+import { redirect } from "next/navigation";
+import { PublicationWorkspace, PublicationSort } from "@/components/publications/PublicationWorkspace";
+import { PublicationResult } from "@/components/publications/PublicationResult";
+import { PublicationIndicators, PublicationStatistics, publicationNumber, publicationDate } from "@/components/publications/PublicationStatistics";
+import styles from "@/components/publications/PublicationDirectory.module.css";
 import { SectionHeader } from "@/components/SectionHeader";
 import { createTextDataHref, publicationToCsvRow } from "@/lib/publicationExports";
-import {
-  displayDoi,
-  displayThematic,
-  displayValue,
-  getPublicationFilters,
-  getPublications,
-  getPublicationsAnalytics,
-  getPublicationsSummary,
-  methodologyNote,
-  publicationTypes,
-  type AnalyticsItem,
-  type CoverageIndicator,
-  type ScientificPublication,
-} from "@/lib/publications";
+import { getPublicationFilters, getPublications, getPublicationsAnalytics, getPublicationsSummary, getPublicationSourceAvailability, publicationTypes } from "@/lib/publications";
+import { normalizePublicationQuery, publicationFilterLabels, publicationHref, publicationPath, withoutPublicationFilters, type PublicationQuery } from "@/lib/publicationQuery";
 
-const typeLabels: Record<string, string> = {
-  "Articulo original": "Artículo original",
-  Revision: "Revisión",
-  Editorial: "Editorial",
-  "Carta al editor": "Carta al editor",
-  "Capitulo de libro": "Capítulo de libro",
-  Libro: "Libro",
-  Tesis: "Tesis",
-  Preprint: "Preprint",
-  "Guia clinica": "Guía clínica",
-  "Documento tecnico": "Documento técnico",
-};
+export const dynamic = "force-dynamic";
+export const metadata = { title: "Producción científica" };
 
 export default async function ScientificProductionPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
-  const params = await searchParams;
+  const query = normalizePublicationQuery(await searchParams);
   const [publications, summary, analytics, filters] = await Promise.all([
-    getPublications(params),
-    getPublicationsSummary(),
-    getPublicationsAnalytics(),
-    getPublicationFilters(),
+    getPublications(query), getPublicationsSummary(), getPublicationsAnalytics(), getPublicationFilters(),
   ]);
-  const csv = [
-    ["Titulo", "Autores", "Anio", "Revista", "DOI", "PMID", "Cuartil", "Citas"],
-    ...publications.items.map(publicationToCsvRow),
-  ].map((row) => row.map((value) => `"${String(value).replaceAll('"', '""')}"`).join(",")).join("\n");
+  if (Number(query.page) !== publications.page) redirect(publicationHref(query, { page: String(publications.page) }, true));
+  const availability = await getPublicationSourceAvailability(publications.items.map(item => item.id));
+  const csv = [["Titulo", "Autores", "Anio", "Revista", "DOI", "PMID", "Cuartil", "Citas"], ...publications.items.map(publication => {
+    const row = publicationToCsvRow(publication);
+    row[7] = availability[publication.id]?.citations ?? "";
+    return row;
+  })]
+    .map(row => row.map(value => `"${String(value).replaceAll('"', '""')}"`).join(",")).join("\n");
+  const applied = Object.keys(publicationFilterLabels).filter(key => query[key]);
+  const start = publications.total ? (publications.page - 1) * publications.page_size + 1 : 0;
+  const end = start ? start + publications.items.length - 1 : 0;
+  const returnTo = publicationHref(query, { page: query.page });
+  const updated = /^\d{4}-\d{2}-\d{2}/.test(summary.ultima_actualizacion) ? summary.ultima_actualizacion.slice(0, 10) : null;
 
   return (
     <div className="bg-brand-bg">
       <section className="border-b border-slate-200 bg-white">
         <div className="site-container py-8">
-          <SectionHeader
-            as="h1"
-            eyebrow="Directorio institucional"
-            title="Producción científica"
-            description="Directorio institucional de publicaciones, documentos técnicos y producción académica vinculada a EsSalud."
-          />
-          <div className="kpi-grid">
-            <Kpi label="Total publicaciones" value={formatNumber(summary.total_publicaciones)} />
-            <Kpi label="Publicaciones incluidas" value={formatNumber(summary.publicaciones_incluidas)} />
-            <Kpi label="Con DOI" value={`${formatNumber(summary.con_doi)} (${summary.cobertura_doi.toFixed(2)}%)`} />
-            <Kpi label="Con cuartil" value={`${formatNumber(summary.con_cuartil)} (${summary.cobertura_cuartil.toFixed(2)}%)`} />
-            <Kpi label="Citas totales" value={formatNumber(summary.citas_totales)} />
-            <Kpi label="Open access" value={formatNumber(summary.acceso_abierto)} />
-            <Kpi label="Q1-Q2" value={formatNumber(summary.publicaciones_q1_q2)} />
-            <Kpi label="Revistas registradas" value={formatNumber(summary.revistas_registradas)} />
-            <Kpi label="Con ISSN" value={formatNumber(summary.con_issn)} />
-            <Kpi label="Mediana de citas" value={summary.mediana_citas.toFixed(1)} />
-            <Kpi label="Con citas" value={`${formatNumber(summary.con_citas)} (${summary.cobertura_citas.toFixed(2)}%)`} />
-            <Kpi label="Ultima actualización" value={formatDate(summary.ultima_actualizacion)} />
-          </div>
+          <SectionHeader as="h1" eyebrow="Directorio institucional" title="Producción científica" description="Publicaciones, documentos técnicos y producción académica vinculada a EsSalud." />
+          <p className="mb-5 text-sm text-slate-500">Actualización de la base: {updated ? <time dateTime={updated}>{publicationDate(updated)}</time> : "No disponible"}</p>
+          <PublicationIndicators summary={summary} />
         </div>
       </section>
-
-      <section className="site-container py-8">
-        <div className="mb-5 flex gap-2 overflow-x-auto pb-1">
-          <Link className="whitespace-nowrap rounded border border-brand/20 bg-white px-3 py-2 text-sm font-semibold text-brand-dark" href="/produccion-cientifica">
-            Todos
-          </Link>
-          {publicationTypes.map((type) => (
-            <Link key={type} className="whitespace-nowrap rounded border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 hover:border-brand/30 hover:text-brand" href={`/produccion-cientifica?publication_type=${encodeURIComponent(type)}`}>
-              {typeLabels[type] ?? type}
-            </Link>
-          ))}
-        </div>
-
-        <div className="directory-layout">
-          <aside className="space-y-4">
-            <details className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm lg:open" open>
-              <summary className="flex cursor-pointer items-center gap-2 text-sm font-bold text-slate-900">
-                <Filter size={16} className="text-brand" /> Buscador y filtros
-              </summary>
-              <form className="directory-filters mt-4 space-y-4">
-                <div className="flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2">
-                  <Search size={16} className="text-brand" />
-                  <input aria-label="Buscar publicaciones" name="q" defaultValue={String(params.q ?? "")} className="min-w-0 w-full bg-transparent text-sm outline-none" placeholder="Buscar por título, autor, DOI, PMID, revista o palabra clave..." />
-                </div>
-                <FilterSelect label="Año de publicación" name="year" options={filters.years} params={params} />
-                <FilterSelect label="Tipo de publicación" name="publication_type" options={filters.publication_types} params={params} />
-                <FilterInput label="Autor" name="author" />
-                <FilterInput label="Unidad / hospital" name="unit" />
-                <FilterInput label="Red asistencial" name="network" />
-                <FilterSelect label="Categoría temática" name="thematic_category" options={filters.thematic_categories} params={params} />
-                <FilterSelect label="Área temática" name="thematic_area" options={filters.thematic_areas} params={params} />
-                <FilterSelect label="Subtema" name="thematic_subtheme" options={filters.thematic_subthemes} params={params} />
-                <FilterSelect label="Revista" name="journal" options={filters.journals.slice(0, 200)} params={params} />
-                <FilterSelect label="Cuartil" name="quartile" options={filters.quartiles} params={params} />
-                <FilterSelect label="Tipo de estudio" name="study_type" options={filters.study_types} params={params} />
-                <FilterSelect label="Fuente de indexación" name="source" options={filters.sources} params={params} />
-                <FilterSelect label="Financiamiento" name="funding" options={filters.funding_sources} params={params} />
-                <FilterSelect label="Ordenar por" name="sort" options={["-year", "year", "-citation_count", "citation_count", "quartile", "title"]} params={params} labels={{
-                  "-year": "Año descendente",
-                  year: "Año ascendente",
-                  "-citation_count": "Citas descendente",
-                  citation_count: "Citas ascendente",
-                  quartile: "Cuartil",
-                  title: "Título",
-                }} />
-                <label className="flex items-center gap-2 text-sm text-slate-600">
-                  <input name="open_access" value="true" type="checkbox" defaultChecked={String(params.open_access ?? "") === "true"} className="h-4 w-4 rounded border-slate-300 text-brand" />
-                  Solo acceso abierto
-                </label>
-                <div className="grid gap-2">
-                  <button className="rounded bg-brand px-3 py-2 text-sm font-semibold text-white" type="submit">Aplicar filtros</button>
-                  <Link className="rounded border border-slate-200 bg-white px-3 py-2 text-center text-sm font-semibold text-slate-700" href="/produccion-cientifica">Limpiar filtros</Link>
-                  <a className="inline-flex items-center justify-center gap-2 rounded border border-brand/20 bg-brand-pale px-3 py-2 text-sm font-semibold text-brand-dark" href={createTextDataHref(csv, "text/csv")} download="produccion-cientifica.csv">
-                    <Download size={16} /> Exportar resultados
-                  </a>
-                </div>
-              </form>
-            </details>
-          </aside>
-
-          <div className="space-y-4">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <p className="text-sm font-semibold text-slate-600">{publications.total} resultados encontrados</p>
-              <p className="text-sm text-slate-500">Página {publications.page} de {publications.pages}</p>
+      <section className="site-container py-6">
+        <PublicationWorkspace key={returnTo} query={query} filters={{ ...filters, publication_types: [...new Set([...filters.publication_types, ...publicationTypes])] }} toolbar={
+          <div className="mb-5">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div id="resultados" tabIndex={-1} className={styles.results}>
+                <h2 className="text-xl font-bold text-slate-950">Resultados</h2>
+                <p className="mt-1 text-sm text-slate-600" role="status" aria-live="polite" aria-atomic="true">Mostrando {publicationNumber(start)}–{publicationNumber(end)} de {publicationNumber(publications.total)} publicaciones</p>
+              </div>
+              <div className="flex min-w-0 flex-wrap items-end gap-4">
+                <PublicationSort query={query} />
+                <a className="action-control gap-2 rounded border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-brand" href={createTextDataHref(csv, "text/csv")} download="produccion-cientifica-pagina.csv"><Download size={16} aria-hidden="true" />Exportar página (CSV)</a>
+              </div>
             </div>
-            {publications.items.map((publication) => (
-              <PublicationResultCard key={publication.publication_id ?? publication.id} publication={publication} />
-            ))}
-            <Pagination page={publications.page} pages={publications.pages} params={params} />
+            {query.q || applied.length ? <ul aria-label="Consulta y filtros aplicados" className="mt-4 flex flex-wrap gap-2">
+              {query.q ? <Applied label={`Búsqueda: ${query.q}`} href={publicationHref(query, { q: undefined }, true)} /> : null}
+              {applied.map(key => <Applied key={key} label={`${publicationFilterLabels[key as keyof typeof publicationFilterLabels]}: ${key === "open_access" ? query[key] === "true" ? "Acceso abierto" : "No marcado como abierto" : query[key]}`} href={publicationHref(query, { [key]: undefined }, true)} />)}
+            </ul> : null}
           </div>
-
-          <aside className="space-y-4">
-            <AnalysisPanel title="Evolución anual" data={analytics.annual_evolution} />
-            <AnalysisPanel title="Áreas temáticas" data={analytics.by_thematic_area.slice(0, 6)} />
-            <AnalysisPanel title="Tipos de estudio" data={analytics.by_study_type.slice(0, 6)} />
-            <AnalysisPanel title="Top revistas" data={analytics.top_journals.slice(0, 6)} />
-            <AnalysisPanel title="Acceso abierto" data={analytics.open_access} />
-            <AnalysisPanel title="Cuartiles" data={analytics.quartiles} />
-            <CoveragePanel data={analytics.coverage} />
-            <MethodologyPanel />
-          </aside>
-        </div>
+        }>
+          {publications.items.length ? publications.items.map(publication => <PublicationResult key={publication.publication_id ?? publication.id} publication={publication} available={availability[publication.id]} returnTo={returnTo} />) : (
+            <section className="rounded-lg border border-dashed border-slate-300 bg-white p-6" aria-labelledby="no-publications">
+              <h3 id="no-publications" className="text-lg font-bold text-slate-900">No encontramos publicaciones para esta consulta</h3>
+              <p className="mt-2 text-slate-600">Prueba otra consulta o retira algunos filtros. Este resultado no significa que el catálogo esté vacío.</p>
+              <div className="mt-4 flex flex-wrap gap-4"><Link className="action-control font-semibold text-brand underline" href={withoutPublicationFilters(query)}>Limpiar filtros</Link><Link className="action-control font-semibold text-brand underline" href={publicationPath}>Restablecer búsqueda</Link></div>
+            </section>
+          )}
+          <Pagination page={publications.page} pages={publications.pages} query={query} />
+        </PublicationWorkspace>
+        <PublicationStatistics summary={summary} analytics={analytics} />
       </section>
     </div>
   );
 }
 
-function formatNumber(value: number) {
-  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+function Applied({ label, href }: { label: string; href: string }) {
+  return <li className="min-w-0 max-w-full"><Link href={href} aria-label={`Quitar ${label}`} className="action-control max-w-full gap-2 rounded border border-brand/20 bg-brand-pale px-3 py-2 text-sm font-medium text-brand-dark"><span>{label}</span><X size={16} className="shrink-0" aria-hidden="true" /></Link></li>;
 }
 
-function formatDate(value: string) {
-  if (value === "No disponible") return value;
-  return value.slice(0, 10);
-}
-
-function Kpi({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-      <p className="text-xs font-semibold text-slate-500">{label}</p>
-      <p className="mt-2 text-2xl font-bold text-brand-dark">{value}</p>
-    </div>
-  );
-}
-
-function FilterInput({ label, name }: { label: string; name: string }) {
-  return (
-    <label className="block">
-      <span className="text-xs font-bold uppercase tracking-wide text-slate-500">{label}</span>
-      <input name={name} className="mt-1 w-full rounded border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:border-brand" />
-    </label>
-  );
-}
-
-function FilterSelect({
-  label,
-  name,
-  options,
-  params,
-  labels,
-}: {
-  label: string;
-  name: string;
-  options: string[];
-  params: Record<string, string | string[] | undefined>;
-  labels?: Record<string, string>;
-}) {
-  const selected = String(params[name] ?? "");
-  return (
-    <label className="block">
-      <span className="text-xs font-bold uppercase tracking-wide text-slate-500">{label}</span>
-      <select name={name} defaultValue={selected} className="mt-1 w-full rounded border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:border-brand">
-        <option value="">Todos</option>
-        {options.map((option) => (
-          <option key={option} value={option}>{labels?.[option] ?? option}</option>
-        ))}
-      </select>
-    </label>
-  );
-}
-
-function PublicationResultCard({ publication }: { publication: ScientificPublication }) {
-  const doiHref = publication.doi ? `https://doi.org/${publication.doi}` : null;
-  return (
-    <article className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-      <div className="flex flex-wrap gap-2">
-        <Badge>{publication.quartile ?? "Sin cuartil"}</Badge>
-        <Badge tone={publication.open_access ? "green" : "gray"}>{publication.open_access ? "Acceso abierto" : "Restringido"}</Badge>
-        <Badge tone="sky">{displayValue(publication.source)}</Badge>
-        {publication.doi ? <Badge tone="gray">DOI</Badge> : null}
-        {publication.pmid ? <Badge tone="gray">PMID</Badge> : null}
-      </div>
-      <h2 className="mt-3 text-lg font-bold leading-snug text-slate-950">
-        {doiHref ? <a className="hover:text-brand" href={doiHref}>{publication.title}</a> : publication.title}
-      </h2>
-      <p className="mt-2 text-sm text-slate-600">{publication.institutional_authors?.map((author) => author.name).slice(0, 3).join(", ") || publication.authors.map((author) => author.name).slice(0, 3).join(", ") || "Autores no disponibles"}</p>
-      <p className="mt-1 text-sm font-medium text-brand-dark">{publication.journal?.name ?? "Fuente institucional"} · {publication.journal?.issn ?? "ISSN no disponible"}</p>
-      <div className="mt-3 grid gap-2 text-sm text-slate-600 md:grid-cols-2">
-        <p><strong>Año:</strong> {publication.year || "No disponible"}</p>
-        <p><strong>Tipo:</strong> {publication.publication_type_label ?? typeLabels[publication.publication_type] ?? publication.publication_type}</p>
-        <p><strong>Tipo de estudio:</strong> {displayValue(publication.study_type)}</p>
-        <p><strong>Área:</strong> {displayThematic(publication.thematic_area)}</p>
-        <p><strong>DOI:</strong> {displayDoi(publication.doi)}</p>
-        <p><strong>PMID:</strong> {displayValue(publication.pmid, "Sin PMID")}</p>
-        <p><strong>Citas:</strong> {publication.citation_count}</p>
-        <p><strong>Altmetric:</strong> {publication.altmetric_score || "No disponible"}</p>
-      </div>
-      {publication.study_type_review_status || publication.study_type_confidence ? (
-        <p className="mt-3 rounded bg-brand-pale px-3 py-2 text-xs font-medium text-brand-dark">
-          Clasificación temática preliminar: {displayValue(publication.study_type_review_status)} · confianza {publication.study_type_confidence ?? "No disponible"}
-        </p>
-      ) : null}
-      <div className="mt-3 flex flex-wrap gap-2">
-        {publication.keywords.map((keyword) => <Badge key={keyword.id} tone="gray">{keyword.term}</Badge>)}
-      </div>
-      <Link className="action-control mt-4 rounded bg-brand px-4 py-2 text-sm font-semibold text-white hover:bg-brand-dark" href={`/produccion-cientifica/${publication.id}`}>
-        Ver detalle
-      </Link>
-    </article>
-  );
-}
-
-function AnalysisPanel({ title, data }: { title: string; data: AnalyticsItem[] }) {
-  const max = Math.max(...data.map((item) => item.value), 1);
-  return (
-    <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-      <h3 className="text-sm font-bold text-slate-900">{title}</h3>
-      <div className="mt-3 space-y-3">
-        {data.map((item, index) => (
-          <div key={`${item.label}-${index}`}>
-            <div className="mb-1 flex justify-between gap-3 text-xs text-slate-600">
-              <span className="truncate">{item.label}</span>
-              <strong>{item.value}</strong>
-            </div>
-            <div className="h-2 rounded bg-slate-100">
-              <div className="h-2 rounded bg-brand-sky" style={{ width: `${Math.max(8, (item.value / max) * 100)}%` }} />
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function CoveragePanel({ data }: { data: CoverageIndicator[] }) {
-  return (
-    <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-      <h3 className="text-sm font-bold text-slate-900">Calidad de datos</h3>
-      <div className="mt-3 space-y-3">
-        {data.slice(0, 12).map((item) => (
-          <div key={item.field}>
-            <div className="mb-1 flex justify-between gap-3 text-xs text-slate-600">
-              <span className="truncate">{item.label}</span>
-              <strong>{item.coverage_percent.toFixed(2)}%</strong>
-            </div>
-            <div className="h-2 rounded bg-slate-100">
-              <div className="h-2 rounded bg-brand" style={{ width: `${Math.max(4, item.coverage_percent)}%` }} />
-            </div>
-            <p className="mt-1 text-[11px] text-slate-500">{formatNumber(item.present)} presentes · {formatNumber(item.missing)} faltantes</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function MethodologyPanel() {
-  return (
-    <div className="rounded-lg border border-brand/20 bg-brand-pale p-4 text-sm text-brand-dark shadow-sm">
-      <h3 className="font-bold">Metodología</h3>
-      <p className="mt-2 leading-6">{methodologyNote}</p>
-    </div>
-  );
-}
-
-function Pagination({ page, pages, params }: { page: number; pages: number; params: Record<string, string | string[] | undefined> }) {
-  const createHref = (nextPage: number) => {
-    const query = new URLSearchParams();
-    for (const [key, value] of Object.entries(params)) {
-      if (!value || key === "page") continue;
-      query.set(key, Array.isArray(value) ? value[0] : value);
-    }
-    query.set("page", String(nextPage));
-    return `/produccion-cientifica?${query.toString()}`;
-  };
-  return (
-    <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white p-3">
-      <Link className={`action-control rounded px-3 py-2 text-sm font-semibold ${page <= 1 ? "pointer-events-none text-slate-300" : "text-brand"}`} href={createHref(Math.max(1, page - 1))}>Anterior</Link>
-      <span className="text-sm text-slate-500">{page} / {pages}</span>
-      <Link className={`action-control rounded px-3 py-2 text-sm font-semibold ${page >= pages ? "pointer-events-none text-slate-300" : "text-brand"}`} href={createHref(Math.min(pages, page + 1))}>Siguiente</Link>
-    </div>
-  );
+function Pagination({ page, pages, query }: { page: number; pages: number; query: PublicationQuery }) {
+  return <nav aria-label="Paginación de publicaciones" className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-200 pt-5 text-sm">
+    {page > 1 ? <Link className="action-control rounded border border-slate-300 bg-white px-4 font-semibold text-brand" href={publicationHref(query, { page: String(page - 1) }, true)}>Anterior<span className="sr-only"> página</span></Link> : <span aria-disabled="true" className="action-control px-4 text-slate-500">Anterior</span>}
+    <span aria-current="page" className="text-slate-600">Página {publicationNumber(page)} de {publicationNumber(pages)}</span>
+    {page < pages ? <Link className="action-control rounded border border-slate-300 bg-white px-4 font-semibold text-brand" href={publicationHref(query, { page: String(page + 1) }, true)}>Siguiente<span className="sr-only"> página</span></Link> : <span aria-disabled="true" className="action-control px-4 text-slate-500">Siguiente</span>}
+  </nav>;
 }

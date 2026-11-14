@@ -1,0 +1,10 @@
+{
+  "isolatedServer": "http://127.0.0.1:3005",
+  "simulatedReadError": true,
+  "sourceFilesModified": false,
+  "errorDistinctFromEmpty": true,
+  "detailsHidden": true,
+  "retryWithKeyboard": true,
+  "queryPreserved": true,
+  "filtersPreserved": true
+}

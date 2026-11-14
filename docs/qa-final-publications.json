@@ -1,0 +1,350 @@
+{
+  "responsive": [
+    {
+      "width": 320,
+      "normal": {
+        "width": 320,
+        "client": 305,
+        "scroll": 305,
+        "articles": 10,
+        "kpiColumns": 1,
+        "kpiHeights": [
+          112,
+          112,
+          112,
+          112
+        ]
+      },
+      "enlarged": {
+        "width": 320,
+        "client": 305,
+        "scroll": 305,
+        "articles": 10,
+        "kpiColumns": 1,
+        "kpiHeights": [
+          226,
+          226,
+          226,
+          226
+        ]
+      },
+      "mobileDisclosure": true
+    },
+    {
+      "width": 360,
+      "normal": {
+        "width": 360,
+        "client": 345,
+        "scroll": 345,
+        "articles": 10,
+        "kpiColumns": 2,
+        "kpiHeights": [
+          114,
+          114,
+          114,
+          114
+        ]
+      },
+      "enlarged": {
+        "width": 360,
+        "client": 345,
+        "scroll": 345,
+        "articles": 10,
+        "kpiColumns": 1,
+        "kpiHeights": [
+          226,
+          224,
+          226,
+          226
+        ]
+      },
+      "mobileDisclosure": true
+    },
+    {
+      "width": 768,
+      "normal": {
+        "width": 768,
+        "client": 753,
+        "scroll": 753,
+        "articles": 10,
+        "kpiColumns": 2,
+        "kpiHeights": [
+          112,
+          112,
+          112,
+          112
+        ]
+      },
+      "enlarged": {
+        "width": 768,
+        "client": 753,
+        "scroll": 753,
+        "articles": 10,
+        "kpiColumns": 2,
+        "kpiHeights": [
+          226,
+          226,
+          226,
+          226
+        ]
+      },
+      "mobileDisclosure": true
+    },
+    {
+      "width": 1280,
+      "normal": {
+        "width": 1280,
+        "client": 1265,
+        "scroll": 1265,
+        "articles": 10,
+        "kpiColumns": 4,
+        "kpiHeights": [
+          112,
+          112,
+          112,
+          112
+        ]
+      },
+      "enlarged": {
+        "width": 1280,
+        "client": 1265,
+        "scroll": 1265,
+        "articles": 10,
+        "kpiColumns": 2,
+        "kpiHeights": [
+          224,
+          224,
+          224,
+          224
+        ]
+      },
+      "mobileDisclosure": false
+    },
+    {
+      "width": 1440,
+      "normal": {
+        "width": 1440,
+        "client": 1425,
+        "scroll": 1425,
+        "articles": 10,
+        "kpiColumns": 4,
+        "kpiHeights": [
+          112,
+          112,
+          112,
+          112
+        ]
+      },
+      "enlarged": {
+        "width": 1440,
+        "client": 1425,
+        "scroll": 1425,
+        "articles": 10,
+        "kpiColumns": 2,
+        "kpiHeights": [
+          224,
+          224,
+          224,
+          224
+        ]
+      },
+      "mobileDisclosure": false
+    }
+  ],
+  "flows": [
+    "Búsqueda con Enter, transición aria-busy bajo latencia y resultados reales",
+    "Filtros combinados, borrador aplicado y cierre móvil",
+    "Retiro individual sincroniza URL, formulario y resultados",
+    "Paginar conserva el filtro de acceso abierto y el rango filtrado",
+    "Limpiar filtros conserva la consulta",
+    "Cambiar filtros desde página dos reinicia a uno y sincroniza recuentos",
+    "Orden, paginación y recarga preservan consulta y filtros",
+    "Ficha y retorno conservan página y consulta",
+    "Atrás y adelante recuperan estado",
+    "Consultas consecutivas bajo latencia mantienen el último resultado, rango y filtros",
+    "Registros reales con citas ausentes, acceso desconocido y cero citas diferenciados",
+    "Estado vacío y página fuera de rango"
+  ],
+  "filteredViews": [
+    {
+      "params": {},
+      "total": 2701,
+      "page": 1,
+      "pages": 271,
+      "visibleRecords": 10,
+      "range": "Mostrando 1–10 de 2,701 publicaciones",
+      "globalKpisUnchanged": true,
+      "listAndChipsMatch": true
+    },
+    {
+      "params": {
+        "q": "renal"
+      },
+      "total": 73,
+      "page": 1,
+      "pages": 8,
+      "visibleRecords": 10,
+      "range": "Mostrando 1–10 de 73 publicaciones",
+      "globalKpisUnchanged": true,
+      "listAndChipsMatch": true
+    },
+    {
+      "params": {
+        "q": "renal",
+        "year": "2023",
+        "open_access": "true"
+      },
+      "total": 3,
+      "page": 1,
+      "pages": 1,
+      "visibleRecords": 3,
+      "range": "Mostrando 1–3 de 3 publicaciones",
+      "globalKpisUnchanged": true,
+      "listAndChipsMatch": true
+    },
+    {
+      "params": {
+        "q": "renal",
+        "open_access": "true"
+      },
+      "total": 53,
+      "page": 1,
+      "pages": 6,
+      "visibleRecords": 10,
+      "range": "Mostrando 1–10 de 53 publicaciones",
+      "globalKpisUnchanged": true,
+      "listAndChipsMatch": true
+    },
+    {
+      "params": {
+        "q": "renal",
+        "open_access": "true",
+        "page": "2"
+      },
+      "total": 53,
+      "page": 2,
+      "pages": 6,
+      "visibleRecords": 10,
+      "range": "Mostrando 11–20 de 53 publicaciones",
+      "globalKpisUnchanged": true,
+      "listAndChipsMatch": true
+    },
+    {
+      "params": {
+        "q": "renal"
+      },
+      "total": 73,
+      "page": 1,
+      "pages": 8,
+      "visibleRecords": 10,
+      "range": "Mostrando 1–10 de 73 publicaciones",
+      "globalKpisUnchanged": true,
+      "listAndChipsMatch": true
+    },
+    {
+      "params": {
+        "q": "renal",
+        "sort": "-citation_count",
+        "page": "2"
+      },
+      "total": 73,
+      "page": 2,
+      "pages": 8,
+      "visibleRecords": 10,
+      "range": "Mostrando 11–20 de 73 publicaciones",
+      "globalKpisUnchanged": true,
+      "listAndChipsMatch": true
+    },
+    {
+      "params": {
+        "q": "renal",
+        "year": "2023",
+        "sort": "-citation_count"
+      },
+      "total": 3,
+      "page": 1,
+      "pages": 1,
+      "visibleRecords": 3,
+      "range": "Mostrando 1–3 de 3 publicaciones",
+      "globalKpisUnchanged": true,
+      "listAndChipsMatch": true
+    },
+    {
+      "params": {
+        "q": "diabetes",
+        "sort": "-citation_count"
+      },
+      "total": 85,
+      "page": 1,
+      "pages": 9,
+      "visibleRecords": 10,
+      "range": "Mostrando 1–10 de 85 publicaciones",
+      "globalKpisUnchanged": true,
+      "listAndChipsMatch": true
+    },
+    {
+      "params": {
+        "q": "diabetes",
+        "sort": "-citation_count"
+      },
+      "total": 85,
+      "page": 1,
+      "pages": 9,
+      "visibleRecords": 10,
+      "range": "Mostrando 1–10 de 85 publicaciones",
+      "globalKpisUnchanged": true,
+      "listAndChipsMatch": true
+    },
+    {
+      "params": {
+        "q": "__sin_coincidencias_ux__"
+      },
+      "total": 0,
+      "page": 1,
+      "pages": 1,
+      "visibleRecords": 0,
+      "range": "Mostrando 0–0 de 0 publicaciones",
+      "globalKpisUnchanged": true,
+      "listAndChipsMatch": true
+    }
+  ],
+  "summaryHelp": [
+    {
+      "width": 320,
+      "keyboard": true,
+      "escapeAndFocus": true,
+      "touch": true
+    },
+    {
+      "width": 360,
+      "keyboard": true,
+      "escapeAndFocus": true,
+      "touch": true
+    },
+    {
+      "width": 768,
+      "keyboard": true,
+      "escapeAndFocus": true,
+      "touch": true
+    },
+    {
+      "width": 1280,
+      "keyboard": true,
+      "escapeAndFocus": true,
+      "touch": true
+    },
+    {
+      "width": 1440,
+      "keyboard": true,
+      "escapeAndFocus": true,
+      "touch": true
+    }
+  ],
+  "regression": [
+    "/",
+    "/investigadores",
+    "/proyectos",
+    "/unidades"
+  ],
+  "consoleErrors": []
+}

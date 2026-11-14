@@ -2,6 +2,20 @@
 
 ## Estado actual
 
+### Revisión QA 2026-11-14
+
+Se difiere I/O hasta los getters: la constante exportada sin consumidores ejecutaba lectura al importar y evitaba la pantalla de error si el CSV faltaba en un proceso frío. Getters, métricas, Expertise e identidad curada conservados. Agregado opcional ausente usa los fallbacks CSV/vínculos existentes y un aviso visible. Metadata y nombre accesible de región de resultados añadidos. Error/reintento con q/ORCID conservados, teclado/semántica/responsive y flujos verificados; informe `docs/REVISION_FINAL_QA.md`.
+
+Nuevo contraste de cobertura: 29 de 3505 vínculos corresponden a dos IDs no presentes en el CSV actual (3476 vínculos a los 308 perfiles). Publicaciones únicas del conjunto completo: 2369; unión de perfiles: 2365. No se modifican indicadores para igualarlos. Reconciliar las versiones/IDs en el pipeline, además de la discrepancia nominal ya documentada.
+
+### Intervención 2026-11-14 - Patrón compartido de directorios
+
+Rama `feat/directorios-ux`. Se conserva el catálogo real y la capa curada. Se reemplaza el corte de 60 registros por paginación de diez en servidor, se mantienen búsqueda y filtros existentes y se conserva consulta/orden/página en la URL. Cuatro indicadores globales, ayudas por teclado/toque, filtros activos removibles, tarjetas de una o dos columnas y ranking secundario por número de publicaciones. Los campos numéricos ausentes del listado se consultan en el CSV original para no convertirlos en cero. Expertise, métricas del perfil y fuentes no se modifican; la ficha solo añade retorno al estado del listado.
+
+Componentes compartidos, capturas y validaciones: `docs/DIRECTORIOS_UX.md`. Pendientes: separar gestión con autorización real y revisar las normalizaciones históricas del modelo sin modificar sus reglas en esta etapa.
+
+Advertencia de calidad confirmada: `orcid:0000-0003-4593-2509` tiene nombre bibliométrico Yersin Silva Silva y nombre curado Cristian Díaz-Vélez; iniciales YS/CD discordantes. Es previo a esta etapa. No se corrigen ni reasignan métricas desde la interfaz; revisar fuentes canónicas con prioridad alta.
+
 ### Intervencion 2026-11-13 - Base visual compartida
 
 Se adapta el listado al contenedor y encabezado comunes; las tarjetas se distribuyen segun espacio disponible y dejan de recortar nombre y filiacion mediante alturas fijas. Metricas redistribuibles al ampliar texto. No se alteran perfiles, Expertise, autores, ranking ni calculos. Capturas: `base-visual-{antes,despues}-investigadores-{360,1440}.png`. Evidencia y alcance: `docs/BASE_VISUAL_ETAPA_1.md`.

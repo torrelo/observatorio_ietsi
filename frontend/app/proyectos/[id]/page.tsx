@@ -1,6 +1,7 @@
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { directoryReturnHref, type SearchParams } from "@/lib/directoryQuery";
 import type { ReactNode } from "react";
 import { Badge } from "@/components/Badge";
 import { DataTable } from "@/components/DataTable";
@@ -15,7 +16,8 @@ import {
   orcidUrl,
 } from "@/lib/projects";
 
-export default async function ProjectDetail({ params }: { params: Promise<{ id: string }> }) {
+export default async function ProjectDetail({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<SearchParams> }) {
+  const returnHref = directoryReturnHref("/proyectos", (await searchParams).returnTo);
   const { id } = await params;
   const project = getProjectById(id);
   if (!project) notFound();
@@ -35,7 +37,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
             <span>/</span>
             <span>Proyecto</span>
           </nav>
-          <Link className="text-sm font-semibold text-brand" href="/proyectos">← Volver a Proyectos</Link>
+          <Link className="text-sm font-semibold text-brand" href={returnHref}>← Volver a Proyectos</Link>
           <div className="mt-4 flex flex-wrap gap-2">
             <Badge>{project.project_status}</Badge>
             <Badge tone="sky">{project.project_type}</Badge>

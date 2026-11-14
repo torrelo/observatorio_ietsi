@@ -1,0 +1,41 @@
+{
+  "route": "/produccion-cientifica",
+  "temporaryAttributeAddedAndRemoved": true,
+  "editPreservedWindow": true,
+  "restorePreservedWindow": true,
+  "errors": [],
+  "updates": [
+    {
+      "url": "http://127.0.0.1:3000/_next/static/webpack/6d58f2bf6aa7ca51.webpack.hot-update.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/static/webpack/app/layout.6d58f2bf6aa7ca51.hot-update.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/static/webpack/webpack.6d58f2bf6aa7ca51.hot-update.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/static/webpack/app/produccion-cientifica/page.6d58f2bf6aa7ca51.hot-update.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/static/webpack/6527383c3e414d66.webpack.hot-update.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/static/webpack/app/layout.6527383c3e414d66.hot-update.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/static/webpack/webpack.6527383c3e414d66.hot-update.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/static/webpack/app/produccion-cientifica/page.6527383c3e414d66.hot-update.js",
+      "status": 200
+    }
+  ]
+}

@@ -134,7 +134,7 @@ export function getResearchUnits(params?: Record<string, string | string[] | und
   const network = normalizeParam(params?.network);
   const ipress = normalizeParam(params?.ipress);
   const status = normalizeParam(params?.unit_status);
-  const hasCiei = normalizeParam(params?.has_ciei);
+  const hasCiei = normalizeParam(params?.has_ciei).replace(/í/g, "i");
   const cieiStatus = normalizeParam(params?.ciei_status);
   const readyStatus = normalizeParam(params?.ready_status);
   const thematicArea = normalizeParam(params?.thematic_area);
@@ -184,7 +184,7 @@ export function getEthicsCommittees(params?: Record<string, string | string[] | 
   const q = normalizeParam(params?.ciei_q);
   const network = normalizeParam(params?.ciei_network);
   const status = normalizeParam(params?.ciei_registration_status);
-  const accredited = normalizeParam(params?.ciei_accredited);
+  const accredited = normalizeParam(params?.ciei_accredited).replace(/í/g, "i");
   return loadResearchUnitsData().ethicsCommittees.filter((ciei) => {
     const haystack = [ciei.ciei_id, ciei.ciei_name, ciei.network, ciei.region, ciei.president_name, ciei.registration_code].join(" ").toLowerCase();
     return matchesText(haystack, q)

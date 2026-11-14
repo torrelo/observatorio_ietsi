@@ -1,0 +1,23 @@
+[
+  {
+    "route": "investigadores",
+    "errorBoundary": true,
+    "queryPreserved": true,
+    "retryKeyboard": true,
+    "sourceUnchanged": true
+  },
+  {
+    "route": "proyectos",
+    "errorBoundary": true,
+    "queryPreserved": true,
+    "retryKeyboard": true,
+    "sourceUnchanged": true
+  },
+  {
+    "route": "unidades",
+    "errorBoundary": true,
+    "queryPreserved": true,
+    "retryKeyboard": true,
+    "sourceUnchanged": true
+  }
+]

@@ -1,0 +1,452 @@
+{
+  "screenshots": [
+    {
+      "file": "screenshots/qa-baseline-home-1280.png",
+      "route": "/",
+      "widthCSS": 1280,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "antes"
+    },
+    {
+      "file": "screenshots/qa-baseline-home-360.png",
+      "route": "/",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "antes"
+    },
+    {
+      "file": "screenshots/qa-baseline-investigadores-1280.png",
+      "route": "/investigadores",
+      "widthCSS": 1280,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "antes"
+    },
+    {
+      "file": "screenshots/qa-baseline-investigadores-360.png",
+      "route": "/investigadores",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "antes"
+    },
+    {
+      "file": "screenshots/qa-baseline-produccion-cientifica-1280.png",
+      "route": "/produccion-cientifica",
+      "widthCSS": 1280,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "antes"
+    },
+    {
+      "file": "screenshots/qa-baseline-produccion-cientifica-360.png",
+      "route": "/produccion-cientifica",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "antes"
+    },
+    {
+      "file": "screenshots/qa-baseline-proyectos-1280.png",
+      "route": "/proyectos",
+      "widthCSS": 1280,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "antes"
+    },
+    {
+      "file": "screenshots/qa-baseline-proyectos-360.png",
+      "route": "/proyectos",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "antes"
+    },
+    {
+      "file": "screenshots/qa-baseline-unidades-1280.png",
+      "route": "/unidades",
+      "widthCSS": 1280,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "antes"
+    },
+    {
+      "file": "screenshots/qa-baseline-unidades-360.png",
+      "route": "/unidades",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "antes"
+    },
+    {
+      "file": "screenshots/qa-carga-investigadores-360.png",
+      "route": "/investigadores",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-carga-produccion-cientifica-360.png",
+      "route": "/produccion-cientifica",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-carga-proyectos-360.png",
+      "route": "/proyectos",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-carga-unidades-360.png",
+      "route": "/unidades",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-dialogo-home-360x480.png",
+      "route": "/",
+      "widthCSS": 360,
+      "heightCSS": 480,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-dialogo-investigadores-360x480.png",
+      "route": "/investigadores",
+      "widthCSS": 360,
+      "heightCSS": 480,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-dialogo-produccion-cientifica-360x480.png",
+      "route": "/produccion-cientifica",
+      "widthCSS": 360,
+      "heightCSS": 480,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-dialogo-proyectos-360x480.png",
+      "route": "/proyectos",
+      "widthCSS": 360,
+      "heightCSS": 480,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-dialogo-unidades-360x480.png",
+      "route": "/unidades",
+      "widthCSS": 360,
+      "heightCSS": 480,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-directorios-investigadores-despues-1440.png",
+      "route": "/investigadores",
+      "widthCSS": 1440,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-directorios-investigadores-despues-360.png",
+      "route": "/investigadores",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-directorios-proyectos-despues-1440.png",
+      "route": "/proyectos",
+      "widthCSS": 1440,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-directorios-proyectos-despues-360.png",
+      "route": "/proyectos",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-directorios-unidades-despues-1440.png",
+      "route": "/unidades",
+      "widthCSS": 1440,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-directorios-unidades-despues-360.png",
+      "route": "/unidades",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-error-investigadores-360.png",
+      "route": "/investigadores",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-error-produccion-cientifica-360.png",
+      "route": "/produccion-cientifica",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-error-proyectos-360.png",
+      "route": "/proyectos",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-error-unidades-360.png",
+      "route": "/unidades",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-filtro-investigadores-360x480.png",
+      "route": "/investigadores",
+      "widthCSS": 360,
+      "heightCSS": 480,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-filtro-produccion-cientifica-360x480.png",
+      "route": "/produccion-cientifica",
+      "widthCSS": 360,
+      "heightCSS": 480,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-filtro-proyectos-360x480.png",
+      "route": "/proyectos",
+      "widthCSS": 360,
+      "heightCSS": 480,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-filtro-unidades-360x480.png",
+      "route": "/unidades",
+      "widthCSS": 360,
+      "heightCSS": 480,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-final-home-1280.png",
+      "route": "/",
+      "widthCSS": 1280,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-final-home-360.png",
+      "route": "/",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-final-investigadores-1280.png",
+      "route": "/investigadores",
+      "widthCSS": 1280,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-final-investigadores-360.png",
+      "route": "/investigadores",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-final-produccion-cientifica-1280.png",
+      "route": "/produccion-cientifica",
+      "widthCSS": 1280,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-final-produccion-cientifica-360.png",
+      "route": "/produccion-cientifica",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-final-proyectos-1280.png",
+      "route": "/proyectos",
+      "widthCSS": 1280,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-final-proyectos-360.png",
+      "route": "/proyectos",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-final-unidades-1280.png",
+      "route": "/unidades",
+      "widthCSS": 1280,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-final-unidades-360.png",
+      "route": "/unidades",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-flujos-publicaciones-1440.png",
+      "route": "/produccion-cientifica",
+      "widthCSS": 1440,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-flujos-publicaciones-360.png",
+      "route": "/produccion-cientifica",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-flujos-publicaciones-ayuda-360.png",
+      "route": "/produccion-cientifica",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-home-fuente-parcial-1280.png",
+      "route": "/",
+      "widthCSS": 1280,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-menu-home-360x480.png",
+      "route": "/",
+      "widthCSS": 360,
+      "heightCSS": 480,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-panel-investigadores-360x480.png",
+      "route": "/investigadores",
+      "widthCSS": 360,
+      "heightCSS": 480,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-panel-produccion-cientifica-360x480.png",
+      "route": "/produccion-cientifica",
+      "widthCSS": 360,
+      "heightCSS": 480,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-panel-proyectos-360x480.png",
+      "route": "/proyectos",
+      "widthCSS": 360,
+      "heightCSS": 480,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-panel-unidades-360x480.png",
+      "route": "/unidades",
+      "widthCSS": 360,
+      "heightCSS": 480,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-vacio-investigadores-360.png",
+      "route": "/investigadores",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-vacio-produccion-cientifica-360.png",
+      "route": "/produccion-cientifica",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-vacio-proyectos-360.png",
+      "route": "/proyectos",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    },
+    {
+      "file": "screenshots/qa-vacio-unidades-360.png",
+      "route": "/unidades",
+      "widthCSS": 360,
+      "heightCSS": 1000,
+      "dpr": 1,
+      "phase": "después/prueba"
+    }
+  ]
+}

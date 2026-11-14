@@ -1,0 +1,219 @@
+{
+  "keyboard": [
+    {
+      "route": "/",
+      "width": 360,
+      "height": 480,
+      "skipLink": true,
+      "focusVisible": true,
+      "tabAndShiftTab": true,
+      "menu": "Enter/Espacio/Tab/Escape",
+      "loginDialog": true,
+      "modalAx": true,
+      "backgroundInert": true,
+      "scrollRestored": true,
+      "helpAndFilters": false
+    },
+    {
+      "route": "/",
+      "width": 1280,
+      "height": 900,
+      "skipLink": true,
+      "focusVisible": true,
+      "tabAndShiftTab": true,
+      "menu": "desktop",
+      "loginDialog": true,
+      "modalAx": true,
+      "backgroundInert": true,
+      "scrollRestored": true,
+      "helpAndFilters": false
+    },
+    {
+      "route": "/produccion-cientifica",
+      "width": 360,
+      "height": 480,
+      "skipLink": true,
+      "focusVisible": true,
+      "tabAndShiftTab": true,
+      "menu": "Enter/Espacio/Tab/Escape",
+      "loginDialog": true,
+      "modalAx": true,
+      "backgroundInert": true,
+      "scrollRestored": true,
+      "helpAndFilters": true
+    },
+    {
+      "route": "/produccion-cientifica",
+      "width": 1280,
+      "height": 900,
+      "skipLink": true,
+      "focusVisible": true,
+      "tabAndShiftTab": true,
+      "menu": "desktop",
+      "loginDialog": true,
+      "modalAx": true,
+      "backgroundInert": true,
+      "scrollRestored": true,
+      "helpAndFilters": true
+    },
+    {
+      "route": "/investigadores",
+      "width": 360,
+      "height": 480,
+      "skipLink": true,
+      "focusVisible": true,
+      "tabAndShiftTab": true,
+      "menu": "Enter/Espacio/Tab/Escape",
+      "loginDialog": true,
+      "modalAx": true,
+      "backgroundInert": true,
+      "scrollRestored": true,
+      "helpAndFilters": true
+    },
+    {
+      "route": "/investigadores",
+      "width": 1280,
+      "height": 900,
+      "skipLink": true,
+      "focusVisible": true,
+      "tabAndShiftTab": true,
+      "menu": "desktop",
+      "loginDialog": true,
+      "modalAx": true,
+      "backgroundInert": true,
+      "scrollRestored": true,
+      "helpAndFilters": true
+    },
+    {
+      "route": "/proyectos",
+      "width": 360,
+      "height": 480,
+      "skipLink": true,
+      "focusVisible": true,
+      "tabAndShiftTab": true,
+      "menu": "Enter/Espacio/Tab/Escape",
+      "loginDialog": true,
+      "modalAx": true,
+      "backgroundInert": true,
+      "scrollRestored": true,
+      "helpAndFilters": true
+    },
+    {
+      "route": "/proyectos",
+      "width": 1280,
+      "height": 900,
+      "skipLink": true,
+      "focusVisible": true,
+      "tabAndShiftTab": true,
+      "menu": "desktop",
+      "loginDialog": true,
+      "modalAx": true,
+      "backgroundInert": true,
+      "scrollRestored": true,
+      "helpAndFilters": true
+    },
+    {
+      "route": "/unidades",
+      "width": 360,
+      "height": 480,
+      "skipLink": true,
+      "focusVisible": true,
+      "tabAndShiftTab": true,
+      "menu": "Enter/Espacio/Tab/Escape",
+      "loginDialog": true,
+      "modalAx": true,
+      "backgroundInert": true,
+      "scrollRestored": true,
+      "helpAndFilters": true
+    },
+    {
+      "route": "/unidades",
+      "width": 1280,
+      "height": 900,
+      "skipLink": true,
+      "focusVisible": true,
+      "tabAndShiftTab": true,
+      "menu": "desktop",
+      "loginDialog": true,
+      "modalAx": true,
+      "backgroundInert": true,
+      "scrollRestored": true,
+      "helpAndFilters": true
+    }
+  ],
+  "homeSearch": [
+    {
+      "scope": "/produccion-cientifica",
+      "queryReceived": true,
+      "mode": "Enter en campo"
+    },
+    {
+      "scope": "/investigadores",
+      "queryReceived": true,
+      "mode": "Tab/Enter en botón"
+    },
+    {
+      "scope": "/proyectos",
+      "queryReceived": true,
+      "mode": "Enter en campo"
+    },
+    {
+      "scope": "/unidades",
+      "queryReceived": true,
+      "mode": "Tab/Enter en botón"
+    },
+    {
+      "emptyQueryBlocked": true,
+      "whitespaceBlocked": true
+    }
+  ],
+  "longQueries": [
+    {
+      "route": "/produccion-cientifica",
+      "width": 320,
+      "wrapping": true,
+      "preserved": true
+    },
+    {
+      "route": "/investigadores",
+      "width": 320,
+      "wrapping": true,
+      "preserved": true
+    },
+    {
+      "route": "/proyectos",
+      "width": 320,
+      "wrapping": true,
+      "preserved": true
+    },
+    {
+      "route": "/unidades",
+      "width": 320,
+      "wrapping": true,
+      "preserved": true
+    }
+  ],
+  "navigation": [
+    {
+      "route": "/",
+      "headerEnter": true
+    },
+    {
+      "route": "/produccion-cientifica",
+      "headerEnter": true
+    },
+    {
+      "route": "/investigadores",
+      "headerEnter": true
+    },
+    {
+      "route": "/proyectos",
+      "headerEnter": true
+    },
+    {
+      "route": "/unidades",
+      "headerEnter": true
+    }
+  ],
+  "consoleErrors": []
+}

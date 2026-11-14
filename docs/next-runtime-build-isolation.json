@@ -1,0 +1,13 @@
+{
+  "devStoppedBeforeBuild": true,
+  "before": {
+    ".next-dev/build-manifest.json": "7a00253d808c2a7b95ae4216d9edcb862cf363373b17c6ec256131a5f9b400eb",
+    ".next-dev/static/chunks/webpack.js": "1ccb4354ae15b5c000b931672013ef593b77bf872aed203ded62f5e66c3a4af3"
+  },
+  "after": {
+    ".next-dev/build-manifest.json": "7a00253d808c2a7b95ae4216d9edcb862cf363373b17c6ec256131a5f9b400eb",
+    ".next-dev/static/chunks/webpack.js": "1ccb4354ae15b5c000b931672013ef593b77bf872aed203ded62f5e66c3a4af3"
+  },
+  "devArtifactsUnchanged": true,
+  "productionBuildPresent": true
+}

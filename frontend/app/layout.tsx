@@ -5,7 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
 export const metadata: Metadata = {
-  title: "Observatorio Nacional de Investigacion de EsSalud",
+  title: { default: "Observatorio Nacional de Investigación de EsSalud", template: "%s | Observatorio EsSalud" },
   description: "Inteligencia cientifica, gestion de investigacion y transparencia institucional.",
 };
 

@@ -1,0 +1,17 @@
+{
+  "firstFocus": {
+    "tag": "A",
+    "text": "Saltar al contenido principal"
+  },
+  "skip": {
+    "active": "contenido-principal",
+    "mainTop": 0,
+    "headerBottom": 161,
+    "h1Top": 64
+  },
+  "search": {
+    "url": "/",
+    "action": null,
+    "name": ""
+  }
+}

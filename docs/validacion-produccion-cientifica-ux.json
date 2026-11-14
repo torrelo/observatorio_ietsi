@@ -1,0 +1,102 @@
+{
+  "responsive": [
+    {
+      "width": 320,
+      "normal": {
+        "width": 320,
+        "client": 305,
+        "scroll": 305,
+        "articles": 10
+      },
+      "enlarged": {
+        "width": 320,
+        "client": 305,
+        "scroll": 305,
+        "articles": 10
+      },
+      "mobileDisclosure": true
+    },
+    {
+      "width": 360,
+      "normal": {
+        "width": 360,
+        "client": 345,
+        "scroll": 345,
+        "articles": 10
+      },
+      "enlarged": {
+        "width": 360,
+        "client": 345,
+        "scroll": 345,
+        "articles": 10
+      },
+      "mobileDisclosure": true
+    },
+    {
+      "width": 768,
+      "normal": {
+        "width": 768,
+        "client": 753,
+        "scroll": 753,
+        "articles": 10
+      },
+      "enlarged": {
+        "width": 768,
+        "client": 753,
+        "scroll": 753,
+        "articles": 10
+      },
+      "mobileDisclosure": true
+    },
+    {
+      "width": 1280,
+      "normal": {
+        "width": 1280,
+        "client": 1265,
+        "scroll": 1265,
+        "articles": 10
+      },
+      "enlarged": {
+        "width": 1280,
+        "client": 1265,
+        "scroll": 1265,
+        "articles": 10
+      },
+      "mobileDisclosure": false
+    },
+    {
+      "width": 1440,
+      "normal": {
+        "width": 1440,
+        "client": 1425,
+        "scroll": 1425,
+        "articles": 10
+      },
+      "enlarged": {
+        "width": 1440,
+        "client": 1425,
+        "scroll": 1425,
+        "articles": 10
+      },
+      "mobileDisclosure": false
+    }
+  ],
+  "flows": [
+    "Búsqueda con Enter, transición aria-busy bajo latencia y resultados reales",
+    "Filtros combinados, borrador aplicado y cierre móvil",
+    "Retiro individual sincroniza URL, formulario y resultados",
+    "Limpiar filtros conserva la consulta",
+    "Orden, paginación y recarga preservan consulta y filtros",
+    "Ficha y retorno conservan página y consulta",
+    "Atrás y adelante recuperan estado",
+    "Registros reales con citas ausentes, acceso desconocido y cero citas diferenciados",
+    "Estado vacío y página fuera de rango"
+  ],
+  "regression": [
+    "/",
+    "/investigadores",
+    "/proyectos",
+    "/unidades"
+  ],
+  "consoleErrors": []
+}

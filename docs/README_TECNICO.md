@@ -57,6 +57,8 @@ npm run start
 
 Nota: el frontend usa `output: "standalone"` de Next.js. Por ello `npm run start` ejecuta el servidor generado en `.next/standalone/server.js`.
 
+Desarrollo genera `.next-dev/`; `npm run build` y el servidor standalone usan `.next/`. No compilar sobre una carpeta utilizada por un servidor activo. Para las validaciones del proyecto se detiene dev antes de build y se reinicia después. Si hay síntomas de chunks inconsistentes, detener únicamente el servidor de este frontend y limpiar solo su salida generada antes de reiniciar; no eliminar node_modules, lockfiles, fuentes o datos. Una limpieza exitosa no identifica por sí sola la causa original. Informe: `docs/INCIDENTE_WEBPACK_RUNTIME.md`.
+
 ### Docker Compose
 
 ```bash
@@ -121,6 +123,12 @@ fix(home): corrige hydration y HTML invalido
 docs(bitacora): agrega changelog tecnico y decisiones
 refactor(home): simplifica hero y elimina busqueda duplicada
 ```
+
+## Validación de directorios
+
+Revisión final de calidad: `REVISION_FINAL_QA.md` contiene matriz por ruta, correcciones, límites y evidencias. Desde `frontend`: `npm run test:qa-data`, `npm run test:qa-a11y` y `npm run test:qa-keyboard`. Los dos últimos requieren frontend activo y Chrome CDP en 9225; axe-core ya está instalado con el árbol existente. Pruebas de fallos solo con los procesos standalone aislados del script QA, nunca con preloads en el servicio normal. No hay certificación WCAG integral ni prueba de lector de pantalla real.
+
+La etapa compartida de directorios está documentada en `DIRECTORIOS_UX.md`. Comprobaciones adicionales disponibles desde `frontend`: `npm run test:directory-query` y, con el servidor activo y Chrome CDP en el puerto 9225, `npm run test:directories`. Las pruebas de lectura fallida se ejecutan solo con la fixture de pruebas en un proceso standalone aislado. No ejecutar build y dev simultáneamente. Los datos fuente no fueron modificados.
 
 ## Regla obligatoria para futuros prompts de desarrollo
 

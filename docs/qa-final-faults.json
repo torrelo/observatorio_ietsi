@@ -1,0 +1,84 @@
+{
+  "home": [
+    {
+      "source": "Producción científica",
+      "otherSourcesUsable": true,
+      "missingNotZero": true,
+      "retryKeyboard": true,
+      "realSourceRecovered": true
+    },
+    {
+      "source": "Investigadores",
+      "otherSourcesUsable": true,
+      "missingNotZero": true,
+      "retryKeyboard": true,
+      "realSourceRecovered": true
+    },
+    {
+      "source": "Proyectos",
+      "otherSourcesUsable": true,
+      "missingNotZero": true,
+      "retryKeyboard": true,
+      "realSourceRecovered": true
+    },
+    {
+      "source": "Unidades",
+      "otherSourcesUsable": true,
+      "missingNotZero": true,
+      "retryKeyboard": true,
+      "realSourceRecovered": true
+    }
+  ],
+  "directories": [
+    {
+      "route": "/produccion-cientifica",
+      "errorDistinctFromEmpty": true,
+      "noInternalDetails": true,
+      "retryKeyboard": true,
+      "queryPreserved": true,
+      "filterPreserved": true
+    },
+    {
+      "route": "/investigadores",
+      "errorDistinctFromEmpty": true,
+      "noInternalDetails": true,
+      "retryKeyboard": true,
+      "queryPreserved": true,
+      "filterPreserved": true
+    },
+    {
+      "route": "/proyectos",
+      "errorDistinctFromEmpty": true,
+      "noInternalDetails": true,
+      "retryKeyboard": true,
+      "queryPreserved": true,
+      "filterPreserved": true
+    },
+    {
+      "route": "/unidades",
+      "errorDistinctFromEmpty": true,
+      "noInternalDetails": true,
+      "retryKeyboard": true,
+      "queryPreserved": true,
+      "filterPreserved": true
+    }
+  ],
+  "indicators": [
+    {
+      "route": "/produccion-cientifica",
+      "aggregateUnavailable": true,
+      "listUsable": true,
+      "realRows": 10,
+      "range": "Mostrando 1–10 de 2,701 publicaciones",
+      "csvFallback": true
+    },
+    {
+      "route": "/investigadores",
+      "aggregateUnavailable": true,
+      "listUsable": true,
+      "realRows": 10,
+      "range": "Mostrando 1–10 de 308 investigadores",
+      "csvFallback": true
+    }
+  ]
+}

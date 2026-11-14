@@ -5,13 +5,16 @@ export function Footer() {
     <footer className="mt-10 border-t border-slate-200 bg-white">
       <div className="site-container flex flex-col gap-4 py-6 text-sm text-slate-600 xl:flex-row xl:items-center xl:justify-between">
         <p className="font-semibold text-brand-dark">Observatorio Nacional de Investigacion de EsSalud</p>
-        <nav className="flex flex-wrap gap-x-4 gap-y-2">
+        <div>
+        <div role="group" className="flex flex-wrap gap-x-4 gap-y-2" aria-label="Referencias institucionales">
           {links.map((link) => (
-            <a key={link} href="#" className="hover:text-brand-dark">
+            <span key={link}>
               {link}
-            </a>
+            </span>
           ))}
-        </nav>
+        </div>
+        <p className="mt-2 text-xs text-slate-500">Enlaces institucionales pendientes de configuración.</p>
+        </div>
       </div>
     </footer>
   );

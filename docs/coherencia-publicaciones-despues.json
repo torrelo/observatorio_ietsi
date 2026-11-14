@@ -1,0 +1,100 @@
+[
+  {
+    "route": "/produccion-cientifica",
+    "width": 360,
+    "heading": {
+      "font": "30px",
+      "color": "rgb(2, 6, 23)",
+      "x": 16,
+      "width": 313,
+      "padding": "0px"
+    },
+    "header": {
+      "font": "16px",
+      "color": "rgb(15, 23, 42)",
+      "x": 0,
+      "width": 345,
+      "padding": "32px 16px"
+    },
+    "searchToToolbarGap": 16,
+    "emptyStatuses": [
+      {
+        "height": 1,
+        "position": "absolute"
+      }
+    ],
+    "viewport": 360,
+    "scroll": 345
+  },
+  {
+    "route": "/produccion-cientifica",
+    "width": 1440,
+    "heading": {
+      "font": "36px",
+      "color": "rgb(2, 6, 23)",
+      "x": 32,
+      "width": 1361,
+      "padding": "0px"
+    },
+    "header": {
+      "font": "16px",
+      "color": "rgb(15, 23, 42)",
+      "x": 0,
+      "width": 1425,
+      "padding": "32px"
+    },
+    "searchToToolbarGap": 16,
+    "emptyStatuses": [
+      {
+        "height": 1,
+        "position": "absolute"
+      }
+    ],
+    "viewport": 1440,
+    "scroll": 1425
+  },
+  {
+    "route": "/investigadores",
+    "width": 360,
+    "heading": {
+      "font": "30px",
+      "color": "rgb(2, 6, 23)",
+      "x": 16,
+      "width": 313,
+      "padding": "0px"
+    },
+    "header": {
+      "font": "16px",
+      "color": "rgb(15, 23, 42)",
+      "x": 0,
+      "width": 345,
+      "padding": "32px 16px"
+    },
+    "searchToToolbarGap": null,
+    "emptyStatuses": [],
+    "viewport": 360,
+    "scroll": 345
+  },
+  {
+    "route": "/investigadores",
+    "width": 1440,
+    "heading": {
+      "font": "36px",
+      "color": "rgb(2, 6, 23)",
+      "x": 32,
+      "width": 1361,
+      "padding": "0px"
+    },
+    "header": {
+      "font": "16px",
+      "color": "rgb(15, 23, 42)",
+      "x": 0,
+      "width": 1425,
+      "padding": "32px"
+    },
+    "searchToToolbarGap": null,
+    "emptyStatuses": [],
+    "viewport": 1440,
+    "scroll": 1425
+  }
+]

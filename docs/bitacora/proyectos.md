@@ -2,6 +2,16 @@
 
 ## Estado actual
 
+### Revisión QA 2026-11-14
+
+Metadata y región de resultados nombrada; margen de foco adaptado al encabezado. Sin cambios de datos, modelo o ficha. Regresión de filtros/orden/páginas/URL/retorno con fuente real, teclado a altura móvil reducida y error/reintento conservando consulta/estado aprobados. Compilación correcta. Detalles, capturas y límites: `docs/REVISION_FINAL_QA.md`.
+
+### Intervención 2026-11-14 - Patrón compartido de directorios
+
+Rama `feat/directorios-ux`. Se mantienen los datos de OpenProject (31 proyectos, 185 participaciones, no personas únicas). Búsqueda principal, filtros aplicados, orden global en servidor y paginación con estado en URL. Cuatro indicadores sobre todas las coincidencias, antes de paginar. Tarjetas horizontales con título completo, investigador, fechas y descripción; se retiran del listado el avance inferido por estado y las etiquetas técnicas. Se conserva el pipeline de la ficha sin rediseñarla. Estadísticas, presupuesto planificado por moneda y revisión pasan a un bloque secundario; el presupuesto no se presenta como financiamiento captado.
+
+Componentes, capturas y validaciones: `docs/DIRECTORIOS_UX.md`. Pendientes: autorización real para datos de gestión/equipo/presupuesto y etapas explícitas del proyecto. La ficha solo incorpora retorno seguro con estado.
+
 ### Intervencion 2026-11-13 - Base visual compartida
 
 El listado actual usa la base real de OpenProject mediante el loader existente. Esta intervencion solo adapta ancho, titulo, filtros, KPIs y controles a la base visual comun, y permite mostrar completo el titulo de tarjeta. No cambia datos, pipeline ni fichas. Capturas: `base-visual-{antes,despues}-proyectos-{360,1440}.png`. Diagnostico y validacion: `docs/BASE_VISUAL_ETAPA_1.md`. Las entradas historicas siguientes describen fases anteriores, no la fuente actual del listado.

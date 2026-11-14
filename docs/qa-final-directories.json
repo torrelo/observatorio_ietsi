@@ -1,0 +1,959 @@
+{
+  "responsive": [
+    {
+      "route": "/investigadores",
+      "width": 320,
+      "textScale": 1,
+      "client": 305,
+      "scroll": 305,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 273,
+      "columns": "273px",
+      "helpKeyboard": true,
+      "mobileDisclosure": true
+    },
+    {
+      "route": "/investigadores",
+      "width": 320,
+      "textScale": 2,
+      "client": 305,
+      "scroll": 305,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 241,
+      "columns": "241px",
+      "helpKeyboard": true,
+      "mobileDisclosure": true
+    },
+    {
+      "route": "/investigadores",
+      "width": 360,
+      "textScale": 1,
+      "client": 345,
+      "scroll": 345,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 313,
+      "columns": "313px",
+      "helpKeyboard": true,
+      "mobileDisclosure": true
+    },
+    {
+      "route": "/investigadores",
+      "width": 360,
+      "textScale": 2,
+      "client": 345,
+      "scroll": 345,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 281,
+      "columns": "281px",
+      "helpKeyboard": true,
+      "mobileDisclosure": true
+    },
+    {
+      "route": "/investigadores",
+      "width": 768,
+      "textScale": 1,
+      "client": 753,
+      "scroll": 753,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 705,
+      "columns": "705px",
+      "helpKeyboard": true,
+      "mobileDisclosure": true
+    },
+    {
+      "route": "/investigadores",
+      "width": 768,
+      "textScale": 2,
+      "client": 753,
+      "scroll": 753,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 657,
+      "columns": "657px",
+      "helpKeyboard": true,
+      "mobileDisclosure": true
+    },
+    {
+      "route": "/investigadores",
+      "width": 1280,
+      "textScale": 1,
+      "client": 1265,
+      "scroll": 1265,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 444.5,
+      "columns": "272px 905px",
+      "helpKeyboard": true,
+      "mobileDisclosure": false
+    },
+    {
+      "route": "/investigadores",
+      "width": 1280,
+      "textScale": 2,
+      "client": 1265,
+      "scroll": 1265,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 545,
+      "columns": "544px 545px",
+      "helpKeyboard": true,
+      "mobileDisclosure": false
+    },
+    {
+      "route": "/investigadores",
+      "width": 1440,
+      "textScale": 1,
+      "client": 1425,
+      "scroll": 1425,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 524.5,
+      "columns": "272px 1065px",
+      "helpKeyboard": true,
+      "mobileDisclosure": false
+    },
+    {
+      "route": "/investigadores",
+      "width": 1440,
+      "textScale": 2,
+      "client": 1425,
+      "scroll": 1425,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 705,
+      "columns": "544px 705px",
+      "helpKeyboard": true,
+      "mobileDisclosure": false
+    },
+    {
+      "route": "/proyectos",
+      "width": 320,
+      "textScale": 1,
+      "client": 305,
+      "scroll": 305,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 273,
+      "columns": "273px",
+      "helpKeyboard": true,
+      "mobileDisclosure": true
+    },
+    {
+      "route": "/proyectos",
+      "width": 320,
+      "textScale": 2,
+      "client": 305,
+      "scroll": 305,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 241,
+      "columns": "241px",
+      "helpKeyboard": true,
+      "mobileDisclosure": true
+    },
+    {
+      "route": "/proyectos",
+      "width": 360,
+      "textScale": 1,
+      "client": 345,
+      "scroll": 345,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 313,
+      "columns": "313px",
+      "helpKeyboard": true,
+      "mobileDisclosure": true
+    },
+    {
+      "route": "/proyectos",
+      "width": 360,
+      "textScale": 2,
+      "client": 345,
+      "scroll": 345,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 281,
+      "columns": "281px",
+      "helpKeyboard": true,
+      "mobileDisclosure": true
+    },
+    {
+      "route": "/proyectos",
+      "width": 768,
+      "textScale": 1,
+      "client": 753,
+      "scroll": 753,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 705,
+      "columns": "705px",
+      "helpKeyboard": true,
+      "mobileDisclosure": true
+    },
+    {
+      "route": "/proyectos",
+      "width": 768,
+      "textScale": 2,
+      "client": 753,
+      "scroll": 753,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 657,
+      "columns": "657px",
+      "helpKeyboard": true,
+      "mobileDisclosure": true
+    },
+    {
+      "route": "/proyectos",
+      "width": 1280,
+      "textScale": 1,
+      "client": 1265,
+      "scroll": 1265,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 905,
+      "columns": "272px 905px",
+      "helpKeyboard": true,
+      "mobileDisclosure": false
+    },
+    {
+      "route": "/proyectos",
+      "width": 1280,
+      "textScale": 2,
+      "client": 1265,
+      "scroll": 1265,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 545,
+      "columns": "544px 545px",
+      "helpKeyboard": true,
+      "mobileDisclosure": false
+    },
+    {
+      "route": "/proyectos",
+      "width": 1440,
+      "textScale": 1,
+      "client": 1425,
+      "scroll": 1425,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 1065,
+      "columns": "272px 1065px",
+      "helpKeyboard": true,
+      "mobileDisclosure": false
+    },
+    {
+      "route": "/proyectos",
+      "width": 1440,
+      "textScale": 2,
+      "client": 1425,
+      "scroll": 1425,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 705,
+      "columns": "544px 705px",
+      "helpKeyboard": true,
+      "mobileDisclosure": false
+    },
+    {
+      "route": "/unidades",
+      "width": 320,
+      "textScale": 1,
+      "client": 305,
+      "scroll": 305,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 273,
+      "columns": "273px",
+      "helpKeyboard": true,
+      "mobileDisclosure": true
+    },
+    {
+      "route": "/unidades",
+      "width": 320,
+      "textScale": 2,
+      "client": 305,
+      "scroll": 305,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 241,
+      "columns": "241px",
+      "helpKeyboard": true,
+      "mobileDisclosure": true
+    },
+    {
+      "route": "/unidades",
+      "width": 360,
+      "textScale": 1,
+      "client": 345,
+      "scroll": 345,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 313,
+      "columns": "313px",
+      "helpKeyboard": true,
+      "mobileDisclosure": true
+    },
+    {
+      "route": "/unidades",
+      "width": 360,
+      "textScale": 2,
+      "client": 345,
+      "scroll": 345,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 281,
+      "columns": "281px",
+      "helpKeyboard": true,
+      "mobileDisclosure": true
+    },
+    {
+      "route": "/unidades",
+      "width": 768,
+      "textScale": 1,
+      "client": 753,
+      "scroll": 753,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 705,
+      "columns": "705px",
+      "helpKeyboard": true,
+      "mobileDisclosure": true
+    },
+    {
+      "route": "/unidades",
+      "width": 768,
+      "textScale": 2,
+      "client": 753,
+      "scroll": 753,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 657,
+      "columns": "657px",
+      "helpKeyboard": true,
+      "mobileDisclosure": true
+    },
+    {
+      "route": "/unidades",
+      "width": 1280,
+      "textScale": 1,
+      "client": 1265,
+      "scroll": 1265,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 444.5,
+      "columns": "272px 905px",
+      "helpKeyboard": true,
+      "mobileDisclosure": false
+    },
+    {
+      "route": "/unidades",
+      "width": 1280,
+      "textScale": 2,
+      "client": 1265,
+      "scroll": 1265,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 545,
+      "columns": "544px 545px",
+      "helpKeyboard": true,
+      "mobileDisclosure": false
+    },
+    {
+      "route": "/unidades",
+      "width": 1440,
+      "textScale": 1,
+      "client": 1425,
+      "scroll": 1425,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 524.5,
+      "columns": "272px 1065px",
+      "helpKeyboard": true,
+      "mobileDisclosure": false
+    },
+    {
+      "route": "/unidades",
+      "width": 1440,
+      "textScale": 2,
+      "client": 1425,
+      "scroll": 1425,
+      "h1": 1,
+      "cutTitles": 0,
+      "articleWidth": 705,
+      "columns": "544px 705px",
+      "helpKeyboard": true,
+      "mobileDisclosure": false
+    }
+  ],
+  "flows": [
+    {
+      "route": "/investigadores",
+      "searchEnter": true,
+      "combinedFilters": true,
+      "removeChip": true,
+      "clearPreservesQuery": true,
+      "sortBeforePagination": true,
+      "reload": true,
+      "backForward": true,
+      "detailReturn": true,
+      "empty": true,
+      "clampedPage": true,
+      "latestNavigation": true
+    },
+    {
+      "route": "/proyectos",
+      "searchEnter": true,
+      "combinedFilters": true,
+      "removeChip": true,
+      "clearPreservesQuery": true,
+      "sortBeforePagination": true,
+      "reload": true,
+      "backForward": true,
+      "detailReturn": true,
+      "empty": true,
+      "clampedPage": true,
+      "latestNavigation": true
+    },
+    {
+      "route": "/unidades",
+      "searchEnter": true,
+      "combinedFilters": true,
+      "removeChip": true,
+      "clearPreservesQuery": true,
+      "sortBeforePagination": true,
+      "reload": true,
+      "backForward": true,
+      "detailReturn": true,
+      "empty": true,
+      "clampedPage": true,
+      "latestNavigation": true
+    }
+  ],
+  "views": [
+    {
+      "route": "/investigadores",
+      "query": {
+        "sort": "-n_publications",
+        "page": "1"
+      },
+      "total": 308,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/investigadores",
+      "query": {
+        "q": "salud",
+        "sort": "-n_publications",
+        "page": "1"
+      },
+      "total": 236,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/investigadores",
+      "query": {
+        "q": "salud",
+        "orcid": "Con ORCID",
+        "quartile": "Q1",
+        "sort": "-n_publications",
+        "page": "1"
+      },
+      "total": 113,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/investigadores",
+      "query": {
+        "q": "salud",
+        "orcid": "Con ORCID",
+        "sort": "-n_publications",
+        "page": "1"
+      },
+      "total": 206,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/investigadores",
+      "query": {
+        "q": "salud",
+        "sort": "-n_publications",
+        "page": "1"
+      },
+      "total": 236,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/investigadores",
+      "query": {
+        "orcid": "Con ORCID",
+        "sort": "researcher_name",
+        "page": "2"
+      },
+      "total": 256,
+      "visible": 10,
+      "page": 2
+    },
+    {
+      "route": "/investigadores",
+      "query": {
+        "orcid": "Con ORCID",
+        "sort": "researcher_name",
+        "page": "2"
+      },
+      "total": 256,
+      "visible": 10,
+      "page": 2
+    },
+    {
+      "route": "/investigadores",
+      "query": {
+        "orcid": "Con ORCID",
+        "sort": "researcher_name",
+        "page": "2"
+      },
+      "total": 256,
+      "visible": 10,
+      "page": 2
+    },
+    {
+      "route": "/investigadores",
+      "query": {
+        "orcid": "Con ORCID",
+        "sort": "-n_publications",
+        "page": "1"
+      },
+      "total": 256,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/investigadores",
+      "query": {
+        "orcid": "Con ORCID",
+        "sort": "researcher_name",
+        "page": "2"
+      },
+      "total": 256,
+      "visible": 10,
+      "page": 2
+    },
+    {
+      "route": "/investigadores",
+      "query": {
+        "orcid": "Con ORCID",
+        "sort": "-n_publications",
+        "page": "1"
+      },
+      "total": 256,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/investigadores",
+      "query": {
+        "q": "zzzzsincoincidencias9383",
+        "sort": "-n_publications",
+        "page": "1"
+      },
+      "total": 0,
+      "visible": 0,
+      "page": 1
+    },
+    {
+      "route": "/investigadores",
+      "query": {
+        "sort": "-n_publications",
+        "page": "31"
+      },
+      "total": 308,
+      "visible": 8,
+      "page": 31
+    },
+    {
+      "route": "/investigadores",
+      "query": {
+        "q": "salud",
+        "sort": "-n_publications",
+        "page": "1"
+      },
+      "total": 236,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/investigadores",
+      "query": {
+        "orcid": "Con ORCID",
+        "sort": "-n_publications",
+        "page": "1"
+      },
+      "total": 256,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/proyectos",
+      "query": {
+        "sort": "source_order",
+        "page": "1"
+      },
+      "total": 31,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/proyectos",
+      "query": {
+        "q": "salud",
+        "sort": "source_order",
+        "page": "1"
+      },
+      "total": 26,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/proyectos",
+      "query": {
+        "q": "salud",
+        "status": "Activo",
+        "type": "Observacional",
+        "sort": "source_order",
+        "page": "1"
+      },
+      "total": 17,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/proyectos",
+      "query": {
+        "q": "salud",
+        "type": "Observacional",
+        "sort": "source_order",
+        "page": "1"
+      },
+      "total": 17,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/proyectos",
+      "query": {
+        "q": "salud",
+        "sort": "source_order",
+        "page": "1"
+      },
+      "total": 26,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/proyectos",
+      "query": {
+        "type": "Observacional",
+        "sort": "title",
+        "page": "2"
+      },
+      "total": 22,
+      "visible": 10,
+      "page": 2
+    },
+    {
+      "route": "/proyectos",
+      "query": {
+        "type": "Observacional",
+        "sort": "title",
+        "page": "2"
+      },
+      "total": 22,
+      "visible": 10,
+      "page": 2
+    },
+    {
+      "route": "/proyectos",
+      "query": {
+        "type": "Observacional",
+        "sort": "title",
+        "page": "2"
+      },
+      "total": 22,
+      "visible": 10,
+      "page": 2
+    },
+    {
+      "route": "/proyectos",
+      "query": {
+        "type": "Observacional",
+        "sort": "source_order",
+        "page": "1"
+      },
+      "total": 22,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/proyectos",
+      "query": {
+        "type": "Observacional",
+        "sort": "title",
+        "page": "2"
+      },
+      "total": 22,
+      "visible": 10,
+      "page": 2
+    },
+    {
+      "route": "/proyectos",
+      "query": {
+        "type": "Observacional",
+        "sort": "source_order",
+        "page": "1"
+      },
+      "total": 22,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/proyectos",
+      "query": {
+        "q": "zzzzsincoincidencias9383",
+        "sort": "source_order",
+        "page": "1"
+      },
+      "total": 0,
+      "visible": 0,
+      "page": 1
+    },
+    {
+      "route": "/proyectos",
+      "query": {
+        "sort": "source_order",
+        "page": "4"
+      },
+      "total": 31,
+      "visible": 1,
+      "page": 4
+    },
+    {
+      "route": "/proyectos",
+      "query": {
+        "q": "salud",
+        "sort": "source_order",
+        "page": "1"
+      },
+      "total": 26,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/proyectos",
+      "query": {
+        "type": "Observacional",
+        "sort": "source_order",
+        "page": "1"
+      },
+      "total": 22,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/unidades",
+      "query": {
+        "sort": "source_order",
+        "page": "1"
+      },
+      "total": 30,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/unidades",
+      "query": {
+        "q": "hospital",
+        "sort": "source_order",
+        "page": "1"
+      },
+      "total": 29,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/unidades",
+      "query": {
+        "q": "hospital",
+        "unit_type": "Centro de investigación",
+        "has_ciei": "Sí",
+        "sort": "source_order",
+        "page": "1"
+      },
+      "total": 9,
+      "visible": 9,
+      "page": 1
+    },
+    {
+      "route": "/unidades",
+      "query": {
+        "q": "hospital",
+        "has_ciei": "Sí",
+        "sort": "source_order",
+        "page": "1"
+      },
+      "total": 29,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/unidades",
+      "query": {
+        "q": "hospital",
+        "sort": "source_order",
+        "page": "1"
+      },
+      "total": 29,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/unidades",
+      "query": {
+        "has_ciei": "Sí",
+        "sort": "name",
+        "page": "2"
+      },
+      "total": 30,
+      "visible": 10,
+      "page": 2
+    },
+    {
+      "route": "/unidades",
+      "query": {
+        "has_ciei": "Sí",
+        "sort": "name",
+        "page": "2"
+      },
+      "total": 30,
+      "visible": 10,
+      "page": 2
+    },
+    {
+      "route": "/unidades",
+      "query": {
+        "has_ciei": "Sí",
+        "sort": "name",
+        "page": "2"
+      },
+      "total": 30,
+      "visible": 10,
+      "page": 2
+    },
+    {
+      "route": "/unidades",
+      "query": {
+        "has_ciei": "Sí",
+        "sort": "source_order",
+        "page": "1"
+      },
+      "total": 30,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/unidades",
+      "query": {
+        "has_ciei": "Sí",
+        "sort": "name",
+        "page": "2"
+      },
+      "total": 30,
+      "visible": 10,
+      "page": 2
+    },
+    {
+      "route": "/unidades",
+      "query": {
+        "has_ciei": "Sí",
+        "sort": "source_order",
+        "page": "1"
+      },
+      "total": 30,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/unidades",
+      "query": {
+        "q": "zzzzsincoincidencias9383",
+        "sort": "source_order",
+        "page": "1"
+      },
+      "total": 0,
+      "visible": 0,
+      "page": 1
+    },
+    {
+      "route": "/unidades",
+      "query": {
+        "sort": "source_order",
+        "page": "3"
+      },
+      "total": 30,
+      "visible": 10,
+      "page": 3
+    },
+    {
+      "route": "/unidades",
+      "query": {
+        "q": "hospital",
+        "sort": "source_order",
+        "page": "1"
+      },
+      "total": 29,
+      "visible": 10,
+      "page": 1
+    },
+    {
+      "route": "/unidades",
+      "query": {
+        "has_ciei": "Sí",
+        "sort": "source_order",
+        "page": "1"
+      },
+      "total": 30,
+      "visible": 10,
+      "page": 1
+    }
+  ],
+  "regressions": [
+    {
+      "route": "/",
+      "h1": 1,
+      "heading": "Observatorio Nacional de Investigación de EsSalud",
+      "preexistingMissingH1": false
+    },
+    {
+      "route": "/produccion-cientifica",
+      "h1": 1,
+      "heading": "Producción científica",
+      "preexistingMissingH1": false
+    },
+    {
+      "route": "/unidades/ciei",
+      "h1": 0,
+      "heading": "Comités institucionales de ética en investigación",
+      "preexistingMissingH1": true
+    }
+  ],
+  "consoleErrors": []
+}

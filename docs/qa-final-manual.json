@@ -1,0 +1,176 @@
+{
+  "contrast": [
+    {
+      "width": 360,
+      "method": "Foreground computed against screenshot background pixels, text temporarily hidden in test DOM only",
+      "samples": [
+        {
+          "selector": "main h1",
+          "minContrast": 7.55
+        },
+        {
+          "selector": "main section p",
+          "minContrast": 6.85
+        },
+        {
+          "selector": "label[for=home-scope]",
+          "minContrast": 10.44
+        },
+        {
+          "selector": "label[for=home-search]",
+          "minContrast": 7.77
+        },
+        {
+          "selector": "#home-search-help",
+          "minContrast": 7.24
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "method": "Foreground computed against screenshot background pixels, text temporarily hidden in test DOM only",
+      "samples": [
+        {
+          "selector": "main h1",
+          "minContrast": 9.18
+        },
+        {
+          "selector": "main section p",
+          "minContrast": 8.82
+        },
+        {
+          "selector": "label[for=home-scope]",
+          "minContrast": 10.85
+        },
+        {
+          "selector": "label[for=home-search]",
+          "minContrast": 9.31
+        },
+        {
+          "selector": "#home-search-help",
+          "minContrast": 8.45
+        }
+      ]
+    }
+  ],
+  "semantics": [
+    {
+      "route": "/investigadores",
+      "width": 360,
+      "role": "region",
+      "label": "Resultados de investigadores",
+      "dialogReferenceVerified": true,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "targets": [
+            [
+              ".bg-brand-dark"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/proyectos",
+      "width": 360,
+      "role": "region",
+      "label": "Resultados de proyectos",
+      "dialogReferenceVerified": true,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "targets": [
+            [
+              ".bg-brand-dark"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/unidades",
+      "width": 360,
+      "role": "region",
+      "label": "Resultados de unidades",
+      "dialogReferenceVerified": true,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "targets": [
+            [
+              ".bg-brand-dark"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/investigadores",
+      "width": 1280,
+      "role": "region",
+      "label": "Resultados de investigadores",
+      "dialogReferenceVerified": true,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "targets": [
+            [
+              ".bg-brand-dark"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/proyectos",
+      "width": 1280,
+      "role": "region",
+      "label": "Resultados de proyectos",
+      "dialogReferenceVerified": true,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "targets": [
+            [
+              ".bg-brand-dark"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/unidades",
+      "width": 1280,
+      "role": "region",
+      "label": "Resultados de unidades",
+      "dialogReferenceVerified": true,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "targets": [
+            [
+              ".bg-brand-dark"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "reducedMotion": [
+    {
+      "width": 360,
+      "transitionsReduced": true
+    },
+    {
+      "width": 1280,
+      "transitionsReduced": true
+    }
+  ]
+}

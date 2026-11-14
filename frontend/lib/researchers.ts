@@ -1,5 +1,6 @@
 import { readFileSync } from "fs";
 import path from "path";
+import { isDataSourceError } from "./sourceErrors";
 import { expertiseLabels, parsePipeCountList, type ResearcherExpertise } from "@/lib/researcherExpertise";
 
 export type ResearcherExternalIds = {
@@ -212,12 +213,11 @@ let cache: {
   researchers: CrisResearcher[];
   links: ResearcherPublicationLink[];
   indicators: IndicatorsPayload;
+  indicatorsAvailable: boolean;
   summary: ResearcherSummary;
   analytics: ResearcherAnalytics;
   filters: ReturnType<typeof buildFilters>;
 } | null = null;
-
-export const researchers: CrisResearcher[] = loadResearcherData().researchers;
 
 export function getResearchers(params?: Record<string, string | string[] | undefined>) {
   const data = loadResearcherData();
@@ -298,8 +298,22 @@ export function getResearcherAnalytics() {
   return loadResearcherData().analytics;
 }
 
+export function hasResearcherIndicators() {
+  return loadResearcherData().indicatorsAvailable;
+}
+
 export function getResearcherFilterOptions() {
   return loadResearcherData().filters;
+}
+
+// Disponibilidad original para el listado: el modelo histórico normaliza vacíos a cero.
+export function getResearcherListMetrics(ids: string[]) {
+  const selected = new Set(ids);
+  return Object.fromEntries(parseCsv(readFileSync(RESEARCHERS_CSV, "utf-8"))
+    .filter(row => selected.has(cleanString(row.researcher_id)))
+    .map(row => [cleanString(row.researcher_id), {
+      publications: toInt(row.n_publications), citations: toInt(row.total_citations), hIndex: toInt(row.h_index_observatory),
+    }]));
 }
 
 export function getResearcherNetwork(limit = 18) {
@@ -355,7 +369,15 @@ function loadResearcherData() {
   if (cache) return cache;
   const rows = parseCsv(readFileSync(RESEARCHERS_CSV, "utf-8"));
   const links = parseCsv(readFileSync(LINKS_CSV, "utf-8")).map(mapLink);
-  const indicators = JSON.parse(readFileSync(INDICATORS_JSON, "utf-8")) as IndicatorsPayload;
+  let indicators: IndicatorsPayload = {};
+  let indicatorsAvailable = true;
+  try {
+    indicators = JSON.parse(readFileSync(INDICATORS_JSON, "utf-8")) as IndicatorsPayload;
+  } catch (error) {
+    if (!isDataSourceError(error)) throw error;
+    indicatorsAvailable = false;
+    console.error("No se pudo leer el agregado de investigadores; se utilizan los cálculos existentes de CSV.", error);
+  }
   const profiles = loadOptionalCsv(PROFILES_CSV);
   const affiliations = loadOptionalCsv(AFFILIATIONS_CSV);
   const photos = loadOptionalCsv(PHOTO_MANIFEST_CSV);
@@ -379,7 +401,7 @@ function loadResearcherData() {
   const summary = buildSummary(researchers, links, indicators);
   const analytics = buildAnalytics(researchers, links, indicators);
   const filters = buildFilters(researchers);
-  cache = { researchers, links, indicators, summary, analytics, filters };
+  cache = { researchers, links, indicators, indicatorsAvailable, summary, analytics, filters };
   return cache;
 }
 

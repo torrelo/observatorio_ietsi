@@ -1,0 +1,41 @@
+{
+  "states": [
+    {
+      "route": "/produccion-cientifica",
+      "pendingAnnounced": true,
+      "ariaBusy": true,
+      "submitDisabledDuringPending": true,
+      "emptyDistinct": true,
+      "queryPreserved": true,
+      "clearAvailable": true
+    },
+    {
+      "route": "/investigadores",
+      "pendingAnnounced": true,
+      "ariaBusy": true,
+      "submitDisabledDuringPending": true,
+      "emptyDistinct": true,
+      "queryPreserved": true,
+      "clearAvailable": true
+    },
+    {
+      "route": "/proyectos",
+      "pendingAnnounced": true,
+      "ariaBusy": true,
+      "submitDisabledDuringPending": true,
+      "emptyDistinct": true,
+      "queryPreserved": true,
+      "clearAvailable": true
+    },
+    {
+      "route": "/unidades",
+      "pendingAnnounced": true,
+      "ariaBusy": true,
+      "submitDisabledDuringPending": true,
+      "emptyDistinct": true,
+      "queryPreserved": true,
+      "clearAvailable": true
+    }
+  ],
+  "consoleErrors": []
+}

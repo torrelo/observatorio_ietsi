@@ -1,0 +1,50 @@
+[
+  {
+    "route": "investigadores",
+    "width": 360,
+    "scroll": 345,
+    "body": "16px",
+    "layout": "313px",
+    "records": 60
+  },
+  {
+    "route": "investigadores",
+    "width": 1440,
+    "scroll": 1425,
+    "body": "16px",
+    "layout": "256px 785px 272px",
+    "records": 60
+  },
+  {
+    "route": "proyectos",
+    "width": 360,
+    "scroll": 345,
+    "body": "16px",
+    "layout": "313px",
+    "records": 31
+  },
+  {
+    "route": "proyectos",
+    "width": 1440,
+    "scroll": 1425,
+    "body": "16px",
+    "layout": "256px 785px 272px",
+    "records": 31
+  },
+  {
+    "route": "unidades",
+    "width": 360,
+    "scroll": 345,
+    "body": "16px",
+    "layout": "313px",
+    "records": 34
+  },
+  {
+    "route": "unidades",
+    "width": 1440,
+    "scroll": 1425,
+    "body": "16px",
+    "layout": "256px 785px 272px",
+    "records": 34
+  }
+]

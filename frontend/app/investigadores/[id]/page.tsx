@@ -1,6 +1,7 @@
 import { Mail, UserRound } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { directoryReturnHref, type SearchParams } from "@/lib/directoryQuery";
 import type { ReactNode } from "react";
 import { Badge } from "@/components/Badge";
 import { CollaborationGraph } from "@/components/CollaborationGraph";
@@ -9,7 +10,8 @@ import { ResearcherExpertise } from "@/components/ResearcherExpertise";
 import type { ResearcherProject } from "@/lib/researchers";
 import { displayOrcid, displayResearcherValue, doiHref, getRelatedResearchers, getResearcher, orcidHref, researcherMethodologyNote } from "@/lib/researchers";
 
-export default async function ResearcherDetail({ params }: { params: Promise<{ id: string }> }) {
+export default async function ResearcherDetail({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<SearchParams> }) {
+  const returnHref = directoryReturnHref("/investigadores", (await searchParams).returnTo);
   const { id } = await params;
   const researcher = getResearcher(id);
   if (!researcher) notFound();
@@ -32,7 +34,7 @@ export default async function ResearcherDetail({ params }: { params: Promise<{ i
             <span>/</span>
             <span>Perfil</span>
           </nav>
-          <Link className="text-sm font-semibold text-brand" href="/investigadores">← Volver a Investigadores</Link>
+          <Link className="text-sm font-semibold text-brand" href={returnHref}>← Volver a Investigadores</Link>
 
           <div className="mt-5 grid gap-6 lg:grid-cols-[150px_1fr]">
             <ResearcherAvatar researcher={researcher} />

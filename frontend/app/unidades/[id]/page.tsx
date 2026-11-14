@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { directoryReturnHref, type SearchParams } from "@/lib/directoryQuery";
 import { Badge } from "@/components/Badge";
 import { DataTable } from "@/components/DataTable";
 import { EthicsCommitteeDetail } from "@/components/EthicsCommitteeDetail";
@@ -7,7 +8,8 @@ import { ResearchUnitDetail } from "@/components/ResearchUnitDetail";
 import { SectionHeader } from "@/components/SectionHeader";
 import { displayResearchUnitValue, getResearchUnitById } from "@/lib/researchUnits";
 
-export default async function UnitDetail({ params }: { params: Promise<{ id: string }> }) {
+export default async function UnitDetail({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<SearchParams> }) {
+  const returnHref = directoryReturnHref("/unidades", (await searchParams).returnTo);
   const { id } = await params;
   const unit = getResearchUnitById(id);
   if (!unit) notFound();
@@ -23,7 +25,7 @@ export default async function UnitDetail({ params }: { params: Promise<{ id: str
             <span>/</span>
             <span>Unidad</span>
           </nav>
-          <Link className="text-sm font-semibold text-brand" href="/unidades">← Volver a Unidades</Link>
+          <Link className="text-sm font-semibold text-brand" href={returnHref}>← Volver a Unidades</Link>
           <div className="mt-4 flex flex-wrap gap-2">
             {unit.unit_type ? <Badge>{unit.unit_type}</Badge> : null}
             {unit.unit_status ? <Badge tone="sky">{unit.unit_status}</Badge> : null}

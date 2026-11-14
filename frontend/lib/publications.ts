@@ -338,6 +338,19 @@ export async function getPublicationFilters() {
   return data.filters;
 }
 
+// Presentation-only provenance: retain missing values without changing legacy metrics/API.
+export async function getPublicationSourceAvailability(ids: number[]) {
+  const rows = parseCsv(await readFile(PUBLICATIONS_CSV, "utf-8"));
+  return Object.fromEntries(ids.map(id => {
+    const row = rows[id - 1];
+    return [id, {
+      citations: row ? toNumber(row.citation_count) : null,
+      openAccess: row ? toBool(row.open_access) : null,
+      altmetric: row ? toNumber(row.altmetric_score) : null,
+    }];
+  }));
+}
+
 export async function getPublicationInstitutionalAuthors(publicationId: string | null | undefined) {
   if (!publicationId) return [];
   const data = await loadPublicationAuthorData();

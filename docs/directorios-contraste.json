@@ -1,0 +1,89 @@
+{
+  "samples": [
+    {
+      "selector": "main h1",
+      "color": "rgb(2, 6, 23)",
+      "background": "rgb(255, 255, 255)",
+      "fontSize": "36px",
+      "ratio": 20.17
+    },
+    {
+      "selector": "#directory-search-help",
+      "color": "rgb(71, 85, 105)",
+      "background": "rgb(245, 248, 252)",
+      "fontSize": "14px",
+      "ratio": 7.11
+    },
+    {
+      "selector": "form button[type=submit]",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(0, 75, 155)",
+      "fontSize": "16px",
+      "ratio": 8.47
+    },
+    {
+      "selector": "main dl dt",
+      "color": "rgb(95, 111, 133)",
+      "background": "rgb(255, 255, 255)",
+      "fontSize": "13px",
+      "ratio": 5.12
+    },
+    {
+      "selector": "main h1",
+      "color": "rgb(2, 6, 23)",
+      "background": "rgb(255, 255, 255)",
+      "fontSize": "36px",
+      "ratio": 20.17
+    },
+    {
+      "selector": "#directory-search-help",
+      "color": "rgb(71, 85, 105)",
+      "background": "rgb(245, 248, 252)",
+      "fontSize": "14px",
+      "ratio": 7.11
+    },
+    {
+      "selector": "form button[type=submit]",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(0, 75, 155)",
+      "fontSize": "16px",
+      "ratio": 8.47
+    },
+    {
+      "selector": "main dl dt",
+      "color": "rgb(95, 111, 133)",
+      "background": "rgb(255, 255, 255)",
+      "fontSize": "13px",
+      "ratio": 5.12
+    },
+    {
+      "selector": "main h1",
+      "color": "rgb(2, 6, 23)",
+      "background": "rgb(255, 255, 255)",
+      "fontSize": "36px",
+      "ratio": 20.17
+    },
+    {
+      "selector": "#directory-search-help",
+      "color": "rgb(71, 85, 105)",
+      "background": "rgb(245, 248, 252)",
+      "fontSize": "14px",
+      "ratio": 7.11
+    },
+    {
+      "selector": "form button[type=submit]",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(0, 75, 155)",
+      "fontSize": "16px",
+      "ratio": 8.47
+    },
+    {
+      "selector": "main dl dt",
+      "color": "rgb(95, 111, 133)",
+      "background": "rgb(255, 255, 255)",
+      "fontSize": "13px",
+      "ratio": 5.12
+    }
+  ],
+  "consoleErrors": []
+}

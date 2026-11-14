@@ -13,7 +13,7 @@
 }
 
 @layer base {
-  html { font-size: 100%; }
+  html { font-size: 100%; scroll-padding-block-start: var(--header-offset, 0px); }
   body {
     background: #f5f8fc;
     color: #0f172a;
@@ -27,6 +27,10 @@
 
 * {
   box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
 
 :focus-visible {

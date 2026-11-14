@@ -5,10 +5,12 @@ import { Badge } from "@/components/Badge";
 import { DataTable } from "@/components/DataTable";
 import { PublicationActions } from "@/components/PublicationActions";
 import { SectionHeader } from "@/components/SectionHeader";
+import { publicationReturnHref } from "@/lib/publicationQuery";
 import { displayDoi, displayQuartile, displayThematic, displayValue, getPublication, getPublicationInstitutionalAuthors, getPublications, methodologyNote, type PublicationInstitutionalAuthor } from "@/lib/publications";
 
-export default async function PublicationDetailPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function PublicationDetailPage({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const { id } = await params;
+  const returnHref = publicationReturnHref((await searchParams).returnTo);
   const publication = await getPublication(id);
   const institutionalAuthors = await getPublicationInstitutionalAuthors(publication.publication_id ?? String(publication.id));
   const related = await getPublications({ thematic_area: publication.thematic_area ?? undefined, limit: "3" });
@@ -24,7 +26,7 @@ export default async function PublicationDetailPage({ params }: { params: Promis
             <span>/</span>
             <span>Ficha de publicación</span>
           </nav>
-          <Link className="text-sm font-semibold text-brand" href="/produccion-cientifica">← Volver a Producción científica</Link>
+          <Link className="text-sm font-semibold text-brand" href={returnHref}>← Volver a Producción científica</Link>
           <div className="mt-4 flex flex-wrap gap-2">
             <Badge>{displayQuartile(publication.quartile)}</Badge>
             <Badge tone={publication.open_access ? "green" : "gray"}>{publication.open_access ? "Acceso abierto" : "Restringido"}</Badge>

@@ -1,0 +1,359 @@
+{
+  "phase": "directorios-development",
+  "base": "http://127.0.0.1:3000",
+  "cacheDisabled": true,
+  "cases": [
+    {
+      "route": "/",
+      "trigger": "direct",
+      "ready": true,
+      "visible": {
+        "route": "/",
+        "title": "Observatorio Nacional de Investigación de EsSalud",
+        "body": "Saltar al contenido principal\n\nObservatorio Nacional de Investigación de EsSalud\n\nLogin institucional\nInicio\nProducción científica\nInvestigadores\nProyectos\nUnidades de investigación\nMás módulos\nObservatorio Nacional de Investigación de EsSalud\n\nPlataforma institucional para la gestión, visualización y análisis de la investigación e innovación en salud.\n\nBuscar\nDirectorios principales\n\nAcceso directo a las fuentes centrales del ecosistema de investigacion institucional.\n\nProduccion cientifica\n\nPublicaciones, revistas, DOI, PMID, citas y acceso abierto.\n\n2,701 publicaciones\n\nInvestigadores\n\nExpertos, ORCID, RENACYT, filiaciones y lineas de investigacion.\n\n308 investigadores\n\nProyectos\n\nPortafolio institucional, etapas, financiamiento y productos.\n\n31 proyectos\n\nUnidades de investigacion\n\nCapacidades por red asistencial, region e infraestructura.\n\n30 unidades\n\nModulos complementarios\n\nRutas especializadas para explorar gestion, financiamiento, colaboracion y analitica avanzada.\n\nIndicador",
+        "overlay": "\n        :host {\n          all: initial;\n\n          /* the direction property is not reset by 'all' */\n          direction: ltr;\n        }\n\n        /*!\n         * Bootstrap Reboot v4.4.1 (https://getbootstrap.com/)\n         * Copyright 2011-2019 The Bootstrap Authors\n         * Copyright 2011-2019 Twitter, Inc.\n         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n         * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md)\n         */\n        *,\n        *::before,\n        *::after {\n          box-sizing: border-box;\n        }\n\n        :host {\n          font-family: sans-serif;\n          line-height: 1.15;\n          -webkit-text-size-adjust: 100%;\n          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n        }\n\n        article,\n        aside,\n        figcaption,\n        figure,\n        footer,\n        header,\n        hgroup,\n        main,\n        nav,\n        section {\n          display: block;\n        }\n\n        :host {\n          margin: 0;\n          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n            'Helvetica Neue', Arial, 'Noto Sans', sans-serif,\n            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',\n            'Noto Color Emoji';\n          font-size: 16px;\n          font-weight: 400;\n          line-height: 1.5;\n          color: var(--color-font);\n          text-align: left;\n          background-color: #fff;\n        }\n\n        [tabindex='-1']:focus:not(:focus-visible) {\n          outline: 0 !important;\n        }\n\n        hr {\n          box-sizing: content-box;\n          height: 0;\n          overflow: visible;\n        }\n\n        h1,\n        h2,\n        h3,\n        h4,\n        h5,\n        h6 {\n          margin-top: 0;\n          margin-bottom: 8px;\n        }\n\n        p {\n          margin-top: 0;\n          margin-bottom: 16px;\n        }\n\n        abbr[title],\n        abbr[data-original-title] {\n          text-decoration: underline;\n "
+      },
+      "errors": [],
+      "failedChunks": [],
+      "failedRequests": [],
+      "pendingChunks": [],
+      "documentResponses": [
+        {
+          "url": "http://127.0.0.1:3000/",
+          "status": 200,
+          "type": "Document"
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "trigger": "reload",
+      "ready": true,
+      "visible": {
+        "route": "/",
+        "title": "Observatorio Nacional de Investigación de EsSalud",
+        "body": "Saltar al contenido principal\n\nObservatorio Nacional de Investigación de EsSalud\n\nLogin institucional\nInicio\nProducción científica\nInvestigadores\nProyectos\nUnidades de investigación\nMás módulos\nObservatorio Nacional de Investigación de EsSalud\n\nPlataforma institucional para la gestión, visualización y análisis de la investigación e innovación en salud.\n\nBuscar\nDirectorios principales\n\nAcceso directo a las fuentes centrales del ecosistema de investigacion institucional.\n\nProduccion cientifica\n\nPublicaciones, revistas, DOI, PMID, citas y acceso abierto.\n\n2,701 publicaciones\n\nInvestigadores\n\nExpertos, ORCID, RENACYT, filiaciones y lineas de investigacion.\n\n308 investigadores\n\nProyectos\n\nPortafolio institucional, etapas, financiamiento y productos.\n\n31 proyectos\n\nUnidades de investigacion\n\nCapacidades por red asistencial, region e infraestructura.\n\n30 unidades\n\nModulos complementarios\n\nRutas especializadas para explorar gestion, financiamiento, colaboracion y analitica avanzada.\n\nIndicador",
+        "overlay": "\n        :host {\n          all: initial;\n\n          /* the direction property is not reset by 'all' */\n          direction: ltr;\n        }\n\n        /*!\n         * Bootstrap Reboot v4.4.1 (https://getbootstrap.com/)\n         * Copyright 2011-2019 The Bootstrap Authors\n         * Copyright 2011-2019 Twitter, Inc.\n         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n         * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md)\n         */\n        *,\n        *::before,\n        *::after {\n          box-sizing: border-box;\n        }\n\n        :host {\n          font-family: sans-serif;\n          line-height: 1.15;\n          -webkit-text-size-adjust: 100%;\n          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n        }\n\n        article,\n        aside,\n        figcaption,\n        figure,\n        footer,\n        header,\n        hgroup,\n        main,\n        nav,\n        section {\n          display: block;\n        }\n\n        :host {\n          margin: 0;\n          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n            'Helvetica Neue', Arial, 'Noto Sans', sans-serif,\n            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',\n            'Noto Color Emoji';\n          font-size: 16px;\n          font-weight: 400;\n          line-height: 1.5;\n          color: var(--color-font);\n          text-align: left;\n          background-color: #fff;\n        }\n\n        [tabindex='-1']:focus:not(:focus-visible) {\n          outline: 0 !important;\n        }\n\n        hr {\n          box-sizing: content-box;\n          height: 0;\n          overflow: visible;\n        }\n\n        h1,\n        h2,\n        h3,\n        h4,\n        h5,\n        h6 {\n          margin-top: 0;\n          margin-bottom: 8px;\n        }\n\n        p {\n          margin-top: 0;\n          margin-bottom: 16px;\n        }\n\n        abbr[title],\n        abbr[data-original-title] {\n          text-decoration: underline;\n "
+      },
+      "errors": [],
+      "failedChunks": [],
+      "failedRequests": [],
+      "pendingChunks": [],
+      "documentResponses": [
+        {
+          "url": "http://127.0.0.1:3000/",
+          "status": 200,
+          "type": "Document"
+        }
+      ]
+    },
+    {
+      "route": "/produccion-cientifica",
+      "trigger": "direct",
+      "ready": true,
+      "visible": {
+        "route": "/produccion-cientifica",
+        "title": "Producción científica",
+        "body": "Saltar al contenido principal\n\nObservatorio Nacional de Investigación de EsSalud\n\nLogin institucional\nInicio\nProducción científica\nInvestigadores\nProyectos\nUnidades de investigación\nMás módulos\n\nDIRECTORIO INSTITUCIONAL\n\nProducción científica\n\nPublicaciones, documentos técnicos y producción académica vinculada a EsSalud.\n\nActualización de la base: 04/09/2026\n\nResumen del catálogo\nPublicaciones registradas\n2,701\nAcceso abierto\n1,709\nPublicaciones Q1–Q2\n917\nCitas registradas\n31,556\nBuscar publicaciones\nBuscar\n\nBusca también en resúmenes disponibles, ISSN y clasificación temática del catálogo institucional.\n\nResultados\n\nMostrando 1–10 de 2,701 publicaciones\n\nOrdenar por\nMás recientes\nMás antiguas\nMás citas\nMenos citas\nCuartil\nTítulo (A–Z)\nExportar página (CSV)\nFiltrar publicaciones\nAño\nTodos\n2026\n2025\n2024\n2023\n2022\n2021\n2020\n2019\n2018\n2017\n2016\n2015\n2014\n2013\n2012\n2011\n2010\n2009\n2008\n2007\n2006\n2005\n2004\n2003\n2002\n2001\n2000\n1999\n1997\n1996\n1995\n1994\n1993\n1992\n1991\n1990\n1989\n1984\n0\nTipo doc",
+        "overlay": "\n        :host {\n          all: initial;\n\n          /* the direction property is not reset by 'all' */\n          direction: ltr;\n        }\n\n        /*!\n         * Bootstrap Reboot v4.4.1 (https://getbootstrap.com/)\n         * Copyright 2011-2019 The Bootstrap Authors\n         * Copyright 2011-2019 Twitter, Inc.\n         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n         * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md)\n         */\n        *,\n        *::before,\n        *::after {\n          box-sizing: border-box;\n        }\n\n        :host {\n          font-family: sans-serif;\n          line-height: 1.15;\n          -webkit-text-size-adjust: 100%;\n          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n        }\n\n        article,\n        aside,\n        figcaption,\n        figure,\n        footer,\n        header,\n        hgroup,\n        main,\n        nav,\n        section {\n          display: block;\n        }\n\n        :host {\n          margin: 0;\n          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n            'Helvetica Neue', Arial, 'Noto Sans', sans-serif,\n            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',\n            'Noto Color Emoji';\n          font-size: 16px;\n          font-weight: 400;\n          line-height: 1.5;\n          color: var(--color-font);\n          text-align: left;\n          background-color: #fff;\n        }\n\n        [tabindex='-1']:focus:not(:focus-visible) {\n          outline: 0 !important;\n        }\n\n        hr {\n          box-sizing: content-box;\n          height: 0;\n          overflow: visible;\n        }\n\n        h1,\n        h2,\n        h3,\n        h4,\n        h5,\n        h6 {\n          margin-top: 0;\n          margin-bottom: 8px;\n        }\n\n        p {\n          margin-top: 0;\n          margin-bottom: 16px;\n        }\n\n        abbr[title],\n        abbr[data-original-title] {\n          text-decoration: underline;\n "
+      },
+      "errors": [],
+      "failedChunks": [],
+      "failedRequests": [],
+      "pendingChunks": [
+        "http://127.0.0.1:3000/_next/static/webpack/webpack.8aba7afeb2b6f6e4.hot-update.js"
+      ],
+      "documentResponses": [
+        {
+          "url": "http://127.0.0.1:3000/produccion-cientifica",
+          "status": 200,
+          "type": "Document"
+        }
+      ]
+    },
+    {
+      "route": "/produccion-cientifica",
+      "trigger": "reload",
+      "ready": true,
+      "visible": {
+        "route": "/produccion-cientifica",
+        "title": "Producción científica",
+        "body": "Saltar al contenido principal\n\nObservatorio Nacional de Investigación de EsSalud\n\nLogin institucional\nInicio\nProducción científica\nInvestigadores\nProyectos\nUnidades de investigación\nMás módulos\n\nDIRECTORIO INSTITUCIONAL\n\nProducción científica\n\nPublicaciones, documentos técnicos y producción académica vinculada a EsSalud.\n\nActualización de la base: 04/09/2026\n\nResumen del catálogo\nPublicaciones registradas\n2,701\nAcceso abierto\n1,709\nPublicaciones Q1–Q2\n917\nCitas registradas\n31,556\nBuscar publicaciones\nBuscar\n\nBusca también en resúmenes disponibles, ISSN y clasificación temática del catálogo institucional.\n\nResultados\n\nMostrando 1–10 de 2,701 publicaciones\n\nOrdenar por\nMás recientes\nMás antiguas\nMás citas\nMenos citas\nCuartil\nTítulo (A–Z)\nExportar página (CSV)\nFiltrar publicaciones\nAño\nTodos\n2026\n2025\n2024\n2023\n2022\n2021\n2020\n2019\n2018\n2017\n2016\n2015\n2014\n2013\n2012\n2011\n2010\n2009\n2008\n2007\n2006\n2005\n2004\n2003\n2002\n2001\n2000\n1999\n1997\n1996\n1995\n1994\n1993\n1992\n1991\n1990\n1989\n1984\n0\nTipo doc",
+        "overlay": "\n        :host {\n          all: initial;\n\n          /* the direction property is not reset by 'all' */\n          direction: ltr;\n        }\n\n        /*!\n         * Bootstrap Reboot v4.4.1 (https://getbootstrap.com/)\n         * Copyright 2011-2019 The Bootstrap Authors\n         * Copyright 2011-2019 Twitter, Inc.\n         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n         * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md)\n         */\n        *,\n        *::before,\n        *::after {\n          box-sizing: border-box;\n        }\n\n        :host {\n          font-family: sans-serif;\n          line-height: 1.15;\n          -webkit-text-size-adjust: 100%;\n          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n        }\n\n        article,\n        aside,\n        figcaption,\n        figure,\n        footer,\n        header,\n        hgroup,\n        main,\n        nav,\n        section {\n          display: block;\n        }\n\n        :host {\n          margin: 0;\n          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n            'Helvetica Neue', Arial, 'Noto Sans', sans-serif,\n            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',\n            'Noto Color Emoji';\n          font-size: 16px;\n          font-weight: 400;\n          line-height: 1.5;\n          color: var(--color-font);\n          text-align: left;\n          background-color: #fff;\n        }\n\n        [tabindex='-1']:focus:not(:focus-visible) {\n          outline: 0 !important;\n        }\n\n        hr {\n          box-sizing: content-box;\n          height: 0;\n          overflow: visible;\n        }\n\n        h1,\n        h2,\n        h3,\n        h4,\n        h5,\n        h6 {\n          margin-top: 0;\n          margin-bottom: 8px;\n        }\n\n        p {\n          margin-top: 0;\n          margin-bottom: 16px;\n        }\n\n        abbr[title],\n        abbr[data-original-title] {\n          text-decoration: underline;\n "
+      },
+      "errors": [],
+      "failedChunks": [],
+      "failedRequests": [],
+      "pendingChunks": [],
+      "documentResponses": [
+        {
+          "url": "http://127.0.0.1:3000/produccion-cientifica",
+          "status": 200,
+          "type": "Document"
+        }
+      ]
+    },
+    {
+      "route": "/investigadores",
+      "trigger": "direct",
+      "ready": true,
+      "visible": {
+        "route": "/investigadores",
+        "title": "Directorio de Investigadores",
+        "body": "Saltar al contenido principal\n\nObservatorio Nacional de Investigación de EsSalud\n\nLogin institucional\nInicio\nProducción científica\nInvestigadores\nProyectos\nUnidades de investigación\nMás módulos\n\nDIRECTORIO INSTITUCIONAL\n\nDirectorio de Investigadores\n\nRegistro institucional de investigadores, expertos y líderes científicos de EsSalud.\n\nResumen del directorio\nInvestigadores registrados\n308\nInvestigadores con ORCID\n256\nPublicaciones únicas vinculadas\n2,369\nMediana de publicaciones por investigador\n4\nBuscar investigadores\nBuscar\n\nBusca por nombre, ORCID, filiación, unidad, áreas temáticas y títulos de publicaciones vinculadas.\n\nMostrando 1–10 de 308 investigadores\n\nOrdenar por\nPublicaciones\nCitas\nH-index observatorio\nQ1\nQ2\nPublicacion reciente\nNombre\nFiltros\nInstitución\nTodos\nArequipa\nEssalud\nEsSalud\nEviSalud\nHospital Clínico San Carlos / Hospital Universitario La Princesa\nHospital Nacional Daniel Alcides Carrión\nHospital Nacional Hipólito Unanue\nInstituto Nacional de Cardiología Ignacio C",
+        "overlay": "\n        :host {\n          all: initial;\n\n          /* the direction property is not reset by 'all' */\n          direction: ltr;\n        }\n\n        /*!\n         * Bootstrap Reboot v4.4.1 (https://getbootstrap.com/)\n         * Copyright 2011-2019 The Bootstrap Authors\n         * Copyright 2011-2019 Twitter, Inc.\n         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n         * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md)\n         */\n        *,\n        *::before,\n        *::after {\n          box-sizing: border-box;\n        }\n\n        :host {\n          font-family: sans-serif;\n          line-height: 1.15;\n          -webkit-text-size-adjust: 100%;\n          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n        }\n\n        article,\n        aside,\n        figcaption,\n        figure,\n        footer,\n        header,\n        hgroup,\n        main,\n        nav,\n        section {\n          display: block;\n        }\n\n        :host {\n          margin: 0;\n          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n            'Helvetica Neue', Arial, 'Noto Sans', sans-serif,\n            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',\n            'Noto Color Emoji';\n          font-size: 16px;\n          font-weight: 400;\n          line-height: 1.5;\n          color: var(--color-font);\n          text-align: left;\n          background-color: #fff;\n        }\n\n        [tabindex='-1']:focus:not(:focus-visible) {\n          outline: 0 !important;\n        }\n\n        hr {\n          box-sizing: content-box;\n          height: 0;\n          overflow: visible;\n        }\n\n        h1,\n        h2,\n        h3,\n        h4,\n        h5,\n        h6 {\n          margin-top: 0;\n          margin-bottom: 8px;\n        }\n\n        p {\n          margin-top: 0;\n          margin-bottom: 16px;\n        }\n\n        abbr[title],\n        abbr[data-original-title] {\n          text-decoration: underline;\n "
+      },
+      "errors": [],
+      "failedChunks": [],
+      "failedRequests": [],
+      "pendingChunks": [
+        "http://127.0.0.1:3000/_next/static/webpack/webpack.c47880ddfe34ffbc.hot-update.js"
+      ],
+      "documentResponses": [
+        {
+          "url": "http://127.0.0.1:3000/investigadores",
+          "status": 200,
+          "type": "Document"
+        }
+      ]
+    },
+    {
+      "route": "/investigadores",
+      "trigger": "reload",
+      "ready": true,
+      "visible": {
+        "route": "/investigadores",
+        "title": "Directorio de Investigadores",
+        "body": "Saltar al contenido principal\n\nObservatorio Nacional de Investigación de EsSalud\n\nLogin institucional\nInicio\nProducción científica\nInvestigadores\nProyectos\nUnidades de investigación\nMás módulos\n\nDIRECTORIO INSTITUCIONAL\n\nDirectorio de Investigadores\n\nRegistro institucional de investigadores, expertos y líderes científicos de EsSalud.\n\nResumen del directorio\nInvestigadores registrados\n308\nInvestigadores con ORCID\n256\nPublicaciones únicas vinculadas\n2,369\nMediana de publicaciones por investigador\n4\nBuscar investigadores\nBuscar\n\nBusca por nombre, ORCID, filiación, unidad, áreas temáticas y títulos de publicaciones vinculadas.\n\nMostrando 1–10 de 308 investigadores\n\nOrdenar por\nPublicaciones\nCitas\nH-index observatorio\nQ1\nQ2\nPublicacion reciente\nNombre\nFiltros\nInstitución\nTodos\nArequipa\nEssalud\nEsSalud\nEviSalud\nHospital Clínico San Carlos / Hospital Universitario La Princesa\nHospital Nacional Daniel Alcides Carrión\nHospital Nacional Hipólito Unanue\nInstituto Nacional de Cardiología Ignacio C",
+        "overlay": "\n        :host {\n          all: initial;\n\n          /* the direction property is not reset by 'all' */\n          direction: ltr;\n        }\n\n        /*!\n         * Bootstrap Reboot v4.4.1 (https://getbootstrap.com/)\n         * Copyright 2011-2019 The Bootstrap Authors\n         * Copyright 2011-2019 Twitter, Inc.\n         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n         * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md)\n         */\n        *,\n        *::before,\n        *::after {\n          box-sizing: border-box;\n        }\n\n        :host {\n          font-family: sans-serif;\n          line-height: 1.15;\n          -webkit-text-size-adjust: 100%;\n          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n        }\n\n        article,\n        aside,\n        figcaption,\n        figure,\n        footer,\n        header,\n        hgroup,\n        main,\n        nav,\n        section {\n          display: block;\n        }\n\n        :host {\n          margin: 0;\n          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n            'Helvetica Neue', Arial, 'Noto Sans', sans-serif,\n            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',\n            'Noto Color Emoji';\n          font-size: 16px;\n          font-weight: 400;\n          line-height: 1.5;\n          color: var(--color-font);\n          text-align: left;\n          background-color: #fff;\n        }\n\n        [tabindex='-1']:focus:not(:focus-visible) {\n          outline: 0 !important;\n        }\n\n        hr {\n          box-sizing: content-box;\n          height: 0;\n          overflow: visible;\n        }\n\n        h1,\n        h2,\n        h3,\n        h4,\n        h5,\n        h6 {\n          margin-top: 0;\n          margin-bottom: 8px;\n        }\n\n        p {\n          margin-top: 0;\n          margin-bottom: 16px;\n        }\n\n        abbr[title],\n        abbr[data-original-title] {\n          text-decoration: underline;\n "
+      },
+      "errors": [],
+      "failedChunks": [],
+      "failedRequests": [],
+      "pendingChunks": [],
+      "documentResponses": [
+        {
+          "url": "http://127.0.0.1:3000/investigadores",
+          "status": 200,
+          "type": "Document"
+        }
+      ]
+    },
+    {
+      "route": "/proyectos",
+      "trigger": "direct",
+      "ready": true,
+      "visible": {
+        "route": "/proyectos",
+        "title": "Directorio de Proyectos",
+        "body": "Saltar al contenido principal\n\nObservatorio Nacional de Investigación de EsSalud\n\nLogin institucional\nInicio\nProducción científica\nInvestigadores\nProyectos\nUnidades de investigación\nMás módulos\n\nDIRECTORIO INSTITUCIONAL\n\nDirectorio de Proyectos\n\nPlataforma institucional para el seguimiento de proyectos de investigación, innovación y desarrollo científico en EsSalud.\n\nBase procesada: 2026-10-06\n\nResumen de los resultados\nProyectos registrados\n31\nProyectos activos\n31\nProyectos de innovación\n9\nCon investigador principal\n31\nBuscar proyectos\nBuscar\n\nBusca por título, código, descripción, investigador, unidad, red, IPRESS o temática registrada.\n\nMostrando 1–10 de 31 proyectos\n\nOrdenar por\nOrden de la base institucional\nTítulo (A–Z)\nInicio más reciente\nEstado (A–Z)\nFiltros\nEstado\nTodos\nActivo\nTipo de proyecto\nTodos\nInnovación\nObservacional\nInvestigador principal\nTodos\nArturo Orella Vicuña\nBrady Beltrán Gárate\nBrik Henrry Meza Pinedo\nCésar López Godoy\nCristian Díaz Vélez\nDaysi Zulema Díaz Obre",
+        "overlay": "\n        :host {\n          all: initial;\n\n          /* the direction property is not reset by 'all' */\n          direction: ltr;\n        }\n\n        /*!\n         * Bootstrap Reboot v4.4.1 (https://getbootstrap.com/)\n         * Copyright 2011-2019 The Bootstrap Authors\n         * Copyright 2011-2019 Twitter, Inc.\n         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n         * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md)\n         */\n        *,\n        *::before,\n        *::after {\n          box-sizing: border-box;\n        }\n\n        :host {\n          font-family: sans-serif;\n          line-height: 1.15;\n          -webkit-text-size-adjust: 100%;\n          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n        }\n\n        article,\n        aside,\n        figcaption,\n        figure,\n        footer,\n        header,\n        hgroup,\n        main,\n        nav,\n        section {\n          display: block;\n        }\n\n        :host {\n          margin: 0;\n          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n            'Helvetica Neue', Arial, 'Noto Sans', sans-serif,\n            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',\n            'Noto Color Emoji';\n          font-size: 16px;\n          font-weight: 400;\n          line-height: 1.5;\n          color: var(--color-font);\n          text-align: left;\n          background-color: #fff;\n        }\n\n        [tabindex='-1']:focus:not(:focus-visible) {\n          outline: 0 !important;\n        }\n\n        hr {\n          box-sizing: content-box;\n          height: 0;\n          overflow: visible;\n        }\n\n        h1,\n        h2,\n        h3,\n        h4,\n        h5,\n        h6 {\n          margin-top: 0;\n          margin-bottom: 8px;\n        }\n\n        p {\n          margin-top: 0;\n          margin-bottom: 16px;\n        }\n\n        abbr[title],\n        abbr[data-original-title] {\n          text-decoration: underline;\n "
+      },
+      "errors": [],
+      "failedChunks": [],
+      "failedRequests": [],
+      "pendingChunks": [
+        "http://127.0.0.1:3000/_next/static/webpack/webpack.56a803afa17f40ad.hot-update.js"
+      ],
+      "documentResponses": [
+        {
+          "url": "http://127.0.0.1:3000/proyectos",
+          "status": 200,
+          "type": "Document"
+        }
+      ]
+    },
+    {
+      "route": "/proyectos",
+      "trigger": "reload",
+      "ready": true,
+      "visible": {
+        "route": "/proyectos",
+        "title": "Directorio de Proyectos",
+        "body": "Saltar al contenido principal\n\nObservatorio Nacional de Investigación de EsSalud\n\nLogin institucional\nInicio\nProducción científica\nInvestigadores\nProyectos\nUnidades de investigación\nMás módulos\n\nDIRECTORIO INSTITUCIONAL\n\nDirectorio de Proyectos\n\nPlataforma institucional para el seguimiento de proyectos de investigación, innovación y desarrollo científico en EsSalud.\n\nBase procesada: 2026-10-06\n\nResumen de los resultados\nProyectos registrados\n31\nProyectos activos\n31\nProyectos de innovación\n9\nCon investigador principal\n31\nBuscar proyectos\nBuscar\n\nBusca por título, código, descripción, investigador, unidad, red, IPRESS o temática registrada.\n\nMostrando 1–10 de 31 proyectos\n\nOrdenar por\nOrden de la base institucional\nTítulo (A–Z)\nInicio más reciente\nEstado (A–Z)\nFiltros\nEstado\nTodos\nActivo\nTipo de proyecto\nTodos\nInnovación\nObservacional\nInvestigador principal\nTodos\nArturo Orella Vicuña\nBrady Beltrán Gárate\nBrik Henrry Meza Pinedo\nCésar López Godoy\nCristian Díaz Vélez\nDaysi Zulema Díaz Obre",
+        "overlay": "\n        :host {\n          all: initial;\n\n          /* the direction property is not reset by 'all' */\n          direction: ltr;\n        }\n\n        /*!\n         * Bootstrap Reboot v4.4.1 (https://getbootstrap.com/)\n         * Copyright 2011-2019 The Bootstrap Authors\n         * Copyright 2011-2019 Twitter, Inc.\n         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n         * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md)\n         */\n        *,\n        *::before,\n        *::after {\n          box-sizing: border-box;\n        }\n\n        :host {\n          font-family: sans-serif;\n          line-height: 1.15;\n          -webkit-text-size-adjust: 100%;\n          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n        }\n\n        article,\n        aside,\n        figcaption,\n        figure,\n        footer,\n        header,\n        hgroup,\n        main,\n        nav,\n        section {\n          display: block;\n        }\n\n        :host {\n          margin: 0;\n          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n            'Helvetica Neue', Arial, 'Noto Sans', sans-serif,\n            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',\n            'Noto Color Emoji';\n          font-size: 16px;\n          font-weight: 400;\n          line-height: 1.5;\n          color: var(--color-font);\n          text-align: left;\n          background-color: #fff;\n        }\n\n        [tabindex='-1']:focus:not(:focus-visible) {\n          outline: 0 !important;\n        }\n\n        hr {\n          box-sizing: content-box;\n          height: 0;\n          overflow: visible;\n        }\n\n        h1,\n        h2,\n        h3,\n        h4,\n        h5,\n        h6 {\n          margin-top: 0;\n          margin-bottom: 8px;\n        }\n\n        p {\n          margin-top: 0;\n          margin-bottom: 16px;\n        }\n\n        abbr[title],\n        abbr[data-original-title] {\n          text-decoration: underline;\n "
+      },
+      "errors": [],
+      "failedChunks": [],
+      "failedRequests": [],
+      "pendingChunks": [],
+      "documentResponses": [
+        {
+          "url": "http://127.0.0.1:3000/proyectos",
+          "status": 200,
+          "type": "Document"
+        }
+      ]
+    },
+    {
+      "route": "/unidades",
+      "trigger": "direct",
+      "ready": true,
+      "visible": {
+        "route": "/unidades",
+        "title": "Directorio de unidades de investigación",
+        "body": "Saltar al contenido principal\n\nObservatorio Nacional de Investigación de EsSalud\n\nLogin institucional\nInicio\nProducción científica\nInvestigadores\nProyectos\nUnidades de investigación\nMás módulos\n\nDIRECTORIO INSTITUCIONAL\n\nDirectorio de unidades de investigación\n\nCentros y servicios con actividad de investigación de EsSalud y sus vínculos documentados con comités institucionales de ética.\n\nBase procesada: 2026-10-06\n\nResumen de los resultados\nUnidades registradas\n30\nRedes con unidades\n10\nUnidades con CIEI en red o vinculado\n30\nIPRESS distintas registradas\n11\nUnidades\nCIEI\nBuscar unidades\nBuscar\n\nBusca por nombre, código RCI, responsable, personal vinculado, línea de investigación, red, IPRESS o CIEI.\n\nMostrando 1–10 de 30 unidades\n\nOrdenar por\nOrden de la base institucional\nNombre (A–Z)\nRed asistencial (A–Z)\nTipo de unidad (A–Z)\nFiltros\nTipo de unidad\nTodos\nCentro de investigación\nServicio con actividad de investigación\nUnidad de investigación\nRed asistencial\nTodos\nAlmenara\nArequipa\nCusc",
+        "overlay": "\n        :host {\n          all: initial;\n\n          /* the direction property is not reset by 'all' */\n          direction: ltr;\n        }\n\n        /*!\n         * Bootstrap Reboot v4.4.1 (https://getbootstrap.com/)\n         * Copyright 2011-2019 The Bootstrap Authors\n         * Copyright 2011-2019 Twitter, Inc.\n         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n         * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md)\n         */\n        *,\n        *::before,\n        *::after {\n          box-sizing: border-box;\n        }\n\n        :host {\n          font-family: sans-serif;\n          line-height: 1.15;\n          -webkit-text-size-adjust: 100%;\n          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n        }\n\n        article,\n        aside,\n        figcaption,\n        figure,\n        footer,\n        header,\n        hgroup,\n        main,\n        nav,\n        section {\n          display: block;\n        }\n\n        :host {\n          margin: 0;\n          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n            'Helvetica Neue', Arial, 'Noto Sans', sans-serif,\n            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',\n            'Noto Color Emoji';\n          font-size: 16px;\n          font-weight: 400;\n          line-height: 1.5;\n          color: var(--color-font);\n          text-align: left;\n          background-color: #fff;\n        }\n\n        [tabindex='-1']:focus:not(:focus-visible) {\n          outline: 0 !important;\n        }\n\n        hr {\n          box-sizing: content-box;\n          height: 0;\n          overflow: visible;\n        }\n\n        h1,\n        h2,\n        h3,\n        h4,\n        h5,\n        h6 {\n          margin-top: 0;\n          margin-bottom: 8px;\n        }\n\n        p {\n          margin-top: 0;\n          margin-bottom: 16px;\n        }\n\n        abbr[title],\n        abbr[data-original-title] {\n          text-decoration: underline;\n "
+      },
+      "errors": [],
+      "failedChunks": [],
+      "failedRequests": [],
+      "pendingChunks": [
+        "http://127.0.0.1:3000/_next/static/webpack/webpack.9f53be45fb6c6d65.hot-update.js"
+      ],
+      "documentResponses": [
+        {
+          "url": "http://127.0.0.1:3000/unidades",
+          "status": 200,
+          "type": "Document"
+        }
+      ]
+    },
+    {
+      "route": "/unidades",
+      "trigger": "reload",
+      "ready": true,
+      "visible": {
+        "route": "/unidades",
+        "title": "Directorio de unidades de investigación",
+        "body": "Saltar al contenido principal\n\nObservatorio Nacional de Investigación de EsSalud\n\nLogin institucional\nInicio\nProducción científica\nInvestigadores\nProyectos\nUnidades de investigación\nMás módulos\n\nDIRECTORIO INSTITUCIONAL\n\nDirectorio de unidades de investigación\n\nCentros y servicios con actividad de investigación de EsSalud y sus vínculos documentados con comités institucionales de ética.\n\nBase procesada: 2026-10-06\n\nResumen de los resultados\nUnidades registradas\n30\nRedes con unidades\n10\nUnidades con CIEI en red o vinculado\n30\nIPRESS distintas registradas\n11\nUnidades\nCIEI\nBuscar unidades\nBuscar\n\nBusca por nombre, código RCI, responsable, personal vinculado, línea de investigación, red, IPRESS o CIEI.\n\nMostrando 1–10 de 30 unidades\n\nOrdenar por\nOrden de la base institucional\nNombre (A–Z)\nRed asistencial (A–Z)\nTipo de unidad (A–Z)\nFiltros\nTipo de unidad\nTodos\nCentro de investigación\nServicio con actividad de investigación\nUnidad de investigación\nRed asistencial\nTodos\nAlmenara\nArequipa\nCusc",
+        "overlay": "\n        :host {\n          all: initial;\n\n          /* the direction property is not reset by 'all' */\n          direction: ltr;\n        }\n\n        /*!\n         * Bootstrap Reboot v4.4.1 (https://getbootstrap.com/)\n         * Copyright 2011-2019 The Bootstrap Authors\n         * Copyright 2011-2019 Twitter, Inc.\n         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n         * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md)\n         */\n        *,\n        *::before,\n        *::after {\n          box-sizing: border-box;\n        }\n\n        :host {\n          font-family: sans-serif;\n          line-height: 1.15;\n          -webkit-text-size-adjust: 100%;\n          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n        }\n\n        article,\n        aside,\n        figcaption,\n        figure,\n        footer,\n        header,\n        hgroup,\n        main,\n        nav,\n        section {\n          display: block;\n        }\n\n        :host {\n          margin: 0;\n          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n            'Helvetica Neue', Arial, 'Noto Sans', sans-serif,\n            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',\n            'Noto Color Emoji';\n          font-size: 16px;\n          font-weight: 400;\n          line-height: 1.5;\n          color: var(--color-font);\n          text-align: left;\n          background-color: #fff;\n        }\n\n        [tabindex='-1']:focus:not(:focus-visible) {\n          outline: 0 !important;\n        }\n\n        hr {\n          box-sizing: content-box;\n          height: 0;\n          overflow: visible;\n        }\n\n        h1,\n        h2,\n        h3,\n        h4,\n        h5,\n        h6 {\n          margin-top: 0;\n          margin-bottom: 8px;\n        }\n\n        p {\n          margin-top: 0;\n          margin-bottom: 16px;\n        }\n\n        abbr[title],\n        abbr[data-original-title] {\n          text-decoration: underline;\n "
+      },
+      "errors": [],
+      "failedChunks": [],
+      "failedRequests": [],
+      "pendingChunks": [],
+      "documentResponses": [
+        {
+          "url": "http://127.0.0.1:3000/unidades",
+          "status": 200,
+          "type": "Document"
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "trigger": "internal",
+      "ready": true,
+      "visible": {
+        "route": "/",
+        "title": "Observatorio Nacional de Investigación de EsSalud",
+        "body": "Saltar al contenido principal\n\nObservatorio Nacional de Investigación de EsSalud\n\nLogin institucional\nInicio\nProducción científica\nInvestigadores\nProyectos\nUnidades de investigación\nMás módulos\nObservatorio Nacional de Investigación de EsSalud\n\nPlataforma institucional para la gestión, visualización y análisis de la investigación e innovación en salud.\n\nBuscar\nDirectorios principales\n\nAcceso directo a las fuentes centrales del ecosistema de investigacion institucional.\n\nProduccion cientifica\n\nPublicaciones, revistas, DOI, PMID, citas y acceso abierto.\n\n2,701 publicaciones\n\nInvestigadores\n\nExpertos, ORCID, RENACYT, filiaciones y lineas de investigacion.\n\n308 investigadores\n\nProyectos\n\nPortafolio institucional, etapas, financiamiento y productos.\n\n31 proyectos\n\nUnidades de investigacion\n\nCapacidades por red asistencial, region e infraestructura.\n\n30 unidades\n\nModulos complementarios\n\nRutas especializadas para explorar gestion, financiamiento, colaboracion y analitica avanzada.\n\nIndicador",
+        "overlay": "\n        :host {\n          all: initial;\n\n          /* the direction property is not reset by 'all' */\n          direction: ltr;\n        }\n\n        /*!\n         * Bootstrap Reboot v4.4.1 (https://getbootstrap.com/)\n         * Copyright 2011-2019 The Bootstrap Authors\n         * Copyright 2011-2019 Twitter, Inc.\n         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n         * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md)\n         */\n        *,\n        *::before,\n        *::after {\n          box-sizing: border-box;\n        }\n\n        :host {\n          font-family: sans-serif;\n          line-height: 1.15;\n          -webkit-text-size-adjust: 100%;\n          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n        }\n\n        article,\n        aside,\n        figcaption,\n        figure,\n        footer,\n        header,\n        hgroup,\n        main,\n        nav,\n        section {\n          display: block;\n        }\n\n        :host {\n          margin: 0;\n          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n            'Helvetica Neue', Arial, 'Noto Sans', sans-serif,\n            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',\n            'Noto Color Emoji';\n          font-size: 16px;\n          font-weight: 400;\n          line-height: 1.5;\n          color: var(--color-font);\n          text-align: left;\n          background-color: #fff;\n        }\n\n        [tabindex='-1']:focus:not(:focus-visible) {\n          outline: 0 !important;\n        }\n\n        hr {\n          box-sizing: content-box;\n          height: 0;\n          overflow: visible;\n        }\n\n        h1,\n        h2,\n        h3,\n        h4,\n        h5,\n        h6 {\n          margin-top: 0;\n          margin-bottom: 8px;\n        }\n\n        p {\n          margin-top: 0;\n          margin-bottom: 16px;\n        }\n\n        abbr[title],\n        abbr[data-original-title] {\n          text-decoration: underline;\n "
+      },
+      "errors": [],
+      "failedChunks": [],
+      "failedRequests": [],
+      "pendingChunks": [],
+      "documentResponses": []
+    },
+    {
+      "route": "/produccion-cientifica",
+      "trigger": "internal",
+      "ready": true,
+      "visible": {
+        "route": "/produccion-cientifica",
+        "title": "Producción científica",
+        "body": "Saltar al contenido principal\n\nObservatorio Nacional de Investigación de EsSalud\n\nLogin institucional\nInicio\nProducción científica\nInvestigadores\nProyectos\nUnidades de investigación\nMás módulos\n\nDIRECTORIO INSTITUCIONAL\n\nProducción científica\n\nPublicaciones, documentos técnicos y producción académica vinculada a EsSalud.\n\nActualización de la base: 04/09/2026\n\nResumen del catálogo\nPublicaciones registradas\n2,701\nAcceso abierto\n1,709\nPublicaciones Q1–Q2\n917\nCitas registradas\n31,556\nBuscar publicaciones\nBuscar\n\nBusca también en resúmenes disponibles, ISSN y clasificación temática del catálogo institucional.\n\nResultados\n\nMostrando 1–10 de 2,701 publicaciones\n\nOrdenar por\nMás recientes\nMás antiguas\nMás citas\nMenos citas\nCuartil\nTítulo (A–Z)\nExportar página (CSV)\nFiltrar publicaciones\nAño\nTodos\n2026\n2025\n2024\n2023\n2022\n2021\n2020\n2019\n2018\n2017\n2016\n2015\n2014\n2013\n2012\n2011\n2010\n2009\n2008\n2007\n2006\n2005\n2004\n2003\n2002\n2001\n2000\n1999\n1997\n1996\n1995\n1994\n1993\n1992\n1991\n1990\n1989\n1984\n0\nTipo doc",
+        "overlay": "\n        :host {\n          all: initial;\n\n          /* the direction property is not reset by 'all' */\n          direction: ltr;\n        }\n\n        /*!\n         * Bootstrap Reboot v4.4.1 (https://getbootstrap.com/)\n         * Copyright 2011-2019 The Bootstrap Authors\n         * Copyright 2011-2019 Twitter, Inc.\n         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n         * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md)\n         */\n        *,\n        *::before,\n        *::after {\n          box-sizing: border-box;\n        }\n\n        :host {\n          font-family: sans-serif;\n          line-height: 1.15;\n          -webkit-text-size-adjust: 100%;\n          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n        }\n\n        article,\n        aside,\n        figcaption,\n        figure,\n        footer,\n        header,\n        hgroup,\n        main,\n        nav,\n        section {\n          display: block;\n        }\n\n        :host {\n          margin: 0;\n          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n            'Helvetica Neue', Arial, 'Noto Sans', sans-serif,\n            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',\n            'Noto Color Emoji';\n          font-size: 16px;\n          font-weight: 400;\n          line-height: 1.5;\n          color: var(--color-font);\n          text-align: left;\n          background-color: #fff;\n        }\n\n        [tabindex='-1']:focus:not(:focus-visible) {\n          outline: 0 !important;\n        }\n\n        hr {\n          box-sizing: content-box;\n          height: 0;\n          overflow: visible;\n        }\n\n        h1,\n        h2,\n        h3,\n        h4,\n        h5,\n        h6 {\n          margin-top: 0;\n          margin-bottom: 8px;\n        }\n\n        p {\n          margin-top: 0;\n          margin-bottom: 16px;\n        }\n\n        abbr[title],\n        abbr[data-original-title] {\n          text-decoration: underline;\n "
+      },
+      "errors": [],
+      "failedChunks": [],
+      "failedRequests": [],
+      "pendingChunks": [],
+      "documentResponses": []
+    },
+    {
+      "route": "/investigadores",
+      "trigger": "internal",
+      "ready": true,
+      "visible": {
+        "route": "/investigadores",
+        "title": "Directorio de Investigadores",
+        "body": "Saltar al contenido principal\n\nObservatorio Nacional de Investigación de EsSalud\n\nLogin institucional\nInicio\nProducción científica\nInvestigadores\nProyectos\nUnidades de investigación\nMás módulos\n\nDIRECTORIO INSTITUCIONAL\n\nDirectorio de Investigadores\n\nRegistro institucional de investigadores, expertos y líderes científicos de EsSalud.\n\nResumen del directorio\nInvestigadores registrados\n308\nInvestigadores con ORCID\n256\nPublicaciones únicas vinculadas\n2,369\nMediana de publicaciones por investigador\n4\nBuscar investigadores\nBuscar\n\nBusca por nombre, ORCID, filiación, unidad, áreas temáticas y títulos de publicaciones vinculadas.\n\nMostrando 1–10 de 308 investigadores\n\nOrdenar por\nPublicaciones\nCitas\nH-index observatorio\nQ1\nQ2\nPublicacion reciente\nNombre\nFiltros\nInstitución\nTodos\nArequipa\nEssalud\nEsSalud\nEviSalud\nHospital Clínico San Carlos / Hospital Universitario La Princesa\nHospital Nacional Daniel Alcides Carrión\nHospital Nacional Hipólito Unanue\nInstituto Nacional de Cardiología Ignacio C",
+        "overlay": "\n        :host {\n          all: initial;\n\n          /* the direction property is not reset by 'all' */\n          direction: ltr;\n        }\n\n        /*!\n         * Bootstrap Reboot v4.4.1 (https://getbootstrap.com/)\n         * Copyright 2011-2019 The Bootstrap Authors\n         * Copyright 2011-2019 Twitter, Inc.\n         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n         * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md)\n         */\n        *,\n        *::before,\n        *::after {\n          box-sizing: border-box;\n        }\n\n        :host {\n          font-family: sans-serif;\n          line-height: 1.15;\n          -webkit-text-size-adjust: 100%;\n          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n        }\n\n        article,\n        aside,\n        figcaption,\n        figure,\n        footer,\n        header,\n        hgroup,\n        main,\n        nav,\n        section {\n          display: block;\n        }\n\n        :host {\n          margin: 0;\n          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n            'Helvetica Neue', Arial, 'Noto Sans', sans-serif,\n            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',\n            'Noto Color Emoji';\n          font-size: 16px;\n          font-weight: 400;\n          line-height: 1.5;\n          color: var(--color-font);\n          text-align: left;\n          background-color: #fff;\n        }\n\n        [tabindex='-1']:focus:not(:focus-visible) {\n          outline: 0 !important;\n        }\n\n        hr {\n          box-sizing: content-box;\n          height: 0;\n          overflow: visible;\n        }\n\n        h1,\n        h2,\n        h3,\n        h4,\n        h5,\n        h6 {\n          margin-top: 0;\n          margin-bottom: 8px;\n        }\n\n        p {\n          margin-top: 0;\n          margin-bottom: 16px;\n        }\n\n        abbr[title],\n        abbr[data-original-title] {\n          text-decoration: underline;\n "
+      },
+      "errors": [],
+      "failedChunks": [],
+      "failedRequests": [],
+      "pendingChunks": [],
+      "documentResponses": []
+    },
+    {
+      "route": "/proyectos",
+      "trigger": "internal",
+      "ready": true,
+      "visible": {
+        "route": "/proyectos",
+        "title": "Directorio de Proyectos",
+        "body": "Saltar al contenido principal\n\nObservatorio Nacional de Investigación de EsSalud\n\nLogin institucional\nInicio\nProducción científica\nInvestigadores\nProyectos\nUnidades de investigación\nMás módulos\n\nDIRECTORIO INSTITUCIONAL\n\nDirectorio de Proyectos\n\nPlataforma institucional para el seguimiento de proyectos de investigación, innovación y desarrollo científico en EsSalud.\n\nBase procesada: 2026-10-06\n\nResumen de los resultados\nProyectos registrados\n31\nProyectos activos\n31\nProyectos de innovación\n9\nCon investigador principal\n31\nBuscar proyectos\nBuscar\n\nBusca por título, código, descripción, investigador, unidad, red, IPRESS o temática registrada.\n\nMostrando 1–10 de 31 proyectos\n\nOrdenar por\nOrden de la base institucional\nTítulo (A–Z)\nInicio más reciente\nEstado (A–Z)\nFiltros\nEstado\nTodos\nActivo\nTipo de proyecto\nTodos\nInnovación\nObservacional\nInvestigador principal\nTodos\nArturo Orella Vicuña\nBrady Beltrán Gárate\nBrik Henrry Meza Pinedo\nCésar López Godoy\nCristian Díaz Vélez\nDaysi Zulema Díaz Obre",
+        "overlay": "\n        :host {\n          all: initial;\n\n          /* the direction property is not reset by 'all' */\n          direction: ltr;\n        }\n\n        /*!\n         * Bootstrap Reboot v4.4.1 (https://getbootstrap.com/)\n         * Copyright 2011-2019 The Bootstrap Authors\n         * Copyright 2011-2019 Twitter, Inc.\n         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n         * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md)\n         */\n        *,\n        *::before,\n        *::after {\n          box-sizing: border-box;\n        }\n\n        :host {\n          font-family: sans-serif;\n          line-height: 1.15;\n          -webkit-text-size-adjust: 100%;\n          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n        }\n\n        article,\n        aside,\n        figcaption,\n        figure,\n        footer,\n        header,\n        hgroup,\n        main,\n        nav,\n        section {\n          display: block;\n        }\n\n        :host {\n          margin: 0;\n          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n            'Helvetica Neue', Arial, 'Noto Sans', sans-serif,\n            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',\n            'Noto Color Emoji';\n          font-size: 16px;\n          font-weight: 400;\n          line-height: 1.5;\n          color: var(--color-font);\n          text-align: left;\n          background-color: #fff;\n        }\n\n        [tabindex='-1']:focus:not(:focus-visible) {\n          outline: 0 !important;\n        }\n\n        hr {\n          box-sizing: content-box;\n          height: 0;\n          overflow: visible;\n        }\n\n        h1,\n        h2,\n        h3,\n        h4,\n        h5,\n        h6 {\n          margin-top: 0;\n          margin-bottom: 8px;\n        }\n\n        p {\n          margin-top: 0;\n          margin-bottom: 16px;\n        }\n\n        abbr[title],\n        abbr[data-original-title] {\n          text-decoration: underline;\n "
+      },
+      "errors": [],
+      "failedChunks": [],
+      "failedRequests": [],
+      "pendingChunks": [],
+      "documentResponses": []
+    },
+    {
+      "route": "/unidades",
+      "trigger": "internal",
+      "ready": true,
+      "visible": {
+        "route": "/unidades",
+        "title": "Directorio de unidades de investigación",
+        "body": "Saltar al contenido principal\n\nObservatorio Nacional de Investigación de EsSalud\n\nLogin institucional\nInicio\nProducción científica\nInvestigadores\nProyectos\nUnidades de investigación\nMás módulos\n\nDIRECTORIO INSTITUCIONAL\n\nDirectorio de unidades de investigación\n\nCentros y servicios con actividad de investigación de EsSalud y sus vínculos documentados con comités institucionales de ética.\n\nBase procesada: 2026-10-06\n\nResumen de los resultados\nUnidades registradas\n30\nRedes con unidades\n10\nUnidades con CIEI en red o vinculado\n30\nIPRESS distintas registradas\n11\nUnidades\nCIEI\nBuscar unidades\nBuscar\n\nBusca por nombre, código RCI, responsable, personal vinculado, línea de investigación, red, IPRESS o CIEI.\n\nMostrando 1–10 de 30 unidades\n\nOrdenar por\nOrden de la base institucional\nNombre (A–Z)\nRed asistencial (A–Z)\nTipo de unidad (A–Z)\nFiltros\nTipo de unidad\nTodos\nCentro de investigación\nServicio con actividad de investigación\nUnidad de investigación\nRed asistencial\nTodos\nAlmenara\nArequipa\nCusc",
+        "overlay": "\n        :host {\n          all: initial;\n\n          /* the direction property is not reset by 'all' */\n          direction: ltr;\n        }\n\n        /*!\n         * Bootstrap Reboot v4.4.1 (https://getbootstrap.com/)\n         * Copyright 2011-2019 The Bootstrap Authors\n         * Copyright 2011-2019 Twitter, Inc.\n         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n         * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md)\n         */\n        *,\n        *::before,\n        *::after {\n          box-sizing: border-box;\n        }\n\n        :host {\n          font-family: sans-serif;\n          line-height: 1.15;\n          -webkit-text-size-adjust: 100%;\n          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n        }\n\n        article,\n        aside,\n        figcaption,\n        figure,\n        footer,\n        header,\n        hgroup,\n        main,\n        nav,\n        section {\n          display: block;\n        }\n\n        :host {\n          margin: 0;\n          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n            'Helvetica Neue', Arial, 'Noto Sans', sans-serif,\n            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',\n            'Noto Color Emoji';\n          font-size: 16px;\n          font-weight: 400;\n          line-height: 1.5;\n          color: var(--color-font);\n          text-align: left;\n          background-color: #fff;\n        }\n\n        [tabindex='-1']:focus:not(:focus-visible) {\n          outline: 0 !important;\n        }\n\n        hr {\n          box-sizing: content-box;\n          height: 0;\n          overflow: visible;\n        }\n\n        h1,\n        h2,\n        h3,\n        h4,\n        h5,\n        h6 {\n          margin-top: 0;\n          margin-bottom: 8px;\n        }\n\n        p {\n          margin-top: 0;\n          margin-bottom: 16px;\n        }\n\n        abbr[title],\n        abbr[data-original-title] {\n          text-decoration: underline;\n "
+      },
+      "errors": [],
+      "failedChunks": [],
+      "failedRequests": [],
+      "pendingChunks": [],
+      "documentResponses": []
+    },
+    {
+      "route": "/produccion-cientifica/1",
+      "trigger": "direct",
+      "ready": true,
+      "visible": {
+        "route": "/produccion-cientifica/1",
+        "title": "Giant Left Main Coronary Artery Aneurysm Presenting as STEMI",
+        "body": "Saltar al contenido principal\n\nObservatorio Nacional de Investigación de EsSalud\n\nLogin institucional\nInicio\nProducción científica\nInvestigadores\nProyectos\nUnidades de investigación\nMás módulos\nInicio\n/\nProducción científica\n/\nFicha de publicación\n← Volver a Producción científica\nQ3\nAcceso abierto\nGiant Left Main Coronary Artery Aneurysm Presenting as STEMI\n\nAdhí Condori Chura, Roberto Baltodano Arellano, Luis Falcón Quispe, Paol Rojas de la Cuba, Kelly Cupe Chacalcaje, Gerald Levano Pachas\n\nJACC: Case Reports · 2025 · No clasificable automáticamente\n\nCitar\nCopiar DOI\nExportar ▼\nVer publicación ▼\nResumen\n\nBACKGROUND: Giant coronary aneurysms are rare and may present with acute myocardial infarction, posing significant diagnostic and therapeutic challenges. CASE SUMMARY: We report the case of a 45-year-old woman residing in a high-altitude region who presented with anterior ST-segment elevation myocardial infarction. Initial management included thrombolysis and transfer for rescue angio",
+        "overlay": "\n        :host {\n          all: initial;\n\n          /* the direction property is not reset by 'all' */\n          direction: ltr;\n        }\n\n        /*!\n         * Bootstrap Reboot v4.4.1 (https://getbootstrap.com/)\n         * Copyright 2011-2019 The Bootstrap Authors\n         * Copyright 2011-2019 Twitter, Inc.\n         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n         * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md)\n         */\n        *,\n        *::before,\n        *::after {\n          box-sizing: border-box;\n        }\n\n        :host {\n          font-family: sans-serif;\n          line-height: 1.15;\n          -webkit-text-size-adjust: 100%;\n          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n        }\n\n        article,\n        aside,\n        figcaption,\n        figure,\n        footer,\n        header,\n        hgroup,\n        main,\n        nav,\n        section {\n          display: block;\n        }\n\n        :host {\n          margin: 0;\n          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n            'Helvetica Neue', Arial, 'Noto Sans', sans-serif,\n            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',\n            'Noto Color Emoji';\n          font-size: 16px;\n          font-weight: 400;\n          line-height: 1.5;\n          color: var(--color-font);\n          text-align: left;\n          background-color: #fff;\n        }\n\n        [tabindex='-1']:focus:not(:focus-visible) {\n          outline: 0 !important;\n        }\n\n        hr {\n          box-sizing: content-box;\n          height: 0;\n          overflow: visible;\n        }\n\n        h1,\n        h2,\n        h3,\n        h4,\n        h5,\n        h6 {\n          margin-top: 0;\n          margin-bottom: 8px;\n        }\n\n        p {\n          margin-top: 0;\n          margin-bottom: 16px;\n        }\n\n        abbr[title],\n        abbr[data-original-title] {\n          text-decoration: underline;\n "
+      },
+      "errors": [],
+      "failedChunks": [],
+      "failedRequests": [],
+      "pendingChunks": [],
+      "documentResponses": [
+        {
+          "url": "http://127.0.0.1:3000/produccion-cientifica/1",
+          "status": 200,
+          "type": "Document"
+        }
+      ]
+    },
+    {
+      "route": "/produccion-cientifica/1",
+      "trigger": "reload",
+      "ready": true,
+      "visible": {
+        "route": "/produccion-cientifica/1",
+        "title": "Giant Left Main Coronary Artery Aneurysm Presenting as STEMI",
+        "body": "Saltar al contenido principal\n\nObservatorio Nacional de Investigación de EsSalud\n\nLogin institucional\nInicio\nProducción científica\nInvestigadores\nProyectos\nUnidades de investigación\nMás módulos\nInicio\n/\nProducción científica\n/\nFicha de publicación\n← Volver a Producción científica\nQ3\nAcceso abierto\nGiant Left Main Coronary Artery Aneurysm Presenting as STEMI\n\nAdhí Condori Chura, Roberto Baltodano Arellano, Luis Falcón Quispe, Paol Rojas de la Cuba, Kelly Cupe Chacalcaje, Gerald Levano Pachas\n\nJACC: Case Reports · 2025 · No clasificable automáticamente\n\nCitar\nCopiar DOI\nExportar ▼\nVer publicación ▼\nResumen\n\nBACKGROUND: Giant coronary aneurysms are rare and may present with acute myocardial infarction, posing significant diagnostic and therapeutic challenges. CASE SUMMARY: We report the case of a 45-year-old woman residing in a high-altitude region who presented with anterior ST-segment elevation myocardial infarction. Initial management included thrombolysis and transfer for rescue angio",
+        "overlay": "\n        :host {\n          all: initial;\n\n          /* the direction property is not reset by 'all' */\n          direction: ltr;\n        }\n\n        /*!\n         * Bootstrap Reboot v4.4.1 (https://getbootstrap.com/)\n         * Copyright 2011-2019 The Bootstrap Authors\n         * Copyright 2011-2019 Twitter, Inc.\n         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n         * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md)\n         */\n        *,\n        *::before,\n        *::after {\n          box-sizing: border-box;\n        }\n\n        :host {\n          font-family: sans-serif;\n          line-height: 1.15;\n          -webkit-text-size-adjust: 100%;\n          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n        }\n\n        article,\n        aside,\n        figcaption,\n        figure,\n        footer,\n        header,\n        hgroup,\n        main,\n        nav,\n        section {\n          display: block;\n        }\n\n        :host {\n          margin: 0;\n          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n            'Helvetica Neue', Arial, 'Noto Sans', sans-serif,\n            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',\n            'Noto Color Emoji';\n          font-size: 16px;\n          font-weight: 400;\n          line-height: 1.5;\n          color: var(--color-font);\n          text-align: left;\n          background-color: #fff;\n        }\n\n        [tabindex='-1']:focus:not(:focus-visible) {\n          outline: 0 !important;\n        }\n\n        hr {\n          box-sizing: content-box;\n          height: 0;\n          overflow: visible;\n        }\n\n        h1,\n        h2,\n        h3,\n        h4,\n        h5,\n        h6 {\n          margin-top: 0;\n          margin-bottom: 8px;\n        }\n\n        p {\n          margin-top: 0;\n          margin-bottom: 16px;\n        }\n\n        abbr[title],\n        abbr[data-original-title] {\n          text-decoration: underline;\n "
+      },
+      "errors": [],
+      "failedChunks": [],
+      "failedRequests": [],
+      "pendingChunks": [],
+      "documentResponses": [
+        {
+          "url": "http://127.0.0.1:3000/produccion-cientifica/1",
+          "status": 200,
+          "type": "Document"
+        }
+      ]
+    }
+  ]
+}

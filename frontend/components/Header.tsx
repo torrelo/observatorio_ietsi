@@ -20,6 +20,27 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const toggle = useRef<HTMLButtonElement>(null);
   const header = useRef<HTMLElement>(null);
+  const loginDialog = useRef<HTMLDialogElement>(null);
+  const [loginOpen, setLoginOpen] = useState(false);
+
+  useEffect(() => {
+    const element = header.current;
+    if (!element) return;
+    const updateOffset = () => document.documentElement.style.setProperty("--header-offset", getComputedStyle(element).position === "sticky" ? `${element.getBoundingClientRect().height + 16}px` : "0px");
+    const observer = new ResizeObserver(updateOffset);
+    observer.observe(element);
+    window.addEventListener("resize", updateOffset);
+    updateOffset();
+    return () => { observer.disconnect(); window.removeEventListener("resize", updateOffset); document.documentElement.style.removeProperty("--header-offset"); };
+  }, []);
+
+  useEffect(() => {
+    if (!loginOpen) return;
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    loginDialog.current?.showModal();
+    return () => { document.body.style.overflow = overflow; };
+  }, [loginOpen]);
 
   useEffect(() => {
     if (!open) return;
@@ -55,10 +76,10 @@ export function Header() {
             <p className="mt-2 max-w-xl text-sm font-semibold leading-5 text-brand-dark">Observatorio Nacional de Investigación de EsSalud</p>
           </Link>
           <div className="flex flex-wrap items-center gap-3">
-            <button type="button" className="action-control gap-2 rounded bg-brand-dark px-4 text-sm font-semibold text-white hover:bg-brand">
+            <button type="button" aria-haspopup="dialog" aria-controls="institutional-access" onClick={() => { setOpen(false); setLoginOpen(true); }} className="action-control gap-2 rounded bg-brand-dark px-4 text-sm font-semibold text-white hover:bg-brand">
               <LogIn size={18} aria-hidden="true" /> Login institucional
             </button>
-            <button ref={toggle} type="button" aria-controls="navegacion-principal" aria-expanded={open} onClick={() => setOpen(!open)} className="action-control gap-2 rounded border border-slate-300 px-3 text-sm font-semibold text-brand-dark xl:hidden">
+            <button ref={toggle} type="button" aria-controls="navegacion-principal" aria-expanded={open} onClick={() => setOpen(value => !value)} className="action-control gap-2 rounded border border-slate-300 px-3 text-sm font-semibold text-brand-dark xl:hidden">
               {open ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />} Menú
             </button>
           </div>
@@ -74,6 +95,11 @@ export function Header() {
           })}
         </nav>
       </div>
+      <dialog ref={loginDialog} id="institutional-access" aria-labelledby="institutional-access-title" aria-describedby="institutional-access-description" onClose={() => setLoginOpen(false)} className="max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-md overflow-y-auto rounded-lg border border-slate-200 bg-white p-6 text-slate-900 shadow-panel backdrop:bg-slate-950/50">
+        <h2 id="institutional-access-title" className="text-xl font-bold">Acceso institucional</h2>
+        <p id="institutional-access-description" className="mt-3 leading-relaxed text-slate-600">El acceso institucional es simulado en este MVP. La autenticación todavía no está habilitada; no se solicitan ni se envían credenciales.</p>
+        <form method="dialog" className="mt-5"><button className="action-control rounded bg-brand px-4 font-semibold text-white" type="submit">Cerrar</button></form>
+      </dialog>
     </header>
   );
 }

@@ -1,5 +1,59 @@
 # Changelog tecnico
 
+## 2026-11-14 - Revisión final de calidad y accesibilidad
+
+- **Rama:** `feat/directorios-ux`; trabajo preexistente conservado.
+- **Alcance:** Cinco rutas principales, navegación compartida, estados y pruebas; sin cambios de backend ni dependencias.
+- **Línea base:** Diez vistas 360/1280 CSS y diez análisis axe-core sin infracciones automáticas detectadas. Se confirma por código que portada no transmite consulta, login es inerte, existen destinos `#` y todas las rutas heredan el mismo título. Pruebas automáticas sin infracciones no implican funcionamiento ni conformidad integral.
+- **Correcciones:** Búsqueda de portada transmite q a cuatro ámbitos reales y bloquea vacío; salto/foco no ocluido por sticky; acceso simulado informativo accesible; destinos sin configurar explícitos; títulos de documento por sección; fuentes parciales sin ceros ficticios; agregado opcional con fallback existente. I/O de investigadores diferido al getter para permitir error/reintento desde proceso frío. Región de resultados nombrada y overlay del Hero corregido.
+- **Archivos:** Header/Footer/HomeSearch/RefreshSources, layout/portada/globales, metadata de listados, lib/home/researchers/sourceErrors, márgenes/nombre de resultados y scripts QA. Inventario y matriz en `docs/REVISION_FINAL_QA.md`. Backend, API, esquemas, fuentes CSV/JSON/Excel y lockfile intactos.
+- **Validaciones:** Lint/tipos/build correctos; diecinueve pruebas Node (7+7+5), 50 combinaciones responsive/texto 200%, diez análisis axe, diez recorridos de teclado incluidos 360×480, 45 vistas filtradas de tres directorios y once de publicaciones, cuatro cargas/vacíos bajo latencia, diez escenarios aislados de error/fallback, diecisiete accesos runtime sin chunks fallidos. Contraste Hero muestreado mínimo 6,85:1. Resultados incompletos de axe inspeccionados, sin declaración integral WCAG ni lector de pantalla real.
+- **Capturas:** Series QA antes/después de cinco rutas 360/1280, diálogo/menú/paneles a altura 480, carga/vacío/error y fuente parcial; manifest y límites en el informe. Capturas de referencia de esta revisión conservadas.
+- **Pendientes previos:** Identidad discordante, 29 vínculos correspondientes a dos IDs no presentes en el CSV actual de investigadores (2369 publicaciones únicas del total frente a 2365 vinculadas a perfiles), control de acceso y definiciones de preparación/registro. No se fuerzan cifras ni identidades. Zoom nativo, lector de pantalla y disponibilidad remota externa no verificados.
+
+## 2026-11-14 - Patrón compartido de directorios
+
+- **Rama:** `feat/directorios-ux`; cambios preexistentes conservados.
+- **Módulos:** Investigadores, Proyectos y Unidades; sin rediseño de portada ni fichas.
+- **Motivo:** Priorizar búsqueda y resultados con el patrón de Producción Científica.
+- **Diagnóstico:** Tres columnas a 1440 px (256 / 785 / 272 px); investigadores limita a 60 sin paginación; proyectos y unidades entregan conjuntos completos filtrados en servidor. Sus KPIs son filtrados, los de investigadores globales. Unidades transforma conteos mediante `min(100,max(6,n*12))` antes de imprimirlos.
+- **Implementación:** Componentes comunes de consulta/URL/estado, cuatro KPIs con alcance explícito, tarjetas específicas, estadísticas desplegables y retorno con estado. Filtros/indicadores específicos reutilizados mediante adaptadores; sin rediseñar fichas.
+- **Errores corregidos:** Conteos visuales de unidades, filtro «Sí» de CIEI, corte arbitrario de investigadores, valores ausentes del listado numérico y sincronización del panel.
+- **Archivos/capturas:** Inventario en `docs/DIRECTORIOS_UX.md`; referencia `docs/directorios-antes.json`, seis capturas antes/seis después 360/1440 y tres de resultados móviles.
+- **Validación:** Lint/tipos/build y catorce pruebas de lógica correctos; 30 combinaciones responsive/texto 200%, 45 vistas contra fuente, quince controles con estadísticas expandidas y tres errores/reintentos aislados. Diecisiete comprobaciones runtime de producción y otras diecisiete tras reiniciar desarrollo sin errores/chunks fallidos. Build y dev secuenciales; localhost:3000 disponible.
+- **Pendientes:** Permisos públicos/gestión reales y ambigüedades previas de preparación/registro/acreditación. Catálogo CIEI fuera del rediseño. Identidad discordante para el mismo researcher_id entre base bibliométrica (Yersin Silva Silva) y perfil curado (Cristian Díaz-Vélez), documentada sin reasignar datos. Fuentes y contratos API intactos.
+
+## 2026-11-14 - Coherencia visual y validación de filtros de publicaciones
+
+- **Rama:** `feat/produccion-cientifica-ux`.
+- **Módulo:** Producción Científica; reutilización de tarjetas en Investigadores.
+- **Motivo:** Unificar el lenguaje visual sin perder búsqueda, lectura y dos columnas.
+- **Implementación:** Etiqueta institucional y padding del encabezado compartido; variante directory de KpiCard; resumen global con ayuda operable; eliminación de espacio reservado por el estado vacío.
+- **Datos:** Se conservan fuentes, cuatro indicadores globales y reglas de filtrado/paginación.
+- **Validación:** lint, tipos, build y siete pruebas de lógica correctos. Navegador: ayuda por Enter/Escape y toque en cinco anchos, texto 200%, once vistas comparadas con la fuente real (listado/total/rango/páginas/etiquetas) y KPIs globales invariables. Filtros conservados al paginar; cambios reinician página; limpieza recupera el conjunto; consultas consecutivas bajo latencia mantienen la última. Cero errores de consola en la batería. Separación búsqueda–barra reducida de 60 a 16 px.
+- **Archivos/capturas:** Inventario y resultados en `docs/COHERENCIA_PRODUCCION_CIENTIFICA.md`, JSON coherencia-publicaciones-* y capturas screenshots/coherencia-*. Se conserva la variante original de KpiCard; Investigadores solo delega su renderer en la variante compartida.
+- **Pendientes/límites:** No se prueban todas las combinaciones ni conformidad WCAG integral. Se mantienen limitaciones previas de datos/servicio. Sin cambios en Header global, logotipos, backend o dependencias; sin commit/push/despliegue.
+
+## 2026-11-13 - Incidente Webpack undefined.call
+
+- **Rama:** `feat/produccion-cientifica-ux`.
+- **Motivo:** Error de runtime Webpack/RSC reportado; se pausa el rediseño.
+- **Diagnóstico:** Dev del proyecto aún activo en 3000 y salida .next con artefactos de producción. Se reprodujeron cargas incompletas/bloqueadas, no la excepción exacta del navegador original. No hay React duplicado ni incompatibilidad instalada demostrada.
+- **Corrección:** Detención dirigida, limpieza exclusiva de .next y reinicio; aislamiento preventivo dev .next-dev / producción .next. Sin cambios de datos, SSR, dependencias o diseño.
+- **Archivos:** next.config.ts, .gitignore, tsconfig.json, script de verificación y documentación; se conserva el trabajo anterior.
+- **Validación:** 15 casos correctos tras limpieza; 17 con salida aislada y después de build; HMR mediante edición/restauración temporal sin recarga ni errores, ocho hot-updates 200; lint/tipos/build correctos, sin ejecución simultánea. Componente restaurado byte a byte. Servidor repuesto en localhost:3000.
+- **Pendientes/límites:** La excepción exacta original no se capturó en el navegador nuevo; no se atribuye causalidad definitiva solo a la limpieza. Evidencia, archivos y limitaciones en `docs/INCIDENTE_WEBPACK_RUNTIME.md`. No se continúa el rediseño ni se actualizan dependencias.
+
+## 2026-11-13 - Rediseño UX de Producción Científica
+
+- **Rama:** `feat/produccion-cientifica-ux`.
+- **Motivo:** Priorizar búsqueda, filtros y resultados sobre la base visual compartida.
+- **Alcance:** Solo directorio y conservación de retorno desde ficha; sin datos nuevos, APIs, cambios de cálculos ni dependencias.
+- **Implementación/errores:** Dos columnas, búsqueda única, cuatro KPIs globales, filtros aplicados removibles, sincronización de URL/borrador, retorno de ficha, autoría expandible, estadísticas secundarias, citas ausentes distintas de cero y estados accesibles. Se explicita la exportación de página y los filtros unit/network sin soporte; no se ofrecen controles ficticiamente funcionales.
+- **Archivos/capturas:** Inventario completo en `docs/PRODUCCION_CIENTIFICA_UX.md`; cuatro capturas `produccion-cientifica-ux-{antes,despues}-{360,1440}.png`, JSON de flujos y prueba aislada de error.
+- **Validación:** lint, tipos, build, siete pruebas de lógica, navegador en cinco anchos y texto 200%, búsqueda/filtros/orden/paginación/atrás/adelante/retorno, valores ausentes, vacío y reintento con fallo simulado sin tocar datos. Regresión breve en las otras cuatro rutas correcta. No se declara conformidad WCAG integral.
+- **Pendientes:** Relaciones reales unidad/red; normalización null en modelo compartido y optimización de lectura en otra tarea; separación autorizada público/gestión. Se preserva la diferencia verificada 2701 registros CSV / 2700 incluidos.
+
 ## 2026-11-13 - Base visual compartida, lectura y navegacion
 
 - **Rama:** `observatorio-directorio-proyectos`.

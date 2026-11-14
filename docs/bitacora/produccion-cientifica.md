@@ -2,6 +2,22 @@
 
 ## Estado actual
 
+### Revisión QA 2026-11-14
+
+Metadata de sección y margen de foco compatible con la altura real del encabezado. Sin cambios de fuentes, indicadores, filtros ni fichas. Regresión de once vistas contra datos reales, teclado a 360×480, carga/vacío, error/reintento con consulta/año conservados y catálogo disponible sin agregado verificados. Véase `docs/REVISION_FINAL_QA.md`; no se afirma prueba real con lector de pantalla o disponibilidad externa de cada DOI.
+
+### Intervención 2026-11-14 - Coherencia visual y filtros
+
+Se armonizan encabezado y cuatro KPIs con Investigadores mediante SectionHeader y variante directory de KpiCard. Resumen del catálogo sustituye la explicación permanente por ayuda operable con teclado y toque. Se elimina la reserva del estado vacío: separación búsqueda/barra de 60 a 16 px. Se conservan dos columnas y métricas globales. Lint, tipos, build, siete pruebas de lógica y navegador correctos: once vistas de datos/rangos/páginas/etiquetas, filtros al paginar, reinicio al cambiar consulta, limpieza y última consulta bajo latencia. Cero errores de consola; cinco anchos y texto 200%. Inventario, capturas y límites en `docs/COHERENCIA_PRODUCCION_CIENTIFICA.md`; no se cambia Header global ni cálculo de indicadores.
+
+### Intervención 2026-11-13 - Recuperación de runtime Webpack
+
+Se detuvo el rediseño para diagnosticar undefined.call. Un dev antiguo seguía activo con salida .next de producción; se reprodujeron cargas incompletas, no la traza exacta. Tras limpieza dirigida y reinicio, rutas recuperadas. Se separan .next-dev y .next, sin cambiar imports ni componentes. HMR validado añadiendo/restaurando un atributo no visual; archivo original idéntico al terminar. Validaciones y límites: `docs/INCIDENTE_WEBPACK_RUNTIME.md`. El trabajo UX previo se conserva y no se amplía en esta intervención.
+
+### Intervención 2026-11-13 - Rediseño del directorio
+
+Implementado en rama `feat/produccion-cientifica-ux`. Resultados amplios junto a filtros de 272 px, búsqueda única, cuatro KPIs globales y estadísticas plegables. Consulta/borrador y etiquetas sincronizados por URL; paginación y retorno desde ficha preservan estado. Disponibilidad original de citas/acceso evita falsos ceros/restricciones solo en presentación; no cambian métricas ni contratos. Se conserva 2701/2700 con evidencia del capítulo excluido. Siete pruebas de lógica, flujos de navegador, texto 200% en cinco anchos, error/reintento aislado y regresión breve en cuatro rutas correctos. Inventario, capturas, comandos y límites en `docs/PRODUCCION_CIENTIFICA_UX.md`. Quedan pendientes soporte real de unidad/red, revisión del modelo null, rendimiento y autorización de gestión.
+
 ### Intervencion 2026-11-13 - Base visual compartida
 
 Contenedor de hasta 1440 px, titulo h1 de 30/36 px, columnas adaptables, campos con nombre accesible y minimo de 44 px. Paginacion redistribuible con texto ampliado; se preservan query params, resultados, exportacion y panel analitico. No se modifican loaders ni indicadores. Capturas: `base-visual-{antes,despues}-produccion-cientifica-{360,1440}.png`. Diagnostico y validaciones transversales en `docs/BASE_VISUAL_ETAPA_1.md`. Proxima etapa propuesta: redisenar este directorio, no implementada aqui.

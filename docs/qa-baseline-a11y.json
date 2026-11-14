@@ -1,0 +1,394 @@
+{
+  "phase": "baseline",
+  "evaluatedAt": "2026-11-14T06:04:47.536Z",
+  "cases": [
+    {
+      "route": "/",
+      "width": 360,
+      "textScale": 1,
+      "lang": "es",
+      "title": "Observatorio Nacional de Investigacion de EsSalud",
+      "h1": 1,
+      "viewport": 360,
+      "client": 345,
+      "scroll": 345,
+      "unlabeledFields": [],
+      "positiveTabindex": [],
+      "nestedControls": [],
+      "placeholderLinks": [
+        "Repositorio institucionalProduccion preservada y documentos de investigacion.",
+        "Datos abiertosConjuntos reutilizables, API y transparencia.",
+        "EsSalud",
+        "IETSI",
+        "RENACYT",
+        "Datos abiertos",
+        "API",
+        "Transparencia",
+        "Contacto",
+        "Redes sociales"
+      ],
+      "brokenImages": [],
+      "active": "/",
+      "rootFont": "16px"
+    },
+    {
+      "route": "/",
+      "width": 1280,
+      "textScale": 1,
+      "lang": "es",
+      "title": "Observatorio Nacional de Investigacion de EsSalud",
+      "h1": 1,
+      "viewport": 1280,
+      "client": 1265,
+      "scroll": 1265,
+      "unlabeledFields": [],
+      "positiveTabindex": [],
+      "nestedControls": [],
+      "placeholderLinks": [
+        "Repositorio institucionalProduccion preservada y documentos de investigacion.",
+        "Datos abiertosConjuntos reutilizables, API y transparencia.",
+        "EsSalud",
+        "IETSI",
+        "RENACYT",
+        "Datos abiertos",
+        "API",
+        "Transparencia",
+        "Contacto",
+        "Redes sociales"
+      ],
+      "brokenImages": [],
+      "active": "/",
+      "rootFont": "16px"
+    },
+    {
+      "route": "/produccion-cientifica",
+      "width": 360,
+      "textScale": 1,
+      "lang": "es",
+      "title": "Observatorio Nacional de Investigacion de EsSalud",
+      "h1": 1,
+      "viewport": 360,
+      "client": 345,
+      "scroll": 345,
+      "unlabeledFields": [],
+      "positiveTabindex": [],
+      "nestedControls": [],
+      "placeholderLinks": [
+        "EsSalud",
+        "IETSI",
+        "RENACYT",
+        "Datos abiertos",
+        "API",
+        "Transparencia",
+        "Contacto",
+        "Redes sociales"
+      ],
+      "brokenImages": [],
+      "active": "/produccion-cientifica",
+      "rootFont": "16px"
+    },
+    {
+      "route": "/produccion-cientifica",
+      "width": 1280,
+      "textScale": 1,
+      "lang": "es",
+      "title": "Observatorio Nacional de Investigacion de EsSalud",
+      "h1": 1,
+      "viewport": 1280,
+      "client": 1265,
+      "scroll": 1265,
+      "unlabeledFields": [],
+      "positiveTabindex": [],
+      "nestedControls": [],
+      "placeholderLinks": [
+        "EsSalud",
+        "IETSI",
+        "RENACYT",
+        "Datos abiertos",
+        "API",
+        "Transparencia",
+        "Contacto",
+        "Redes sociales"
+      ],
+      "brokenImages": [],
+      "active": "/produccion-cientifica",
+      "rootFont": "16px"
+    },
+    {
+      "route": "/investigadores",
+      "width": 360,
+      "textScale": 1,
+      "lang": "es",
+      "title": "Observatorio Nacional de Investigacion de EsSalud",
+      "h1": 1,
+      "viewport": 360,
+      "client": 345,
+      "scroll": 345,
+      "unlabeledFields": [],
+      "positiveTabindex": [],
+      "nestedControls": [],
+      "placeholderLinks": [
+        "EsSalud",
+        "IETSI",
+        "RENACYT",
+        "Datos abiertos",
+        "API",
+        "Transparencia",
+        "Contacto",
+        "Redes sociales"
+      ],
+      "brokenImages": [],
+      "active": "/investigadores",
+      "rootFont": "16px"
+    },
+    {
+      "route": "/investigadores",
+      "width": 1280,
+      "textScale": 1,
+      "lang": "es",
+      "title": "Observatorio Nacional de Investigacion de EsSalud",
+      "h1": 1,
+      "viewport": 1280,
+      "client": 1265,
+      "scroll": 1265,
+      "unlabeledFields": [],
+      "positiveTabindex": [],
+      "nestedControls": [],
+      "placeholderLinks": [
+        "EsSalud",
+        "IETSI",
+        "RENACYT",
+        "Datos abiertos",
+        "API",
+        "Transparencia",
+        "Contacto",
+        "Redes sociales"
+      ],
+      "brokenImages": [],
+      "active": "/investigadores",
+      "rootFont": "16px"
+    },
+    {
+      "route": "/proyectos",
+      "width": 360,
+      "textScale": 1,
+      "lang": "es",
+      "title": "Observatorio Nacional de Investigacion de EsSalud",
+      "h1": 1,
+      "viewport": 360,
+      "client": 345,
+      "scroll": 345,
+      "unlabeledFields": [],
+      "positiveTabindex": [],
+      "nestedControls": [],
+      "placeholderLinks": [
+        "EsSalud",
+        "IETSI",
+        "RENACYT",
+        "Datos abiertos",
+        "API",
+        "Transparencia",
+        "Contacto",
+        "Redes sociales"
+      ],
+      "brokenImages": [],
+      "active": "/proyectos",
+      "rootFont": "16px"
+    },
+    {
+      "route": "/proyectos",
+      "width": 1280,
+      "textScale": 1,
+      "lang": "es",
+      "title": "Observatorio Nacional de Investigacion de EsSalud",
+      "h1": 1,
+      "viewport": 1280,
+      "client": 1265,
+      "scroll": 1265,
+      "unlabeledFields": [],
+      "positiveTabindex": [],
+      "nestedControls": [],
+      "placeholderLinks": [
+        "EsSalud",
+        "IETSI",
+        "RENACYT",
+        "Datos abiertos",
+        "API",
+        "Transparencia",
+        "Contacto",
+        "Redes sociales"
+      ],
+      "brokenImages": [],
+      "active": "/proyectos",
+      "rootFont": "16px"
+    },
+    {
+      "route": "/unidades",
+      "width": 360,
+      "textScale": 1,
+      "lang": "es",
+      "title": "Observatorio Nacional de Investigacion de EsSalud",
+      "h1": 1,
+      "viewport": 360,
+      "client": 345,
+      "scroll": 345,
+      "unlabeledFields": [],
+      "positiveTabindex": [],
+      "nestedControls": [],
+      "placeholderLinks": [
+        "EsSalud",
+        "IETSI",
+        "RENACYT",
+        "Datos abiertos",
+        "API",
+        "Transparencia",
+        "Contacto",
+        "Redes sociales"
+      ],
+      "brokenImages": [],
+      "active": "/unidades",
+      "rootFont": "16px"
+    },
+    {
+      "route": "/unidades",
+      "width": 1280,
+      "textScale": 1,
+      "lang": "es",
+      "title": "Observatorio Nacional de Investigacion de EsSalud",
+      "h1": 1,
+      "viewport": 1280,
+      "client": 1265,
+      "scroll": 1265,
+      "unlabeledFields": [],
+      "positiveTabindex": [],
+      "nestedControls": [],
+      "placeholderLinks": [
+        "EsSalud",
+        "IETSI",
+        "RENACYT",
+        "Datos abiertos",
+        "API",
+        "Transparencia",
+        "Contacto",
+        "Redes sociales"
+      ],
+      "brokenImages": [],
+      "active": "/unidades",
+      "rootFont": "16px"
+    }
+  ],
+  "axe": [
+    {
+      "route": "/",
+      "width": 360,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 2
+        }
+      ],
+      "passes": 25
+    },
+    {
+      "route": "/",
+      "width": 1280,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 2
+        }
+      ],
+      "passes": 25
+    },
+    {
+      "route": "/produccion-cientifica",
+      "width": 360,
+      "violations": [],
+      "incomplete": [],
+      "passes": 29
+    },
+    {
+      "route": "/produccion-cientifica",
+      "width": 1280,
+      "violations": [],
+      "incomplete": [],
+      "passes": 29
+    },
+    {
+      "route": "/investigadores",
+      "width": 360,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 1
+        }
+      ],
+      "passes": 29
+    },
+    {
+      "route": "/investigadores",
+      "width": 1280,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 1
+        }
+      ],
+      "passes": 29
+    },
+    {
+      "route": "/proyectos",
+      "width": 360,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 1
+        }
+      ],
+      "passes": 29
+    },
+    {
+      "route": "/proyectos",
+      "width": 1280,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 1
+        }
+      ],
+      "passes": 29
+    },
+    {
+      "route": "/unidades",
+      "width": 360,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 1
+        }
+      ],
+      "passes": 31
+    },
+    {
+      "route": "/unidades",
+      "width": 1280,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 1
+        }
+      ],
+      "passes": 31
+    }
+  ],
+  "consoleErrors": [],
+  "failures": []
+}
